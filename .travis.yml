@@ -3,7 +3,7 @@ language: java
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 jdk:
-- openjdk11
+- oracledk11
 
 services:
 - postgresql
@@ -20,6 +20,6 @@ after_success:
 notifications:
   email:
     recipients:
-      - alexmur08@gmail.com
+      - alexmur008@gmail.com
     on_success: never # default: change
     on_failure: always # default: always
