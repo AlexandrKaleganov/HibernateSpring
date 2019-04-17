@@ -1,9 +1,9 @@
--- create table if not exists  users(
--- id serial primary key,
--- name varchar(200),
--- mail varchar(200),
--- pass varchar(200)
--- );
+create table if not exists  users(
+id serial primary key,
+login varchar(200),
+password varchar(200),
+create_date varchar(200)
+);
 --
 -- create or replace view  userview  as
 -- (select u.id,  u.name, u.mail, u.pass, co.country, ci.city, r.roles from users as u
