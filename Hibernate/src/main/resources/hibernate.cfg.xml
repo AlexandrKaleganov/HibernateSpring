@@ -12,6 +12,6 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
 
-        <!--<mapping resource="ru/akaleganov/models/User.hbm.xml"/>-->
+        <mapping resource="ru/akaleganov/models/User.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
