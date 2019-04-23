@@ -42,12 +42,12 @@
     </build>
     <profiles>
         <profile>
-            <id>hibernate</id>
+            <id>todo</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <db.url>jdbc:postgresql://localhost/chapter_1_video</db.url>
+                <db.url>jdbc:postgresql://localhost/todo</db.url>
                 <db.username>postgres</db.username>
                 <db.password/>
                 <db.driver>org.postgresql.Driver</db.driver>
