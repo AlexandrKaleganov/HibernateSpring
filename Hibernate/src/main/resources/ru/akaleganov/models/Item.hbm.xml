@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+<class name="ru.akaleganov.models.Item" table="item">
+    <id name="id" column="id">
+        <generator class="identity"/>
+    </id>
+    <property name="descr" column="descr"/>
+    <property name="create" column="created"/>
+    <property name="done" column="done"/>
+</class>
+</hibernate-mapping>
