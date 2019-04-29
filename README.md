@@ -18,3 +18,4 @@
 ![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/tasc_3786_test/img/1.png "Optional Title")
 ![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/tasc_3786_test/img/2.png "Optional Title")
 ![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/tasc_3786_test/img/3.png "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/tasc_3786_test/img/4.png "Optional Title")

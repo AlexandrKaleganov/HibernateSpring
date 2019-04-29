@@ -13,6 +13,7 @@ public class DispatchTest {
 
     /**
      * test function
+     *
      * @param fank
      */
     private void fanktest(Consumer<Item> fank) {
@@ -53,8 +54,8 @@ public class DispatchTest {
     @Test
     public void testDispatcherListisDone() {
         this.fanktest(item -> {
-            ArrayList<Item> list = Dispatch.getInstance().access("listnotDone", new Item(), new ArrayList<Item>());
-            assertThat(list.size(), is(0));
+            Dispatch.getInstance().access("listnotDone", new Item(), new ArrayList<Item>())
+                    .forEach(it -> assertThat(it.getDone(), is(false)));
         });
     }
 

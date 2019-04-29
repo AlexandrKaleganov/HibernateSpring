@@ -80,8 +80,7 @@ function addDesc() {
  */
 function isDesc(desc) {
     var test = /^[^\s]*$/;
-    console.log(desc.val().length);
-    if (desc.val().length < 1 || !test.test(desc.val())) {
+    if (desc.val().length < 1 || test.test(desc.val())) {
         alert($("#descr").attr("placeholder"));
         return false;
     } else {

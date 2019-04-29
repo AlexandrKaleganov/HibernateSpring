@@ -34,7 +34,7 @@ public class DbStore implements Store<Item> {
      */
     @Override
     public Item add(Item item) {
-        return this.openandCloseSession(item, session ->
+        return this.openandCloseSession(session ->
                 session.get(Item.class, session.save(item))
         );
     }
@@ -46,7 +46,7 @@ public class DbStore implements Store<Item> {
      */
     @Override
     public Item delete(Item item) {
-        return this.openandCloseSession(item, session -> {
+        return this.openandCloseSession(session -> {
             session.delete(item);
             return item;
         });
@@ -60,7 +60,7 @@ public class DbStore implements Store<Item> {
      */
     @Override
     public Item update(Item item) {
-        return this.openandCloseSession(item, session -> {
+        return this.openandCloseSession(session -> {
             session.update(item);
             return session.get(Item.class, item.getId());
         });
@@ -74,7 +74,7 @@ public class DbStore implements Store<Item> {
      */
     @Override
     public Item findbyID(Item item) {
-        return this.openandCloseSession(item, (session) ->
+        return this.openandCloseSession((session) ->
                 session.get(Item.class, item.getId()));
     }
 
@@ -85,7 +85,7 @@ public class DbStore implements Store<Item> {
      */
     @Override
     public List<Item> findall() {
-        ArrayList<Item> items = this.openandCloseSession(new ArrayList<Item>(),
+        ArrayList<Item> items = this.openandCloseSession(
                 (session) -> (ArrayList<Item>) session.createQuery("from Item ").list()
         );
         return items;
@@ -93,7 +93,7 @@ public class DbStore implements Store<Item> {
 
     @Override
     public List<Item> findallnotDone() {
-        ArrayList<Item> items = this.openandCloseSession(new ArrayList<Item>(),
+        ArrayList<Item> items = this.openandCloseSession(
                 (session) -> (ArrayList<Item>) session.createQuery("from Item where done = false").list()
         );
         return items;
@@ -102,19 +102,19 @@ public class DbStore implements Store<Item> {
     /**
      * refactor close factory and close session
      *
-     * @param object
      * @param fank
      * @param <E>
      * @return
      */
-    private <E> E openandCloseSession(E object, Function<Session, E> fank) {
+    private <E> E openandCloseSession(Function<Session, E> fank) {
+        E rsl = null;
         try (SessionFactory factory = new Configuration()
                 .configure()
                 .buildSessionFactory();) {
             try (Session session = factory.openSession()) {
                 try {
                     session.beginTransaction();
-                    object = fank.apply(session);
+                    rsl = fank.apply(session);
                     session.getTransaction().commit();
                 } catch (Exception e) {
                     session.getTransaction().rollback();
@@ -124,6 +124,6 @@ public class DbStore implements Store<Item> {
                 LOGGER.error(e.getMessage(), e);
             }
         }
-        return object;
+        return rsl;
     }
 }

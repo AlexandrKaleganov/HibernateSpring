@@ -5,11 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.akaleganov</groupId>
     <artifactId>HibernateSpring</artifactId>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>Hibernate</module>
-    </modules>
+
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -18,6 +16,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -79,8 +83,42 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>3.6.3</version>
+                <configuration>
+                    <changeLogFile>${basedir}/db/master.xml</changeLogFile>
+                    <url>${db.url}</url>
+                    <driver>${db.driver}</driver>
+                    <username>${db.username}</username>
+                    <password>${db.password}</password>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>todo</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <db.url>jdbc:postgresql://localhost/todo</db.url>
+                <db.username>postgres</db.username>
+                <db.password/>
+                <db.driver>org.postgresql.Driver</db.driver>
+            </properties>
+        </profile>
+    </profiles>
     <dependencies>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -162,5 +200,17 @@
             <artifactId>liquibase-maven-plugin</artifactId>
             <version>3.6.3</version>
         </dependency>
+        <!--Hibernate START-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.2.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.4.2.Final</version>
+        </dependency>
+        <!--Hibernate END-->
     </dependencies>
 </project>
