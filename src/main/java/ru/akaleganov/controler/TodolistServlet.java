@@ -20,7 +20,6 @@ public class TodolistServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
-        resp.setContentType("text/json; charset=windows-1251");
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
             writer.append(new ObjectMapper().writeValueAsString(this.dispatch.access(req.getParameter("action"), new Item(), new ArrayList<Item>())));
@@ -32,7 +31,6 @@ public class TodolistServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
-        resp.setContentType("text/json; charset=windows-1251");
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
             writer.append(
