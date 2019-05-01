@@ -5,5 +5,7 @@
             <generator class="identity"/>
         </id>
         <property name="comment" column="comment"/>
+        <many-to-one name="autor" column="user_id" class="ru.akaleganov.models.User"/>
+        <many-to-one name="item" column="item_id" class="ru.akaleganov.models.Item"/>
     </class>
 </hibernate-mapping>

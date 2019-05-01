@@ -5,8 +5,8 @@ import java.util.List;
 public class Item {
     private int id;
     private User autor;
-    private List<Comments> comments;
     private String descr;
+    private List<Comments> comments;
 
     public int getId() {
         return id;
@@ -38,5 +38,10 @@ public class Item {
 
     public void setDescr(String descr) {
         this.descr = descr;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" + "id=" + id + ", autor=" + autor + ", descr='" + descr + '\'' + ", comments=" + comments + '}';
     }
 }

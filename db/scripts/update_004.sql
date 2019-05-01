@@ -1,0 +1,1 @@
+alter table comments add column item_id integer references items(id);

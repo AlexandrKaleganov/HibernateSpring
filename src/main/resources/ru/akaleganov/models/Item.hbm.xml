@@ -5,5 +5,10 @@
             <generator class="identity"/>
         </id>
         <property name="descr" column="descr"/>
+        <many-to-one name="autor" column="user_id" class="ru.akaleganov.models.User"/>
+        <bag name="comments" table="comments" inverse="true" cascade="all-delete-orphan">
+            <key column="item_id" not-null="true"/>
+            <one-to-many class="ru.akaleganov.models.Comments"/>
+        </bag>
     </class>
 </hibernate-mapping>

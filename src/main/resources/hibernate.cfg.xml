@@ -14,8 +14,8 @@
 
         <!--XML Entity mapping-->
         <mapping resource="ru/akaleganov/models/User.hbm.xml"/>
-        <mapping resource="ru/akaleganov/models/Comments.hbm.xml"/>
         <mapping resource="ru/akaleganov/models/Item.hbm.xml"/>
+        <mapping resource="ru/akaleganov/models/Comments.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>
