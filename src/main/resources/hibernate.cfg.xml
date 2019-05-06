@@ -12,6 +12,13 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
 
-        <!--<mapping resource="ru/akaleganov/models/User.hbm.xml"/>-->
+        <mapping resource="ru/akaleganov/modelsxml/Roles.hbm.xml"/>
+        <mapping resource="ru/akaleganov/modelsxml/Users.hbm.xml"/>
+        <mapping resource="ru/akaleganov/modelsxml/Marka.hbm.xml"/>
+        <mapping resource="ru/akaleganov/modelsxml/Model.hbm.xml"/>
+        <mapping resource="ru/akaleganov/modelsxml/Transmission.hbm.xml"/>
+        <mapping resource="ru/akaleganov/modelsxml/Photo.hbm.xml"/>
+        <mapping resource="ru/akaleganov/modelsxml/Car.hbm.xml"/>
+        <mapping resource="ru/akaleganov/modelsxml/Announcement.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
