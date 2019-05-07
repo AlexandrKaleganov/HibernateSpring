@@ -48,7 +48,7 @@ create table if not exists transmission(
   id serial primary key,
   name varchar(200)
 );
-insert into transmission(name) values('автомат'), ('мех.'), ('вариатор'),('робот');
+insert into transmission(name) values('АВТОМАТ'), ('МЕХАНИЧ'), ('ВАРИАТОР'),('РОБОТ');
 
 --таблица объекта автомобил
 create table if not exists car(
