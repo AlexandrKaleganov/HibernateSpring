@@ -14,6 +14,8 @@
 
         <mapping resource="ru/akaleganov/models/Roles.hbm.xml"/>
         <mapping resource="ru/akaleganov/models/Users.hbm.xml"/>
+        <mapping resource="ru/akaleganov/models/Marka.hbm.xml"/>
+        <mapping resource="ru/akaleganov/models/Model.hbm.xml"/>
         <mapping resource="ru/akaleganov/models/Transmission.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

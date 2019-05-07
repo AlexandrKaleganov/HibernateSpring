@@ -9,6 +9,10 @@ public class Model {
     private String name;
     private Marka marka;
 
+    public Marka getMarka() {
+        return marka;
+    }
+
     public int getId() {
         return id;
     }
@@ -23,10 +27,6 @@ public class Model {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Marka getMarka() {
-        return marka;
     }
 
     public void setMarka(Marka marka) {
