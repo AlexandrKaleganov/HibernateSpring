@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
-    <class name="ru.akaleganov.models.Roles" table="roles">
+    <class name="ru.akaleganov.models.Transmission" table="transmission">
         <id name="id" column="id">
             <generator class="identity"/>
         </id>
-        <property name="role" column="role"/>
+        <property name="name" column="name"/>
     </class>
 </hibernate-mapping>

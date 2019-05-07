@@ -13,5 +13,6 @@
         <property name="use_sql_comments">true</property>
 
         <mapping resource="ru/akaleganov/models/Roles.hbm.xml"/>
+        <mapping resource="ru/akaleganov/models/Transmission.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
