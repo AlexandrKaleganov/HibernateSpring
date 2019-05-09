@@ -6,7 +6,7 @@
         </id>
         <property name="name" column="name"/>
         <bag name="models" table="model" inverse="true" cascade="all-delete-orphan">
-            <key column="marka_id"/>
+            <key column="marka_id" not-null="true"/>
             <one-to-many class="ru.akaleganov.models.Model"/>
         </bag>
     </class>

@@ -44,7 +44,14 @@ public class MarkaTest {
     @Test
     public void testModel() {
         this.testMarkaModel((mapExpected, session) -> {
-
+            ArrayList<Marka> markaList = (ArrayList<Marka>) session.createQuery("from Marka").list();
+            markaList.forEach(e -> {
+                assertThat(mapExpected.containsKey(e.getName()), Is.is(true));
+                var expected = mapExpected.get(e.getName());
+                for (int i = 0; i < expected.size(); i++) {
+                    assertThat(expected.get(i), Is.is(e.getModels().get(i).getName()));
+                }
+            });
         });
     }
 

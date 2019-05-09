@@ -9,9 +9,6 @@ public class Model {
     private String name;
     private Marka marka;
 
-    public Marka getMarka() {
-        return marka;
-    }
 
     public int getId() {
         return id;
@@ -32,7 +29,9 @@ public class Model {
     public void setMarka(Marka marka) {
         this.marka = marka;
     }
-
+    public Marka getMarka() {
+        return marka;
+    }
     @Override
     public String toString() {
         return "Model{" + "id=" + id + ", name='" + name + '\'' + '}';

@@ -1,6 +1,7 @@
 package ru.akaleganov.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Kaleganov Aleander
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class Marka {
     private int id;
     private String name;
-    private ArrayList<Model> models;
+    private List<Model> models;
 
     public int getId() {
         return id;
@@ -27,11 +28,11 @@ public class Marka {
         this.name = name;
     }
 
-    public ArrayList<Model> getModels() {
+    public List<Model> getModels() {
         return models;
     }
 
-    public void setModels(ArrayList<Model> models) {
+    public void setModels(List<Model> models) {
         this.models = models;
     }
 
