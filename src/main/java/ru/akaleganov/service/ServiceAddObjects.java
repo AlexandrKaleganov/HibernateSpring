@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class ServiceAddandGet {
+public class ServiceAddObjects {
 
 
     public Announcement addAnnouncement(String name, Car car, Users user) {

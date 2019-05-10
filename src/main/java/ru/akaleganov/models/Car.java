@@ -1,6 +1,7 @@
 package ru.akaleganov.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Kaleganov Aleander
@@ -12,7 +13,7 @@ public class Car {
     private Model model;
     private Transmission transmission;
     private int yar;
-    private ArrayList<Photo> photo;
+    private List<Photo> photo;
     private Announcement announcement;
 
     public Announcement getAnnouncement() {
@@ -63,11 +64,11 @@ public class Car {
         this.yar = yar;
     }
 
-    public ArrayList<Photo> getPhoto() {
+    public List<Photo> getPhoto() {
         return photo;
     }
 
-    public void setPhoto(ArrayList<Photo> photo) {
+    public void setPhoto(List<Photo> photo) {
         this.photo = photo;
     }
 
