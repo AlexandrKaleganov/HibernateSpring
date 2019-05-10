@@ -19,10 +19,9 @@ public class UsersTest {
         Session session = factory.openSession();
         session.beginTransaction();
         test.accept(session);
-        session.getTransaction().commit();
+        session.getTransaction().rollback();
         session.close();
         factory.close();
-
     }
 
     @Test
@@ -35,6 +34,7 @@ public class UsersTest {
     @Test
     public void testUserAdd() {
         this.testfank(session -> {
+
             Users users = session.get(Users.class, 2);
             System.out.println(users);
             session.delete(users);
