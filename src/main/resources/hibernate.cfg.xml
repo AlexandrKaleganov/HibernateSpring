@@ -18,5 +18,6 @@
         <mapping resource="ru/akaleganov/models/Model.hbm.xml"/>
         <mapping resource="ru/akaleganov/models/Transmission.hbm.xml"/>
         <mapping resource="ru/akaleganov/models/Photo.hbm.xml"/>
+        <mapping resource="ru/akaleganov/models/Car.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
