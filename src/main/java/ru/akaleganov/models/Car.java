@@ -13,6 +13,15 @@ public class Car {
     private Transmission transmission;
     private int yar;
     private ArrayList<Photo> photo;
+    private Announcement announcement;
+
+    public Announcement getAnnouncement() {
+        return announcement;
+    }
+
+    public void setAnnouncement(Announcement announcement) {
+        this.announcement = announcement;
+    }
 
     public int getId() {
         return id;

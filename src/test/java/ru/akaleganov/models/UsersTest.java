@@ -19,15 +19,25 @@ public class UsersTest {
         Session session = factory.openSession();
         session.beginTransaction();
         test.accept(session);
+        session.getTransaction().commit();
         session.close();
         factory.close();
 
     }
-@Test
+
+    @Test
     public void testUser() {
         this.testfank(session -> {
             Users root = session.get(Users.class, 1);
             assertThat(root.getLogin(), is("root"));
         });
-}
+    }
+    @Test
+    public void testUserAdd() {
+        this.testfank(session -> {
+            Users users = session.get(Users.class, 2);
+            System.out.println(users);
+            session.delete(users);
+        });
+    }
 }

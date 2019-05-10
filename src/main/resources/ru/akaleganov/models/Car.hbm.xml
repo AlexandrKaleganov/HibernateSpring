@@ -5,10 +5,10 @@
             <generator class="identity"/>
         </id>
         <many-to-one name="marka" column="marka_id" class="ru.akaleganov.models.Marka"/>
-        <many-to-one name="model" column="marka_id" class="ru.akaleganov.models.Model"/>
+        <many-to-one name="model" column="model_id" class="ru.akaleganov.models.Model"/>
         <many-to-one name="transmission" column="transmission_id" class="ru.akaleganov.models.Transmission"/>
         <property name="yar" column="yar"/>
-        <one-to-one name=""
+        <one-to-one name="announcement" constrained="true"/>
         <bag name="photo" table="photo" inverse="true" cascade="all-delete-orphan">
             <key column="photo" not-null="true"/>
             <one-to-many class="ru.akaleganov.models.Photo"/>
