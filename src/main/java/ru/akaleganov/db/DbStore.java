@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import ru.akaleganov.models.Item;
+import ru.akaleganov.service.SFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class DbStore implements Store<Item> {
      * create session factory
      */
     private final static DbStore DB_STOREINSTANCE = new DbStore();
+    private final static SFactory S_FACTORY = SFactory.getSfactory();
 
     public static DbStore getDbstoreINSTANCE() {
         return DB_STOREINSTANCE;
@@ -108,10 +110,7 @@ public class DbStore implements Store<Item> {
      */
     private <E> E openandCloseSession(Function<Session, E> fank) {
         E rsl = null;
-        try (SessionFactory factory = new Configuration()
-                .configure()
-                .buildSessionFactory();) {
-            try (Session session = factory.openSession()) {
+            try (Session session = S_FACTORY.getFactory().openSession()) {
                 try {
                     session.beginTransaction();
                     rsl = fank.apply(session);
@@ -123,7 +122,6 @@ public class DbStore implements Store<Item> {
             } catch (Exception e) {
                 LOGGER.error(e.getMessage(), e);
             }
-        }
         return rsl;
     }
 }

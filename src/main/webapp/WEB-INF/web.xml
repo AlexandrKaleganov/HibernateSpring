@@ -17,7 +17,6 @@
         <filter-name>FilterContentType</filter-name>
         <url-pattern>*</url-pattern>
     </filter-mapping>
-
     <servlet>
         <servlet-name>TodolistServlet</servlet-name>
         <servlet-class>ru.akaleganov.controler.TodolistServlet</servlet-class>

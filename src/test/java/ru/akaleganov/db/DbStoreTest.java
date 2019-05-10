@@ -11,14 +11,14 @@ import static org.hamcrest.Matchers.is;
 
 
 public class DbStoreTest {
-    private final DbStore store = (DbStore) DbStore.getDbstoreINSTANCE();
 
     public void testfank(Item item, BiConsumer<Item, DbStore> fank) {
+        final DbStore store = (DbStore) DbStore.getDbstoreINSTANCE();
         item.setDescr("desc");
         try {
-            fank.accept(item, this.store);
+            fank.accept(item, store);
         } finally {
-            this.store.delete(item);
+            store.delete(item);
         }
 
     }
