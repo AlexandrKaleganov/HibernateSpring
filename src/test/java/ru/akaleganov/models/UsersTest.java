@@ -36,7 +36,7 @@ public class UsersTest {
     }
 
     /**
-     * так планирую добвлть пользователей
+     * так планирую добавлть пользователей
      */
     @Test
     public void testUserAdd() {
