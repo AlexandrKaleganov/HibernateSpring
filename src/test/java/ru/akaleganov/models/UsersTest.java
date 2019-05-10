@@ -1,10 +1,13 @@
 package ru.akaleganov.models;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hamcrest.core.Is;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.function.Consumer;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,13 +34,25 @@ public class UsersTest {
             assertThat(root.getLogin(), is("root"));
         });
     }
+
+    /**
+     * так планирую добвлть пользователей
+     */
     @Test
     public void testUserAdd() {
         this.testfank(session -> {
-
-            Users users = session.get(Users.class, 2);
-            System.out.println(users);
-            session.delete(users);
+            ObjectMapper mapper = new ObjectMapper();
+            String addUsers = "{\"name\":\"vasia\", \"login\":\"user\",\"roles\":{\"id\":\"1\", \"role\":\"ADMIN\"}, \"password\":\"123\"}";
+            Users users = null;
+            try {
+                users = mapper.readValue(addUsers, Users.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            session.save(users);
+            assert users != null;
+            Users users1 = session.load(Users.class, users.getId());
+            assertThat(users1.getLogin(), Is.is("user"));
         });
     }
 }
