@@ -12,10 +12,19 @@ public class Announcement {
 
     private int id;
     private String name;
+    private String description;
     private Car car;
     private Timestamp created;
     private Users users;
     private boolean done;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getName() {
         return name;
