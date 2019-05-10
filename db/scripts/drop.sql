@@ -1,0 +1,10 @@
+drop table photo;
+drop table car;
+drop table announcement;
+drop table model;
+drop table marka;
+drop table transmission;
+drop table users;
+drop table roles;
+drop table databasechangelog;
+drop table databasechangeloglock;
