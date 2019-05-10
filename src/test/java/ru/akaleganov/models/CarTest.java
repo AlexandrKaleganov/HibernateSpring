@@ -51,12 +51,10 @@ public class CarTest {
         baos.flush();
         String base64String = Base64.encode(baos.toByteArray());
         baos.close();
-
-        // декодируем полученную строку в массив байт
         byte[] resByteArray = Base64.decode(base64String);
         Photo photo = new Photo();
         photo.setPhoto(resByteArray);
-        System.out.println(photo);
+
         String jsonCar = "{\"marka\":{\"id\":\"1\"}, \"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
         Car car = new ObjectMapper().readValue(jsonCar, Car.class);
         ArrayList<Photo> photos = new ArrayList<>();

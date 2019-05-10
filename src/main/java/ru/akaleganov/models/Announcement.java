@@ -15,7 +15,7 @@ public class Announcement {
     private String description;
     private Car car;
     private Timestamp created;
-    private Users users;
+    private Users author;
     private boolean done;
 
     public String getDescription() {
@@ -51,12 +51,12 @@ public class Announcement {
         this.created = created;
     }
 
-    public Users getUsers() {
-        return users;
+    public Users getAuthor() {
+        return author;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setAuthor(Users author) {
+        this.author = author;
     }
 
     public boolean isDone() {
@@ -78,7 +78,7 @@ public class Announcement {
     @Override
     public String toString() {
         return "Announcement{" + "id=" + id + ", name='" + name + "', car=" + car
-                + ", created_dat=" + created + ", users=" + users
+                + ", created_dat=" + created + ", author=" + author
                 + ", done=" + done + '}';
     }
 }

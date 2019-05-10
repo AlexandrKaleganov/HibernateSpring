@@ -70,6 +70,7 @@ create table if not exists announcement
 (
     id          serial primary key,
     name        varchar(200),
+    description varchar(400),
     created_dat TIMESTAMP,
     user_id     integer references users (id),
     done        boolean

@@ -13,12 +13,10 @@ import java.time.LocalDateTime;
 public class ServiceAddObjects {
 
 
-    public Announcement addAnnouncement(String name, Car car, Users user) {
-        Announcement item = new Announcement();
-        item.setName(name);
-        item.setCar(car);
+    public Announcement addAnnouncement(String jsonStroka) throws IOException {
+        Announcement item = new ObjectMapper().readValue(jsonStroka, Announcement.class);
+        ObjectMapper mapper = new ObjectMapper();
         item.setCreated(Timestamp.valueOf(LocalDateTime.now()));
-        item.setUsers(user);
         item.setDone(false);
         return item;
     }
