@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="ru.akaleganov.models.Announcement" table="announcement">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="name" column="name"/>
+        <one-to-one name="car" class="ru.akaleganov.models.Car" cascade="all-delete-orphan"/>
+        <many-to-one name="users" class="ru.akaleganov.models.Users"/>
+        <property name="done" column="done"/>
+        <property name="created" column="created_dat"/>
+    </class>
+</hibernate-mapping>

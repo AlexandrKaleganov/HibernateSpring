@@ -8,6 +8,7 @@
         <many-to-one name="model" column="marka_id" class="ru.akaleganov.models.Model"/>
         <many-to-one name="transmission" column="transmission_id" class="ru.akaleganov.models.Transmission"/>
         <property name="yar" column="yar"/>
+        <one-to-one name=""
         <bag name="photo" table="photo" inverse="true" cascade="all-delete-orphan">
             <key column="photo" not-null="true"/>
             <one-to-many class="ru.akaleganov.models.Photo"/>

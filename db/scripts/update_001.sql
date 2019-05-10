@@ -61,6 +61,7 @@ create table if not exists car(
 
 --таблица объявлений
 create table if not exists announcement(
+  id serial primary key,
   name varchar(200),
   car_id integer references car(id),
   created_dat TIMESTAMP,

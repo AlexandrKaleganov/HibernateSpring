@@ -9,6 +9,8 @@ import java.sql.Timestamp;
  * @since 06/05//2019
  **/
 public class Announcement {
+
+    private int id;
     private String name;
     private Car car;
     private Timestamp created;
@@ -30,6 +32,7 @@ public class Announcement {
     public void setCar(Car car) {
         this.car = car;
     }
+
     @JsonFormat(pattern = "dd-MM-yyy HH:mm", timezone = "GMT+3")
     public Timestamp getCreated() {
         return created;
@@ -55,9 +58,17 @@ public class Announcement {
         this.done = done;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "Announcement{" + "name='" + name + '\'' + ", car=" + car
+        return "Announcement{" + "id=" + id + ", name='" + name + "', car=" + car
                 + ", created_dat=" + created + ", users=" + users
                 + ", done=" + done + '}';
     }
