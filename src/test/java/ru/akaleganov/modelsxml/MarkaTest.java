@@ -1,16 +1,16 @@
-package ru.akaleganov.models;
+package ru.akaleganov.modelsxml;
 
 import org.hamcrest.core.Is;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
+import ru.akaleganov.modelsxml.Marka;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 

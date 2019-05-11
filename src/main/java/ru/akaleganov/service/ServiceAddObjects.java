@@ -1,10 +1,8 @@
 package ru.akaleganov.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ru.akaleganov.models.Announcement;
-import ru.akaleganov.models.Car;
-import ru.akaleganov.models.Marka;
-import ru.akaleganov.models.Users;
+import ru.akaleganov.modelsxml.Announcement;
+import ru.akaleganov.modelsxml.Car;
 
 import java.io.IOException;
 import java.sql.Timestamp;

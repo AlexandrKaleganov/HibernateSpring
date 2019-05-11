@@ -1,6 +1,5 @@
-package ru.akaleganov.models;
+package ru.akaleganov.modelsxml;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +14,13 @@ public class Car {
     private int yar;
     private List<Photo> photo;
     private Announcement announcement;
+
+    public Car(int id) {
+        this.id = id;
+    }
+
+    public Car() {
+    }
 
     public Announcement getAnnouncement() {
         return announcement;

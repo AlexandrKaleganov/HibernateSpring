@@ -1,4 +1,4 @@
-package ru.akaleganov.models;
+package ru.akaleganov.modelsxml;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.core.Is;
@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
+import ru.akaleganov.modelsxml.Users;
 
 import java.io.IOException;
 import java.util.function.Consumer;

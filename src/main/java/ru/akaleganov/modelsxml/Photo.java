@@ -1,4 +1,4 @@
-package ru.akaleganov.models;
+package ru.akaleganov.modelsxml;
 
 /**
  * @author Kaleganov Aleander
@@ -8,6 +8,13 @@ public class Photo {
     private int id;
     private byte[] photo;
     private Car car;
+
+    public Photo(int id) {
+        this.id = id;
+    }
+
+    public Photo() {
+    }
 
     public byte[] getPhoto() {
         return photo;

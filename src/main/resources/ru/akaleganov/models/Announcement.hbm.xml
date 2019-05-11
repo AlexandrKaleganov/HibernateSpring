@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
-    <class name="ru.akaleganov.models.Announcement" table="announcement">
+    <class name="ru.akaleganov.modelsxml.Announcement" table="announcement">
         <id name="id" column="id">
             <generator class="identity"/>
         </id>
         <property name="name" column="name"/>
         <property name="description" column="description"/>
-        <one-to-one name="car" class="ru.akaleganov.models.Car" cascade="save-update"/>
-        <many-to-one name="author" column="user_id" class="ru.akaleganov.models.Users"/>
+        <one-to-one name="car" class="ru.akaleganov.modelsxml.Car" cascade="save-update" />
+        <many-to-one name="author" column="user_id" class="ru.akaleganov.modelsxml.Users"/>
         <property name="done" column="done"/>
         <property name="created" column="created_dat"/>
     </class>

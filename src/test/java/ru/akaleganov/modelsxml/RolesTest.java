@@ -1,10 +1,11 @@
-package ru.akaleganov.models;
+package ru.akaleganov.modelsxml;
 
 import org.hamcrest.core.Is;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
+import ru.akaleganov.modelsxml.Roles;
 
 import java.util.ArrayList;
 import java.util.Arrays;

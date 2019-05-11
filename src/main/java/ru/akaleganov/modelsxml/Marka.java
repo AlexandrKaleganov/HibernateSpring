@@ -1,6 +1,5 @@
-package ru.akaleganov.models;
+package ru.akaleganov.modelsxml;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +10,13 @@ public class Marka {
     private int id;
     private String name;
     private List<Model> models;
+
+    public Marka(int id) {
+        this.id = id;
+    }
+
+    public Marka() {
+    }
 
     public int getId() {
         return id;

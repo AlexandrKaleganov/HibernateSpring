@@ -1,4 +1,4 @@
-package ru.akaleganov.models;
+package ru.akaleganov.modelsxml;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.xerces.impl.dv.util.Base64;
@@ -6,20 +6,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
+import ru.akaleganov.modelsxml.Car;
+import ru.akaleganov.modelsxml.Photo;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 import java.util.function.Consumer;
-
-import static org.junit.Assert.*;
 
 public class CarTest {
     private void testfank(Consumer<Session> test) {
@@ -29,7 +25,7 @@ public class CarTest {
         Session session = factory.openSession();
         session.beginTransaction();
         test.accept(session);
-        session.getTransaction().commit();
+        session.getTransaction().rollback();
         session.close();
         factory.close();
     }

@@ -1,4 +1,4 @@
-package ru.akaleganov.models;
+package ru.akaleganov.modelsxml;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -17,6 +17,13 @@ public class Announcement {
     private Timestamp created;
     private Users author;
     private boolean done;
+
+    public Announcement(int id) {
+        this.id = id;
+    }
+
+    public Announcement() {
+    }
 
     public String getDescription() {
         return description;

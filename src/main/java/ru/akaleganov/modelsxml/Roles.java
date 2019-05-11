@@ -1,4 +1,4 @@
-package ru.akaleganov.models;
+package ru.akaleganov.modelsxml;
 
 /**
  * @author Kaleganov Aleander
@@ -7,6 +7,13 @@ package ru.akaleganov.models;
 public class Roles {
     private int id;
     private String role;
+
+    public Roles(int id) {
+        this.id = id;
+    }
+
+    public Roles() {
+    }
 
     public int getId() {
         return id;

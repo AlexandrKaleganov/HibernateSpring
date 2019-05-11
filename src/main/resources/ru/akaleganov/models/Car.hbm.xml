@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
-    <class name="ru.akaleganov.models.Car" table="car">
+    <class name="ru.akaleganov.modelsxml.Car" table="car">
         <id name="id" column="id">
             <generator class="identity"/>
         </id>
-        <many-to-one name="marka" column="marka_id" class="ru.akaleganov.models.Marka"/>
-        <many-to-one name="model" column="model_id" class="ru.akaleganov.models.Model"/>
-        <many-to-one name="transmission" column="transmission_id" class="ru.akaleganov.models.Transmission"/>
+        <many-to-one name="marka" column="marka_id" class="ru.akaleganov.modelsxml.Marka"/>
+        <many-to-one name="model" column="model_id" class="ru.akaleganov.modelsxml.Model"/>
+        <many-to-one name="transmission" column="transmission_id" class="ru.akaleganov.modelsxml.Transmission"/>
         <property name="yar" column="yar"/>
         <one-to-one name="announcement" constrained="true"/>
         <bag name="photo" table="photo" inverse="true" cascade="save-update">
             <key column="photo" not-null="true"/>
-            <one-to-many class="ru.akaleganov.models.Photo"/>
+            <one-to-many class="ru.akaleganov.modelsxml.Photo"/>
         </bag>
     </class>
 </hibernate-mapping>

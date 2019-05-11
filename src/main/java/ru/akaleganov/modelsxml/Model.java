@@ -1,12 +1,20 @@
-package ru.akaleganov.models;
+package ru.akaleganov.modelsxml;
 
 /**
  * @author Kaleganov Aleander
  * @since 06/05//2019
  **/
-public class Transmission {
+public class Model {
     private int id;
     private String name;
+    private Marka marka;
+
+    public Model(int id) {
+        this.id = id;
+    }
+
+    public Model() {
+    }
 
     public int getId() {
         return id;
@@ -24,9 +32,15 @@ public class Transmission {
         this.name = name;
     }
 
+    public void setMarka(Marka marka) {
+        this.marka = marka;
+    }
+    public Marka getMarka() {
+        return marka;
+    }
     @Override
     public String toString() {
-        return "Transmission{" + "id=" + id + ", name='" + name + '\'' + '}';
+        return "Model{" + "id=" + id + ", name='" + name + '\'' + '}';
     }
 }
 
