@@ -18,7 +18,7 @@ public class ServiceAddObjectsTest {
         Session session = factory.openSession();
         session.beginTransaction();
         test.accept(session);
-        session.getTransaction().rollback();
+        session.getTransaction().commit();
         session.close();
         factory.close();
     }

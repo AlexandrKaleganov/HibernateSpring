@@ -9,7 +9,7 @@
         <many-to-one name="transmission" column="transmission_id" class="ru.akaleganov.modelsxml.Transmission"/>
         <property name="yar" column="yar"/>
         <one-to-one name="announcement" constrained="true"/>
-        <bag name="photo" table="photo" inverse="true" cascade="save-update">
+        <bag name="photo" table="photo" inverse="true" cascade="all-delete-orphan">
             <key column="photo" not-null="true"/>
             <one-to-many class="ru.akaleganov.modelsxml.Photo"/>
         </bag>
