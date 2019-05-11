@@ -2,6 +2,7 @@ package ru.akaleganov.modelsxml;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.xerces.impl.dv.util.Base64;
+import org.hamcrest.core.Is;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -16,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.function.Consumer;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CarTest {
     private void testfank(Consumer<Session> test) {
@@ -37,6 +40,8 @@ public class CarTest {
         System.out.println(car);
         testfank(session -> {
             session.save(car);
+            Car test = session.get(Car.class, car.getId());
+            assertThat(test.getMarka(), Is.is(car.getMarka()));
         });
     }
     @Test
