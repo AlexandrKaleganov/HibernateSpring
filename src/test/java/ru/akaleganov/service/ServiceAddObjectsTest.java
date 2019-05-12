@@ -33,7 +33,6 @@ public class ServiceAddObjectsTest {
         System.out.println(ann);
         testfank(se -> {
             se.save(ann);
-            ann.getCar().setAnnouncement(ann);
         });
     }
 }
