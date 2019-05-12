@@ -6,7 +6,7 @@
         </id>
         <property name="name" column="name"/>
         <property name="description" column="description"/>
-        <one-to-one name="car" class="ru.akaleganov.modelsxml.Car" cascade="all-delete-orphan" />
+        <one-to-one name="car" class="ru.akaleganov.modelsxml.Car" cascade="all"/>
         <many-to-one name="author" column="user_id" class="ru.akaleganov.modelsxml.Users" not-null="true"/>
         <property name="done" column="done"/>
         <property name="created" column="created_dat"/>
