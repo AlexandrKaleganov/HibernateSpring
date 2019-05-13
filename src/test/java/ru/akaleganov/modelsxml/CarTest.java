@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
+import static net.bytebuddy.matcher.ElementMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CarTest {
@@ -28,7 +29,7 @@ public class CarTest {
         Session session = factory.openSession();
         session.beginTransaction();
         test.accept(session);
-        session.getTransaction().rollback();
+        session.getTransaction().commit();
         session.close();
         factory.close();
     }
@@ -44,8 +45,10 @@ public class CarTest {
             assertThat(test.getMarka(), Is.is(car.getMarka()));
         });
     }
+
+    //так буду удалять и добавлять авто с фотографиями
     @Test
-    public void testPhoto() throws IOException {
+    public void testPhotoCarDelete() throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         BufferedImage image = ImageIO.read(new File("db/Avito-Shema.png"));
         ImageIO.write(image, "png", baos);
@@ -61,8 +64,15 @@ public class CarTest {
         ArrayList<Photo> photos = new ArrayList<>();
         photos.add(photo);
         car.setPhoto(photos);
+        car.getPhoto().get(0).setCar(car);
         testfank(session -> {
             session.save(car);
+            assertThat(car.getId() != 0, Is.is(true));
+            assertThat(car.getPhoto().get(0).getId() != 0, Is.is(true));
+            assertThat(car.getPhoto().get(0).getCar().getId() != 0, Is.is(true));
+        });
+        testfank(session -> {
+            session.delete(session.get(Car.class, car.getId()));
         });
     }
 }

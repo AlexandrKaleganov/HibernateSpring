@@ -8,9 +8,9 @@
         <many-to-one name="model" column="model_id" class="ru.akaleganov.modelsxml.Model"/>
         <many-to-one name="transmission" column="transmission_id" class="ru.akaleganov.modelsxml.Transmission"/>
         <property name="yar" column="yar"/>
-        <one-to-one name="announcement" class="ru.akaleganov.modelsxml.Announcement" constrained="true"/>
+        <many-to-one name="announcement" class="ru.akaleganov.modelsxml.Announcement" column="announcement_id"/>
         <bag name="photo" table="photo" inverse="true" cascade="all-delete-orphan">
-            <key column="photo" not-null="true"/>
+            <key column="car_id" not-null="true"/>
             <one-to-many class="ru.akaleganov.modelsxml.Photo"/>
         </bag>
     </class>
