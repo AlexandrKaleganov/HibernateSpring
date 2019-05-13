@@ -22,7 +22,7 @@ public class ServiceAddObjectsTest {
         Session session = factory.openSession();
         session.beginTransaction();
         test.accept(session);
-        session.getTransaction().rollback();
+        session.getTransaction().commit();
         session.close();
         factory.close();
     }
@@ -38,7 +38,7 @@ public class ServiceAddObjectsTest {
         System.out.println(ann);
         testfank(se -> {
             se.save(ann);
-            Announcement deleteA = se.get(Announcement.class, 1);
+            Announcement deleteA = se.get(Announcement.class, ann.getId());
             se.delete(deleteA);
         });
     }
