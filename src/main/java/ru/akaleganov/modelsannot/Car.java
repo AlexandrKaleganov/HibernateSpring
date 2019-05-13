@@ -1,25 +1,48 @@
-package ru.akaleganov.modelsxml;
+package ru.akaleganov.modelsannot;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * @author Kaleganov Aleander
  * @since 06/05//2019
  **/
-public class Car {
-    private int id;
+@Entity
+@Table(name = "car")
+public class Car extends AllModels {
+    @ManyToOne
+    @JoinColumn(name = "marka_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private Marka marka;
+
+    @ManyToOne
+    @JoinColumn(name = "model_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private Model model;
+
+    @ManyToOne
+    @JoinColumn(name = "transmission_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private Transmission transmission;
+
+    @Column(name = "yar")
     private int yar;
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Photo> photo;
+    @OneToOne
+    @JoinColumn(name = "announcement_id")
     private Announcement announcement;
 
     public Car(int id) {
-        this.id = id;
+        super(id);
     }
 
     public Car() {
+        super();
     }
 
     public Announcement getAnnouncement() {
@@ -28,14 +51,6 @@ public class Car {
 
     public void setAnnouncement(Announcement announcement) {
         this.announcement = announcement;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Marka getMarka() {
@@ -80,7 +95,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" + "id=" + id + ", marka=" + marka + ", model=" + model + ", transmission="
+        return "Car{" + "id=" + super.getId() + ", marka=" + marka + ", model=" + model + ", transmission="
                 + transmission + ", yar=" + yar + ", photo=" + photo + '}';
     }
 }

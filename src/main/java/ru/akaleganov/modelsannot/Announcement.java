@@ -1,28 +1,40 @@
-package ru.akaleganov.modelsxml;
+package ru.akaleganov.modelsannot;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
  * @author Kaleganov Aleander
  * @since 06/05//2019
  **/
-public class Announcement {
-
-    private int id;
+@Entity
+@Table(name = "announcement")
+public class Announcement extends AllModels {
+    @Column(name = "name")
     private String name;
+    @Column(name = "description")
     private String description;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "announcement")
     private Car car;
+    @Column(name = "created_dat")
     private Timestamp created;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private Users author;
+    @Column(name = "done")
     private boolean done;
 
     public Announcement(int id) {
-        this.id = id;
+        super(id);
     }
 
     public Announcement() {
+        super();
     }
 
     public String getDescription() {
@@ -74,17 +86,9 @@ public class Announcement {
         this.done = done;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
-        return "Announcement{" + "id=" + id + ", name='" + name + "', car=" + car
+        return "Announcement{" + "id=" + super.getId() + ", name='" + name + "', car=" + car
                 + ", created_dat=" + created + ", author=" + author
                 + ", done=" + done + '}';
     }

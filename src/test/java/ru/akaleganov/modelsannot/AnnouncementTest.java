@@ -1,6 +1,5 @@
-package ru.akaleganov.modelsxml;
+package ru.akaleganov.modelsannot;
 
-import org.hamcrest.core.Is;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class AnnouncementTest {
@@ -23,7 +21,7 @@ public class AnnouncementTest {
         Session session = factory.openSession();
         session.beginTransaction();
         test.accept(session);
-        session.getTransaction().rollback();
+        session.getTransaction().commit();
         session.close();
         factory.close();
     }
@@ -37,6 +35,7 @@ public class AnnouncementTest {
         Announcement ann = new ServiceAddObjects().addAll(jsonann, jsonCar, urlList);
         testfank(se -> {
             se.save(ann);
+            System.out.println(ann);
             se.createQuery("delete Photo where car_id = :id").setParameter("id", ann.getCar().getId()).executeUpdate();
             se.createQuery("delete Car where announcement_id =  :id").setParameter("id", ann.getId()).executeUpdate();
             se.createQuery("delete Announcement where id = :id").setParameter("id", ann.getId()).executeUpdate();

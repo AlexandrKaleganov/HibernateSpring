@@ -1,11 +1,10 @@
-package ru.akaleganov.modelsxml;
+package ru.akaleganov.modelsannot;
 
 import org.hamcrest.core.Is;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
-import ru.akaleganov.modelsxml.Marka;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,10 +12,9 @@ import java.util.HashMap;
 import java.util.function.BiConsumer;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-
+import static org.junit.Assert.*;
 
 public class MarkaTest {
-
     public void testMarkaModel(BiConsumer<HashMap<String, ArrayList<String>>, Session> fank) {
         SessionFactory factory = new Configuration()
                 .configure()
@@ -54,5 +52,4 @@ public class MarkaTest {
             });
         });
     }
-
 }

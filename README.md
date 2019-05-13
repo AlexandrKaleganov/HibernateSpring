@@ -6,4 +6,4 @@
 все задачи расположены в отдельных ветках, в качестве демонстрации умения работы с git 
 на каждую ветку есть тестовая ветка в которой находятся все коммиты
 
-![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_test/db/Avito-Shema.png "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744/db/Avito-Shema.png?raw=true "Optional Title")

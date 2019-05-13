@@ -1,13 +1,12 @@
 package ru.akaleganov.service;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import org.apache.xerces.impl.dv.util.Base64;
-import ru.akaleganov.modelsxml.Announcement;
-import ru.akaleganov.modelsxml.Car;
-import ru.akaleganov.modelsxml.Photo;
-import ru.akaleganov.modelsxml.Users;
+import ru.akaleganov.modelsannot.Announcement;
+import ru.akaleganov.modelsannot.Car;
+import ru.akaleganov.modelsannot.Photo;
+import ru.akaleganov.modelsannot.Users;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -17,32 +16,40 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ServiceAddObjects {
     private static final Logger LOGGER = Logger.getLogger(ServiceAddObjects.class);
 
-    /**
-     * класс который будет из строк (json или url )возвращать готовые объекты
-     *
-     * @param jsonStroka
-     * @return
-     * @throws IOException
-     */
-    public Announcement addAnnouncement(String jsonStroka) throws IOException {
-        Announcement item = new ObjectMapper().readValue(jsonStroka, Announcement.class);
-        item.setCreated(Timestamp.valueOf(LocalDateTime.now()));
-        item.setDone(false);
-        return item;
+    public Announcement addAnnouncement(String jsonStroka) {
+        Announcement item = null;
+        try {
+            item = new ObjectMapper().readValue(jsonStroka, Announcement.class);
+            item.setCreated(Timestamp.valueOf(LocalDateTime.now()));
+            item.setDone(false);
+            return item;
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+            return new Announcement();
+        }
     }
 
-    public Car addCar(String jsonStroka) throws IOException {
-        return new ObjectMapper().readValue(jsonStroka, Car.class);
+    public Car addCar(String jsonStroka) {
+        try {
+            return new ObjectMapper().readValue(jsonStroka, Car.class);
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+            return new Car();
+        }
     }
 
-    public Users addUser(String json) throws IOException {
-        return new ObjectMapper().readValue(json, Users.class);
+    public Users addUser(String json) {
+        try {
+            return new ObjectMapper().readValue(json, Users.class);
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+            return new Users();
+        }
     }
 
     public List<Photo> addPhoto(ArrayList<String> urlList) {
@@ -101,7 +108,7 @@ public class ServiceAddObjects {
      * @return
      * @throws IOException
      */
-    public Announcement addAll(String jsonann, String jsoncar, ArrayList<String> urlPhoto) throws IOException {
+    public Announcement addAll(String jsonann, String jsoncar, ArrayList<String> urlPhoto) {
         Announcement ann = this.addAnnouncement(jsonann);
         Car car = this.addCar(jsoncar);
         ArrayList<Photo> photos = (ArrayList<Photo>) this.addPhoto(urlPhoto);
