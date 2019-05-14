@@ -15,8 +15,10 @@ public class Users extends AllModels {
     private String name;
     @Column(name = "login")
     private String login;
-
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
     private Roles roles;
+    @Column(name = "password")
     private String password;
 
     public Users(int id) {
