@@ -1,29 +1,30 @@
 package ru.akaleganov.modelsannot;
 
+
 /**
  * @author Kaleganov Aleander
  * @since 06/05//2019
  **/
-public class Users {
-    private int id;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
+public class Users extends AllModels {
+    @Column(name = "name")
     private String name;
+    @Column(name = "login")
     private String login;
+
     private Roles roles;
     private String password;
 
     public Users(int id) {
-        this.id = id;
+        super(id);
     }
 
     public Users() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        super();
     }
 
     public String getName() {
@@ -60,7 +61,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" + "id=" + id + ", name='" + name + '\'' + ", login='"
+        return "Users{" + "id=" + super.getId() + ", name='" + name + '\'' + ", login='"
                 + login + '\'' + ", roles=" + roles + ", password='" + password + '\'' + '}';
     }
 }

@@ -1,27 +1,27 @@
 package ru.akaleganov.modelsannot;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author Kaleganov Aleander
  * @since 06/05//2019
  **/
-public class Roles {
-    private int id;
+@Entity
+@Table(name = "roles")
+public class Roles extends AllModels {
+    @Column(name = "role")
     private String role;
 
     public Roles(int id) {
-        this.id = id;
+        super(id);
     }
 
     public Roles() {
+        super();
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getRole() {
         return role;
@@ -33,6 +33,6 @@ public class Roles {
 
     @Override
     public String toString() {
-        return "Roles{" + "id=" + id + ", role='" + role + '\'' + '}';
+        return "Roles{" + "id=" + super.getId() + ", role='" + role + '\'' + '}';
     }
 }
