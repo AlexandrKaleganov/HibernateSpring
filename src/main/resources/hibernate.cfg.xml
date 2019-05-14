@@ -11,7 +11,7 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
-
+        <mapping class="ru.akaleganov.modelsannot.Roles"/>
         <mapping class="ru.akaleganov.modelsannot.Users"/>
     </session-factory>
 </hibernate-configuration>
