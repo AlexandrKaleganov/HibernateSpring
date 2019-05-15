@@ -1,30 +1,13 @@
 package ru.akaleganov.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
-import org.apache.xerces.impl.dv.util.Base64;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
-public class ServiceAddObjects {
+class ServiceAddObjects {
     private static final Logger LOGGER = Logger.getLogger(ServiceAddObjects.class);
 
-    /**
-     * класс который будет из строк (json или url )возвращать готовые объекты
-     *
-     * @param jsonStroka
-     * @return
-     * @throws IOException
-     */
-
-//    public Announcement addAnnouncement(String jsonStroka) throws IOException {
+    //    public Announcement addAnnouncement(String jsonStroka) throws IOException {
 //        Announcement item = new ObjectMapper().readValue(jsonStroka, Announcement.class);
 //        item.setCreated(Timestamp.valueOf(LocalDateTime.now()));
 //        item.setDone(false);

@@ -15,5 +15,6 @@
 
         <mapping class="ru.akaleganov.modelsannot.Roles"/>
         <mapping class="ru.akaleganov.modelsannot.Users"/>
+        <mapping class="ru.akaleganov.modelsannot.Transmission"/>
     </session-factory>
 </hibernate-configuration>

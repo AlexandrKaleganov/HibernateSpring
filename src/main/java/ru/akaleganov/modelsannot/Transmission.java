@@ -1,26 +1,26 @@
 package ru.akaleganov.modelsannot;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author Kaleganov Aleander
  * @since 06/05//2019
  **/
-public class Transmission {
-    private int id;
+@Entity
+@Table(name = "transmission")
+public class Transmission extends AllModels {
+    @Column(name = "name")
     private String name;
 
     public Transmission(int id) {
-        this.id = id;
+        super(id);
     }
 
     public Transmission() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        super();
     }
 
     public String getName() {
@@ -33,7 +33,7 @@ public class Transmission {
 
     @Override
     public String toString() {
-        return "Transmission{" + "id=" + id + ", name='" + name + '\'' + '}';
+        return "Transmission{" + "id=" + super.getId() + ", name='" + name + '\'' + '}';
     }
 }
 

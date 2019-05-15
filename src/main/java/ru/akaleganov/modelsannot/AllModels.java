@@ -10,21 +10,20 @@ import javax.persistence.*;
  * думаю будет работать, рипалил такое в одном видео уроке
  */
 @MappedSuperclass
-public abstract class AllModels {
+abstract class AllModels {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
     public AllModels() {
 
     }
 
-    public AllModels(int id) {
+    AllModels(int id) {
         this.id = id;
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 

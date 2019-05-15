@@ -4,7 +4,7 @@ package ru.akaleganov.modelsannot;
  * @author Kaleganov Aleander
  * @since 06/05//2019
  **/
-public class Photo {
+class Photo {
     private int id;
     private byte[] photo;
     private Car car;
@@ -44,8 +44,8 @@ public class Photo {
     @Override
     public String toString() {
         StringBuilder temp = new StringBuilder();
-        for (int i = 0; i < photo.length; i++) {
-            temp.append(photo[i]);
+        for (byte b : photo) {
+            temp.append(b);
         }
         return "Photo{" + "id=" + id + ", photo='" + temp + '\'' + '}';
     }

@@ -1,18 +1,12 @@
 package ru.akaleganov.service;
 
-import org.hamcrest.core.Is;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.junit.Assert;
-import org.junit.Test;
 
-import java.io.IOException;
 import java.util.function.Consumer;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-
-public class ServiceAddObjectsTest {
+class ServiceAddObjectsTest {
     private void testfank(Consumer<Session> test) {
         SessionFactory factory = new Configuration()
                 .configure()
