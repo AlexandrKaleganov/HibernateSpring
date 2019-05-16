@@ -4,7 +4,7 @@ package ru.akaleganov.modelsannot;
  * @author Kaleganov Aleander
  * @since 06/05//2019
  **/
-class Photo {
+public class Photo {
     private int id;
     private byte[] photo;
     private Car car;
