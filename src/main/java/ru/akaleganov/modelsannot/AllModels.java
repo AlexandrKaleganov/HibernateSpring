@@ -23,7 +23,7 @@ abstract class AllModels {
         this.id = id;
     }
 
-    int getId() {
+    public int getId() {
         return id;
     }
 

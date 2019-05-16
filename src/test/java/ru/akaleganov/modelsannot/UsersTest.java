@@ -1,17 +1,18 @@
 package ru.akaleganov.modelsannot;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hamcrest.core.Is;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
 import org.junit.Test;
+import org.hamcrest.core.Is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import ru.akaleganov.service.ServiceAddObjects;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class UsersTest {

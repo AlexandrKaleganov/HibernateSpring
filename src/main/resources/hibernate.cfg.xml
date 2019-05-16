@@ -16,5 +16,10 @@
         <mapping class="ru.akaleganov.modelsannot.Roles"/>
         <mapping class="ru.akaleganov.modelsannot.Users"/>
         <mapping class="ru.akaleganov.modelsannot.Transmission"/>
+        <mapping class="ru.akaleganov.modelsannot.Model"/>
+        <mapping class="ru.akaleganov.modelsannot.Marka"/>
+        <mapping class="ru.akaleganov.modelsannot.Car"/>
+        <mapping class="ru.akaleganov.modelsannot.Photo"/>
+        <mapping class="ru.akaleganov.modelsannot.Announcement"/>
     </session-factory>
 </hibernate-configuration>

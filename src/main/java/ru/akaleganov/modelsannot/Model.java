@@ -1,27 +1,30 @@
 package ru.akaleganov.modelsannot;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
+
 /**
  * @author Kaleganov Aleander
  * @since 06/05//2019
  **/
-public class Model {
-    private int id;
+@Entity
+@Table(name = "model")
+public class Model extends AllModels {
+    @Column(name = "name")
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "marka_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private Marka marka;
 
     public Model(int id) {
-        this.id = id;
+        super(id);
     }
 
     public Model() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        super();
     }
 
     public String getName() {
@@ -35,12 +38,14 @@ public class Model {
     public void setMarka(Marka marka) {
         this.marka = marka;
     }
+
     public Marka getMarka() {
         return marka;
     }
+
     @Override
     public String toString() {
-        return "Model{" + "id=" + id + ", name='" + name + '\'' + '}';
+        return "Model{" + "id=" + super.getId() + ", name='" + name + '\'' + '}';
     }
 }
 

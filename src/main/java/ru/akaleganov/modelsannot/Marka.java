@@ -1,29 +1,28 @@
 package ru.akaleganov.modelsannot;
 
+import org.hibernate.annotations.Fetch;
+
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * @author Kaleganov Aleander
  * @since 06/05//2019
  **/
-public class Marka {
-    private int id;
+@Entity
+@Table(name = "marka")
+public class Marka extends AllModels {
+    @Column(name = "name")
     private String name;
+    @OneToMany(mappedBy = "marka", cascade = CascadeType.ALL)
     private List<Model> models;
 
     public Marka(int id) {
-        this.id = id;
+        super(id);
     }
 
     public Marka() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        super();
     }
 
     public String getName() {
@@ -44,6 +43,6 @@ public class Marka {
 
     @Override
     public String toString() {
-        return "Marka{" + "id=" + id + ", name='" + name + '\'' + models + '}';
+        return "Marka{" + "id=" + super.getId() + ", name='" + name + '\'' + models + '}';
     }
 }
