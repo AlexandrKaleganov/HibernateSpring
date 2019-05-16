@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-class ServiceAddObjects {
+public class ServiceAddObjects {
     private static final Logger LOGGER = Logger.getLogger(ServiceAddObjects.class);
 
     public Announcement addAnnouncement(String jsonStroka) {
