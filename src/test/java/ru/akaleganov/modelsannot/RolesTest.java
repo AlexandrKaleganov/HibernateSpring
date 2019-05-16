@@ -18,6 +18,7 @@ public class RolesTest {
     private void fank(Consumer<Session> function) {
         try (SessionFactory factory = new Configuration().configure().buildSessionFactory();
              Session session = factory.openSession()) {
+            session.beginTransaction();
             function.accept(session);
             session.getTransaction().rollback();
         }
