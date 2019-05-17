@@ -3,6 +3,11 @@ package ru.akaleganov.service;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * @author Alexander Kaleganov
+ * @since 17.05.19
+ * синглтон
+ */
 public class Sfactory implements AutoCloseable {
     private final SessionFactory factory;
     private final static Sfactory INSTANCE = new Sfactory();
