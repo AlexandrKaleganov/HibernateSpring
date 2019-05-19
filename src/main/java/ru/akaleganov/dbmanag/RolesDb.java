@@ -34,7 +34,7 @@ public class RolesDb implements Store<Roles> {
 
     @Override
     public List<Roles> findAll() {
-        return openandCloseSession(session -> session.createQuery("from Roles ").list());
+        return openSession(session -> session.createQuery("from Roles ").list());
     }
 
     //мтод не раелизован

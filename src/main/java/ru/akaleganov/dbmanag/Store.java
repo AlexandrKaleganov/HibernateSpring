@@ -26,7 +26,7 @@ public interface Store<E> {
      * @param <E>
      * @return
      */
-    default <E> E openandCloseSession(Function<Session, E> fank) {
+    default <E> E openSession(Function<Session, E> fank) {
         E rsl = null;
         try (Session session = S_FACTORY.getFactory().openSession()) {
             try {
