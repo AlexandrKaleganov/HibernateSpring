@@ -10,7 +10,6 @@ public class SfactoryTest {
     @Test
     public void sessionTest() {
         Sfactory sfactory = Sfactory.getINSTANCE();
-        assertFalse(sfactory.getFactory().isClosed());
         try {
             sfactory.close();
         } catch (Exception e) {
