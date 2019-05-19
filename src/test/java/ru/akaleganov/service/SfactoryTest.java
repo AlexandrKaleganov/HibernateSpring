@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class SfactoryTest {
     @Test
     public void sessionTest() {
-        Sfactory sfactory = Sfactory.getINSTANCE();
+        Sfactory sfactory = new Sfactory();
         try {
             sfactory.close();
         } catch (Exception e) {

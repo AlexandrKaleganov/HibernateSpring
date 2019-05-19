@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import ru.akaleganov.service.Sfactory;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 import static org.apache.log4j.LogManager.getLogger;
@@ -30,7 +31,6 @@ public interface Store<E> {
         try (Session session = S_FACTORY.getFactory().openSession()) {
             try {
                 session.beginTransaction();
-
                 rsl = fank.apply(session);
                 session.getTransaction().commit();
             } catch (Exception e) {
@@ -63,5 +63,6 @@ public interface Store<E> {
 
     E findByName(E e);
 
+    E findByLogin(E e);
 
 }

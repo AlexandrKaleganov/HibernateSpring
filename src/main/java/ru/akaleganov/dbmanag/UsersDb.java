@@ -5,6 +5,11 @@ import ru.akaleganov.modelsannot.Users;
 import java.util.List;
 
 public class UsersDb implements Store<Users> {
+    private static final UsersDb INSTANCE = new UsersDb();
+
+    public static UsersDb getInstance() {
+        return INSTANCE;
+    }
 
     @Override
     public Users add(Users users) {
@@ -26,7 +31,8 @@ public class UsersDb implements Store<Users> {
     public Users edit(Users users) {
         return openandCloseSession(session -> {
             session.saveOrUpdate(users);
-            return session.load(Users.class, users.getId());});
+            return session.load(Users.class, users.getId());
+        });
     }
 
     @Override
@@ -41,7 +47,12 @@ public class UsersDb implements Store<Users> {
 
     @Override
     public Users findByName(Users users) {
-        error();
-        return null;
+        String sql = "from Users where name = '" + users.getName() + "'";
+        return (Users) openandCloseSession(session -> session.createQuery(sql).list().get(0));
+    }
+    @Override
+    public Users findByLogin(Users users) {
+        String sql = "from Users where login = '" + users.getLogin() + "'";
+        return (Users) openandCloseSession(session -> session.createQuery(sql).list().get(0));
     }
 }

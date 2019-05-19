@@ -21,10 +21,5 @@ public class RolesDbTest {
         for (int i = 0; i < roles.size(); i++) {
             assertThat(roles.get(i).getRole(), Is.is(expected.get(i)));
         }
-        try {
-            Sfactory.getINSTANCE().close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

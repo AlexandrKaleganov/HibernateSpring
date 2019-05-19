@@ -1,15 +1,14 @@
 package ru.akaleganov.dbmanag;
 
-import net.bytebuddy.asm.Advice;
 import ru.akaleganov.modelsannot.Roles;
 
 import java.util.List;
 
 public class RolesDb implements Store<Roles> {
-    private static final RolesDb GETINSTANCE = new RolesDb();
+    private static final RolesDb INSTANCE = new RolesDb();
 
-    public static RolesDb GETINSTANCE() {
-        return GETINSTANCE();
+    public static RolesDb getInstance() {
+        return INSTANCE;
     }
 
     //мтод не раелизован
@@ -48,6 +47,12 @@ public class RolesDb implements Store<Roles> {
     //мтод не раелизован
     @Override
     public Roles findByName(Roles roles) {
+        error();
+        return null;
+    }
+
+    @Override
+    public Roles findByLogin(Roles roles) {
         error();
         return null;
     }
