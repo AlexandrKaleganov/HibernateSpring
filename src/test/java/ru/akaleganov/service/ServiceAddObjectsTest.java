@@ -14,9 +14,9 @@ import static org.junit.Assert.*;
 public class ServiceAddObjectsTest {
     @Test
     public void testAddac() throws IOException {
-        String jsonCar = "{\"marka\":{\"id\":\"1\"}, \"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
+        String jsonCar = "{\"marka\":{\"id\":\"1\"}, \"description\":\"описание\", \"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
         ArrayList<String> urlList = new ArrayList<>(Arrays.asList("db/Avito-Shema.png"));
-        String jsonann = "{\"name\":\"продам машину\", \"description\":\"описание\", \"author\":{\"id\":\"1\"}}";
+        String jsonann = "{\"name\":\"продам машину\", \"author\":{\"id\":\"1\"}}";
         //в классе ServiceAddObjects все объекты объеденятся и запакуются в один готовый объект для добавления в базу
         Announcement ann = new ServiceAddObjects().addAll(jsonann, jsonCar, urlList);
         assertThat(ann.getName(), Is.is("продам машину"));

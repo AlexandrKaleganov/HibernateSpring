@@ -16,8 +16,6 @@ import java.sql.Timestamp;
 public class Announcement extends AllModels {
     @Column(name = "name")
     private String name;
-    @Column(name = "description")
-    private String description;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "announcement")
     private Car car;
     @Column(name = "created_dat")
@@ -35,14 +33,6 @@ public class Announcement extends AllModels {
 
     public Announcement() {
         super();
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getName() {

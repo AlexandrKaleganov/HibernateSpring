@@ -70,7 +70,6 @@ create table if not exists announcement
 (
     id          serial primary key,
     name        varchar(200),
-    description varchar(400),
     created_dat TIMESTAMP,
     user_id     integer references users (id),
     done        boolean
@@ -79,6 +78,7 @@ create table if not exists announcement
 create table if not exists car
 (
     id              serial primary key,
+    description varchar(400),
     marka_id        integer references marka (id),
     model_id        integer references model (id),
     transmission_id integer references transmission (id),

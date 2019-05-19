@@ -30,7 +30,7 @@ public class AnnouncementTest {
     public void addAndDelete() throws IOException {
         String jsonCar = "{\"marka\":{\"id\":\"1\"}, \"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
         ArrayList<String> urlList = new ArrayList<>(Arrays.asList("db/Avito-Shema.png"));
-        String jsonann = "{\"name\":\"продам машину\", \"description\":\"описание\", \"author\":{\"id\":\"1\"}}";
+        String jsonann = "{\"name\":\"продам машину\", \"author\":{\"id\":\"1\"}}";
         //в классе ServiceAddObjects все объекты объеденятся и запакуются в один готовый объект для добавления в базу
         Announcement ann = new ServiceAddObjects().addAll(jsonann, jsonCar, urlList);
         testfank(se -> {

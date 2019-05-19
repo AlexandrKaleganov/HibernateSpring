@@ -13,11 +13,12 @@ import java.util.List;
 @Entity
 @Table(name = "car")
 public class Car extends AllModels {
+    @Column(name = "description")
+    private String description;
     @ManyToOne
     @JoinColumn(name = "marka_id", nullable = false)
     @Fetch(FetchMode.JOIN)
     private Marka marka;
-
     @ManyToOne
     @JoinColumn(name = "model_id", nullable = false)
     @Fetch(FetchMode.JOIN)
@@ -92,10 +93,16 @@ public class Car extends AllModels {
     public void setPhoto(List<Photo> photo) {
         this.photo = photo;
     }
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
     @Override
     public String toString() {
-        return "Car{" + "id=" + super.getId() + ", marka=" + marka + ", model=" + model + ", transmission="
+        return "Car{" + "id=" + super.getId() + ", descrition=" + description + ", marka=" + marka + ", model=" + model + ", transmission="
                 + transmission + ", yar=" + yar + ", photo=" + photo + '}';
     }
 }
