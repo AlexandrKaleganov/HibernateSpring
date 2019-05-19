@@ -1,6 +1,7 @@
 package ru.akaleganov.modelsannot;
 
 import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.LazyCollection;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class Marka extends AllModels {
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "marka", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "marka", cascade = CascadeType.ALL)
     private List<Model> models;
 
     public Marka(int id) {
