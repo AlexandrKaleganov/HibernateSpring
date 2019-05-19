@@ -4,6 +4,11 @@ import ru.akaleganov.modelsannot.Users;
 
 import java.util.List;
 
+/**
+ * @author Alexander Kalegano
+ * @version 1
+ * @since 19/05/19
+ */
 public class UsersDb implements Store<Users> {
     private static final UsersDb INSTANCE = new UsersDb();
 
@@ -50,6 +55,7 @@ public class UsersDb implements Store<Users> {
         String sql = "from Users where name = '" + users.getName() + "'";
         return (Users) openSession(session -> session.createQuery(sql).list().get(0));
     }
+
     @Override
     public Users findByLogin(Users users) {
         String sql = "from Users where login = '" + users.getLogin() + "'";

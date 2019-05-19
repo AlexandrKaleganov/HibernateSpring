@@ -4,6 +4,11 @@ import ru.akaleganov.modelsannot.Marka;
 
 import java.util.List;
 
+/**
+ * @author Alexander Kalegano
+ * @version 1
+ * @since 19/05/19
+ */
 public class MarkaDb implements Store<Marka> {
     private static final MarkaDb INSTANCE = new MarkaDb();
 

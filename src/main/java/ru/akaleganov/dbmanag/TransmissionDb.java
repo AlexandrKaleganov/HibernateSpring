@@ -4,12 +4,18 @@ import ru.akaleganov.modelsannot.Transmission;
 
 import java.util.List;
 
+/**
+ * @author Alexander Kalegano
+ * @version 1
+ * @since 19/05/19
+ */
 public class TransmissionDb implements Store<Transmission> {
     private static final TransmissionDb INSTANCE = new TransmissionDb();
 
     public static TransmissionDb getInstance() {
         return INSTANCE;
     }
+
     @Override
     public Transmission add(Transmission transmission) {
         error();

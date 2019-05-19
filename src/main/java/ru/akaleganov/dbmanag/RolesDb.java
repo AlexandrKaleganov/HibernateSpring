@@ -4,6 +4,11 @@ import ru.akaleganov.modelsannot.Roles;
 
 import java.util.List;
 
+/**
+ * @author Alexander Kalegano
+ * @version 1
+ * @since 19/05/19
+ */
 public class RolesDb implements Store<Roles> {
     private static final RolesDb INSTANCE = new RolesDb();
 
