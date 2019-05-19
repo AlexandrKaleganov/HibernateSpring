@@ -15,18 +15,21 @@ public class RolesDb implements Store<Roles> {
     //мтод не раелизован
     @Override
     public Roles add(Roles roles) {
+        error();
         return null;
     }
 
     //мтод не раелизован
     @Override
     public Roles delete(Roles roles) {
+        error();
         return null;
     }
 
     //мтод не раелизован
     @Override
     public Roles edit(Roles roles) {
+        error();
         return null;
     }
 
@@ -38,12 +41,14 @@ public class RolesDb implements Store<Roles> {
     //мтод не раелизован
     @Override
     public Roles findByID(Roles roles) {
+        error();
         return null;
     }
 
     //мтод не раелизован
     @Override
     public Roles findByName(Roles roles) {
+        error();
         return null;
     }
 

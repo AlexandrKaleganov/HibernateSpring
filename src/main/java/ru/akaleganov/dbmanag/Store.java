@@ -10,13 +10,14 @@ import java.util.function.Function;
 import static org.apache.log4j.LogManager.getLogger;
 
 /**
+ * @param <E>
  * @author Alexander Kaleganov
  * @since 17.05.2019
- * @param <E>
  */
 public interface Store<E> {
     final static Sfactory S_FACTORY = Sfactory.getINSTANCE();
     final static Logger LOGGER = getLogger(Store.class);
+
     /**
      * refactor close factory and close session
      *
@@ -24,7 +25,7 @@ public interface Store<E> {
      * @param <E>
      * @return
      */
-    public default <E> E openandCloseSession(Function<Session, E> fank) {
+    default <E> E openandCloseSession(Function<Session, E> fank) {
         E rsl = null;
         try (Session session = S_FACTORY.getFactory().openSession()) {
             try {
@@ -42,6 +43,13 @@ public interface Store<E> {
         return rsl;
     }
 
+    default void error() {
+        try {
+            throw new ExceptonnullMethod();
+        } catch (ExceptonnullMethod e) {
+            LOGGER.info(e.getMessage(), e);
+        }
+    }
 
     E add(E e);
 
