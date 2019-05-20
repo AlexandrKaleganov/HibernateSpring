@@ -22,7 +22,7 @@ public class PhotoDb implements Store<List<Photo>> {
     public List<Photo> add(List<Photo> photo) {
         return openSession(session -> {
                     List<Photo> rsl = new ArrayList<>();
-                    photo.forEach(e->{
+                    photo.forEach(e -> {
                         session.save(e);
                         rsl.add(e);
                     });
