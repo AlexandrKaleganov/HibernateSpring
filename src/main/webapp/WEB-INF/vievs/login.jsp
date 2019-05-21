@@ -18,6 +18,12 @@
     <title>авторизация</title>
 </head>
 <body>
+<c:if test="${err!=null}">
+    <div class="alert alert-danger  alert-dismissible">
+        <strong>System error:</strong> <c:out value="${err}"></c:out>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+    </div>
+</c:if>
 <div class="container">
     <h2>Авторизация</h2>
     <form action="${pageContext.servletContext.contextPath}/signin" class="needs-validation" method="post">

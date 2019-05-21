@@ -24,7 +24,9 @@ public class SigninServlet extends HttpServlet {
         Users user = Dispatch.getInstance()
                 .access("findByLoginPass", Optional.of(ServiceAddObjects.getInstance()
                         .addUser(String.format("{\"login\":\"%s\", \"password\":\"%s\"}", req.getParameter("login"), req.getParameter("pswd")))));
-
-        System.out.println(user);
+        if (user.getLogin() == null) {
+            req.setAttribute("err", "Пользователь или пароль указан не верно");
+            req.getRequestDispatcher("/WEB-INF/vievs/login.jsp").forward(req, resp);
+        }
     }
 }
