@@ -24,55 +24,69 @@ public class AnnouncementDbTest {
     //в классе ServiceAddObjects все объекты объеденятся и запакуются в один готовый объект для добавления в базу
     private Announcement ann = new ServiceAddObjects().addAll(jsonann, jsonCar, urlList);
 
-    private void functiron(Consumer<Session> test) {
-        SessionFactory factory = new Configuration().configure().buildSessionFactory();
-        Session session = factory.openSession();
-        session.beginTransaction();
-        test.accept(session);
-        session.beginTransaction().commit();
-        session.close();
-        factory.close();
-    }
+    private void testAll(BiConsumer<AnnouncementDb, Announcement> fank) {
 
-    @Before
-    public void fankreset() {
-        this.functiron(session -> session.save(this.ann));
-    }
-
-    @After
-    public void fanend() {
-        this.functiron(session -> {
-            Announcement andel = session.get(Announcement.class, ann.getId());
-            session.delete(andel);
-        });
+        Announcement announcement = AnnouncementDb.getInstance().add(new ServiceAddObjects().addAll(jsonann, jsonCar, urlList));
+        try {
+            fank.accept(AnnouncementDb.getInstance(), announcement);
+        } finally {
+            AnnouncementDb.getInstance().delete(announcement);
+        }
     }
 
     @Test
     public void add() {
-
+        testAll((db, ann) -> {
+            assertTrue(ann.getId() > 0);
+        });
     }
 
     @Test
     public void delete() {
+        testAll((db, ann) -> {
+            db.delete(ann);
+            assertTrue(db.findByID(ann) == null);
+        });
     }
 
     @Test
     public void edit() {
+        testAll((db, ann) -> {
+            ann.getCar().setDescription("изменено описание");
+            ann.setName("изменено");
+            db.edit(ann);
+            Announcement expected = db.findByID(ann);
+            assertTrue(expected.getName().contains("изменено"));
+            assertTrue(expected.getCar().getDescription().contains("изменено описание"));
+        });
     }
 
     @Test
     public void findAll() {
+        testAll((db, ann) -> {
+            assertTrue(db.findAll().size() > 0);
+        });
     }
 
     @Test
     public void findByID() {
+        testAll((db, ann) -> {
+            Announcement expected = db.findByID(ann);
+            assertTrue(expected.getName().contains("продам машину"));
+        });
     }
 
     @Test
     public void findByName() {
+        testAll((db, ann) -> {
+            assertTrue(db.findByName(ann).get(0).getName().contains("продам машину"));
+        });
     }
 
     @Test
     public void findByLogin() {
+        testAll((db, ann) -> {
+
+        });
     }
 }
