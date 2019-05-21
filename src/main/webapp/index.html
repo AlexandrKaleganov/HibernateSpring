@@ -9,29 +9,51 @@
     <script src="WEB-INF/vievs/js/out.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <!-- Brand/logo -->
-    <a class="navbar-brand" href="${pageContext.servletContext.contextPath}/">Logo</a>
+<nav class="nav">
+    <a class="nav-link active" href="#">Active</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link disabled" href="#">Disabled</a>
 
-    <!-- Links -->
-    <ul class="navbar-nav">
+    <ul class="nav justify-content-end">
         <li class="nav-item">
-            <a class="nav-link"href="${pageContext.servletContext.contextPath}/create">Добавить пользователя</a>
+            <a class="nav-link active" href="#">Active</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="${pageContext.servletContext.contextPath}/list">Список пользователей</a>
+            <a class="nav-link" href="#">Link</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Link 3</a>
+            <a class="nav-link" href="#">Link</a>
         </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
-            <a class="nav-link" href="${pageContext.servletContext.contextPath}/" onclick="exit()"><span
-                class="glyphicon glyphicon-user"></span> Выход</a>
+            <a class="nav-link disabled" href="#">Disabled</a>
         </li>
     </ul>
 </nav>
+
+<!--<nav class="navbar navbar-expand-sm bg-dark navbar-dark">-->
+<!--    &lt;!&ndash; Brand/logo &ndash;&gt;-->
+<!--    <a class="navbar-brand" href="${pageContext.servletContext.contextPath}/">Logo</a>-->
+
+<!--    &lt;!&ndash; Links &ndash;&gt;-->
+<!--    <ul class="navbar-nav">-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link"href="${pageContext.servletContext.contextPath}/create">Добавить пользователя</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="${pageContext.servletContext.contextPath}/list">Список пользователей</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="#">Link 3</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--        <ul class="nav-navbar-nav">-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="${pageContext.servletContext.contextPath}/" onclick="exit()"><span-->
+<!--                        class="glyphicon glyphicon-user"></span> Выход</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--</nav>-->
 
 <div class="container-fluid">
     <h3>Brand / Logo</h3>
