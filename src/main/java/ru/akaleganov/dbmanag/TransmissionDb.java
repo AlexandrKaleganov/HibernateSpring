@@ -52,6 +52,12 @@ public class TransmissionDb implements Store<Transmission> {
     }
 
     @Override
+    public Transmission findByLoginPass(Transmission transmission) {
+        error();
+        return null;
+    }
+
+    @Override
     public Transmission findByLogin(Transmission transmission) {
         error();
         return null;

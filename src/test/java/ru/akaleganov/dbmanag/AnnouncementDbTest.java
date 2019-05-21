@@ -84,7 +84,7 @@ public class AnnouncementDbTest {
     }
 
     @Test
-    public void findByLogin() {
+    public void findByLoginPass() {
         testAll((db, ann) -> {
 
         });

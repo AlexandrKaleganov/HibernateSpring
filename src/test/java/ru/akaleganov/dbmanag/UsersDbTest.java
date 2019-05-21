@@ -75,6 +75,12 @@ public class UsersDbTest {
     }
 
     @Test
+    public void findByLoginPass() {
+        this.testAll((db, u) -> {
+            assertThat(db.findByLoginPass(u).getName(), Is.is("name"));
+        });
+    }
+    @Test
     public void findByLogin() {
         this.testAll((db, u) -> {
             assertThat(db.findByLogin(u).getName(), Is.is("name"));

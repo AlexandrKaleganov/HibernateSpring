@@ -21,7 +21,11 @@ import java.util.List;
 
 public class ServiceAddObjects {
     private static final Logger LOGGER = Logger.getLogger(ServiceAddObjects.class);
+    private static final ServiceAddObjects INSTANCE = new ServiceAddObjects();
 
+    public static ServiceAddObjects getInstance() {
+        return INSTANCE;
+    }
     public Announcement addAnnouncement(String jsonStroka) {
         Announcement item = null;
         try {

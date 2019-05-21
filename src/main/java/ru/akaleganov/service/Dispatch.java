@@ -1,5 +1,6 @@
 package ru.akaleganov.service;
 
+import ru.akaleganov.dbmanag.UsersDb;
 import ru.akaleganov.modelsannot.Announcement;
 
 import java.util.HashMap;
@@ -7,6 +8,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import org.apache.log4j.Logger;
+import ru.akaleganov.modelsannot.Users;
+
 /**
  * Dispatch мой любимый универсальный диспатч
  * буду передовать объект Announcement  а возвращать в
@@ -15,7 +18,7 @@ import org.apache.log4j.Logger;
 public class Dispatch {
 
 
-    private final Map<String, Function<Announcement, Optional>> dispatch = new HashMap<String, Function<Announcement, Optional>>();
+    private final Map<String, Function<Optional, Optional>> dispatch = new HashMap<String, Function<Optional, Optional>>();
 
     private final static Dispatch INSTANCE = new Dispatch().init();
     private static final Logger LOGGER = Logger.getLogger(Dispatch.class);
@@ -30,8 +33,8 @@ public class Dispatch {
      * @return current object.
      */
     public Dispatch init() {
-//        this.dispatch.put("add", (ticket) ->
-//                Optional.of(valid.addTicket(ticket)));
+        this.dispatch.put("findByLoginPass", (ticket) ->
+                Optional.of(UsersDb.getInstance().findByLoginPass((Users) ticket.get())));
 //        this.dispatch.put("getListHall", (ticket) ->
 //                Optional.of(valid.getListCell()));
 //        this.dispatch.put("isChecked", (ticket) ->
@@ -52,7 +55,7 @@ public class Dispatch {
      * @return
      * @throws Exception
      */
-    public <E> E access(String key, Announcement ticket) throws Exception {
+    public <E> E access(String key, Optional ticket) {
         Optional<E> rsl = Optional.empty();
         rsl = this.dispatch.get(key).apply(ticket);
         return rsl.get();

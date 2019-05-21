@@ -65,7 +65,13 @@ public class PhotoDb implements Store<List<Photo>> {
     }
 
     @Override
-    public List<Photo> findByLogin(List<Photo> photo) {
+    public List<Photo> findByLoginPass(List<Photo> photo) {
+        error();
+        return null;
+    }
+
+    @Override
+    public List<Photo> findByLogin(List<Photo> photos) {
         error();
         return null;
     }

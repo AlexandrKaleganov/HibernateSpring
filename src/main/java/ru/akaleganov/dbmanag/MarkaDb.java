@@ -51,6 +51,12 @@ public class MarkaDb implements Store<Marka> {
     }
 
     @Override
+    public Marka findByLoginPass(Marka marka) {
+        error();
+        return null;
+    }
+
+    @Override
     public Marka findByLogin(Marka marka) {
         error();
         return null;

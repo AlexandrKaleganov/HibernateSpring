@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 @WebFilter(urlPatterns = "*")
 public class AuthFilter implements Filter {
 
@@ -30,8 +31,6 @@ public class AuthFilter implements Filter {
                 response.sendRedirect(String.format("%s/signin", request.getContextPath())); //то нас опять бросит на сервлет signin где перекинет на loginIN.jsp
                 return;
             }
-            req.setAttribute("roles", request.getSession().getAttribute("roles"));
-            req.setAttribute("login", request.getSession().getAttribute("login"));
             chain.doFilter(req, res);   //а вот если всё пучком и запрос не на страницу авторизации и сессия содержит логин то фильтр нас пропускает куда угодно
         }
     }

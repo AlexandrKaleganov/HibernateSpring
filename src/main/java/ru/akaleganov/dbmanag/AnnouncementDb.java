@@ -53,6 +53,12 @@ public class AnnouncementDb implements Store<Announcement> {
     }
 
     @Override
+    public Announcement findByLoginPass(Announcement announcement) {
+        error();
+        return null;
+    }
+
+    @Override
     public Announcement findByLogin(Announcement announcement) {
         error();
         return null;

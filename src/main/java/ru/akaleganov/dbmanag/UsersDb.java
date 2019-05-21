@@ -2,7 +2,9 @@ package ru.akaleganov.dbmanag;
 
 import ru.akaleganov.modelsannot.Users;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author Alexander Kalegano
@@ -57,8 +59,25 @@ public class UsersDb implements Store<Users> {
     }
 
     @Override
+    public Users findByLoginPass(Users users) {
+        String sql = "from Users where login = '" + users.getLogin() + "' and password = '" + users.getPassword() + "'";
+        return refactList(sql);
+    }
+
+    @Override
     public Users findByLogin(Users users) {
         String sql = "from Users where login = '" + users.getLogin() + "'";
-        return (Users) openSession(session -> session.createQuery(sql).list().get(0));
+        return refactList(sql);
+    }
+
+    private Users refactList(String sql) {
+        return openSession(session -> {
+            ArrayList<Users> rsl = (ArrayList<Users>) session.createQuery(sql).list();
+            if (rsl.size() > 0) {
+                return rsl.get(0);
+            } else {
+                return new Users();
+            }
+        });
     }
 }
