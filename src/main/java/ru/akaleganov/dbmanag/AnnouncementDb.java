@@ -5,7 +5,11 @@ import ru.akaleganov.modelsannot.Announcement;
 import java.util.List;
 
 public class AnnouncementDb implements Store<Announcement> {
+    private static final AnnouncementDb INSTANCE = new AnnouncementDb();
 
+    public static AnnouncementDb getInstance() {
+        return INSTANCE;
+    }
     @Override
     public Announcement add(Announcement announcement) {
         return openSession(session -> {
