@@ -59,7 +59,7 @@ public class PhotoDb implements Store<List<Photo>> {
     }
 
     @Override
-    public List<Photo> findByName(List<Photo> photo) {
+    public List<List<Photo>> findByName(List<Photo> photo) {
         error();
         return null;
     }

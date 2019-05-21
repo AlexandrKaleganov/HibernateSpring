@@ -43,7 +43,7 @@ public class CarDb implements Store<Car> {
     }
 
     @Override
-    public Car findByName(Car car) {
+    public List<Car> findByName(Car car) {
         error();
         return null;
     }

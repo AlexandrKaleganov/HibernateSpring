@@ -45,7 +45,7 @@ public class MarkaDb implements Store<Marka> {
     }
 
     @Override
-    public Marka findByName(Marka marka) {
+    public List<Marka> findByName(Marka marka) {
         error();
         return null;
     }

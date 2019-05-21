@@ -51,7 +51,7 @@ public class RolesDb implements Store<Roles> {
 
     //мтод не раелизован
     @Override
-    public Roles findByName(Roles roles) {
+    public List<Roles> findByName(Roles roles) {
         error();
         return null;
     }

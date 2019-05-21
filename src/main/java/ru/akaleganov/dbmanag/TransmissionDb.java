@@ -46,7 +46,7 @@ public class TransmissionDb implements Store<Transmission> {
     }
 
     @Override
-    public Transmission findByName(Transmission transmission) {
+    public List<Transmission> findByName(Transmission transmission) {
         error();
         return null;
     }

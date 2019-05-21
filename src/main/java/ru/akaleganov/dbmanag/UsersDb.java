@@ -51,9 +51,9 @@ public class UsersDb implements Store<Users> {
     }
 
     @Override
-    public Users findByName(Users users) {
+    public List<Users> findByName(Users users) {
         String sql = "from Users where name = '" + users.getName() + "'";
-        return (Users) openSession(session -> session.createQuery(sql).list().get(0));
+        return openSession(session -> session.createQuery(sql).list());
     }
 
     @Override

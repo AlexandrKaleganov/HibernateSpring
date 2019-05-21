@@ -70,7 +70,7 @@ public class UsersDbTest {
     @Test
     public void findByName() {
         this.testAll((db, u) -> {
-            assertThat(db.findByName(u).getName(), Is.is("name"));
+            assertThat(db.findByName(u).get(0).getName(), Is.is("name"));
         });
     }
 

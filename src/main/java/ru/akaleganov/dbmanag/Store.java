@@ -61,7 +61,7 @@ public interface Store<E> {
 
     E findByID(E e);
 
-    E findByName(E e);
+    List<E> findByName(E e);
 
     E findByLogin(E e);
 
