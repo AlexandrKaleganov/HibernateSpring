@@ -16,8 +16,10 @@ public class AnnouncementDb implements Store<Announcement> {
 
     @Override
     public Announcement delete(Announcement announcement) {
-        return openSession(session -> {
-            session.delete(announcement);
+        return openSession(se -> {
+            se.createQuery("delete Photo where car_id = :id").setParameter("id", announcement.getCar().getId()).executeUpdate();
+            se.createQuery("delete Car where announcement_id =  :id").setParameter("id", announcement.getId()).executeUpdate();
+            se.createQuery("delete Announcement where id = :id").setParameter("id", announcement.getId()).executeUpdate();
             return announcement;
         });
     }
@@ -48,6 +50,7 @@ public class AnnouncementDb implements Store<Announcement> {
 
     @Override
     public Announcement findByLogin(Announcement announcement) {
+        error();
         return null;
     }
 }
