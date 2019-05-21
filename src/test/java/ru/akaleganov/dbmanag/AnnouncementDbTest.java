@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 import static org.junit.Assert.*;
 
 public class AnnouncementDbTest {
-    private String jsonCar = "{\"marka\":{\"id\":\"1\"}, \"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
+    private String jsonCar = "{\"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
     private ArrayList<String> urlList = new ArrayList<>(Arrays.asList("db/Avito-Shema.png"));
     private String jsonann = "{\"name\":\"продам машину\", \"author\":{\"id\":\"1\"}}";
     //в классе ServiceAddObjects все объекты объеденятся и запакуются в один готовый объект для добавления в базу
@@ -30,7 +30,7 @@ public class AnnouncementDbTest {
         try {
             fank.accept(AnnouncementDb.getInstance(), announcement);
         } finally {
-            AnnouncementDb.getInstance().delete(announcement);
+            new AnnouncementDb().delete(announcement);
         }
     }
 
@@ -45,7 +45,7 @@ public class AnnouncementDbTest {
     public void delete() {
         testAll((db, ann) -> {
             db.delete(ann);
-            assertTrue(db.findByID(ann) == null);
+            assertTrue(db.findByID(ann).getId() == 0);
         });
     }
 
@@ -72,7 +72,12 @@ public class AnnouncementDbTest {
     public void findByID() {
         testAll((db, ann) -> {
             Announcement expected = db.findByID(ann);
+            Announcement  announcement = new Announcement();
+            announcement.setDone(true);
+            announcement.setId(ann.getId());
+            var test = db.edit(announcement);
             assertTrue(expected.getName().contains("продам машину"));
+            assertTrue(test.getDone());
         });
     }
 
@@ -84,9 +89,8 @@ public class AnnouncementDbTest {
     }
 
     @Test
-    public void findByLogin() {
+    public void findByLoginPass() {
         testAll((db, ann) -> {
-
         });
     }
 }

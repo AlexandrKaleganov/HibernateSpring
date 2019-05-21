@@ -2,7 +2,10 @@ package ru.akaleganov.dbmanag;
 
 import ru.akaleganov.modelsannot.Users;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author Alexander Kalegano
@@ -18,17 +21,23 @@ public class UsersDb implements Store<Users> {
 
     @Override
     public Users add(Users users) {
-        return openSession(session -> {
-            session.save(users);
-            return session.load(Users.class, users.getId());
-        });
+        Users test = this.findByLogin(users);
+        if (test.getId() != 0) {
+            return users;
+        } else {
+            return openSession(session -> {
+                session.save(users);
+                return session.load(Users.class, users.getId());
+            });
+        }
     }
 
     @Override
     public Users delete(Users users) {
         return openSession(session -> {
-            session.delete(users);
-            return users;
+            Users rsl = session.get(Users.class, users.getId());
+            session.delete(rsl);
+            return rsl;
         });
     }
 
@@ -36,7 +45,7 @@ public class UsersDb implements Store<Users> {
     public Users edit(Users users) {
         return openSession(session -> {
             session.saveOrUpdate(users);
-            return session.load(Users.class, users.getId());
+            return session.get(Users.class, users.getId());
         });
     }
 
@@ -47,18 +56,41 @@ public class UsersDb implements Store<Users> {
 
     @Override
     public Users findByID(Users users) {
-        return openSession(session -> session.get(Users.class, users.getId()));
+        Users rsl = null;
+        rsl = openSession(session -> session.get(Users.class, users.getId()));
+        if (rsl == null) {
+            rsl = new Users(0);
+        }
+        return rsl;
     }
 
     @Override
     public List<Users> findByName(Users users) {
         String sql = "from Users where name = '" + users.getName() + "'";
-        return openSession(session -> session.createQuery(sql).list());
+        return refactList(sql);
+    }
+
+    @Override
+    public Users findByLoginPass(Users users) {
+        String sql = "from Users where login = '" + users.getLogin() + "' and password = '" + users.getPassword() + "'";
+        return refactList(sql).get(0);
     }
 
     @Override
     public Users findByLogin(Users users) {
         String sql = "from Users where login = '" + users.getLogin() + "'";
-        return (Users) openSession(session -> session.createQuery(sql).list().get(0));
+        return refactList(sql).get(0);
+    }
+
+    private ArrayList<Users> refactList(String sql) {
+        return openSession(session -> {
+            ArrayList<Users> rsl = (ArrayList<Users>) session.createQuery(sql).list();
+            if (rsl.size() > 0) {
+                return rsl;
+            } else {
+                rsl.add(new Users(0));
+                return rsl;
+            }
+        });
     }
 }

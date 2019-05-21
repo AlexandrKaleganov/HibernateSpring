@@ -49,6 +49,12 @@ public class CarDb implements Store<Car> {
     }
 
     @Override
+    public Car findByLoginPass(Car car) {
+        error();
+        return null;
+    }
+
+    @Override
     public Car findByLogin(Car car) {
         error();
         return null;

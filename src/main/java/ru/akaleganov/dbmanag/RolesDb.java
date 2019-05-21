@@ -57,6 +57,12 @@ public class RolesDb implements Store<Roles> {
     }
 
     @Override
+    public Roles findByLoginPass(Roles roles) {
+        error();
+        return null;
+    }
+
+    @Override
     public Roles findByLogin(Roles roles) {
         error();
         return null;

@@ -28,7 +28,7 @@ public class PhotoDbTest {
     final static Logger LOGGER = getLogger(UsersDbTest.class);
 
     private ArrayList<String> urlPhotolist = new ArrayList<>(Arrays.asList("db/Avito-Shema.png"));
-    private String jsonCar = "{\"marka\":{\"id\":\"1\"}, \"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
+    private String jsonCar = "{\"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
     String jsonAnn = "{\"name\":\"продам машину\", \"author\":{\"id\":\"1\"}}";
     private Announcement announcement = new ServiceAddObjects().addAll(jsonAnn, jsonCar, urlPhotolist);
 
@@ -42,7 +42,7 @@ public class PhotoDbTest {
             String jsonCartest = String.format("{\"id\":\"%s\"}", announcement.getCar().getId());
             String jsonAnntest = String.format("{\"id\":\"%s\"}", announcement.getId());
             Announcement annTest = new ServiceAddObjects().addAll(jsonAnntest, jsonCartest, urlPhotolist);
-            PhotoDb.getInstance().add(annTest.getCar().getPhoto());
+            PhotoDb.getInstance().add(annTest.getCar().getPhoto().get(0));
             fank.accept(PhotoDb.getInstance(), announcement);
         } finally {
             SessionFactory sfactory = new Configuration().configure().buildSessionFactory();

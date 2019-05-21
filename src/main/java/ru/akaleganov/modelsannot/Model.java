@@ -8,6 +8,8 @@ import javax.persistence.*;
 /**
  * @author Kaleganov Aleander
  * @since 06/05//2019
+ * <br/>
+ * <b>содержит поля:<b/>
  **/
 @Entity
 @Table(name = "model")
@@ -45,7 +47,7 @@ public class Model extends AllModels {
 
     @Override
     public String toString() {
-        return "Model{" + "id=" + super.getId() + ", name='" + name + '\'' + '}';
+        return "Model{" + "id=" + super.getId() + ", name='" + name + '\'' + ", Marka='" + marka + '\'' + '}';
     }
 }
 

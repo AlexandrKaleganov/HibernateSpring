@@ -2,6 +2,7 @@ package ru.akaleganov.dbmanag;
 
 import ru.akaleganov.modelsannot.Announcement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AnnouncementDb implements Store<Announcement> {
@@ -10,6 +11,7 @@ public class AnnouncementDb implements Store<Announcement> {
     public static AnnouncementDb getInstance() {
         return INSTANCE;
     }
+
     @Override
     public Announcement add(Announcement announcement) {
         return openSession(session -> {
@@ -32,24 +34,46 @@ public class AnnouncementDb implements Store<Announcement> {
     public Announcement edit(Announcement announcement) {
         return openSession(session -> {
             session.saveOrUpdate(announcement);
-            return session.load(Announcement.class, announcement.getId());
+            return session.get(Announcement.class, announcement.getId());
         });
     }
 
     @Override
     public List<Announcement> findAll() {
-        return openSession(session -> session.createQuery("from Announcement").list());
+        return this.refactList("from Announcement");
     }
 
     @Override
     public Announcement findByID(Announcement announcement) {
-        return openSession(session -> session.get(Announcement.class, announcement.getId()));
+        Announcement rsl = openSession(session -> session.get(Announcement.class, announcement.getId()));
+        if (rsl == null) {
+            rsl = new Announcement(0);
+        }
+        return rsl;
     }
 
     @Override
     public List<Announcement> findByName(Announcement announcement) {
         String sql = "from Announcement where name = '" + announcement.getName() + "'";
-        return openSession(se -> se.createQuery(sql).list());
+        return this.refactList(sql);
+    }
+
+    private ArrayList<Announcement> refactList(String sql) {
+        return openSession(session -> {
+            ArrayList<Announcement> rsl = (ArrayList<Announcement>) session.createQuery(sql).list();
+            if (rsl.size() > 0) {
+                return rsl;
+            } else {
+                rsl.add(new Announcement(0));
+                return rsl;
+            }
+        });
+    }
+
+    @Override
+    public Announcement findByLoginPass(Announcement announcement) {
+        error();
+        return null;
     }
 
     @Override

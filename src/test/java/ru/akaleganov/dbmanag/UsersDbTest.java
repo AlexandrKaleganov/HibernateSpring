@@ -40,7 +40,7 @@ public class UsersDbTest {
     public void delete() {
         this.testAll((db, u) -> {
             db.delete(u);
-            assertThat(db.findByID(u), Is.is((Users) null));
+            assertThat(db.findByID(u).getId(), Is.is(0));
         });
     }
 
@@ -74,6 +74,12 @@ public class UsersDbTest {
         });
     }
 
+    @Test
+    public void findByLoginPass() {
+        this.testAll((db, u) -> {
+            assertThat(db.findByLoginPass(u).getName(), Is.is("name"));
+        });
+    }
     @Test
     public void findByLogin() {
         this.testAll((db, u) -> {

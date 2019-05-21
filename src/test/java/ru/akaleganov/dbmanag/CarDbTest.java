@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 public class CarDbTest {
     private String jsonAnn = "{\"name\":\"продам машину\", \"author\":{\"id\":\"1\"}}";
-    private String jsonCar = "{\"marka\":{\"id\":\"1\"}, \"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
+    private String jsonCar = "{\"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
     private Announcement ann = new ServiceAddObjects().addAll(jsonAnn, jsonCar, new ArrayList<>());
 
     private void testF(Consumer<Session> sessionConsumer) {
@@ -38,7 +38,9 @@ public class CarDbTest {
         assertTrue(expected.getDescription().contains("описание объявления"));
         testF(session -> {
             Announcement expected2 = session.load(Announcement.class, ann.getId());
+            expected2.getCar().setYar(1958);
             assertTrue(expected2.getCar().getDescription().contains("описание объявления"));
+            assertEquals(1958, expected2.getCar().getYar());
             session.delete(expected2);
         });
     }

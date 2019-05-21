@@ -3,6 +3,12 @@ package ru.akaleganov.modelsannot;
 
 import javax.persistence.*;
 
+/**
+ * @author Kaleganov Aleander
+ * @since 06/05//2019
+ * <br/>
+ * <b>содержит поля:<b/>
+ */
 @Entity
 @Table(name = "users")
 public class Users extends AllModels {

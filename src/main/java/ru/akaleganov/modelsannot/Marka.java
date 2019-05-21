@@ -1,5 +1,6 @@
 package ru.akaleganov.modelsannot;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.LazyCollection;
 
@@ -9,6 +10,8 @@ import java.util.List;
 /**
  * @author Kaleganov Aleander
  * @since 06/05//2019
+ * <br/>
+ * <b>содержит поля:<b/>
  **/
 @Entity
 @Table(name = "marka")
@@ -16,6 +19,7 @@ public class Marka extends AllModels {
     @Column(name = "name")
     private String name;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "marka", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Model> models;
 
     public Marka(int id) {
@@ -44,6 +48,6 @@ public class Marka extends AllModels {
 
     @Override
     public String toString() {
-        return "Marka{" + "id=" + super.getId() + ", name='" + name + '\'' + models + '}';
+        return "Marka{" + "id=" + super.getId() + ", name='" + name + "\'}";
     }
 }

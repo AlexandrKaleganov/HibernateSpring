@@ -2,6 +2,7 @@ package ru.akaleganov.dbmanag;
 
 import ru.akaleganov.modelsannot.Transmission;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +37,11 @@ public class TransmissionDb implements Store<Transmission> {
 
     @Override
     public List<Transmission> findAll() {
-        return openSession(session -> session.createQuery("from Transmission").list());
+        ArrayList<Transmission> rsl = (ArrayList<Transmission>) openSession(session -> session.createQuery("from Transmission").list());
+        if (rsl == null) {
+            rsl = new ArrayList<>();
+        }
+        return rsl;
     }
 
     @Override
@@ -47,6 +52,12 @@ public class TransmissionDb implements Store<Transmission> {
 
     @Override
     public List<Transmission> findByName(Transmission transmission) {
+        error();
+        return null;
+    }
+
+    @Override
+    public Transmission findByLoginPass(Transmission transmission) {
         error();
         return null;
     }
