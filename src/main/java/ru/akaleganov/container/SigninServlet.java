@@ -29,7 +29,7 @@ public class SigninServlet extends HttpServlet {
         } else {
             req.getSession().setAttribute("login", user.getLogin());
             req.getSession().setAttribute("role", user.getRoles());
-            req.getRequestDispatcher("/index.html").forward(req, resp);
+            resp.sendRedirect(String.format("%s/", req.getContextPath()));
         }
     }
 }
