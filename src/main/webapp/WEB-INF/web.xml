@@ -5,27 +5,27 @@
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
-<!--    <filter>-->
-<!--        <filter-name>AuthFilter</filter-name>-->
-<!--        <filter-class>ru.akaleganov.filter.AuthFilter</filter-class>-->
-<!--        <init-param>-->
-<!--            <param-name>encoding</param-name>-->
-<!--            <param-value>UTF-8</param-value>-->
-<!--        </init-param>-->
-<!--    </filter>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthFilter</filter-name>-->
-<!--        <url-pattern>*</url-pattern>-->
-<!--    </filter-mapping>-->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ru.akaleganov.filter.AuthFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
 
-<!--    <servlet>-->
-<!--        <servlet-name>SigninServlet</servlet-name>-->
-<!--        <servlet-class>ru.akaleganov.container.SigninServlet</servlet-class>-->
-<!--        <load-on-startup>0</load-on-startup>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>SigninServlet</servlet-name>-->
-<!--        <url-pattern>/signin</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <servlet>
+        <servlet-name>SigninServlet</servlet-name>
+        <servlet-class>ru.akaleganov.container.SigninServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SigninServlet</servlet-name>
+        <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
 
 </web-app>

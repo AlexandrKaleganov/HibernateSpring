@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "*")
 public class AuthFilter implements Filter {
 
     private static final org.apache.log4j.Logger LOGGER = Logger.getLogger(AuthFilter.class);
@@ -19,6 +18,7 @@ public class AuthFilter implements Filter {
         req.setCharacterEncoding("UTF-8");
         HttpServletRequest request = (HttpServletRequest) req;    //два запроса переделываем под HttpServlet
         HttpServletResponse response = (HttpServletResponse) res;
+        System.out.println(request.getParameter("exit"));
         if (request.getRequestURI().contains("/signin")) {     //если лезим на страницу авторизации - то
             chain.doFilter(req, res);                           //фильтр нас пропускает и наши запросы де нас в свою очередь перекинет на loginIN.jsp
         } else {
