@@ -18,6 +18,7 @@ public class AuthFilter implements Filter {
         req.setCharacterEncoding("UTF-8");
         HttpServletRequest request = (HttpServletRequest) req;    //два запроса переделываем под HttpServlet
         HttpServletResponse response = (HttpServletResponse) res;
+        System.out.println(request.getRequestURI());
         if (request.getRequestURI().contains("/signin")) {     //если лезим на страницу авторизации - то
             chain.doFilter(req, res);                           //фильтр нас пропускает и наши запросы де нас в свою очередь перекинет на loginIN.jsp
         } else {
@@ -32,6 +33,7 @@ public class AuthFilter implements Filter {
             }
 //            req.setAttribute("role", request.getSession().getAttribute("role"));
 //            req.setAttribute("login", request.getSession().getAttribute("login"));
+            System.out.println("сработало");
             chain.doFilter(req, res);   //а вот если всё пучком и запрос не на страницу авторизации и сессия содержит логин то фильтр нас пропускает куда угодно
         }
     }
