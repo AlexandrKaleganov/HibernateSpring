@@ -17,7 +17,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/navibar.js"%></script>
-    <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/out.js"%></script>
 
 </head>
 <body id="body">
