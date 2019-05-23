@@ -35,6 +35,7 @@
         console.log(nbar);
         $("#body div").append(nbar);
     });</script>
+    <script src="js/out.js"/>
 </head>
 <body id="body">
 <div>
