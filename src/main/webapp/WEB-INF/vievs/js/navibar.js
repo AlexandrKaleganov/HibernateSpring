@@ -23,6 +23,5 @@ function exit() {
         type: "POST",
         url: "./",
         data: {exit: "exit"},
-
     })
 };
