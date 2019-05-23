@@ -15,7 +15,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <%--пропр--%>
+
+    <%--<script src="js/navibar.js"/>--%>
     <script>$(document).ready(function () {
         var  nbar = "<nav class=\"navbar navbar-expand-sm bg-dark navbar-dark\">\n";
         nbar = nbar + "    <a class=\"navbar-brand\"href=\"${pageContext.servletContext.contextPath}/\">Logo </a>\n";
@@ -34,8 +35,15 @@
         nbar = nbar + "</nav>";
         console.log(nbar);
         $("#body div").append(nbar);
-    });</script>
-    <script src="js/out.js"/>
+    });
+    function exit() {
+        $.ajax({
+            type: "POST",
+            url: "./",
+            data: {exit: "exit"}
+        })
+    };
+    </script>
 </head>
 <body id="body">
 <div>

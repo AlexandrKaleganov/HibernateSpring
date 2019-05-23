@@ -17,3 +17,10 @@ $(document).ready(function () {
     console.log(nbar);
     $("#body div").append(nbar);
 });
+function exit() {
+    $.ajax({
+        type: "POST",
+        url: "./",
+        data: {exit: "exit"}
+    })
+};
