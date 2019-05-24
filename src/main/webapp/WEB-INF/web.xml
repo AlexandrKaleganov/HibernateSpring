@@ -17,7 +17,7 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>*</url-pattern>
     </filter-mapping>
-<!--Servler authoris-->
+    <!--Servler authoris-->
     <servlet>
         <servlet-name>SigninServlet</servlet-name>
         <servlet-class>ru.akaleganov.container.SigninServlet</servlet-class>
@@ -27,7 +27,7 @@
         <servlet-name>SigninServlet</servlet-name>
         <url-pattern>/signin</url-pattern>
     </servlet-mapping>
-<!--    Servlet Index.jsp-->
+    <!--    Servlet Index.jsp-->
     <servlet>
         <servlet-name>ServletIndex</servlet-name>
         <servlet-class>ru.akaleganov.container.ServletIndex</servlet-class>
@@ -36,5 +36,14 @@
     <servlet-mapping>
         <servlet-name>ServletIndex</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletUserList</servlet-name>
+        <servlet-class>ru.akaleganov.container.ServletUserList</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUserList</servlet-name>
+        <url-pattern>/listUser</url-pattern>
     </servlet-mapping>
 </web-app>
