@@ -30,6 +30,7 @@ private static final Logger LOGGER = Logger.getLogger(ServletUserList.class);
         System.out.println(req.getParameter("us"+ "как нулл как нуулл то????"));
         ArrayList<Users> userlist =Dispatch.getInstance().access(req.getParameter("action"),
                 Optional.of(ServiceAddObjects.getInstance().addUser(req.getParameter("us"))));
+        System.out.println(userlist.get(0));
         try {
             writer = new PrintWriter(resp.getOutputStream());
             writer.append(new ObjectMapper().writeValueAsString(userlist));

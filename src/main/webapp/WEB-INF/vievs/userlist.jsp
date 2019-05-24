@@ -18,21 +18,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/navibar.js"%></script>
-    <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/sortedTable.js"%></script>
-<script>$(document).ready(function () {
-    $.ajax({
-        type: "POST",
-        url: "./listUser",
-        data: {action: "getListUser", user:{id:"0"}},
-        success: function (data) {
-            console.log("сработало");
-            for (var i = 0; i < data.length; i++) {
-                console.log(data[i]);
-            }
-        }
-    })
-})</script>
+    <script charset="UTF-8" type="text/javascript">
+        <%@include file="/WEB-INF/vievs/js/navibar.js" %>
+    </script>
+    <script charset="UTF-8" type="text/javascript">
+        <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
+    </script>
+    <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/userlistJS.js"%> </script>
     <title>userlist</title>
 
 </head>
@@ -46,7 +38,7 @@
             <th onclick="sortTable(1, 'todolist_table')">Name &darr;<span class="fi-sort-ascending"></span></th>
             <th onclick="sortTable(2, 'todolist_table')">Login &darr;</th>
             <th onclick="sortTable(3, 'todolist_table')">Role &darr;</th>
-            <th>Edit </th>
+            <th>Edit</th>
             <th>Delete</th>
         </tr>
         </thead>
