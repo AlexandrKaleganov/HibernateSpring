@@ -26,7 +26,6 @@
     </script>
     <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/userlistJS.js"%> </script>
     <title>userlist</title>
-
 </head>
 <body>
 <div class="container">
