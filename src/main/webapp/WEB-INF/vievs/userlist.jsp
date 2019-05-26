@@ -25,13 +25,14 @@
     <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/userlistJS.js"%> </script>
     <title>userlist</title>
     <script>
+        <c:set var="log" value="${login}"/>
         $(document).ready(function () {
-            <c:if test="${role eq 'ADMIN'}">
+            <c:if test="${role eq 'ADIN'}">
             listuser();
             </c:if>
-            <c:if test="${!(role eq 'ADMIN')}">
-            <c:set var="log" value="${login}"/>
-            user(${log});
+            <c:if test="${!(role eq 'ADIN')}">
+            console.log(${log});
+            <%--user(<c:out value="${login}"/>);--%>
             </c:if>
         })
     </script>
