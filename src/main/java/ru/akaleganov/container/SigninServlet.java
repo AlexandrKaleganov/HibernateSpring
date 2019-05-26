@@ -28,7 +28,7 @@ public class SigninServlet extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/vievs/login.jsp").forward(req, resp);
         } else {
             req.getSession().setAttribute("login", user.getLogin());
-            req.getSession().setAttribute("role", user.getRoles());
+            req.getSession().setAttribute("role", user.getRoles().getRole());
             resp.sendRedirect(String.format("%s/", req.getContextPath()));
         }
     }

@@ -14,7 +14,6 @@
         + "   </ul>\n"
         + "    <a href=\"${pageContext.servletContext.contextPath}/\" type=\"button\" style=\"display: block; margin-left: auto;\" class=\"btn btn-outline-danger\" onclick=\"exit()\">ВЫХОД</a>\n"
         + "</nav>";
-    console.log(nbar);
     $("#body div").append(nbar);
 });
 

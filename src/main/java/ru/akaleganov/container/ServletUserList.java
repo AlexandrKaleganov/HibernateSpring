@@ -1,5 +1,6 @@
 package ru.akaleganov.container;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import ru.akaleganov.modelsannot.Users;
@@ -12,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
-import java.util.ArrayList;
 import java.util.Optional;
 
 public class ServletUserList extends HttpServlet {
@@ -25,16 +24,18 @@ private static final Logger LOGGER = Logger.getLogger(ServletUserList.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
-        PrintWriter writer = null;
-        System.out.println(req.getParameter("action"));
-        System.out.println(req.getParameter("us"+ "как нулл как нуулл то????"));
-        ArrayList<Users> userlist =Dispatch.getInstance().access(req.getParameter("action"),
-                Optional.of(ServiceAddObjects.getInstance().addUser(req.getParameter("us"))));
-        System.out.println(userlist.get(0));
+        System.out.println(req.getParameter("us"));
         try {
-            writer = new PrintWriter(resp.getOutputStream());
-            writer.append(new ObjectMapper().writeValueAsString(userlist));
-            System.out.println(writer.toString());
+            System.out.println(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(req.getParameter("action"),
+                    Optional.of(ServiceAddObjects.getInstance().addUser(req.getParameter("us"))))));
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        try {
+            PrintWriter  writer = new PrintWriter(resp.getOutputStream());
+            writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(req.getParameter("action"),
+                    Optional.of(ServiceAddObjects.getInstance().addUser(req.getParameter("us"))))));
+            writer.flush();
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }

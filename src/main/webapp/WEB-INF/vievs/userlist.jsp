@@ -8,8 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,6 +24,17 @@
     </script>
     <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/userlistJS.js"%> </script>
     <title>userlist</title>
+    <script>
+        $(document).ready(function () {
+            <c:if test="${role eq 'ADMIN'}">
+            listuser();
+            </c:if>
+            <c:if test="${!(role eq 'ADMIN')}">
+            <c:set var="log" value="${login}"/>
+            user(${log});
+            </c:if>
+        })
+    </script>
 </head>
 <body>
 <div class="container">

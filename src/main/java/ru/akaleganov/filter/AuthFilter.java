@@ -31,8 +31,8 @@ public class AuthFilter implements Filter {
                 response.sendRedirect(String.format("%s/signin", request.getContextPath())); //то нас опять бросит на сервлет signin где перекинет на loginIN.jsp
                 return;
             }
-//            req.setAttribute("role", request.getSession().getAttribute("role"));
-//            req.setAttribute("login", request.getSession().getAttribute("login"));
+            req.setAttribute("role", request.getSession().getAttribute("role"));
+            req.setAttribute("login", request.getSession().getAttribute("login"));
             System.out.println(request.getRequestURI() + " пропустил");  //тут мы будем отслеживать что нашь фильтр пропустил
             chain.doFilter(req, res);   //а вот если всё пучком и запрос не на страницу авторизации и сессия содержит логин то фильтр нас пропускает куда угодно
         }

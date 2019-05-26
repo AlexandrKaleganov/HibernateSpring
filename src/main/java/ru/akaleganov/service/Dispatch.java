@@ -37,8 +37,8 @@ public class Dispatch {
                 Optional.of(UsersDb.getInstance().findByLoginPass((Users) ticket.get())));
         this.dispatch.put("getListUser", (ticket) ->
                 Optional.of(UsersDb.getInstance().findAll()));
-//        this.dispatch.put("isChecked", (ticket) ->
-//                Optional.of(valid.isCheckedCell(ticket.getCell())));
+        this.dispatch.put("findByLogin", (ticket) ->
+                Optional.of(UsersDb.getInstance().findByLogin((Users) ticket.get())));
 //        this.dispatch.put("clear", (ticket) -> {
 //            this.valid.deleteAll();
 //            return Optional.of(true);
