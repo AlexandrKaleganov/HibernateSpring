@@ -1,3 +1,6 @@
+/**
+ *скрипт для упорядочивания таблицы готовое решение
+ */
 function sortTable(n, tableid) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById(tableid);
@@ -24,7 +27,7 @@ function sortTable(n, tableid) {
             if (dir == "asc") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     //if so, mark as a switch and break the loop:
-                    shouldSwitch= true;
+                    shouldSwitch = true;
                     break;
                 }
             } else if (dir == "desc") {
@@ -41,7 +44,7 @@ function sortTable(n, tableid) {
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
             //Each time a switch is done, increase this count by 1:
-            switchcount ++;
+            switchcount++;
         } else {
             /*If no switching has been done AND the direction is "asc",
             set the direction to "desc" and run the while loop again.*/

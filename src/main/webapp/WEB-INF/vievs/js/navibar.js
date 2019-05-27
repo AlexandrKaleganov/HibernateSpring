@@ -1,4 +1,8 @@
-﻿$(document).ready(function () {
+﻿/**
+ * в данном скрипте идёт отрисовка навигационной панели, кнопки выхода, и полей с отображением текущего пользователя
+ * логина и пароля для корректной отрисовки на jsp должны присутствовать два блока div id="navipanel" id="username"
+ */
+$(document).ready(function () {
     var nbar = "<nav class=\"navbar navbar-expand-sm bg-dark navbar-dark\">\n"
         + "    <a class=\"navbar-brand\"href=\"${pageContext.servletContext.contextPath}/\">Logo</a>\n"
         + "<ul class=\"navbar-nav\">\n"
@@ -14,7 +18,7 @@
         + "   </ul>\n"
         + "    <a href=\"${pageContext.servletContext.contextPath}/\" type=\"button\" style=\"display: block; margin-left: auto;\" class=\"btn btn-outline-danger\" onclick=\"exit()\">ВЫХОД</a>\n"
         + "</nav>";
-    $("#body div:first").append(nbar);
+    $("#navipanel").append(nbar);
     $("#username").append(" <button  id=\"login\"  class=\"btn btn-primary\" style=\" margin-left: auto;\" value=\"${login}\" type=\"button\" disabled>${login}</button>\n" +
         "    <button id=\"role\" class=\"btn btn-primary\" style=\"margin-left: auto;\" value=\"${role}\" type=\"button\" disabled>${role}</button>");
 });

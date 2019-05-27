@@ -22,7 +22,7 @@
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
     </script>
-    <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/userlistJS.js"%> </script>
+    <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/userlistJS.js"%></script>
     <title>userlist</title>
     <script>
         $(document).ready(function () {
@@ -39,7 +39,7 @@
     </script>
 </head>
 <body id="body">
-<div>
+<div id="navipanel">
 </div>
 <div class="username" id="username" style="float: right;">
 </div>

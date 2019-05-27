@@ -20,7 +20,7 @@
 
 </head>
 <body id="body">
-<div>
+<div id="navipanel">
 </div>
 <div class="username" id="username" style="float: right;">
 

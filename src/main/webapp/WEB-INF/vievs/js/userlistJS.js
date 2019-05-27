@@ -1,3 +1,6 @@
+/**
+ * скрипты для отрисовывания таблицы userlist
+ */
 function listuser(){
     $.ajax({
         type: "POST",
