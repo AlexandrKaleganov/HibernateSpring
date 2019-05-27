@@ -22,6 +22,8 @@
 <body id="body">
 <div>
 </div>
+<div class="username" id="username" style="float: right;">
 
+</div>
 </body>
 </html>

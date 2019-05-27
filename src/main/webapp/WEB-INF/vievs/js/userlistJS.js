@@ -21,6 +21,7 @@ function user(userLogin) {
         data: {action: "findByLogin", us:"{\"login\":\"" + userLogin + "\"" +"}"},
         dataType : "json",
         success: function (data) {
+            console.log(data);
             for (var i = 0; i < data.length; i++) {
                 console.log(data[i].login);
             }

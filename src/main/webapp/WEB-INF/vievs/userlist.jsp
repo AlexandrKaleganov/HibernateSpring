@@ -25,19 +25,24 @@
     <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/userlistJS.js"%> </script>
     <title>userlist</title>
     <script>
-        <c:set var="log" value="${login}"/>
         $(document).ready(function () {
             <c:if test="${role eq 'ADIN'}">
             listuser();
             </c:if>
             <c:if test="${!(role eq 'ADIN')}">
-            console.log(${log});
-            <%--user(<c:out value="${login}"/>);--%>
+            <c:set var="log" value="login" scope="request"/>
+            console.log($("#role").val());
+            console.log($("#login").val());
+            user($("#login").val());
             </c:if>
         })
     </script>
 </head>
-<body>
+<body id="body">
+<div>
+</div>
+<div class="username" id="username" style="float: right;">
+</div>
 <div class="container">
     <p>TodoList:</p>
     <table class="table table-striped" id="todolist_table">

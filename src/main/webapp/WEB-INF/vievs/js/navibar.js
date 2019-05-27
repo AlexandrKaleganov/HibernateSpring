@@ -14,7 +14,9 @@
         + "   </ul>\n"
         + "    <a href=\"${pageContext.servletContext.contextPath}/\" type=\"button\" style=\"display: block; margin-left: auto;\" class=\"btn btn-outline-danger\" onclick=\"exit()\">ВЫХОД</a>\n"
         + "</nav>";
-    $("#body div").append(nbar);
+    $("#body div:first").append(nbar);
+    $("#username").append(" <button  id=\"login\"  class=\"btn btn-primary\" style=\" margin-left: auto;\" value=\"${login}\" type=\"button\" disabled>${login}</button>\n" +
+        "    <button id=\"role\" class=\"btn btn-primary\" style=\"margin-left: auto;\" value=\"${role}\" type=\"button\" disabled>${role}</button>");
 });
 
 function exit() {
