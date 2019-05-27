@@ -26,14 +26,12 @@
     <title>userlist</title>
     <script>
         $(document).ready(function () {
-            <c:if test="${role eq 'ADIN'}">
+            <c:if test="${role eq 'ADMIN'}">
             listuser();
             </c:if>
-            <c:if test="${!(role eq 'ADIN')}">
+            <c:if test="${!(role eq 'ADMIN')}">
             <c:set var="log" value="login" scope="request"/>
-            console.log($("#role").val());
-            console.log($("#login").val());
-            user($("#login").val());
+            user("${login}");
             </c:if>
         })
     </script>
