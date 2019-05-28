@@ -1,5 +1,6 @@
 package ru.akaleganov.service;
 
+import ru.akaleganov.dbmanag.RolesDb;
 import ru.akaleganov.dbmanag.UsersDb;
 import ru.akaleganov.modelsannot.Announcement;
 
@@ -43,8 +44,8 @@ public class Dispatch {
                 Optional.of(UsersDb.getInstance().findByID((Users) ticket.get())));
         this.dispatch.put("deleteuser", (ticket) ->
                 Optional.of(UsersDb.getInstance().delete((Users) ticket.get())));
-//            return Optional.of(true);
-//        });
+        this.dispatch.put("findallroles", (ticket) ->
+                Optional.of(RolesDb.getInstance().findAll()));
         return this;
     }
 

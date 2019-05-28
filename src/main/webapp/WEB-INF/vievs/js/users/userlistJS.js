@@ -1,3 +1,11 @@
+﻿$(document).ready(function () {
+    if (${role eq 'ADMIN'}) {
+        listuser();
+    } else {
+        user("${login}");
+    }
+})
+
 /**
  * скрипты для отрисовывания таблицы userlist
  */
@@ -35,9 +43,9 @@ function user(userLogin) {
 function loadtable(u) {
     var rsl = "";
     rsl = rsl + "<tr><td>" + u.id + "</td><td>" + u.name + "</td><td>" + u.login + "</td><td>" + u.roles.role + "</td><td>";
-    if ($("#rol").eq("ADMIN")) {
+    if (${role eq 'ADMIN'}) {
         rsl = rsl + " <form action=\"${pageContext.servletContext.contextPath}/listUser\" method=\"post\">\n" +
-            "                            <input type=\"hidden\" name=\"id\" value=\"" + u.id + "\">\n" +
+            "                            <input type=\"hidden\" name=\"us\" value=\"" + u.id + "\">\n" +
             "                            <input type=\"hidden\" name=\"action\" value=\"findbyiduser\">\n" +
             "                            <input type=\"submit\" value=\"EDIT\">\n" +
             "                        </form>" + "</td><td>" +
@@ -54,6 +62,6 @@ function loadtable(u) {
 }
 
 function jsonId(id) {
-    var rsl =  "{\"id\":\"" + id + "\"}";
+    var rsl = "{\"id\":\"" + id + "\"}";
     return rsl;
 }

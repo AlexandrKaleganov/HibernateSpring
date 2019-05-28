@@ -19,8 +19,9 @@
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
     </script>
     <script charset="UTF-8" type="text/javascript">
-        <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
+        <%@include file="/WEB-INF/vievs/js/users/editJS.js" %>
     </script>
+
     <title>Edit User</title>
 </head>
 <body>
@@ -28,6 +29,35 @@
 </div>
 <div class="username" id="username" style="float: right;">
 </div>
-
+<br/>
+<div>
+    <form class="form-inline" action="${pageContext.servletContext.contextPath}/" method="post">
+        <div class="form-group">
+            <label for="id"></label>
+            <input type="hidden" class="form-control" name="id" value="${user.id}" title="Enter ID." id="id">
+        </div>
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" class="form-control" name="name" value="${user.name}" title="Enter name." id="name">
+        </div>
+        <div class="form-group">
+            <label for="login">Маил:</label>
+            <input type="text" class="form-control" name="mail" value="${user.login}" title="Enter login." id="login">
+        </div>
+        <div class="form-group">
+            <label for="password">Проль:</label>
+            <input type="text" class="form-control" name="password" value="${user.password}" title="Enter pass."
+                   id="password">
+        </div>
+        <div class="form-group">
+            <label for="roles">Роли:</label>
+            <select class="form-control" name="roles" title="Enter attribut dostupa." id="roles">
+                <option value="${user.roles.id}">${user.roles.role}</option>
+            </select>
+        </div>
+        <button type="submit" name="action" value="update" class="btn btn-default" onclick="return valid();">Submit
+        </button>
+    </form>
+</div>
 </body>
 </html>

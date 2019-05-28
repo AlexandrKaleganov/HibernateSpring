@@ -22,18 +22,10 @@
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
     </script>
-    <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/userlistJS.js"%></script>
+    <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/users/userlistJS.js"%></script>
     <title>userlist</title>
     <script>
-        $(document).ready(function () {
-            <c:if test="${role eq 'ADMIN'}">
-            listuser();
-            </c:if>
-            <c:if test="${!(role eq 'ADMIN')}">
-            <c:set var="log" value="login" scope="request"/>
-            user("${login}");
-            </c:if>
-        })
+
     </script>
 </head>
 <body id="body">

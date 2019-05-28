@@ -9,6 +9,7 @@ import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.modelsannot.Users;
 
 import javax.imageio.ImageIO;
+import javax.management.relation.Role;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -26,6 +27,7 @@ public class ServiceAddObjects {
     public static ServiceAddObjects getInstance() {
         return INSTANCE;
     }
+
     public Announcement addAnnouncement(String jsonStroka) {
         Announcement item = null;
         try {
@@ -39,22 +41,16 @@ public class ServiceAddObjects {
         }
     }
 
-    public Car addCar(String jsonStroka) {
-        try {
-            return new ObjectMapper().readValue(jsonStroka, Car.class);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-            return new Car();
-        }
+    public Car addCar(String json) {
+        return this.addModel(json, j -> new ObjectMapper().readValue(j, Car.class));
     }
 
     public Users addUser(String json) {
-        try {
-            return new ObjectMapper().readValue(json, Users.class);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-            return new Users();
-        }
+        return this.addModel(json, j -> new ObjectMapper().readValue(j, Users.class));
+    }
+
+    public Role addRole(String json) {
+        return this.addModel(json, j -> new ObjectMapper().readValue(j, Role.class));
     }
 
     public List<Photo> addPhoto(ArrayList<String> urlList) {
@@ -118,5 +114,22 @@ public class ServiceAddObjects {
         Car car = this.addCar(jsoncar);
         ArrayList<Photo> photos = (ArrayList<Photo>) this.addPhoto(urlPhoto);
         return this.addAll(ann, car, photos);
+    }
+
+    /**
+     * рефактор try catch
+     * @param json
+     * @param mapper
+     * @param <E>
+     * @return
+     */
+    private <E> E addModel(String json, FankEx<String, E> mapper) {
+        E rsl = null;
+        try {
+            rsl = mapper.submit(json);
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return rsl;
     }
 }

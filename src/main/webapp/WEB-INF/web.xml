@@ -46,4 +46,13 @@
         <servlet-name>ServletUserList</servlet-name>
         <url-pattern>/listUser</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletRoles</servlet-name>
+        <servlet-class>ru.akaleganov.container.ServletRoles</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletRoles</servlet-name>
+        <url-pattern>/listRoles</url-pattern>
+    </servlet-mapping>
 </web-app>
