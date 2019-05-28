@@ -16,28 +16,43 @@ import java.io.PrintWriter;
 import java.util.Optional;
 
 public class ServletUserList extends HttpServlet {
-private static final Logger LOGGER = Logger.getLogger(ServletUserList.class);
+    private static final Logger LOGGER = Logger.getLogger(ServletUserList.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/vievs/userlist.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/vievs/users/userlist.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         System.out.println(req.getParameter("us"));
-        try {
-            System.out.println(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(req.getParameter("action"),
-                    Optional.of(ServiceAddObjects.getInstance().addUser(req.getParameter("us"))))));
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-        try {
-            PrintWriter  writer = new PrintWriter(resp.getOutputStream());
-            writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(req.getParameter("action"),
-                    Optional.of(ServiceAddObjects.getInstance().addUser(req.getParameter("us"))))));
-            writer.flush();
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
+        String action = req.getParameter("action");
+
+        if (action.contains("findbyiduser")) {
+            try {
+                req.setAttribute("user", Dispatch.getInstance().access(action, Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
+                System.out.println((Users) Dispatch.getInstance().access(action, Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
+                req.getRequestDispatcher("WEB-INF/vievs/users/edit.jsp").forward(req, resp);
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        } else if (action.contains("deleteuser")) {
+            req.setAttribute("user", Dispatch.getInstance().access("findbyiduser", Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
+            System.out.println((Users) Dispatch.getInstance().access("findbyiduser", Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
+            try {
+                req.getRequestDispatcher("WEB-INF/vievs/index.jsp").forward(req, resp);
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        } else {
+            try {
+                PrintWriter writer = new PrintWriter(resp.getOutputStream());
+                writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
+                        Optional.of(ServiceAddObjects.getInstance().addUser(req.getParameter("us"))))));
+                writer.flush();
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
         }
     }
 }

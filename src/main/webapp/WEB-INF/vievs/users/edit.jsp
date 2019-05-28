@@ -1,12 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: Lis
-  Date: 23 мая 19
-  Time: 0:26
+  Date: 29 мая 19
+  Time: 0:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -19,19 +18,16 @@
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
     </script>
-
+    <script charset="UTF-8" type="text/javascript">
+        <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
+    </script>
+    <title>Edit User</title>
 </head>
-<c:if test="${user != null}">
-    <div class="alert alert-success  alert-dismissible">
-            ${user} <strong>удалён</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
-    </div>
-</c:if>
-<body id="body">
+<body>
 <div id="navipanel">
 </div>
 <div class="username" id="username" style="float: right;">
-
 </div>
+
 </body>
 </html>

@@ -39,8 +39,10 @@ public class Dispatch {
                 Optional.of(UsersDb.getInstance().findAll()));
         this.dispatch.put("findByLogin", (ticket) ->
                 Optional.of(UsersDb.getInstance().findByLogin((Users) ticket.get())));
-//        this.dispatch.put("clear", (ticket) -> {
-//            this.valid.deleteAll();
+        this.dispatch.put("findbyiduser", (ticket) ->
+                Optional.of(UsersDb.getInstance().findByID((Users) ticket.get())));
+        this.dispatch.put("deleteuser", (ticket) ->
+                Optional.of(UsersDb.getInstance().delete((Users) ticket.get())));
 //            return Optional.of(true);
 //        });
         return this;
