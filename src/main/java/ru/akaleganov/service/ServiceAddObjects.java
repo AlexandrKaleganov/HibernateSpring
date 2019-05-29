@@ -7,9 +7,9 @@ import ru.akaleganov.modelsannot.Announcement;
 import ru.akaleganov.modelsannot.Car;
 import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.modelsannot.Users;
+import ru.akaleganov.modelsannot.Roles;
 
 import javax.imageio.ImageIO;
-import javax.management.relation.Role;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ServiceAddObjects {
@@ -49,8 +48,8 @@ public class ServiceAddObjects {
         return this.addModel(json, j -> new ObjectMapper().readValue(j, Users.class));
     }
 
-    public Role addRole(String json) {
-        return this.addModel(json, j -> new ObjectMapper().readValue(j, Role.class));
+    public Roles addRole(String json) {
+        return this.addModel(json, j -> new ObjectMapper().readValue(j, Roles.class));
     }
 
     public List<Photo> addPhoto(ArrayList<String> urlList) {

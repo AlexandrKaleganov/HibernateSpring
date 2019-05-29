@@ -3,6 +3,7 @@ package ru.akaleganov.service;
 import org.hamcrest.core.Is;
 import org.junit.Test;
 import ru.akaleganov.modelsannot.Announcement;
+import ru.akaleganov.modelsannot.Roles;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,5 +34,12 @@ public class ServiceAddObjectsTest {
             expected = temp;
         }
         assertThat(expected, Is.is("png"));
+    }
+
+    @Test
+    public void testFormatRoles() {
+        String json = "{\"id\":\"0\"" + "}";
+        Roles role = new ServiceAddObjects().addRole(json);
+        assertThat(role.getId(), Is.is(0));
     }
 }

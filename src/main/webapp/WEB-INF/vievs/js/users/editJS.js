@@ -13,7 +13,7 @@ function valid() {
 function rolelist() {
     $.ajax({
         type: "POST",
-        url: "./stringlist",
+        url: "./listRoles",
         data: {action: "findallroles", ro: "{\"id\":\"0\"" + "}"},
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
@@ -23,9 +23,7 @@ function rolelist() {
     })
 };
 $(document).ready(function () {
-    console.log($("#rol").val()==="ADMIN");
-       console.log();
-    // if ($("#rol").val().contains("ADMIN")){
-    //     rolelist();
-    // }
+    if (${role eq 'ADMIN'}){
+        rolelist();
+    }
 })
