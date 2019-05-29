@@ -27,11 +27,10 @@ public class ServletUserList extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         System.out.println(req.getParameter("us"));
         String action = req.getParameter("action");
-
+        System.out.println(action);
         if (action.contains("findbyiduser")) {
             try {
                 req.setAttribute("user", Dispatch.getInstance().access(action, Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
-                System.out.println((Users) Dispatch.getInstance().access(action, Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
                 req.getRequestDispatcher("WEB-INF/vievs/users/edit.jsp").forward(req, resp);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);

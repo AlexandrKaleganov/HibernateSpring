@@ -44,6 +44,9 @@ public class Dispatch {
                 Optional.of(UsersDb.getInstance().findByID((Users) ticket.get())));
         this.dispatch.put("deleteuser", (ticket) ->
                 Optional.of(UsersDb.getInstance().delete((Users) ticket.get())));
+        this.dispatch.put("addOrupdate", (ticket) ->
+                Optional.of(UsersDb.getInstance().edit((Users) ticket.get())));
+
         this.dispatch.put("findallroles", (ticket) ->
                 Optional.of(RolesDb.getInstance().findAll()));
         return this;

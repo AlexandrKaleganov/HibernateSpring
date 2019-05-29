@@ -24,9 +24,6 @@
     </script>
     <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/users/userlistJS.js"%></script>
     <title>userlist</title>
-    <script>
-
-    </script>
 </head>
 <body id="body">
 <div id="navipanel">

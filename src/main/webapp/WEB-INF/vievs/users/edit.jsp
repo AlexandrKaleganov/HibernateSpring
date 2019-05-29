@@ -30,8 +30,10 @@
 <div class="username" id="username" style="float: right;">
 </div>
 <br/>
+<br id="result"/>
+<br/>
 <div>
-    <form class="form-inline" action="${pageContext.servletContext.contextPath}/" method="post">
+    <form class="form-inline">
         <div class="form-group">
             <label for="id"></label>
             <input type="hidden" class="form-control" name="id" value="${user.id}" title="Enter ID." id="id">
@@ -55,7 +57,7 @@
                 <option value="${user.roles.id}">${user.roles.role}</option>
             </select>
         </div>
-        <button type="submit" name="action" value="update" class="btn btn-default" onclick="return valid();">Submit
+        <button type="button" id="action" name="action" value="addOrupdate" class="btn btn-primary" onclick="return addOrupdate();">Submit
         </button>
     </form>
 </div>

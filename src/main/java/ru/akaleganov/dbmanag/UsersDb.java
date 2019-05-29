@@ -38,7 +38,7 @@ public class UsersDb implements Store<Users> {
     public Users edit(Users users) {
         return openSession(session -> {
             session.saveOrUpdate(users);
-            return session.load(Users.class, users.getId());
+            return session.get(Users.class, users.getId());
         });
     }
 

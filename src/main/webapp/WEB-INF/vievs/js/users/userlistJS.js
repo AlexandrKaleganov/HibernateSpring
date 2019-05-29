@@ -1,10 +1,11 @@
 ﻿$(document).ready(function () {
-    if (${role eq 'ADMIN'}) {
+    if ($("#rol").val() === "ADMIN") {
+        console.log("админ");
         listuser();
     } else {
         user("${login}");
     }
-})
+});
 
 /**
  * скрипты для отрисовывания таблицы userlist
@@ -43,7 +44,7 @@ function user(userLogin) {
 function loadtable(u) {
     var rsl = "";
     rsl = rsl + "<tr><td>" + u.id + "</td><td>" + u.name + "</td><td>" + u.login + "</td><td>" + u.roles.role + "</td><td>";
-    if (${role eq 'ADMIN'}) {
+    if ($("#rol").val() === "ADMIN") {
         rsl = rsl + " <form action=\"${pageContext.servletContext.contextPath}/listUser\" method=\"post\">\n" +
             "                            <input type=\"hidden\" name=\"us\" value=\"" + u.id + "\">\n" +
             "                            <input type=\"hidden\" name=\"action\" value=\"findbyiduser\">\n" +
