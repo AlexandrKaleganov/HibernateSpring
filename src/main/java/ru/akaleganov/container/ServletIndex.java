@@ -9,8 +9,6 @@ import java.io.IOException;
 public class ServletIndex extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.setAttribute("role", req.getSession().getAttribute("role"));
-//        req.setAttribute("login", req.getSession().getAttribute("login"));
         req.getRequestDispatcher("/WEB-INF/vievs/index.jsp").forward(req, resp);
     }
 

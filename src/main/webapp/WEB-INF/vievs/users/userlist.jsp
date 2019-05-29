@@ -34,7 +34,7 @@
 <div class="username" id="username" style="float: right;">
 </div>
 <div class="container">
-    <p>TodoList:</p>
+    <p>UserList:</p>
     <table class="table table-striped" id="todolist_table">
         <thead class="thead-dark">
         <tr>
