@@ -27,6 +27,7 @@ public class SigninServlet extends HttpServlet {
             req.setAttribute("err", "Пользователь или пароль указан не верно");
             req.getRequestDispatcher("/WEB-INF/vievs/login.jsp").forward(req, resp);
         } else {
+            req.getSession().setAttribute("userID", user.getId());
             req.getSession().setAttribute("login", user.getLogin());
             req.getSession().setAttribute("role", user.getRoles().getRole());
             resp.sendRedirect(String.format("%s/", req.getContextPath()));

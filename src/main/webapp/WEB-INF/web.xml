@@ -40,7 +40,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ServletUserList</servlet-name>
-        <servlet-class>ru.akaleganov.container.ServletUserList</servlet-class>
+        <servlet-class>ru.akaleganov.container.users.ServletUserList</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -49,7 +49,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ServletRoles</servlet-name>
-        <servlet-class>ru.akaleganov.container.ServletRoles</servlet-class>
+        <servlet-class>ru.akaleganov.container.users.ServletRoles</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>

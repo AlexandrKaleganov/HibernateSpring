@@ -19,18 +19,37 @@
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
     </script>
-
+    <script charset="UTF-8" type="text/javascript">
+        <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
+    </script>
 </head>
 <body id="body">
+</body>
 <div id="navipanel">
 </div>
 <div class="username" id="username" style="float: right;">
 </div>
-<c:if test="${user != null}">
-    <div class="alert alert-success  alert-dismissible">
-            ${user} <strong>удалён</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
-    </div>
-</c:if>
-</body>
+<div class="container">
+    <p>Список объявлений:
+    <form action="${pageContext.servletContext.contextPath}/createannoun" method="post">
+        <input type="hidden" name="us" value="0">
+        <input type="hidden" name="action" value="findbyiduser">
+        <input type="submit" value="Подать объявление">
+    </form>
+    </p>
+    <table class="table table-striped" id="todolist_table">
+        <thead class="thead-dark">
+        <tr>
+            <th onclick="sortTable(0, 'todolist_table')">ID &darr;</th>
+            <th onclick="sortTable(1, 'todolist_table')">Название объявления &darr;<span class="fi-sort-ascending"></span></th>
+            <th onclick="sortTable(2, 'todolist_table')">Дата создания &darr;</th>
+            <th onclick="sortTable(3, 'todolist_table')">Пользователь &darr;</th>
+            <th onclick="sortTable(4, 'todolist_table')">Продано &darr;</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
 </html>

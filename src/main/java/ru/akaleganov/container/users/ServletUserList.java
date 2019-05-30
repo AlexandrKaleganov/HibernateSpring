@@ -1,6 +1,5 @@
-package ru.akaleganov.container;
+package ru.akaleganov.container.users;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import ru.akaleganov.modelsannot.Users;
@@ -25,9 +24,7 @@ public class ServletUserList extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
-        System.out.println(req.getParameter("us"));
         String action = req.getParameter("action");
-        System.out.println(action);
         if (action.contains("findbyiduser")) {
             try {
                 req.setAttribute("user", Dispatch.getInstance().access(action, Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
@@ -38,7 +35,7 @@ public class ServletUserList extends HttpServlet {
         } else if (action.contains("deleteuser")) {
             req.setAttribute("user", Dispatch.getInstance().access("deleteuser", Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
             try {
-                req.getRequestDispatcher("WEB-INF/vievs/index.jsp").forward(req, resp);
+                req.getRequestDispatcher("WEB-INF/vievs/users/userlist.jsp").forward(req, resp);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
             }

@@ -30,7 +30,7 @@ public class AnnouncementDbTest {
         try {
             fank.accept(AnnouncementDb.getInstance(), announcement);
         } finally {
-            AnnouncementDb.getInstance().delete(announcement);
+            new AnnouncementDb().delete(announcement);
         }
     }
 
@@ -86,7 +86,6 @@ public class AnnouncementDbTest {
     @Test
     public void findByLoginPass() {
         testAll((db, ann) -> {
-
         });
     }
 }

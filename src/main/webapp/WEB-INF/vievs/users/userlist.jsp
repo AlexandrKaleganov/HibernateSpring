@@ -28,10 +28,17 @@
     <title>userlist</title>
 </head>
 <body id="body">
+
 <div id="navipanel">
 </div>
 <div class="username" id="username" style="float: right;">
 </div>
+<c:if test="${user != null}">
+    <div class="alert alert-success  alert-dismissible">
+            ${user} <strong>удалён</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+    </div>
+</c:if>
 <div class="container">
     <p>UserList:
     <form action="${pageContext.servletContext.contextPath}/listUser" method="post">
