@@ -18,9 +18,8 @@
 
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
-    </script>
-    <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
+        <%@include file="js/index.js"%>
     </script>
 </head>
 <body id="body">

@@ -2,6 +2,7 @@ package ru.akaleganov.container;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
+import ru.akaleganov.modelsannot.Announcement;
 import ru.akaleganov.modelsannot.Users;
 import ru.akaleganov.service.Dispatch;
 import ru.akaleganov.service.ServiceAddObjects;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 
 public class ServletIndex extends HttpServlet {
@@ -24,6 +27,7 @@ public class ServletIndex extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
+        System.out.println();
         if (action.contains("findbyidan")) {
             try {
                 req.setAttribute("an", Dispatch.getInstance().access(action, Optional.of(new Users(Integer.valueOf(req.getParameter("an"))))));
@@ -40,9 +44,11 @@ public class ServletIndex extends HttpServlet {
             }
         } else {
             try {
+                ArrayList<Announcement> list = Dispatch.getInstance().access(action,
+                        Optional.of(ServiceAddObjects.getInstance().addAnnouncement(req.getParameter("an"))));
+                System.out.println(list);
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
-                writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
-                        Optional.of(ServiceAddObjects.getInstance().addAnnouncement(req.getParameter("an"))))));
+                writer.append(new ObjectMapper().writeValueAsString(Arrays.asList(new Announcement(0))));
                 writer.flush();
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);

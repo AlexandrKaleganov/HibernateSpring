@@ -2,6 +2,7 @@ package ru.akaleganov.dbmanag;
 
 import ru.akaleganov.modelsannot.Announcement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AnnouncementDb implements Store<Announcement> {
@@ -10,6 +11,7 @@ public class AnnouncementDb implements Store<Announcement> {
     public static AnnouncementDb getInstance() {
         return INSTANCE;
     }
+
     @Override
     public Announcement add(Announcement announcement) {
         return openSession(session -> {
@@ -38,7 +40,7 @@ public class AnnouncementDb implements Store<Announcement> {
 
     @Override
     public List<Announcement> findAll() {
-        return openSession(session -> session.createQuery("from Announcement").list());
+        return this.refactList("from Announcement");
     }
 
     @Override
@@ -49,7 +51,19 @@ public class AnnouncementDb implements Store<Announcement> {
     @Override
     public List<Announcement> findByName(Announcement announcement) {
         String sql = "from Announcement where name = '" + announcement.getName() + "'";
-        return openSession(se -> se.createQuery(sql).list());
+        return this.refactList(sql);
+    }
+
+    private ArrayList<Announcement> refactList(String sql) {
+        return openSession(session -> {
+            ArrayList<Announcement> rsl = (ArrayList<Announcement>) session.createQuery(sql).list();
+            if (rsl.size() > 0) {
+                return rsl;
+            } else {
+                rsl.add(new Announcement(0));
+                return rsl;
+            }
+        });
     }
 
     @Override

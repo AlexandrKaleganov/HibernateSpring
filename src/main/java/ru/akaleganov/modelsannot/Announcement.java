@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 public class Announcement extends AllModels {
     @Column(name = "name")
     private String name;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "announcement")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "announcement")
     private Car car;
     @Column(name = "created_dat")
     private Timestamp created;

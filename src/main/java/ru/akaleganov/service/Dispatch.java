@@ -1,5 +1,6 @@
 package ru.akaleganov.service;
 
+import ru.akaleganov.dbmanag.AnnouncementDb;
 import ru.akaleganov.dbmanag.RolesDb;
 import ru.akaleganov.dbmanag.UsersDb;
 import ru.akaleganov.modelsannot.Announcement;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
+
 import org.apache.log4j.Logger;
 import ru.akaleganov.modelsannot.Users;
 
@@ -34,6 +36,7 @@ public class Dispatch {
      * @return current object.
      */
     public Dispatch init() {
+        //упавление пользователями
         this.dispatch.put("findByLoginPass", (ticket) ->
                 Optional.of(UsersDb.getInstance().findByLoginPass((Users) ticket.get())));
         this.dispatch.put("getListUser", (ticket) ->
@@ -46,9 +49,12 @@ public class Dispatch {
                 Optional.of(UsersDb.getInstance().delete((Users) ticket.get())));
         this.dispatch.put("addOrupdate", (ticket) ->
                 Optional.of(UsersDb.getInstance().edit((Users) ticket.get())));
-
+        //управление ролями
         this.dispatch.put("findallroles", (ticket) ->
                 Optional.of(RolesDb.getInstance().findAll()));
+        //управление объявлениями
+        this.dispatch.put("findallan", (ticket) ->
+                Optional.of(AnnouncementDb.getInstance().findAll()));
         return this;
     }
 
