@@ -42,7 +42,7 @@ function loadtable(u) {
     if ($("#rol").val() === "ADMIN") {
         rsl = rsl + stringButton(u.id);
 
-    } else if ($("#login").val() === u.login){
+    } else if ($("#log").val() === u.login){
         rsl = rsl + stringButton(u.id);
     } else {
         rsl = rsl + "</td><td></td></tr>"

@@ -11,8 +11,10 @@ function valid() {
     return !(isValid($("#name"), "") + isValid($("#login"), "") + isValid($("#password"), "")
         + isValid($("#roles"), ""));
 };
-
-function rolelist() {
+/**
+ * ретурн ролелист старт
+ */
+$(document).ready(function rolelist() {
     $.ajax({
         type: "POST",
         url: "./listRoles",
@@ -20,16 +22,22 @@ function rolelist() {
         dataType: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
-                $("#roles option:last").after("<option value='" + data[i].id + "'>" + data[i].role + "</option>");
+                $("#roles option:last").after(returnrolelist(data[i]));
             }
         }
-    })
-};
-$(document).ready(function () {
-    if ($("#rol").val() === "ADMIN") {
-        rolelist();
+    });
+
+    function returnrolelist(user) {
+        if ($("#rol").val() === "ADMIN") {
+            return "<option value='" + user.id + "'>" + user.role + "</option>"
+        } else if ($("#rol").val() === user.role) {
+            return "<option value='" + user.id + "'>" + user.role + "</option>"
+        } else {
+            return "";
+        }
     }
 });
+
 
 function addOrupdate() {
     var rsl = "";
@@ -50,9 +58,9 @@ function addOrupdate() {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                    $("#result").after("<div class=\"alert alert-success  alert-dismissible\">\n" +
-                        "            " + data.login  + " <strong> " + rsl + "</strong>\n" +
-                        "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
+                $("#result").after("<div class=\"alert alert-success  alert-dismissible\">\n" +
+                    "            " + data.login + " <strong> " + rsl + "</strong>\n" +
+                    "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
             }
         })
         return true;

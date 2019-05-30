@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
-
+<!--Start filtres-->
     <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>ru.akaleganov.filter.AuthFilter</filter-class>
@@ -17,6 +17,7 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>*</url-pattern>
     </filter-mapping>
+<!--    End filtres-->
     <!--Servler authoris-->
     <servlet>
         <servlet-name>SigninServlet</servlet-name>
