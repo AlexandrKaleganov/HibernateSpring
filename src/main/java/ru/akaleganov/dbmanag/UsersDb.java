@@ -30,8 +30,9 @@ public class UsersDb implements Store<Users> {
     @Override
     public Users delete(Users users) {
         return openSession(session -> {
-            session.delete(users);
-            return users;
+            Users rsl = session.get(Users.class, users.getId());
+            session.delete(rsl);
+            return rsl;
         });
     }
 

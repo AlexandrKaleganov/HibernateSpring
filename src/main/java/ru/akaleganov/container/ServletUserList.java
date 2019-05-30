@@ -36,8 +36,7 @@ public class ServletUserList extends HttpServlet {
                 LOGGER.error(e.getMessage(), e);
             }
         } else if (action.contains("deleteuser")) {
-            req.setAttribute("user", Dispatch.getInstance().access("findbyiduser", Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
-            System.out.println((Users) Dispatch.getInstance().access("findbyiduser", Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
+            req.setAttribute("user", Dispatch.getInstance().access("deleteuser", Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
             try {
                 req.getRequestDispatcher("WEB-INF/vievs/index.jsp").forward(req, resp);
             } catch (IOException e) {
