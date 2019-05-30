@@ -21,21 +21,6 @@ function listuser() {
     });
 }
 
-function user(userLogin) {
-    $.ajax({
-        type: "POST",
-        url: "./listUser",
-        data: {action: "findByLogin", us: "{\"login\":\"" + userLogin + "\"" + "}"},
-        dataType: "json",
-        success: function (data) {
-            console.log(data);
-            for (var i = 0; i < data.length; i++) {
-                $("#todolist_table tbody:last").append(loadtable(data[i]));
-            }
-        }
-    });
-}
-
 function loadtable(u) {
     var rsl = "";
     rsl = rsl + "<tr><td>" + u.id + "</td><td>" + u.name + "</td><td>" + u.login + "</td><td>" + u.roles.role + "</td><td>";
