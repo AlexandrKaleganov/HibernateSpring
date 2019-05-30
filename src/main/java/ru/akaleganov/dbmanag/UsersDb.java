@@ -4,6 +4,7 @@ import ru.akaleganov.modelsannot.Users;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -49,34 +50,40 @@ public class UsersDb implements Store<Users> {
 
     @Override
     public Users findByID(Users users) {
-        return openSession(session -> session.get(Users.class, users.getId()));
+        Users rsl = null;
+        rsl = openSession(session -> session.get(Users.class, users.getId()));
+        if (rsl == null) {
+            rsl = new Users(0);
+        }
+        return rsl;
     }
 
     @Override
     public List<Users> findByName(Users users) {
         String sql = "from Users where name = '" + users.getName() + "'";
-        return openSession(session -> session.createQuery(sql).list());
+        return refactList(sql);
     }
 
     @Override
     public Users findByLoginPass(Users users) {
         String sql = "from Users where login = '" + users.getLogin() + "' and password = '" + users.getPassword() + "'";
-        return refactList(sql);
+        return refactList(sql).get(0);
     }
 
     @Override
     public Users findByLogin(Users users) {
         String sql = "from Users where login = '" + users.getLogin() + "'";
-        return refactList(sql);
+        return refactList(sql).get(0);
     }
 
-    private Users refactList(String sql) {
+    private ArrayList<Users> refactList(String sql) {
         return openSession(session -> {
             ArrayList<Users> rsl = (ArrayList<Users>) session.createQuery(sql).list();
             if (rsl.size() > 0) {
-                return rsl.get(0);
+                return rsl;
             } else {
-                return new Users();
+                rsl.add(new Users(0));
+                return rsl;
             }
         });
     }

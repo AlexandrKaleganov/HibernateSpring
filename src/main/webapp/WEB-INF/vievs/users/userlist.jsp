@@ -1,4 +1,4 @@
-<%--
+﻿<%--
   Created by IntelliJ IDEA.
   User: USERCRB001
   Date: 24.05.2019
@@ -22,7 +22,9 @@
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
     </script>
-    <script charset="UTF-8" type="text/javascript"><%@include file="/WEB-INF/vievs/js/users/userlistJS.js"%></script>
+    <script charset="UTF-8" type="text/javascript">
+        <%@include file="/WEB-INF/vievs/js/users/userlistJS.js" %>
+    </script>
     <title>userlist</title>
 </head>
 <body id="body">
@@ -31,7 +33,13 @@
 <div class="username" id="username" style="float: right;">
 </div>
 <div class="container">
-    <p>UserList:</p>
+    <p>UserList:
+    <form action="${pageContext.servletContext.contextPath}/listUser" method="post">
+        <input type="hidden" name="us" value="0">
+        <input type="hidden" name="action" value="findbyiduser">
+        <input type="submit" value="Add new User">
+    </form>
+    </p>
     <table class="table table-striped" id="todolist_table">
         <thead class="thead-dark">
         <tr>

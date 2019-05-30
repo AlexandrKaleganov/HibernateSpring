@@ -1,10 +1,5 @@
 ﻿$(document).ready(function () {
-    if ($("#rol").val() === "ADMIN") {
-        console.log("админ");
         listuser();
-    } else {
-        user("${login}");
-    }
 });
 
 /**
@@ -45,23 +40,30 @@ function loadtable(u) {
     var rsl = "";
     rsl = rsl + "<tr><td>" + u.id + "</td><td>" + u.name + "</td><td>" + u.login + "</td><td>" + u.roles.role + "</td><td>";
     if ($("#rol").val() === "ADMIN") {
-        rsl = rsl + " <form action=\"${pageContext.servletContext.contextPath}/listUser\" method=\"post\">\n" +
-            "                            <input type=\"hidden\" name=\"us\" value=\"" + u.id + "\">\n" +
-            "                            <input type=\"hidden\" name=\"action\" value=\"findbyiduser\">\n" +
-            "                            <input type=\"submit\" value=\"EDIT\">\n" +
-            "                        </form>" + "</td><td>" +
-            "                        <form action=\"${pageContext.servletContext.contextPath}/listUser\" method=\"post\">\n" +
-            "                            <input type=\"hidden\" name=\"us\" value=\"" + u.id + "\">\n" +
-            "                            <input type=\"hidden\" name=\"action\" value=\"deleteuser\">\n" +
-            "                            <input type=\"submit\" value=\"DELETE\">\n" +
-            "                       </form>" + "" +
-            "</td></tr>";
+        rsl = rsl + stringButton(u.id);
+
+    } else if ($("#login").val() === u.login){
+        rsl = rsl + stringButton(u.id);
     } else {
         rsl = rsl + "</td><td></td></tr>"
     }
     return rsl;
 }
 
+function stringButton(id) {
+    var rsl = " <form action=\"${pageContext.servletContext.contextPath}/listUser\" method=\"post\">\n" +
+        "                            <input type=\"hidden\" name=\"us\" value=\"" + id + "\">\n" +
+        "                            <input type=\"hidden\" name=\"action\" value=\"findbyiduser\">\n" +
+        "                            <input type=\"submit\" value=\"EDIT\">\n" +
+        "                        </form>" + "</td><td>" +
+        "                        <form action=\"${pageContext.servletContext.contextPath}/listUser\" method=\"post\">\n" +
+        "                            <input type=\"hidden\" name=\"us\" value=\"" + id + "\">\n" +
+        "                            <input type=\"hidden\" name=\"action\" value=\"deleteuser\">\n" +
+        "                            <input type=\"submit\" value=\"DELETE\">\n" +
+        "                       </form>" + "" +
+        "</td></tr>";
+    return rsl;
+}
 function jsonId(id) {
     var rsl = "{\"id\":\"" + id + "\"}";
     return rsl;

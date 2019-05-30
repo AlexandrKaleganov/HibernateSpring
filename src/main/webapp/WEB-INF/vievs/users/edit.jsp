@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lis
@@ -37,7 +38,7 @@
         <div class="form-group">
             <label for="id"></label>
             <input type="hidden" class="form-control" name="id" value="${user.id}" title="Enter ID." id="id">
-        </div>
+        </div><c:out value="${user.name}"/>
         <div class="form-group">
             <label for="name">Имя:</label>
             <input type="text" class="form-control" name="name" value="${user.name}" title="Enter name." id="name">

@@ -40,7 +40,7 @@ public class UsersDbTest {
     public void delete() {
         this.testAll((db, u) -> {
             db.delete(u);
-            assertThat(db.findByID(u), Is.is((Users) null));
+            assertThat(db.findByID(u).getId(), Is.is(0));
         });
     }
 
