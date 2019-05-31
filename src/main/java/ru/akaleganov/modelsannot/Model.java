@@ -45,7 +45,7 @@ public class Model extends AllModels {
 
     @Override
     public String toString() {
-        return "Model{" + "id=" + super.getId() + ", name='" + name + '\'' + '}';
+        return "Model{" + "id=" + super.getId() + ", name='" + name + '\'' + ", Marka='" + marka + '\'' + '}';
     }
 }
 

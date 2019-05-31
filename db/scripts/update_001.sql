@@ -18,7 +18,7 @@ create table if not exists users
     password varchar(200)
 );
 insert into users(name, login, role_id, password)
-values ('root', 'root', 1, 'root');
+values ('root', 'root', 1, 'root'), ('user', 'user', 2, 'user');
 
 --таблица марок автомобилей
 create table if not exists marka
@@ -79,7 +79,6 @@ create table if not exists car
 (
     id              serial primary key,
     description varchar(400),
-    marka_id        integer references marka (id),
     model_id        integer references model (id),
     transmission_id integer references transmission (id),
     yar             integer,

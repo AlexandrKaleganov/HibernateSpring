@@ -16,10 +16,6 @@ public class Car extends AllModels {
     @Column(name = "description")
     private String description;
     @ManyToOne
-    @JoinColumn(name = "marka_id", nullable = false)
-    @Fetch(FetchMode.JOIN)
-    private Marka marka;
-    @ManyToOne
     @JoinColumn(name = "model_id", nullable = false)
     @Fetch(FetchMode.JOIN)
     private Model model;
@@ -33,6 +29,7 @@ public class Car extends AllModels {
     private int yar;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Fetch(FetchMode.JOIN)
     private List<Photo> photo;
     @OneToOne
     @JoinColumn(name = "announcement_id")
@@ -54,13 +51,6 @@ public class Car extends AllModels {
         this.announcement = announcement;
     }
 
-    public Marka getMarka() {
-        return marka;
-    }
-
-    public void setMarka(Marka marka) {
-        this.marka = marka;
-    }
 
     public Model getModel() {
         return model;
@@ -102,7 +92,7 @@ public class Car extends AllModels {
     }
     @Override
     public String toString() {
-        return "Car{" + "id=" + super.getId() + ", descrition=" + description + ", marka=" + marka + ", model=" + model + ", transmission="
+        return "Car{" + "id=" + super.getId() + ", descrition=" + description + ", model=" + model + ", transmission="
                 + transmission + ", yar=" + yar + ", photo=" + photo + '}';
     }
 }

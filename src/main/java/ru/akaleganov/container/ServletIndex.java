@@ -25,9 +25,9 @@ public class ServletIndex extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         String action = req.getParameter("action");
-        System.out.println();
+        System.out.println(req.getParameter("an"));
         if (action.contains("findbyidan")) {
             try {
                 req.setAttribute("an", Dispatch.getInstance().access(action, Optional.of(new Users(Integer.valueOf(req.getParameter("an"))))));

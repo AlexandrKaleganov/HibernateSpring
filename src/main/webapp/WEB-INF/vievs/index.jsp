@@ -1,4 +1,4 @@
-<%--
+﻿<%--
   Created by IntelliJ IDEA.
   User: Lis
   Date: 23 мая 19
@@ -19,7 +19,7 @@
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
         <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
-        <%@include file="js/index.js"%>
+        <%@include file="/WEB-INF/vievs/js/index.js"%>
     </script>
 </head>
 <body id="body">

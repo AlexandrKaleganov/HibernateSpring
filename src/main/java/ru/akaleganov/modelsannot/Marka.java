@@ -44,6 +44,6 @@ public class Marka extends AllModels {
 
     @Override
     public String toString() {
-        return "Marka{" + "id=" + super.getId() + ", name='" + name + '\'' + models + '}';
+        return "Marka{" + "id=" + super.getId() + ", name='" + name + "\'}";
     }
 }

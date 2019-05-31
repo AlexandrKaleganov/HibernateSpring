@@ -1,5 +1,8 @@
 package ru.akaleganov.modelsannot;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 
 /**
@@ -13,6 +16,7 @@ public class Photo extends AllModels {
     private byte[] photo;
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private Car car;
 
     public Photo(int id) {
