@@ -55,6 +55,8 @@ public class Dispatch {
         //управление объявлениями
         this.dispatch.put("findallan", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().findAll()));
+        this.dispatch.put("findbyidan", (ticket) ->
+                Optional.of(AnnouncementDb.getInstance().findByID((Announcement) ticket.get())));
         return this;
     }
 

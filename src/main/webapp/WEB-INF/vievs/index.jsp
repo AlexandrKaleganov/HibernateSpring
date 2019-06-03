@@ -30,9 +30,9 @@
 </div>
 <div class="container">
     <p>Список объявлений:
-    <form action="${pageContext.servletContext.contextPath}/createannoun" method="post">
-        <input type="hidden" name="us" value="0">
-        <input type="hidden" name="action" value="findbyiduser">
+    <form action="${pageContext.servletContext.contextPath}/" method="post">
+        <input type="hidden" name="an" value="0">
+        <input type="hidden" name="action" value="findbyidan">
         <input type="submit" value="Подать объявление">
     </form>
     </p>

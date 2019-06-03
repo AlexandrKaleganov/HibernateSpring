@@ -45,7 +45,7 @@ public class AnnouncementDbTest {
     public void delete() {
         testAll((db, ann) -> {
             db.delete(ann);
-            assertTrue(db.findByID(ann) == null);
+            assertTrue(db.findByID(ann).getId() == 0);
         });
     }
 

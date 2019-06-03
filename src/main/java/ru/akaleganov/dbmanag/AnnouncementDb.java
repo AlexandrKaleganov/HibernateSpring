@@ -45,7 +45,11 @@ public class AnnouncementDb implements Store<Announcement> {
 
     @Override
     public Announcement findByID(Announcement announcement) {
-        return openSession(session -> session.get(Announcement.class, announcement.getId()));
+        Announcement rsl = openSession(session -> session.get(Announcement.class, announcement.getId()));
+        if (rsl == null) {
+            rsl = new Announcement(0);
+        }
+        return rsl;
     }
 
     @Override

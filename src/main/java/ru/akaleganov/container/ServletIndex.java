@@ -30,13 +30,13 @@ public class ServletIndex extends HttpServlet {
         System.out.println(req.getParameter("an"));
         if (action.contains("findbyidan")) {
             try {
-                req.setAttribute("an", Dispatch.getInstance().access(action, Optional.of(new Users(Integer.valueOf(req.getParameter("an"))))));
+                req.setAttribute("an", Dispatch.getInstance().access(action, Optional.of(new Announcement(Integer.valueOf(req.getParameter("an"))))));
                 req.getRequestDispatcher("WEB-INF/vievs/announ/edit.jsp").forward(req, resp);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
             }
         } else if (action.contains("deletean")) {
-            req.setAttribute("an", Dispatch.getInstance().access("deletean", Optional.of(new Users(Integer.valueOf(req.getParameter("an"))))));
+            req.setAttribute("an", Dispatch.getInstance().access("deletean", Optional.of(new Announcement(Integer.valueOf(req.getParameter("an"))))));
             try {
                 req.getRequestDispatcher("WEB-INF/vievs/users/userlist.jsp").forward(req, resp);
             } catch (IOException e) {
