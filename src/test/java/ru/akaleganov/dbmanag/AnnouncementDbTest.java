@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 import static org.junit.Assert.*;
 
 public class AnnouncementDbTest {
-    private String jsonCar = "{\"marka\":{\"id\":\"1\"}, \"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
+    private String jsonCar = "{\"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
     private ArrayList<String> urlList = new ArrayList<>(Arrays.asList("db/Avito-Shema.png"));
     private String jsonann = "{\"name\":\"продам машину\", \"author\":{\"id\":\"1\"}}";
     //в классе ServiceAddObjects все объекты объеденятся и запакуются в один готовый объект для добавления в базу

@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 public class CarDbTest {
     private String jsonAnn = "{\"name\":\"продам машину\", \"author\":{\"id\":\"1\"}}";
-    private String jsonCar = "{\"marka\":{\"id\":\"1\"}, \"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
+    private String jsonCar = "{\"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
     private Announcement ann = new ServiceAddObjects().addAll(jsonAnn, jsonCar, new ArrayList<>());
 
     private void testF(Consumer<Session> sessionConsumer) {

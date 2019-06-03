@@ -44,8 +44,7 @@
             <th onclick="sortTable(2, 'todolist_table')">Дата создания &darr;</th>
             <th onclick="sortTable(3, 'todolist_table')">Пользователь &darr;</th>
             <th onclick="sortTable(4, 'todolist_table')">Продано &darr;</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Просмотр</th>
         </tr>
         </thead>
         <tbody></tbody>
