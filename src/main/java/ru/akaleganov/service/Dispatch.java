@@ -1,6 +1,7 @@
 package ru.akaleganov.service;
 
 import ru.akaleganov.dbmanag.AnnouncementDb;
+import ru.akaleganov.dbmanag.PhotoDb;
 import ru.akaleganov.dbmanag.RolesDb;
 import ru.akaleganov.dbmanag.UsersDb;
 import ru.akaleganov.modelsannot.Announcement;
@@ -57,6 +58,9 @@ public class Dispatch {
                 Optional.of(AnnouncementDb.getInstance().findAll()));
         this.dispatch.put("findbyidan", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().findByID((Announcement) ticket.get())));
+        this.dispatch.put("updatean", (ticket) ->
+                Optional.of(AnnouncementDb.getInstance().edit((Announcement) ticket.get())));
+
         return this;
     }
 

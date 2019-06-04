@@ -9,14 +9,15 @@ function listan(actions) {
     $.ajax({
         type: "POST",
         url: "./",
-        data: {action: actions, an: "{\"id\":\"0\"" + "}"},
+        data: {action: actions, an: "{\"id\":\"0\"}"},
         dataType: "json",
         success: function (data) {
             console.log(data.length);
             console.log(data);
             for (var i = 0; i < data.length; i++) {
                 if (data[i].id > 0) {
-                $("#todolist_table tbody:last").append(loadtable(data[i])); }
+                    $("#todolist_table tbody:last").append(loadtable(data[i]));
+                }
             }
         }
     });
@@ -24,20 +25,20 @@ function listan(actions) {
 
 function loadtable(an) {
     var rsl = "";
-    rsl = rsl + "<tr><td>" + an.id + "</td><td>" + an.name + "</td><td>" + an.created + "</td><td>" + an.author + "</td>";
+    rsl = rsl + "<tr><td>" + an.id + "</td><td>" + an.name + "</td><td>" + an.created + "</td><td>" + an.author.name + "</td>";
     rsl = rsl + stringButton(an);
     return rsl;
 }
 
 function stringButton(an) {
-    rsl = "";
+    var rsl = "";
     if (an.done) {
         rsl = rsl + "<td><input type=\"checkbox\" disabled checked/></td>";
     } else {
-        rsl = rsl + "<td><input type=\"checkbox\" disabled/></td></tr>";
+        rsl = rsl + "<td><input type=\"checkbox\" disabled/></td>";
     }
-    var rsl = rsl + " <form action=\"${pageContext.servletContext.contextPath}/\" method=\"post\">\n" +
-        "                            <input type=\"hidden\" name=\"us\" value=\"" + an.id + "\">\n" +
+    rsl = rsl + "<td><form action=\"${pageContext.servletContext.contextPath}/\" method=\"post\">\n" +
+        "                            <input type=\"hidden\" name=\"an\" value=\"" + an.id + "\">\n" +
         "                            <input type=\"hidden\" name=\"action\" value=\"findbyidan\">\n" +
         "                            <input type=\"submit\" value=\"Просмотр\">\n" +
         "                        </form>" + "</td></tr>"

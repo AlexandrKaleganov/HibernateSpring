@@ -56,4 +56,13 @@
         <servlet-name>ServletRoles</servlet-name>
         <url-pattern>/listRoles</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ImajeServlet</servlet-name>
+        <servlet-class>ru.akaleganov.container.ImajeServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImajeServlet</servlet-name>
+        <url-pattern>/ImajeServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

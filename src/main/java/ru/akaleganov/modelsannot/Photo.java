@@ -1,5 +1,6 @@
 package ru.akaleganov.modelsannot;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -17,6 +18,7 @@ public class Photo extends AllModels {
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     private Car car;
 
     public Photo(int id) {

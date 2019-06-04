@@ -1,5 +1,6 @@
 package ru.akaleganov.modelsannot;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.LazyCollection;
 
@@ -16,6 +17,7 @@ public class Marka extends AllModels {
     @Column(name = "name")
     private String name;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "marka", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Model> models;
 
     public Marka(int id) {

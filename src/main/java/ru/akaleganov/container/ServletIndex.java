@@ -48,7 +48,7 @@ public class ServletIndex extends HttpServlet {
                         Optional.of(ServiceAddObjects.getInstance().addAnnouncement(req.getParameter("an"))));
                 System.out.println(list);
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
-                writer.append(new ObjectMapper().writeValueAsString(Arrays.asList(new Announcement(0))));
+                writer.append(new ObjectMapper().writeValueAsString(list));
                 writer.flush();
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);

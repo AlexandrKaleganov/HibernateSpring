@@ -1,14 +1,19 @@
 package ru.akaleganov.modelsannot;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
+import ru.akaleganov.service.Dispatch;
 import ru.akaleganov.service.ServiceAddObjects;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 
@@ -39,5 +44,11 @@ public class AnnouncementTest {
             se.createQuery("delete Car where announcement_id =  :id").setParameter("id", ann.getId()).executeUpdate();
             se.createQuery("delete Announcement where id = :id").setParameter("id", ann.getId()).executeUpdate();
         });
+    }
+    @Test
+    public void teststring(){
+        ArrayList<Announcement> list = Dispatch.getInstance().access("findallan", Optional.of(new Announcement(0)));
+//         list.get(0).getCar().setDescription("описание");
+//         Dispatch.getInstance().access("updatean", Optional.of(list.get(0)));
     }
 }

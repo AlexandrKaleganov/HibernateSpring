@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lis
@@ -17,6 +18,7 @@
 
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
+        <%@include file="/WEB-INF/vievs/js/announ/edit.js" %>
     </script>
 
     <title>Добавление изменен</title>
@@ -31,7 +33,6 @@
 <br/>
 <div>
     <form>
-
         <%--row 1--%>
         <div class="form-row">
             <%--left--%>
@@ -101,20 +102,24 @@
                     </select>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="yar">Car transmission:</label>
-                    <select class="form-control" name="yar" title="Enter transmission." id="yar" onclick="true">
+                    <label for="yar">Год выпуска:</label>
+                    <select class="form-control" name="yar" title="Enter yar." id="yar" onclick="true">
                         <option value="${an.car.yar}">${an.car.yar}</option>
                     </select>
                 </div>
-                <%--center--%>
+<c:forEach items="${an.car.photo}" var="b">
+                <div id="profileDiv" style="padding: 10px; border: solid 2px #D6D6D6;">
+                    <img src="data:image/png;base64,"${b.photo}"
+                         width="117" height="160"/>
+                </div>
+</c:forEach>
+<%--                center--%>
         </div>
 
         <%--center--%>
         <div class="form-group">
             <label for="description">Car description:</label>
-            <input type="text" class="form-control" name="carid" value="${an.car.description}"
-                   title="Enter car description."
-                   id="description">
+            <textarea class="form-control" id="description" rows="3" title="Enter car description.">${an.car.description}</textarea>
         </div>
 </div>
 <button type="submit" class="btn btn-primary">Sign in</button>
