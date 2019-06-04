@@ -109,7 +109,7 @@
                 </div>
 <c:forEach items="${an.car.photo}" var="b">
                 <div id="profileDiv" style="padding: 10px; border: solid 2px #D6D6D6;">
-                    <img src="data:image/png;base64,"${b.photo}"
+                    <img src="data:image;base64,@System.Convert.ToBase64String(${b.photo})"
                          width="117" height="160"/>
                 </div>
 </c:forEach>
