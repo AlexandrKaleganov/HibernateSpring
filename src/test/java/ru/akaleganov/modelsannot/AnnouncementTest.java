@@ -45,10 +45,14 @@ public class AnnouncementTest {
             se.createQuery("delete Announcement where id = :id").setParameter("id", ann.getId()).executeUpdate();
         });
     }
+
     @Test
-    public void teststring(){
-        ArrayList<Announcement> list = Dispatch.getInstance().access("findallan", Optional.of(new Announcement(0)));
-//         list.get(0).getCar().setDescription("описание");
-//         Dispatch.getInstance().access("updatean", Optional.of(list.get(0)));
+    public void teststring() {
+        ArrayList<Announcement> list = new Dispatch().init().access("findallan", Optional.of(new Announcement(0)));
+        try {
+            System.out.println(new ObjectMapper().writeValueAsString(list));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 }
