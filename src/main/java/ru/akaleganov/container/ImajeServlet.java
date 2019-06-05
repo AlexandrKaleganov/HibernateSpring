@@ -1,6 +1,5 @@
 package ru.akaleganov.container;
 
-import ru.akaleganov.dbmanag.PhotoDb;
 import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.service.Dispatch;
 
