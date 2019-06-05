@@ -1,15 +1,20 @@
 package ru.akaleganov.container;
 
+import ru.akaleganov.dbmanag.PhotoDb;
+import ru.akaleganov.modelsannot.Photo;
+import ru.akaleganov.service.Dispatch;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 public class ImajeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getParameter("png"));
+        System.out.println((Photo)Dispatch.getInstance().access("findbyidphoto", Optional.of(new Photo(Integer.valueOf(req.getParameter("id"))))));
 //        resp.getOutputStream().write();
     }
 

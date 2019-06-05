@@ -42,7 +42,7 @@ public class PhotoDbTest {
             String jsonCartest = String.format("{\"id\":\"%s\"}", announcement.getCar().getId());
             String jsonAnntest = String.format("{\"id\":\"%s\"}", announcement.getId());
             Announcement annTest = new ServiceAddObjects().addAll(jsonAnntest, jsonCartest, urlPhotolist);
-            PhotoDb.getInstance().add(annTest.getCar().getPhoto());
+            PhotoDb.getInstance().add(annTest.getCar().getPhoto().get(0));
             fank.accept(PhotoDb.getInstance(), announcement);
         } finally {
             SessionFactory sfactory = new Configuration().configure().buildSessionFactory();

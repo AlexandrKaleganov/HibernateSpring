@@ -117,6 +117,9 @@
         </div>
         <%--center photo--%>
         <div id="imagelist" style="padding: 10px; border: solid 2px #D6D6D6;">
+<%--            <c:forEach items="${ph}" var="image">--%>
+<%--                <img src="data:image/jpeg;base64,${image}" alt="..." width="600" height="300">--%>
+<%--            </c:forEach>--%>
             <c:forEach items="${ph}" var="image">
                 <img src="data:image/jpeg;base64,${image}" alt="..." width="600" height="300">
             </c:forEach>

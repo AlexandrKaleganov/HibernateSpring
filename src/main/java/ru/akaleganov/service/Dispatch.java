@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import org.apache.log4j.Logger;
+import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.modelsannot.Users;
 
 /**
@@ -60,7 +61,9 @@ public class Dispatch {
                 Optional.of(AnnouncementDb.getInstance().findByID((Announcement) ticket.get())));
         this.dispatch.put("updatean", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().edit((Announcement) ticket.get())));
-
+        //управление картинками
+        this.dispatch.put("findbyidphoto", (ticket) ->
+                Optional.of(PhotoDb.getInstance().findByID((Photo) ticket.get())));
         return this;
     }
 

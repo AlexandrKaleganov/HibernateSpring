@@ -63,6 +63,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ImajeServlet</servlet-name>
-        <url-pattern>/ImajeServlet</url-pattern>
+        <url-pattern>/image</url-pattern>
     </servlet-mapping>
 </web-app>

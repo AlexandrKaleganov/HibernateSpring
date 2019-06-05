@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * @version 1
  * @since 19/05/19
  */
-public class PhotoDb implements Store<List<Photo>> {
+public class PhotoDb implements Store<Photo> {
     private static final PhotoDb INSTANCE = new PhotoDb();
 
     public static PhotoDb getInstance() {
@@ -19,59 +19,56 @@ public class PhotoDb implements Store<List<Photo>> {
     }
 
     @Override
-    public List<Photo> add(List<Photo> photo) {
+    public Photo add(Photo photo) {
         return openSession(session -> {
-                    List<Photo> rsl = new ArrayList<>();
-                    photo.forEach(e -> {
-                        session.save(e);
-                        rsl.add(e);
-                    });
-                    return rsl;
-                }
-        );
-    }
-
-    @Override
-    public List<Photo> delete(List<Photo> photo) {
-        return openSession(session -> {
-            List<Photo> list = null;
-            photo.forEach(session::delete);
+            session.save(photo);
             return photo;
         });
     }
 
     @Override
-    public List<Photo> edit(List<Photo> photo) {
+    public Photo delete(Photo photo) {
+        return openSession(session -> {
+            session.delete(photo);
+            return photo;
+        });
+    }
+
+    @Override
+    public Photo edit(Photo photo) {
         error();
         return null;
     }
 
     @Override
-    public List<List<Photo>> findAll() {
+    public List<Photo> findAll() {
         return null;
     }
 
 
     @Override
-    public List<Photo> findByID(List<Photo> photo) {
+    public Photo findByID(Photo photo) {
+        Photo rsl = openSession(session -> session.get(Photo.class, photo.getId()));
+        if (rsl == null) {
+            rsl = new Photo();
+        }
+        return rsl;
+    }
+
+    @Override
+    public List<Photo> findByName(Photo photo) {
         error();
         return null;
     }
 
     @Override
-    public List<List<Photo>> findByName(List<Photo> photo) {
+    public Photo findByLoginPass(Photo photo) {
         error();
         return null;
     }
 
     @Override
-    public List<Photo> findByLoginPass(List<Photo> photo) {
-        error();
-        return null;
-    }
-
-    @Override
-    public List<Photo> findByLogin(List<Photo> photos) {
+    public Photo findByLogin(Photo photos) {
         error();
         return null;
     }
