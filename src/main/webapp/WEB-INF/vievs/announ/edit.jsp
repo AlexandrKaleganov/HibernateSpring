@@ -120,8 +120,8 @@
 <%--            <c:forEach items="${ph}" var="image">--%>
 <%--                <img src="data:image/jpeg;base64,${image}" alt="..." width="600" height="300">--%>
 <%--            </c:forEach>--%>
-            <c:forEach items="${ph}" var="image">
-                <img src="data:image/jpeg;base64,${image}" alt="..." width="600" height="300">
+            <c:forEach items="${an.car.photo}" var="photo">
+                <img src="${pageContext.servletContext.contextPath}/image?id=${photo.id}" alt="..." width="600" height="300">
             </c:forEach>
         </div>
         <div class="form-group">
