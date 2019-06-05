@@ -33,10 +33,10 @@
 <div class="container" id="totalform">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <button id="buttonedit" type="button" class="btn btn-success" onclick="enableall()" disabled>Редактировать</button>
+            <button id="buttonedit" type="button" class="btn btn-success" onclick="enableall(false)" disabled>Редактировать</button>
         </div>
         <div class="form-group col-md-6">
-            <button id="totalbutton" type="submit" class="btn btn-primary" disabled>Применить</button>
+            <button id="totalbutton" type="submit" class="btn btn-primary" onclick="enableall(true)" disabled>Применить</button>
         </div>
     </div>
     <form>
