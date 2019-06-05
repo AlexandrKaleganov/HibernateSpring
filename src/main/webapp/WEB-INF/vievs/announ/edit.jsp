@@ -69,7 +69,6 @@
                            title="Enter author."
                            id="author">
                 </div>
-
             </div>
         </div>
 
@@ -95,31 +94,30 @@
                     <option value="${an.car.model.id}">${an.car.model.name}</option>
                 </select>
             </div>
-                <div class="form-group col-md-3">
-                    <label for="transmission">Car transmission:</label>
-                    <select class="form-control" name="transmission" title="Enter transmission." id="transmission" onclick="true">
-                        <option value="${an.car.transmission.id}">${an.car.transmission.name}</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="yar">Год выпуска:</label>
-                    <select class="form-control" name="yar" title="Enter yar." id="yar" onclick="true">
-                        <option value="${an.car.yar}">${an.car.yar}</option>
-                    </select>
-                </div>
-<c:forEach items="${an.car.photo}" var="b">
-                <div id="profileDiv" style="padding: 10px; border: solid 2px #D6D6D6;">
-                    <img src="data:image;base64,@System.Convert.ToBase64String(${b.photo})"
-                         width="117" height="160"/>
-                </div>
-</c:forEach>
-<%--                center--%>
+            <div class="form-group col-md-3">
+                <label for="transmission">Car transmission:</label>
+                <select class="form-control" name="transmission" title="Enter transmission." id="transmission"
+                        onclick="true">
+                    <option value="${an.car.transmission.id}">${an.car.transmission.name}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="yar">Год выпуска:</label>
+                <select class="form-control" name="yar" title="Enter yar." id="yar" onclick="true">
+                    <option value="${an.car.yar}">${an.car.yar}</option>
+                </select>
+            </div>
         </div>
-
-        <%--center--%>
+            <%--center photo--%>
+            <div id="profileDiv" style="padding: 10px; border: solid 2px #D6D6D6;">
+            <c:forEach items="${ph}" var="image">
+                <img src="data:image/jpeg;base64,${image}" alt="..." width="200" height="200">
+            </c:forEach>
+        </div>
         <div class="form-group">
             <label for="description">Car description:</label>
-            <textarea class="form-control" id="description" rows="3" title="Enter car description.">${an.car.description}</textarea>
+            <textarea class="form-control" id="description" rows="3"
+                      title="Enter car description.">${an.car.description}</textarea>
         </div>
 </div>
 <button type="submit" class="btn btn-primary">Sign in</button>

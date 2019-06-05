@@ -2,6 +2,7 @@ package ru.akaleganov.container;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
+import org.apache.xerces.impl.dv.util.Base64;
 import ru.akaleganov.modelsannot.Announcement;
 import ru.akaleganov.modelsannot.Users;
 import ru.akaleganov.service.Dispatch;
@@ -30,7 +31,11 @@ public class ServletIndex extends HttpServlet {
         System.out.println(req.getParameter("an"));
         if (action.contains("findbyidan")) {
             try {
-                req.setAttribute("an", Dispatch.getInstance().access(action, Optional.of(new Announcement(Integer.valueOf(req.getParameter("an"))))));
+                Announcement announcement = Dispatch.getInstance().access(action, Optional.of(new Announcement(Integer.valueOf(req.getParameter("an")))));
+                ArrayList<String> list = new ArrayList<>();
+                announcement.getCar().getPhoto().forEach(photo -> list.add(Base64.encode(photo.getPhoto())));
+                req.setAttribute("an", announcement);
+                req.setAttribute("ph", list);
                 req.getRequestDispatcher("WEB-INF/vievs/announ/edit.jsp").forward(req, resp);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
