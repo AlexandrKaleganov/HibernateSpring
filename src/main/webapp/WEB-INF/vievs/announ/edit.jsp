@@ -15,10 +15,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+    <%--main script--%>
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
-        <%@include file="/WEB-INF/vievs/js/announ/edit.js" %>
+        <%@include file="/WEB-INF/vievs/js/announ/editJS.js" %>
     </script>
 
     <title>Добавление изменен</title>
@@ -29,9 +29,16 @@
 <div class="username" id="username" style="float: right;">
 </div>
 <br/>
-<br id="result"/>
 <br/>
-<div>
+<div class="container" id="totalform">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <button id="buttonedit" type="button" class="btn btn-success" onclick="enableall()" disabled>Редактировать</button>
+        </div>
+        <div class="form-group col-md-6">
+            <button id="totalbutton" type="submit" class="btn btn-primary" disabled>Применить</button>
+        </div>
+    </div>
     <form>
         <%--row 1--%>
         <div class="form-row">
@@ -44,15 +51,15 @@
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="${an.name}" title="Enter name"
-                           placeholder="name">
+                           placeholder="name" disabled>
                 </div>
                 <div class="form-group">
                     <label for="created">Create_Dat:</label>
-                    <input type="text" class="form-control" name="password" value="${an.created}" title="Enter created."
-                           id="created">
+                    <input type="text" class="form-control" name="created" value="${an.created}" title="Enter created."
+                           id="created" disabled>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="isDone" id="isDone">Is_Done</label>
+                    <label><input type="checkbox" name="isDone" id="isDone" disabled>Is_Done</label>
                 </div>
 
             </div>
@@ -65,9 +72,9 @@
                 </div>
                 <div class="form-group">
                     <label for="author">Author:</label>
-                    <input type="text" class="form-control" name="login" value="${an.author.login}"
+                    <input type="text" class="form-control" name="author" value="${an.author.login}"
                            title="Enter author."
-                           id="author">
+                           id="author" disabled>
                 </div>
             </div>
         </div>
@@ -83,45 +90,44 @@
             <%--left--%>
             <div class="form-group col-md-5">
                 <label for="marka">Car marka:</label>
-                <select class="form-control" name="marka" title="Enter marka." id="marka" onclick="true">
+                <select class="form-control" name="marka" title="Enter marka." id="marka" onclick="true" disabled>
                     <option value="${an.car.model.marka.id}">${an.car.model.marka.name}</option>
                 </select>
             </div>
             <%--center--%>
             <div class="form-group col-md-4">
                 <label for="marka">Car model:</label>
-                <select class="form-control" name="model" title="Enter model." id="model" onclick="true">
+                <select class="form-control" name="model" title="Enter model." id="model" onclick="true" disabled>
                     <option value="${an.car.model.id}">${an.car.model.name}</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
                 <label for="transmission">Car transmission:</label>
                 <select class="form-control" name="transmission" title="Enter transmission." id="transmission"
-                        onclick="true">
+                        onclick="true" disabled>
                     <option value="${an.car.transmission.id}">${an.car.transmission.name}</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
                 <label for="yar">Год выпуска:</label>
-                <select class="form-control" name="yar" title="Enter yar." id="yar" onclick="true">
+                <select class="form-control" name="yar" title="Enter yar." id="yar" onclick="true" disabled>
                     <option value="${an.car.yar}">${an.car.yar}</option>
                 </select>
             </div>
         </div>
-            <%--center photo--%>
-            <div id="profileDiv" style="padding: 10px; border: solid 2px #D6D6D6;">
+        <%--center photo--%>
+        <div id="imagelist" style="padding: 10px; border: solid 2px #D6D6D6;">
             <c:forEach items="${ph}" var="image">
-                <img src="data:image/jpeg;base64,${image}" alt="..." width="200" height="200">
+                <img src="data:image/jpeg;base64,${image}" alt="..." width="600" height="300">
             </c:forEach>
         </div>
         <div class="form-group">
             <label for="description">Car description:</label>
             <textarea class="form-control" id="description" rows="3"
-                      title="Enter car description.">${an.car.description}</textarea>
+                      title="Enter car description." disabled>${an.car.description}</textarea>
         </div>
-</div>
-<button type="submit" class="btn btn-primary">Sign in</button>
-</form>
+
+    </form>
 </div>
 </body>
 </html>
