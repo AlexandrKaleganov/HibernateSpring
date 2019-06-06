@@ -36,7 +36,7 @@
             <button id="buttonedit" type="button" class="btn btn-success" onclick="enableall(false)" disabled>Редактировать</button>
         </div>
         <div class="form-group col-md-6">
-            <button id="totalbutton" type="submit" class="btn btn-primary" onclick="enableall(true)" disabled>Применить</button>
+            <button id="totalbutton" type="submit" class="btn btn-primary" onclick="dissabl(true)" disabled>Применить</button>
         </div>
     </div>
     <form>
@@ -90,13 +90,13 @@
             <%--left--%>
             <div class="form-group col-md-5">
                 <label for="marka">Car marka:</label>
-                <select class="form-control" name="marka" title="Enter marka." id="marka" onclick="true" disabled>
+                <select class="form-control" name="marka" title="Enter marka." id="marka" onclick="modelload()" disabled>
                     <option value="${an.car.model.marka.id}">${an.car.model.marka.name}</option>
                 </select>
             </div>
             <%--center--%>
             <div class="form-group col-md-4">
-                <label for="marka">Car model:</label>
+                <label for="model">Car model:</label>
                 <select class="form-control" name="model" title="Enter model." id="model" onclick="true" disabled>
                     <option value="${an.car.model.id}">${an.car.model.name}</option>
                 </select>

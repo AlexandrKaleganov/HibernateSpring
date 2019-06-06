@@ -3,11 +3,7 @@ package ru.akaleganov.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import org.apache.xerces.impl.dv.util.Base64;
-import ru.akaleganov.modelsannot.Announcement;
-import ru.akaleganov.modelsannot.Car;
-import ru.akaleganov.modelsannot.Photo;
-import ru.akaleganov.modelsannot.Users;
-import ru.akaleganov.modelsannot.Roles;
+import ru.akaleganov.modelsannot.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -50,6 +46,10 @@ public class ServiceAddObjects {
 
     public Roles addRole(String json) {
         return this.addModel(json, j -> new ObjectMapper().readValue(j, Roles.class));
+    }
+
+    public Marka addMarka(String json) {
+        return this.addModel(json, j -> new ObjectMapper().readValue(j, Marka.class));
     }
 
     public List<Photo> addPhoto(ArrayList<String> urlList) {
@@ -117,6 +117,7 @@ public class ServiceAddObjects {
 
     /**
      * рефактор try catch
+     *
      * @param json
      * @param mapper
      * @param <E>

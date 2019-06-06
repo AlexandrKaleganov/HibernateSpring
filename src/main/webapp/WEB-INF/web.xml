@@ -66,12 +66,12 @@
         <url-pattern>/image</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ServletCarload</servlet-name>
-        <servlet-class>ru.akaleganov.container.car.ServletCarload</servlet-class>
+        <servlet-name>ServletMarkaload</servlet-name>
+        <servlet-class>ru.akaleganov.container.car.ServletMarkaload</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletCarload</servlet-name>
-        <url-pattern>/carload</url-pattern>
+        <servlet-name>ServletMarkaload</servlet-name>
+        <url-pattern>/markaload</url-pattern>
     </servlet-mapping>
 </web-app>

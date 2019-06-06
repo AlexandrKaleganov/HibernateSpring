@@ -1,9 +1,6 @@
 package ru.akaleganov.service;
 
-import ru.akaleganov.dbmanag.AnnouncementDb;
-import ru.akaleganov.dbmanag.PhotoDb;
-import ru.akaleganov.dbmanag.RolesDb;
-import ru.akaleganov.dbmanag.UsersDb;
+import ru.akaleganov.dbmanag.*;
 import ru.akaleganov.modelsannot.Announcement;
 
 import java.util.HashMap;
@@ -12,6 +9,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import org.apache.log4j.Logger;
+import ru.akaleganov.modelsannot.Marka;
 import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.modelsannot.Users;
 
@@ -64,6 +62,14 @@ public class Dispatch {
         //управление картинками
         this.dispatch.put("findbyidphoto", (ticket) ->
                 Optional.of(PhotoDb.getInstance().findByID((Photo) ticket.get())));
+        //управление марками
+        this.dispatch.put("findallmarka", (ticket) ->
+                Optional.of(MarkaDb.getInstance().findAll()));
+        this.dispatch.put("findbyidmarka", (ticket) ->
+                Optional.of(MarkaDb.getInstance().findByID((Marka) ticket.get())));
+        //управление моделями
+        this.dispatch.put("findByMarkaidModel", (ticket) ->
+                Optional.of(ModelDb.getInstance().findByMarkaid((Marka) ticket.get())));
         return this;
     }
 

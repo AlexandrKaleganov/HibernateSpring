@@ -3,6 +3,7 @@ package ru.akaleganov.container;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import org.apache.xerces.impl.dv.util.Base64;
+import org.hibernate.Session;
 import ru.akaleganov.modelsannot.Announcement;
 import ru.akaleganov.modelsannot.Users;
 import ru.akaleganov.service.Dispatch;
@@ -20,6 +21,7 @@ import java.util.Optional;
 
 public class ServletIndex extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(ServletIndex.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/vievs/index.jsp").forward(req, resp);
@@ -32,6 +34,10 @@ public class ServletIndex extends HttpServlet {
         if (action.contains("findbyidan")) {
             try {
                 Announcement announcement = Dispatch.getInstance().access(action, Optional.of(new Announcement(Integer.valueOf(req.getParameter("an")))));
+                if (announcement.getId() == 0) {
+                    announcement.setAuthor(new Users((Integer) req.getSession().getAttribute("userID")));
+                }
+                req.setAttribute("an", announcement);
                 req.getRequestDispatcher("WEB-INF/vievs/announ/edit.jsp").forward(req, resp);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);

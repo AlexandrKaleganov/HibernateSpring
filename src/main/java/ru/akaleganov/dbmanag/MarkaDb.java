@@ -41,7 +41,11 @@ public class MarkaDb implements Store<Marka> {
 
     @Override
     public Marka findByID(Marka marka) {
-        return openSession(session -> session.get(Marka.class, marka.getId()));
+        Marka rsl = openSession(session -> session.get(Marka.class, marka.getId()));
+        if (rsl == null) {
+            rsl = new Marka(0);
+        }
+        return rsl;
     }
 
     @Override
