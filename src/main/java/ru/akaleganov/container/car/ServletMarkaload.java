@@ -28,7 +28,7 @@ public class ServletMarkaload extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
-            writer.append(new ObjectMapper().writeValueAsString( Dispatch.getInstance().access(req.getParameter("action"),
+            writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(req.getParameter("action"),
                     Optional.of(ServiceAddObjects.getInstance().addMarka(req.getParameter("m"))))));
             writer.flush();
         } catch (IOException e) {

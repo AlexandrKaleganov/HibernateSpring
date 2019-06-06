@@ -13,6 +13,7 @@ public class ModelDb implements Store<Model> {
     public static ModelDb getInstance() {
         return INSTANCE;
     }
+
     @Override
     public Model add(Model model) {
         error();
@@ -48,14 +49,16 @@ public class ModelDb implements Store<Model> {
         error();
         return null;
     }
+
     public List<Model> findByMarkaid(Marka marka) {
         String sql = "from Model where marka_id = " + marka.getId();
         ArrayList<Model> res = (ArrayList<Model>) openSession(session -> session.createQuery(sql).list());
-        if (res == null){
+        if (res == null) {
             res = new ArrayList<>();
         }
         return res;
     }
+
     @Override
     public Model findByLoginPass(Model model) {
         error();

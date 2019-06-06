@@ -37,7 +37,7 @@ public class TransmissionDb implements Store<Transmission> {
 
     @Override
     public List<Transmission> findAll() {
-        ArrayList<Transmission>  rsl = (ArrayList<Transmission>)openSession(session -> session.createQuery("from Transmission").list());
+        ArrayList<Transmission> rsl = (ArrayList<Transmission>) openSession(session -> session.createQuery("from Transmission").list());
         if (rsl == null) {
             rsl = new ArrayList<>();
         }
