@@ -186,7 +186,7 @@ function addAnno() {
             data: {
                 action: $("#totalbutton").val(),
                 us: "{\"id\":\"" + $("#id").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone").is(":checked") +
-                    "\", \"password\":\"" + $("#password").val() + "\", \"roles\":{\"id\":\"" + $("#roles").val() + "\"}}"
+                   "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}}"
             },
             dataType: "json",
             success: function (data) {

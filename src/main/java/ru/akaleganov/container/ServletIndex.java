@@ -36,6 +36,7 @@ public class ServletIndex extends HttpServlet {
                 Announcement announcement = Dispatch.getInstance().access(action, Optional.of(new Announcement(Integer.valueOf(req.getParameter("an")))));
                 if (announcement.getId() == 0) {
                     announcement.setAuthor(new Users((Integer) req.getSession().getAttribute("userID")));
+                    announcement.getAuthor().setLogin((String) req.getSession().getAttribute("login"));
                 }
                 req.setAttribute("an", announcement);
                 req.getRequestDispatcher("WEB-INF/vievs/announ/edit.jsp").forward(req, resp);
