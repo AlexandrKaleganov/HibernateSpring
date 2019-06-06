@@ -48,6 +48,10 @@ public class ServiceAddObjects {
         return this.addModel(json, j -> new ObjectMapper().readValue(j, Roles.class));
     }
 
+    public Transmission addTransmission(String json) {
+        return this.addModel(json, j -> new ObjectMapper().readValue(j, Transmission.class));
+    }
+
     public Marka addMarka(String json) {
         return this.addModel(json, j -> new ObjectMapper().readValue(j, Marka.class));
     }

@@ -74,4 +74,13 @@
         <servlet-name>ServletMarkaload</servlet-name>
         <url-pattern>/markaload</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>TransmissionServlet</servlet-name>
+        <servlet-class>ru.akaleganov.container.car.TransmissionServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TransmissionServlet</servlet-name>
+        <url-pattern>/transmission</url-pattern>
+    </servlet-mapping>
 </web-app>

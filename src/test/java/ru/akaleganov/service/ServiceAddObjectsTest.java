@@ -4,6 +4,7 @@ import org.hamcrest.core.Is;
 import org.junit.Test;
 import ru.akaleganov.modelsannot.Announcement;
 import ru.akaleganov.modelsannot.Roles;
+import ru.akaleganov.modelsannot.Transmission;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,6 +40,12 @@ public class ServiceAddObjectsTest {
     public void testFormatRoles() {
         String json = "{\"id\":\"0\"" + "}";
         Roles role = new ServiceAddObjects().addRole(json);
+        assertThat(role.getId(), Is.is(0));
+    }
+    @Test
+    public void testFormatTransmission() {
+        String json = "{\"id\":\"0\"" + "}";
+        Transmission role = new ServiceAddObjects().addTransmission(json);
         assertThat(role.getId(), Is.is(0));
     }
 }

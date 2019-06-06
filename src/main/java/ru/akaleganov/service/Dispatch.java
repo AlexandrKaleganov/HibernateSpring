@@ -1,7 +1,7 @@
 package ru.akaleganov.service;
 
 import ru.akaleganov.dbmanag.*;
-import ru.akaleganov.modelsannot.Announcement;
+import ru.akaleganov.modelsannot.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,9 +9,6 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import org.apache.log4j.Logger;
-import ru.akaleganov.modelsannot.Marka;
-import ru.akaleganov.modelsannot.Photo;
-import ru.akaleganov.modelsannot.Users;
 
 /**
  * Dispatch мой любимый универсальный диспатч
@@ -53,6 +50,8 @@ public class Dispatch {
         this.dispatch.put("findallroles", (ticket) ->
                 Optional.of(RolesDb.getInstance().findAll()));
         //управление объявлениями
+        this.dispatch.put("addan", (ticket) ->
+                Optional.of(AnnouncementDb.getInstance().edit((Announcement)ticket.get())));
         this.dispatch.put("findallan", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().findAll()));
         this.dispatch.put("findbyidan", (ticket) ->
@@ -70,6 +69,9 @@ public class Dispatch {
         //управление моделями
         this.dispatch.put("findByMarkaidModel", (ticket) ->
                 Optional.of(ModelDb.getInstance().findByMarkaid((Marka) ticket.get())));
+        //управление трансмиссией
+        this.dispatch.put("findalltr", (ticket) ->
+                Optional.of(TransmissionDb.getInstance().findAll()));
         return this;
     }
 

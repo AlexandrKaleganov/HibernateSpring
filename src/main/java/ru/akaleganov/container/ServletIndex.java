@@ -51,11 +51,9 @@ public class ServletIndex extends HttpServlet {
             }
         } else {
             try {
-                ArrayList<Announcement> list = Dispatch.getInstance().access(action,
-                        Optional.of(ServiceAddObjects.getInstance().addAnnouncement(req.getParameter("an"))));
-                System.out.println(list);
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
-                writer.append(new ObjectMapper().writeValueAsString(list));
+                writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
+                        Optional.of(ServiceAddObjects.getInstance().addAnnouncement(req.getParameter("an"))))));
                 writer.flush();
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
