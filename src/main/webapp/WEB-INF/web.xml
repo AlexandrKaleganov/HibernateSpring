@@ -65,4 +65,13 @@
         <servlet-name>ImajeServlet</servlet-name>
         <url-pattern>/image</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletCarload</servlet-name>
+        <servlet-class>ru.akaleganov.container.car.ServletCarload</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletCarload</servlet-name>
+        <url-pattern>/carload</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -32,10 +32,6 @@ public class ServletIndex extends HttpServlet {
         if (action.contains("findbyidan")) {
             try {
                 Announcement announcement = Dispatch.getInstance().access(action, Optional.of(new Announcement(Integer.valueOf(req.getParameter("an")))));
-                ArrayList<String> list = new ArrayList<>();
-                announcement.getCar().getPhoto().forEach(photo -> list.add(Base64.encode(photo.getPhoto())));
-                req.setAttribute("an", announcement);
-                req.setAttribute("ph", list);
                 req.getRequestDispatcher("WEB-INF/vievs/announ/edit.jsp").forward(req, resp);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
