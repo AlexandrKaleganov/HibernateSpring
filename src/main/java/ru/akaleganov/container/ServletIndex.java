@@ -52,10 +52,17 @@ public class ServletIndex extends HttpServlet {
             }
         } else {
             try {
+//                ArrayList<String> listurl = new ObjectMapper().readValue(req.getParameter("photolist"), ArrayList.class);
+//                System.out.println(listurl);
                 System.out.println(req.getParameter("an"));
+                System.out.println(req.getParameter("car"));
+
+                System.out.println(ServiceAddObjects.getInstance().addAll(
+                        req.getParameter("an"), req.getParameter("car"), new ArrayList<>()));
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
                 writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
-                        Optional.of(ServiceAddObjects.getInstance().addAnnouncement(req.getParameter("an"))))));
+                        Optional.of(ServiceAddObjects.getInstance().addAll(
+                                req.getParameter("an"), req.getParameter("car"), new ArrayList<>())))));
                 writer.flush();
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);

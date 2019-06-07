@@ -9,7 +9,7 @@ function listan(actions) {
     $.ajax({
         type: "POST",
         url: "./",
-        data: {action: actions, an: "{\"id\":\"0\"}"},
+        data: {action: actions, an: "{\"id\":\"0\"}", car: "{\"id\":\"0\"}"},
         dataType: "json",
         success: function (data) {
             console.log(data.length);

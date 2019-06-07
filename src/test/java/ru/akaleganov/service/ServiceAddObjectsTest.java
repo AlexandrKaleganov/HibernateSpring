@@ -1,5 +1,6 @@
 package ru.akaleganov.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.core.Is;
 import org.junit.Test;
 import ru.akaleganov.modelsannot.Announcement;
@@ -47,5 +48,13 @@ public class ServiceAddObjectsTest {
         String json = "{\"id\":\"0\"" + "}";
         Transmission role = new ServiceAddObjects().addTransmission(json);
         assertThat(role.getId(), Is.is(0));
+    }
+    @Test
+    public void testValidlist() throws IOException {
+        String list = "[" + "\"db/Avito-Shema.png\"," + "\"db/Avito-Shema.png\"" + "]";
+        ArrayList<String> arr = new ObjectMapper().readValue(list, ArrayList.class);
+        System.out.println(arr);
+        ArrayList<String> arr3 = new ArrayList<>(Arrays.asList("1", "2"));
+        System.out.println(new ObjectMapper().writeValueAsString(arr3));
     }
 }
