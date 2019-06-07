@@ -172,27 +172,31 @@ function valid() {
  * добавление объявления
  */
 function addAnno() {
+    dissabl(true);
     var rsl = "";
-    if ($("#id").val() > 0) {
+    if ($("#idan").val() > 0) {
         rsl = "обновлён";
     } else {
         rsl = "добавлен";
     }
-    console.log(valid());
     if (valid()) {
         $.ajax({
             type: "POST",
             url: "./",
             data: {
                 action: $("#totalbutton").val(),
-                us: "{\"id\":\"" + $("#id").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone").is(":checked") +
-                   "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}}"
+                an: "{\"id\":\"" + $("#idan").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone").is(":checked") +
+                   "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}" +"\", \"car\":{\"id\":\"" + $("#carid").val() + "\"" +
+                ", \"model\":{\"id\":\"" + $("#model").val() + "\"" + ", \"marka\":{\"id\":\"" + $("#marka").val() + "\"}}," +"\"yar\":\"" + $("#yar").val() + "\""+
+                    ", \"transmission\":{\"id\":\"" + $("#transmission").val() + "\"}" +
+                ", \"description\":\"" + $("#description").val() + "\""+ "}" +
+                    " }"
             },
             dataType: "json",
             success: function (data) {
                 console.log(data);
                 $("#result").after("<div class=\"alert alert-success  alert-dismissible\">\n" +
-                    "            " + data.login + " <strong> " + rsl + "</strong>\n" +
+                    "            " + data + " <strong> " + rsl + "</strong>\n" +
                     "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
             }
         })
