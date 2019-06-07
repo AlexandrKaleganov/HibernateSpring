@@ -41,59 +41,40 @@ $(document).ready(function rolelist() {
 
 function addOrupdate() {
     var rsl = "";
+    var action = "";
     if ($("#id").val() > 0) {
         rsl = "обновлён";
+        action = "addOrupdate";
     } else {
         rsl = "добавлен";
+        action = "addus"
     }
-    var is = validLogin();
-    console.log(is);
-    if (valid() && is) {
+    if (valid()) {
         $.ajax({
             type: "POST",
             url: "./listUser",
             data: {
-                action: $("#action").val(),
+                action: action,
                 us: "{\"id\":\"" + $("#id").val() + "\", \"name\":\"" + $("#name").val() + "\", \"login\":\"" + $("#login").val() +
                     "\", \"password\":\"" + $("#password").val() + "\", \"roles\":{\"id\":\"" + $("#roles").val() + "\"}}"
             },
             dataType: "json",
             success: function (data) {
-                console.log(data);
+                console.log(data.id);
+                if (data.id !== 0) {
                 $("#result").after("<div class=\"alert alert-success  alert-dismissible\">\n" +
                     "            " + data.login + " <strong> " + rsl + "</strong>\n" +
                     "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
+            } else {
+                    $("#result").after("<div class=\"alert alert-success  alert-danger\">\n" +
+                        "            " + data.login + " <strong> " + "пользователь с таким логином уже существует" + "</strong>\n" +
+                        "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
+                }
             }
+
         })
         return true;
     } else {
         return false;
     }
-}
-
-function validLogin() {
-    var rsl = true;
-    if (!($("#id").val() > 0)) {
-        $.ajax({
-            type: "POST",
-            url: "./listUser",
-            data: {
-                action: "findByLogin",
-                us: "{\"id\":\"" + $("#id").val() + "\", \"name\":\"" + $("#name").val() + "\", \"login\":\"" + $("#login").val() +
-                    "\", \"password\":\"" + $("#password").val() + "\", \"roles\":{\"id\":\"" + $("#roles").val() + "\"}}"
-            },
-            dataType: "json",
-            success: function (data) {
-                console.log(data.login);
-                if (data.login === $("#login").val()) {
-                    $("#result").after("<div class=\"alert alert-success  alert-dismissible\">\n" +
-                        "            " + data.login + " <strong> " + "пользователь с таким логином уже существует" + "</strong>\n" +
-                        "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
-                    rsl = false;
-                }
-            }
-
-        })
-    }
-    return rsl;
 }

@@ -21,10 +21,15 @@ public class UsersDb implements Store<Users> {
 
     @Override
     public Users add(Users users) {
-        return openSession(session -> {
-            session.save(users);
-            return session.load(Users.class, users.getId());
-        });
+        Users test = this.findByLogin(users);
+        if (test.getId() != 0) {
+            return users;
+        } else {
+            return openSession(session -> {
+                session.save(users);
+                return session.load(Users.class, users.getId());
+            });
+        }
     }
 
     @Override
