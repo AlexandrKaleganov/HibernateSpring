@@ -52,6 +52,7 @@ public class ServletIndex extends HttpServlet {
             }
         } else {
             try {
+                System.out.println(req.getParameter("an"));
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
                 writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
                         Optional.of(ServiceAddObjects.getInstance().addAnnouncement(req.getParameter("an"))))));

@@ -186,8 +186,8 @@ function addAnno() {
             data: {
                 action: $("#totalbutton").val(),
                 an: "{\"id\":\"" + $("#idan").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone").is(":checked") +
-                   "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}" +"\", \"car\":{\"id\":\"" + $("#carid").val() + "\"" +
-                ", \"model\":{\"id\":\"" + $("#model").val() + "\"" + ", \"marka\":{\"id\":\"" + $("#marka").val() + "\"}}," +"\"yar\":\"" + $("#yar").val() + "\""+
+                   "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}" +", \"car\":{\"id\":\"" + $("#carid").val() + "\"" +
+                ", \"model\":{\"id\":\"" + $("#model").val() + "\"" + "}," +"\"yar\":\"" + $("#yar").val() + "\""+
                     ", \"transmission\":{\"id\":\"" + $("#transmission").val() + "\"}" +
                 ", \"description\":\"" + $("#description").val() + "\""+ "}" +
                     " }"
