@@ -206,3 +206,16 @@ function addAnno() {
         return false;
     }
 }
+function fileupload() {
+    $.ajax({
+        type: "POST",
+        url: "./upload",
+        data: {
+            descfile: $("#descfile").val(),
+            fileimg: $("#fileimg").val()},
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+        }
+    })
+}
