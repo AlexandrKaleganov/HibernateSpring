@@ -93,4 +93,13 @@
         <servlet-name>FileUploadServlet</servlet-name>
         <url-pattern>/upload</url-pattern>
     </servlet-mapping>
+
+    <context-param>
+        <param-name>file-upload</param-name>
+        <param-value>d:/upload/</param-value>
+    </context-param>
+    <context-param>
+        <param-name>temp-upload</param-name>
+        <param-value>d:/upload/</param-value>
+    </context-param>
 </web-app>

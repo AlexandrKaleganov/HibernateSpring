@@ -122,11 +122,12 @@ function modelload() {
  * @returns {string}
  */
 function ciclappendoption(id, data) {
-   id.html("");
+    id.html("");
     for (var i = 0; i < data.length; i++) {
-       id.append(option(data[i]));
+        id.append(option(data[i]));
     }
 }
+
 function option(ma) {
     var res = " <option value=\""
     res = res + ma.id;
@@ -163,6 +164,7 @@ function isValid(r, l) {
     }
     return rsl;
 }
+
 function valid() {
     return !(isValid($("#name"), "") + isValid($("#marka"), "") + isValid($("#model"), "")
         + isValid($("#transmission"), "") + isValid($("#yar"), "") + isValid($("#description"), ""));
@@ -186,11 +188,11 @@ function addAnno() {
             data: {
                 action: $("#totalbutton").val(),
                 an: "{\"id\":\"" + $("#idan").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone").is(":checked") +
-                   "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}" + "}",
-                car:"{\"id\":\"" + $("#carid").val() + "\"" +
-                ", \"model\":{\"id\":\"" + $("#model").val() + "\"" + "}," +"\"yar\":\"" + $("#yar").val() + "\""+
+                    "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}" + "}",
+                car: "{\"id\":\"" + $("#carid").val() + "\"" +
+                    ", \"model\":{\"id\":\"" + $("#model").val() + "\"" + "}," + "\"yar\":\"" + $("#yar").val() + "\"" +
                     ", \"transmission\":{\"id\":\"" + $("#transmission").val() + "\"}" +
-                ", \"description\":\"" + $("#description").val() + "\""+ "}",
+                    ", \"description\":\"" + $("#description").val() + "\"" + "}",
                 photolist: "[" + "\"db/Avito-Shema.png\"," + "\"db/Avito-Shema.png\"" + "]"
             },
             dataType: "json",
@@ -206,14 +208,13 @@ function addAnno() {
         return false;
     }
 }
+
 function fileupload() {
     $.ajax({
         type: "POST",
         url: "./upload",
-        data: {
-            descfile: $("#descfile").val(),
-            fileimg: $("#fileimg").val()},
-        dataType: "json",
+        data: {fileimg: $("#fileimg").val()},
+        contentType: 'multipart/form-data',
         success: function (data) {
             console.log(data);
         }

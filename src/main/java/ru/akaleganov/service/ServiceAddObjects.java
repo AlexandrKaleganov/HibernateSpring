@@ -84,7 +84,25 @@ public class ServiceAddObjects {
         });
         return photos;
     }
-
+    public Photo addPhoto(File img) {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                BufferedImage image = null;
+                String base64String = null;
+                try {
+                    image = ImageIO.read(img);
+                    String formatName = "";
+                    ImageIO.write(image, formatName, baos);
+                    baos.flush();
+                    base64String = Base64.encode(baos.toByteArray());
+                    baos.close();
+                } catch (IOException e) {
+                    LOGGER.error(e.getMessage(), e);
+                }
+                byte[] resByteArray = Base64.decode(base64String);
+                Photo photo = new Photo();
+                photo.setPhoto(resByteArray);
+        return photo;
+    }
     /**
      * метод будет объеденять наши объекты
      *
