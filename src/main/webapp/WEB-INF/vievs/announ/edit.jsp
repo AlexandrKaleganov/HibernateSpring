@@ -117,7 +117,7 @@
         </div>
         <%--center photo--%>
             <div id="imageupload">
-                <form id="sampleUploadFrm" action="${pageContext.servletContext.contextPath}/upload" method="post" enctype="multipart/form-data">
+                <form id="sampleUploadFrm" action="#" method="post" enctype="multipart/form-data">
                     <input id="descfile" type="text" name="description" />
                     <input id="fileimg" type="file" name="file" multiple="true"/>
                     <input type="button" id="uploadBtn" onclick="fileupload()" value="Upload"/>

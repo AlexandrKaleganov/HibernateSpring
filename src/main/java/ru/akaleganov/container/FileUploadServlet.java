@@ -13,7 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
+import ru.akaleganov.modelsannot.Photo;
+import ru.akaleganov.service.ServiceAddObjects;
+
 @MultipartConfig()
 public class FileUploadServlet extends HttpServlet {
     private String filePath, tempPath;
@@ -33,12 +39,32 @@ public class FileUploadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("asdasdasdasdasssssssss");
-        Part part = req.getPart("file");
-        System.out.println("asdasdasdasdasssssssss");
-        byte[] bytes = IOUtils.toByteArray(part.getInputStream());
-        for (int i = 0; i < bytes.length; i++) {
-            System.out.println(bytes[i]);
+        final String UPLOAD_DIRECTORY = "d:/uploads";
+        if(ServletFileUpload.isMultipartContent(req)){
+            try {
+                List<FileItem> multiparts = new ServletFileUpload(
+                        new DiskFileItemFactory()).parseRequest(req);
+                for(FileItem item : multiparts){
+                    System.out.println(item);
+                    if(!item.isFormField()){
+//                        File fileSaveDir = new File(UPLOAD_DIRECTORY);
+//                        if (!fileSaveDir.exists()) {
+//                            fileSaveDir.mkdir();
+//                        }
+                        String name = new File(item.getName()).getName();
+                        System.out.println(name);
+//                        item.write( new File(UPLOAD_DIRECTORY + File.separator + name));
+                        Photo photo = ServiceAddObjects.getInstance().addPhoto(new File(item.getName()));
+                        System.out.println(photo);
+                    }
+                }
+            } catch (Exception e) {
+                // exception handling
+            }
+
+            PrintWriter out = resp.getWriter();
+            out.print("{\"status\":1}");
         }
+
     }
 }

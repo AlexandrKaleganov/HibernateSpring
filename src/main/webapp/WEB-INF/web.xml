@@ -96,10 +96,10 @@
 
     <context-param>
         <param-name>file-upload</param-name>
-        <param-value>d:/upload/</param-value>
+        <param-value>d:/uploads/</param-value>
     </context-param>
     <context-param>
         <param-name>temp-upload</param-name>
-        <param-value>d:/upload/</param-value>
+        <param-value>d:/uploads/</param-value>
     </context-param>
 </web-app>
