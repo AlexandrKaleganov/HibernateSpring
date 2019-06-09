@@ -4,6 +4,7 @@ package ru.akaleganov.container;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -40,6 +41,7 @@ public class FileUploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String UPLOAD_DIRECTORY = "d:/uploads";
         System.out.println(ServletFileUpload.isMultipartContent(req));
+
         if(ServletFileUpload.isMultipartContent(req)){
             try {
                 List<FileItem> multiparts = new ServletFileUpload(
