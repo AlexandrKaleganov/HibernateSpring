@@ -20,7 +20,6 @@ import org.apache.commons.io.IOUtils;
 import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.service.ServiceAddObjects;
 
-@MultipartConfig()
 public class FileUploadServlet extends HttpServlet {
     private String filePath, tempPath;
     private int maxFileSize = 5242880;
@@ -40,10 +39,12 @@ public class FileUploadServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String UPLOAD_DIRECTORY = "d:/uploads";
+        System.out.println(ServletFileUpload.isMultipartContent(req));
         if(ServletFileUpload.isMultipartContent(req)){
             try {
                 List<FileItem> multiparts = new ServletFileUpload(
                         new DiskFileItemFactory()).parseRequest(req);
+                System.out.println(multiparts.size());
                 for(FileItem item : multiparts){
                     System.out.println(item);
                     if(!item.isFormField()){
