@@ -117,18 +117,12 @@
         </div>
         <%--center photo--%>
             <div id="imageupload">
-                <form id="sampleUploadFrm" action="#" method="post" enctype="multipart/form-data">
-                    <input id="descfile" type="text" name="description" />
-                    <input id="fileimg" type="file" name="file"/>
-                    <input type="button" id="uploadBtn" onclick="fileupload()" value="Upload"/>
+                <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
+                    <p><input type="file" name="f">
+                        <input type="button" value="Отправить" onclick="fileupload()"></p>
                 </form>
             </div>
-            <div>
-<%--
-        <div id="imagelist" style="padding: 10px; border: solid 2px #D6D6D6;">
-<%--            <c:forEach items="${ph}" var="image">--%>
-<%--                <img src="data:image/jpeg;base64,${image}" alt="..." width="600" height="300">--%>
-<%--            </c:forEach>--%>
+            <div id="imageviev">
             <c:forEach items="${an.car.photo}" var="photo">
                 <img src="${pageContext.servletContext.contextPath}/image?id=${photo.id}" alt="..." width="600" height="300">
             </c:forEach>
