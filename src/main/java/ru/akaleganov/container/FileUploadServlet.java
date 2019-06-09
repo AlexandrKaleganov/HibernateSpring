@@ -40,8 +40,6 @@ public class FileUploadServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String UPLOAD_DIRECTORY = "d:/uploads";
-        System.out.println(ServletFileUpload.isMultipartContent(req));
-
         if(ServletFileUpload.isMultipartContent(req)){
             try {
                 List<FileItem> multiparts = new ServletFileUpload(

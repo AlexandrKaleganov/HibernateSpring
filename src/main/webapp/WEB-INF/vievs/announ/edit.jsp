@@ -119,7 +119,7 @@
             <div id="imageupload">
                 <form id="sampleUploadFrm" action="#" method="post" enctype="multipart/form-data">
                     <input id="descfile" type="text" name="description" />
-                    <input id="fileimg" type="file" name="file" multiple="true"/>
+                    <input id="fileimg" type="file" name="file"/>
                     <input type="button" id="uploadBtn" onclick="fileupload()" value="Upload"/>
                 </form>
             </div>
