@@ -1,10 +1,18 @@
 package ru.akaleganov.models;
 
+import java.util.Objects;
+
 public class Item {
     private Long id;
     private String name;
     private int price;
 
+    public Item(Long id) {
+        this.id = id;
+    }
+
+    public Item() {
+    }
 
     public Long getId() {
         return id;
@@ -36,4 +44,20 @@ public class Item {
                 + ", price=" + price + '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Item item = (Item) o;
+        return price == item.price && id.equals(item.id) && name.equals(item.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price);
+    }
 }

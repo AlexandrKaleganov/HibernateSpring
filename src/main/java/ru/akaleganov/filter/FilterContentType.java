@@ -28,7 +28,7 @@ public class FilterContentType implements Filter {
             ArrayList<Item> list = Dispatch.getInstance().access("list", new Item());
             req.getSession().setAttribute("backet", new ServiceItem().addItem(list));
         }
-        if (req.getRequestURI().contains("/todolist")) {
+        if (req.getRequestURI().contains("/todolist") || req.getRequestURI().contains("/backet")) {
             res.setContentType("text/json; charset=windows-1251");
         }
 

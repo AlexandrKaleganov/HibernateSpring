@@ -48,40 +48,54 @@ function loadtable(data) {
     console.log(data);
     var rsl = "";
     rsl = rsl + "<tr><td>" + data.id + "</td><td>" + data.name + "</td><td>" + data.price + "</td>";
-        rsl = rsl + "<td><button id=\"totalbutton\" type=\"button\" value=\"" + data.id+"\" class=\"btn btn-primary\" onclick=\"additem()\" >добавить в корзину</button></td>";
-        rsl = rsl + "<td><button id=\"totalbutton\" type=\"button\" value=\"" + data.id + "\" class=\"btn btn-primary\" onclick=\"additem()\" disabled>удалить из корзины</button></td></tr>";
+        rsl = rsl + "<td><button type=\"button\" value=\"" + data.id+"\" class=\"btn btn-primary\" onclick=\"abbclick(this.value)\" >добавить в корзину</button></td>";
+        rsl = rsl + "<td><button type=\"button\" value=\"" + data.id + "\" class=\"btn btn-primary\" onclick=\"additem()\" disabled>удалить из корзины</button></td></tr>";
     return rsl;
 }
 
-/**
- * метод добавления заявки, добавляет сразу выполненныю или не выполненную,
- * чтобы потом тестировать фильтр
- */
-function addDesc() {
-    if (isDesc($("#descr"))) {
-        $.ajax({
-            type: "POST",
-            url: "./todolist",
-            data: {action: $("#action").val(), descr: $("#descr").val(), done: $("#isDone").is(":checked")},
-            success: function (data) {
-                $("#todolist_table tbody").append(loadtable(data));
-            }
-        });
-    }
+// /**
+//  * метод добавления заявки, добавляет сразу выполненныю или не выполненную,
+//  * чтобы потом тестировать фильтр
+//  */
+// function addDesc() {
+//     if (isDesc($("#descr"))) {
+//         $.ajax({
+//             type: "POST",
+//             url: "./todolist",
+//             data: {action: $("#action").val(), descr: $("#descr").val(), done: $("#isDone").is(":checked")},
+//             success: function (data) {
+//                 $("#todolist_table tbody").append(loadtable(data));
+//             }
+//         });
+//     }
+// }
+//
+// /**
+//  * проверяет введён ли description
+//  * @param desc
+//  * @returns {boolean}
+//  */
+// function isDesc(desc) {
+//     var test = /^[^\s]*$/;
+//     if (desc.val().length < 1 || test.test(desc.val())) {
+//         alert($("#descr").attr("placeholder"));
+//         return false;
+//     } else {
+//         console.log("заявка добавлена");
+//         return true;
+//     }
+// };
+function abbclick(id) {
+    $.ajax({
+        type: "POST",
+        url: "./backet",
+        data: {action: "add", id:id},
+        success: function (data) {
+            console.log(data);
+            // for (var i = 0; i <data.length ; i++) {
+            //
+            // }
+            // $("#todolist_table tbody").append(loadtable(data));
+        }
+    });
 }
-
-/**
- * проверяет введён ли description
- * @param desc
- * @returns {boolean}
- */
-function isDesc(desc) {
-    var test = /^[^\s]*$/;
-    if (desc.val().length < 1 || test.test(desc.val())) {
-        alert($("#descr").attr("placeholder"));
-        return false;
-    } else {
-        console.log("заявка добавлена");
-        return true;
-    }
-};
