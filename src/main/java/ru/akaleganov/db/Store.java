@@ -12,5 +12,4 @@ public interface Store<E> {
     E findbyID(E item);
 
     List<E> findall();
-    List<E> findallnotDone();
 }

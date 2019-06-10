@@ -19,7 +19,7 @@
     </filter-mapping>
     <servlet>
         <servlet-name>TodolistServlet</servlet-name>
-        <servlet-class>ru.akaleganov.controler.TodolistServlet</servlet-class>
+        <servlet-class>ru.akaleganov.controler.PriceServlet</servlet-class>
 <!--        <init-param>-->
 <!--            <param-name>encoding</param-name>-->
 <!--            <param-value>UTF-8</param-value>-->

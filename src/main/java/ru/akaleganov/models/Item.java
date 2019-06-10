@@ -1,15 +1,9 @@
 package ru.akaleganov.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.sql.Timestamp;
-import java.util.Objects;
-
 public class Item {
     private Long id;
-    private String descr;
-    private Timestamp create;
-    private boolean done;
+    private String name;
+    private int price;
 
 
     public Long getId() {
@@ -20,53 +14,26 @@ public class Item {
         this.id = id;
     }
 
-    public String getDescr() {
-        return descr;
+    public String getName() {
+        return name;
     }
 
-    public void setDescr(String desc) {
-        this.descr = desc;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @JsonFormat(pattern = "dd-MM-yyy HH:mm", timezone = "GMT+3")
-    public Timestamp getCreate() {
-        return create;
+    public int getPrice() {
+        return price;
     }
 
-    public void setCreate(Timestamp create) {
-        this.create = create;
-    }
-
-    public boolean getDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Item{" + "id=" + id + ", desc='" + descr + '\''
-                + ", create=" + create + ", done=" + done + '}';
+        return "Item{" + "id=" + id + ", name='" + name + '\''
+                + ", price=" + price + '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Item item = (Item) o;
-        return id == item.id && done == item.done
-                && Objects.equals(descr, item.descr)
-                && Objects.equals(create, item.create);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, descr, create, done);
-    }
 }

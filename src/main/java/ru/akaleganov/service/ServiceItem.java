@@ -10,17 +10,4 @@ import java.time.LocalDateTime;
  */
 public class ServiceItem {
 
-
-    public Item addItem(String desc, String done) {
-        Item item = new Item();
-        if (done.contains("false")) {
-            item.setDone(false);
-        } else {
-            item.setDone(true);
-        }
-        item.setDescr(desc);
-        item.setCreate(Timestamp.valueOf(LocalDateTime.now()));
-        return item;
-    }
-
 }

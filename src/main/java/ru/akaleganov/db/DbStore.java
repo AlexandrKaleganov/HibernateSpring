@@ -93,14 +93,6 @@ public class DbStore implements Store<Item> {
         return items;
     }
 
-    @Override
-    public List<Item> findallnotDone() {
-        ArrayList<Item> items = this.openandCloseSession(
-                (session) -> (ArrayList<Item>) session.createQuery("from Item where done = false").list()
-        );
-        return items;
-    }
-
     /**
      * refactor close factory and close session
      *

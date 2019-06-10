@@ -47,8 +47,6 @@ public class Dispatch {
                 Optional.of(this.store.findbyID(item)));
         this.dispatch.put("list", (item) ->
                 Optional.of(this.store.findall()));
-        this.dispatch.put("listnotDone", (item) ->
-                Optional.of(this.store.findallnotDone()));
         return this;
     }
 
@@ -56,11 +54,10 @@ public class Dispatch {
      * новый диспатчер, возвращает указанный параметр
      * @param key
      * @param item
-     * @param param
      * @param <E>
      * @return
      */
-    public <E> E access(String key, Item item, E param) {
+    public <E> E access(String key, Item item) {
         Optional<E> rsl = Optional.empty();
         rsl = this.dispatch.get(key).apply(item);
         return rsl.get();

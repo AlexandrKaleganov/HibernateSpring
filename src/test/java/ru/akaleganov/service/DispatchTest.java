@@ -17,12 +17,14 @@ public class DispatchTest {
      * @param fank
      */
     private void fanktest(Consumer<Item> fank) {
-        Item item = new ServiceItem().addItem("desc", "true");
+        Item item = new Item();
+        item.setName("desc");
+        item.setPrice(1);
         try {
-            item = Dispatch.getInstance().access("add", item, new Item());
+            item = Dispatch.getInstance().access("add", item);
             fank.accept(item);
         } finally {
-            Dispatch.getInstance().access("delete", item, new Item());
+            Dispatch.getInstance().access("delete", item);
         }
 
     }
@@ -33,7 +35,8 @@ public class DispatchTest {
     @Test
     public void testDispatcherbyID() {
         this.fanktest(item -> {
-            assertThat(Dispatch.getInstance().access("findbyid", item, new Item()).getDescr(), is("desc"));
+            Item testitem = Dispatch.getInstance().access("findbyid", item);
+            assertThat(testitem.getName(), is("desc"));
         });
     }
 
@@ -43,31 +46,10 @@ public class DispatchTest {
     @Test
     public void testDispatcherList() {
         this.fanktest(item -> {
-            ArrayList<Item> list = Dispatch.getInstance().access("list", item, new ArrayList<Item>());
-            assertThat(list.get(list.size() - 1).getDescr(), is("desc"));
+            ArrayList<Item> list = Dispatch.getInstance().access("list", item);
+            assertThat(list.get(list.size() - 1).getName(), is("desc"));
         });
     }
 
-    /**
-     * test list isdone
-     */
-    @Test
-    public void testDispatcherListisDone() {
-        this.fanktest(item -> {
-            Dispatch.getInstance().access("listnotDone", new Item(), new ArrayList<Item>())
-                    .forEach(it -> assertThat(it.getDone(), is(false)));
-        });
-    }
 
-    /**
-     * test update
-     */
-    @Test
-    public void testDispatcherUpdate() {
-        this.fanktest(item -> {
-            item.setDescr("test");
-            Item expected = Dispatch.getInstance().access("update", item, new Item());
-            assertThat(expected.getDescr(), is("test"));
-        });
-    }
 }

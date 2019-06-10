@@ -14,7 +14,7 @@ public class DbStoreTest {
 
     public void testfank(Item item, BiConsumer<Item, DbStore> fank) {
         final DbStore store = (DbStore) DbStore.getDbstoreINSTANCE();
-        item.setDescr("desc");
+        item.setName("desc");
         try {
             fank.accept(item, store);
         } finally {
@@ -30,23 +30,10 @@ public class DbStoreTest {
     public void add() {
         this.testfank(new Item(), (item, dbStore) -> {
             Item rsl = dbStore.add(item);
-            assertThat(rsl.getDescr(), is("desc"));
+            assertThat(rsl.getName(), is("desc"));
         });
     }
 
-    /**
-     * update test
-     */
-    @Test
-    public void update() {
-        this.testfank(new Item(), (item, dbStore) -> {
-            Item rsl = dbStore.add(item);
-            rsl.setDescr("desc2");
-            dbStore.update(rsl);
-            rsl = dbStore.findbyID(rsl);
-            assertThat(rsl.getDescr(), is("desc2"));
-        });
-    }
 
     /**
      * findbyid test
@@ -55,7 +42,7 @@ public class DbStoreTest {
     public void findbyID() {
         this.testfank(new Item(), (item, dbStore) -> {
             Item rsl = dbStore.add(item);
-            assertThat(dbStore.findbyID(rsl).getDescr(), is(rsl.getDescr()));
+            assertThat(dbStore.findbyID(rsl).getName(), is(rsl.getName()));
         });
     }
 
@@ -64,19 +51,11 @@ public class DbStoreTest {
         this.testfank(new Item(), (item, dbStore) -> {
             dbStore.add(item);
             ArrayList<Item> list = (ArrayList<Item>) dbStore.findall();
-            assertThat(list.get(list.size() - 1).getDescr(), is(item.getDescr()));
+            assertThat(list.get(list.size() - 1).getName(), is(item.getName()));
         });
     }
 
     /**
      * получение заявок которые не выполнены
      */
-    @Test
-    public void findallnotDone() {
-        this.testfank(new Item(), (item, dbStore) -> {
-            dbStore.add(item);
-            ArrayList<Item> listnotDone = (ArrayList<Item>) dbStore.findallnotDone();
-            listnotDone.forEach(it -> assertThat(it.getDone(), is(false)));
-        });
-    }
 }
