@@ -1,12 +1,18 @@
 package ru.akaleganov.filter;
 
 import org.apache.log4j.Logger;
+import ru.akaleganov.models.Item;
+import ru.akaleganov.service.Dispatch;
 import ru.akaleganov.service.SFactory;
+import ru.akaleganov.service.ServiceItem;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FilterContentType implements Filter {
     private static final Logger LOGGER = Logger.getLogger(FilterContentType.class);
@@ -15,9 +21,17 @@ public class FilterContentType implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse res = (HttpServletResponse) servletResponse;
+        if (req.getParameter("clear") != null) {
+            req.getSession().invalidate();
+        }
+        if (req.getSession().getAttribute("backet") == null) {
+            ArrayList<Item> list = Dispatch.getInstance().access("list", new Item());
+            req.getSession().setAttribute("backet", new ServiceItem().addItem(list));
+        }
         if (req.getRequestURI().contains("/todolist")) {
             res.setContentType("text/json; charset=windows-1251");
         }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

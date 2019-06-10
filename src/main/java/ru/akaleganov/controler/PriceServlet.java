@@ -31,6 +31,7 @@ public class PriceServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
+
 //        try {
 //            PrintWriter writer = new PrintWriter(resp.getOutputStream());
 //            writer.append(

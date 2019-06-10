@@ -48,8 +48,8 @@ function loadtable(data) {
     console.log(data);
     var rsl = "";
     rsl = rsl + "<tr><td>" + data.id + "</td><td>" + data.name + "</td><td>" + data.price + "</td>";
-        rsl = rsl + "<button><input type=\"button\" disabled> - </button></td>";
-        rsl = rsl + "<td><button id=\"totalbutton\" type=\"button\" value=\"addan\" class=\"btn btn-primary\" onclick=\"addAnno()\" disabled>Применить</button><input type=\"button\" >  + </button></td></tr>";
+        rsl = rsl + "<td><button id=\"totalbutton\" type=\"button\" value=\"" + data.id+"\" class=\"btn btn-primary\" onclick=\"additem()\" >добавить в корзину</button></td>";
+        rsl = rsl + "<td><button id=\"totalbutton\" type=\"button\" value=\"" + data.id + "\" class=\"btn btn-primary\" onclick=\"additem()\" disabled>удалить из корзины</button></td></tr>";
     return rsl;
 }
 
