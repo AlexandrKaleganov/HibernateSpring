@@ -26,14 +26,6 @@
         <servlet-name>PriceServlet</servlet-name>
         <url-pattern>/todolist</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>BacketLoadServlet</servlet-name>
-        <servlet-class>ru.akaleganov.controler.BacketLoadServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>BacketLoadServlet</servlet-name>
-        <url-pattern>/backet</url-pattern>
-    </servlet-mapping>
+
 
 </web-app>

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * загрузка всего листа
  */
 $(document).ready(function () {
@@ -88,10 +88,10 @@ function loadtable(data) {
 function abbclick(id) {
     $.ajax({
         type: "POST",
-        url: "./backet",
+        url: "./todolist",
         data: {action: "add", id:id},
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             // for (var i = 0; i <data.length ; i++) {
             //
             // }

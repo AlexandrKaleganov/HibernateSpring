@@ -37,11 +37,10 @@ public class BacketLoadServlet  extends HttpServlet {
         } else {
             map.put(item, map.get(item.getName()) - 1);
         }
-        System.out.println(map);
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
             writer.append(
-                    new ObjectMapper().writeValueAsString(map));
+                    new ObjectMapper().writeValueAsString(item));
             writer.flush();
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
