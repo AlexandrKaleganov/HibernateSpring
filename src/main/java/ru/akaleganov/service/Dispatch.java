@@ -37,12 +37,6 @@ public class Dispatch {
      * @return current object.
      */
     public Dispatch init() {
-        this.dispatch.put("add", (item) ->
-                Optional.of(this.store.add(item)));
-        this.dispatch.put("update", (item) ->
-                Optional.of(this.store.update(item)));
-        this.dispatch.put("delete", (item) ->
-                Optional.of(this.store.delete(item)));
         this.dispatch.put("findbyid", (item) ->
                 Optional.of(this.store.findbyID(item)));
         this.dispatch.put("list", (item) ->

@@ -4,17 +4,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import ru.akaleganov.models.Item;
 import ru.akaleganov.service.Dispatch;
+import ru.akaleganov.service.ServiceItem;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class BacketLoadServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(BacketLoadServlet.class);
@@ -33,27 +31,12 @@ public class BacketLoadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        resp.setContentType("text/json; charset=utf-8");
-//        PrintWriter writer = new PrintWriter(resp.getOutputStream());
         String action = req.getParameter("action");
-
         HashMap<Item, Integer> map = (HashMap<Item, Integer>) req.getSession().getAttribute("backetmap");
         Item item = Dispatch.getInstance().access("findbyid", new Item(Long.valueOf(req.getParameter("id"))));
-        if (map.containsKey(item)) {
-            if (action.contains("add")) {
-                map.put(item, map.get(item) + 1);
-            } else {
-                map.put(item, map.get(item) - 1);
-            }
-        } else {
-            map.put(item, 1);
-        }
+        ServiceItem.getInstance().access(action, item, map);
         System.out.println(map.get(item));
         this.doGet(req, resp);
     }
 
-    //    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
-//
-//    }
 }

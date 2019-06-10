@@ -45,60 +45,42 @@ function todolist(action) {
  * @returns {string}
  */
 function loadtable(data) {
-    console.log(data);
     var rsl = "";
     rsl = rsl + "<tr><td>" + data.id + "</td><td>" + data.name + "</td><td>" + data.price + "</td>";
-        rsl = rsl + "<td><button type=\"button\" value=\"" + data.id+"\" class=\"btn btn-primary\" onclick=\"abbclick(this.value)\" >добавить в корзину</button></td>";
-        rsl = rsl + "<td><button type=\"button\" value=\"" + data.id + "\" class=\"btn btn-primary\" onclick=\"additem()\" disabled>удалить из корзины</button></td></tr>";
+    rsl = rsl + "<td><button type=\"button\" value=\"" + data.id + "\" class=\"btn btn-primary\" onclick=\"abbclick(this.value)\" >добавить в корзину</button></td>";
+    rsl = rsl + "<td><button type=\"button\" value=\"" + data.id + "\" class=\"btn btn-primary\" onclick=\"additem()\" disabled>удалить из корзины</button></td></tr>";
     return rsl;
 }
 
-// /**
-//  * метод добавления заявки, добавляет сразу выполненныю или не выполненную,
-//  * чтобы потом тестировать фильтр
-//  */
-// function addDesc() {
-//     if (isDesc($("#descr"))) {
-//         $.ajax({
-//             type: "POST",
-//             url: "./todolist",
-//             data: {action: $("#action").val(), descr: $("#descr").val(), done: $("#isDone").is(":checked")},
-//             success: function (data) {
-//                 $("#todolist_table tbody").append(loadtable(data));
-//             }
-//         });
-//     }
-// }
-//
-// /**
-//  * проверяет введён ли description
-//  * @param desc
-//  * @returns {boolean}
-//  */
-// function isDesc(desc) {
-//     var test = /^[^\s]*$/;
-//     if (desc.val().length < 1 || test.test(desc.val())) {
-//         alert($("#descr").attr("placeholder"));
-//         return false;
-//     } else {
-//         console.log("заявка добавлена");
-//         return true;
-//     }
-// };        dataType: "json",
+/**
+ * добавление итема по id  и получение списка всех купленных товаров
+ * @param id
+ */
 function abbclick(id) {
-    console.log(id);
     $.ajax({
         type: "POST",
         url: "./backet",
-        data: {action: "add" , id:id},
+        data: {action: "add", id: id},
+        dataType: 'json',
         success: function (data) {
-            console.log(data);
-            for (var i = 0; i < data.length; i++) {
-                for (var l in data) {
-                    console.log(l + ' ' + data[l]);
+            $("#backet_table tbody").html("");
+                for (var key in data) {
+                    console.log(key + ' ' + data[key]);
+                    $("#backet_table tbody:last").append(loadbacket(key, data[key]));
                 }
-
-            }
         }
     });
 }
+
+/**
+ * отрисовка корзины
+ */
+function loadbacket(key, dat) {
+    console.log(key);
+    var v = JSON.parse(key.responseText);
+    var rsl = "";
+    rsl = rsl + "<tr><td>" + v.name + "</td><td>" + dat + "</td>" ;
+    rsl = rsl + "<td><button type=\"button\" value=\"" + key.id + "\" class=\"btn btn-primary\" onclick=\"abbclick(this.value)\" >Удалить позицию полностью</button></td></tr>";
+    return rsl;
+}
+
