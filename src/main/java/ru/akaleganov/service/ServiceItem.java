@@ -17,9 +17,7 @@ public class ServiceItem {
      * @return
      */
     public HashMap<Item, Integer> addItem(ArrayList<Item> list) {
-        HashMap<Item, Integer> mamrsl = new HashMap<>();
-        list.forEach(e->mamrsl.put(e, 0));
-        return mamrsl;
+        return new HashMap<Item, Integer>();
     }
 
 }

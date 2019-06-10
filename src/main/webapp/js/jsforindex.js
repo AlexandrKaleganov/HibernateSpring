@@ -91,13 +91,14 @@ function abbclick(id) {
         type: "POST",
         url: "./backet",
         data: {action: "add" , id:id},
-        dataType: "json",
         success: function (data) {
             console.log(data);
-            // for (var i = 0; i < data.length; i++) {
-            //     console.log(data[i]);
-            //     // $("#todolist_table tbody:last").append(loadtable(data[i]));
-            // }
+            for (var i = 0; i < data.length; i++) {
+                for (var l in data) {
+                    console.log(l + ' ' + data[l]);
+                }
+
+            }
         }
     });
 }

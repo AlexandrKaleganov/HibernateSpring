@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class BacketLoadServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(BacketLoadServlet.class);
@@ -21,7 +23,8 @@ public class BacketLoadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
-            writer.append(new ObjectMapper().writeValueAsString(req.getSession().getAttribute("backet")));
+            HashMap<Item, Integer> map = (HashMap<Item, Integer>) req.getSession().getAttribute("backetmap");
+            writer.append(new ObjectMapper().writeValueAsString(map));
             writer.flush();
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
@@ -31,26 +34,22 @@ public class BacketLoadServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        resp.setContentType("text/json; charset=utf-8");
+//        PrintWriter writer = new PrintWriter(resp.getOutputStream());
         String action = req.getParameter("action");
+
+        HashMap<Item, Integer> map = (HashMap<Item, Integer>) req.getSession().getAttribute("backetmap");
         Item item = Dispatch.getInstance().access("findbyid", new Item(Long.valueOf(req.getParameter("id"))));
-//        HashMap<Item, Integer> map = (HashMap<Item, Integer>) session.getAttribute("backet");
-//        map.forEach((k, v) -> {
-//            System.out.println(k.toString() + v);
-//        });
-//        System.out.println(map.get(item));
-//        if (action.contains("add")) {
-//            map.put(item, map.get(item.getName()) + 1);
-//        } else {
-//            map.put(item, map.get(item.getName()) - 1);
-//        }
-        try {
-            PrintWriter writer = new PrintWriter(resp.getOutputStream());
-            writer.append(
-                    new ObjectMapper().writeValueAsString(item));
-            writer.flush();
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
+        if (map.containsKey(item)) {
+            if (action.contains("add")) {
+                map.put(item, map.get(item) + 1);
+            } else {
+                map.put(item, map.get(item) - 1);
+            }
+        } else {
+            map.put(item, 1);
         }
+        System.out.println(map.get(item));
+        this.doGet(req, resp);
     }
 
     //    @Override
