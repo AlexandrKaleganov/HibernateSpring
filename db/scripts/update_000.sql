@@ -1,15 +1,6 @@
--- create table if not exists  users(
--- id serial primary key,
--- name varchar(200),
--- mail varchar(200),
--- pass varchar(200)
--- );
---
--- create or replace view  userview  as
--- (select u.id,  u.name, u.mail, u.pass, co.country, ci.city, r.roles from users as u
--- left outer join adreshelp as ad on ad.user_id = u.id
--- left outer join country as co on co.id = ad.country_id
--- left outer join city as ci on ci.id = ad.city_id
--- left outer join rolesusers as ru on ru.users_id = u.id
--- left outer join roles as r on r.id = ru.roles_id
--- );
+create table if not exists  toodet(
+id serial primary key,
+name varchar(200),
+price integer
+);
+insert into toodet(name, price) values ('хлеб',2),
