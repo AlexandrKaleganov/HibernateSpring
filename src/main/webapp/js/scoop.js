@@ -1,5 +1,4 @@
-﻿
-/**
+﻿/**
  * метод отвечает за покупку
  */
 function scope() {
@@ -16,23 +15,25 @@ function scope() {
                 "                <th>ID &darr;</th>\n" +
                 "                <th>Название &darr;</th>\n" +
                 "                <th>Цена &darr;</th>\n" +
+                "                <th>Количество &darr;</th>\n" +
                 "                <th>Сумма за позицию &darr;</th>\n" +
                 "            </tr>\n" +
                 "            </thead>\n" +
                 "            <tbody></tbody>\n" +
                 "        </table>");
             $("#table_scope tbody").html("");
-            var summ = 0;
+            var summmoney = 0;
+            var summcount = 0;
             for (var key in data) {
                 console.log(key + ' ' + data[key]);
                 var str = '' + key.toString() + '';
                 var v = JSON.parse(str);
-                summ = summ + v.price * data[key];
+                summmoney = summmoney + v.price * data[key];
+                summcount = summcount + data[key];
                 $("#table_scope tbody:last").append(loadscope(v, data[key]));
             }
-            $("#table_scope tbody:last").append("<tr><td>ИТОГО К ОПЛАТЕ</td><td></td><td></td><td>" + summ + "</td></tr>");
+            $("#table_scope tbody:last").append("<tr><td>ИТОГО К ОПЛАТЕ</td><td></td><td></td><td>" + summcount + " </td><td>" + summmoney + "</td></tr>");
             backet("1", "clear");
-            // clearmap();
         }
     });
 }
@@ -42,6 +43,6 @@ function scope() {
  */
 function loadscope(key, dat) {
     var rsl = "";
-    rsl = rsl + "<tr><td>" + key.id + "</td><td>" + key.name + "</td><td>" + key.price + "</td><td>" + key.price * dat + "</td></tr>";
+    rsl = rsl + "<tr><td>" + key.id + "</td><td>" + key.name + "</td><td>" + key.price + "</td><td>" + dat + "</td><td>" + key.price * dat + "</td></tr>";
     return rsl;
 }

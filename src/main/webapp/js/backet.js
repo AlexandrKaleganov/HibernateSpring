@@ -10,10 +10,13 @@ function backet(id, action) {
         dataType: 'json',
         success: function (data) {
             $("#backet_table tbody").html("");
-
+            disabledfalshe($("#buttonscoop"), true);
+            disable();
             for (var key in data) {
+                disabledfalshe($("#buttonscoop"), false);
                 $("#backet_table tbody:last").append(loadbacket(key, data[key]));
             }
+            disable();
         }
     });
 }
@@ -26,21 +29,43 @@ function loadbacket(key, dat) {
     var v = JSON.parse(str);
     var rsl = "";
     rsl = rsl + "<tr><td>" + v.name + "</td><td>" + dat + "</td>";
-    rsl = rsl + "<td><button type=\"button\" value=\"" + v.id + "\" class=\"btn btn-primary\" onclick=\"backet(this.value, 'deleteitemforkey')\" >Удалить позицию полностью</button></td></tr>";
+    rsl = rsl + "<td><button type=\"button\"  value=\"" + v.id + "\" class=\"btn btn-primary\" onclick=\"backet(this.value, 'deleteitemforkey')\" >Удалить позицию полностью</button></td></tr>";
     return rsl;
 }
 
+
+function getkey(key) {
+    var str = '' + key.toString() + '';
+    return JSON.parse(str);
+}
+
 /**
- * очистка хешмапы в сессии
+ * включение/отклчение кнопки удаления одной позиции
  */
-function clearmap() {
-    $.ajax({
-        type: "POST",
-        url: "./backet",
-        data: {action: "clear", id:"1"},
-        dataType: 'json',
-        success: function () {
-            $("#backet_table tbody").html("");
+function disable() {
+    var trprice = document.getElementsByTagName("tbody")[1].getElementsByTagName("tr");
+    var trbacket = document.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+    for (j = 0; j < trprice.length; j++) {
+        if (!(trbacket.length === 0)) {
+            for (var i = 0; i < trbacket.length; i++) {
+                if (trprice[j].getElementsByTagName("button")[1].value === trbacket[i].getElementsByTagName("button")[0].value) {
+                    trprice[j].getElementsByTagName("button")[1].removeAttribute('disabled');
+                    break;
+                } else {
+                    trprice[j].getElementsByTagName("button")[1].disabled = true;
+                }
+            }
+        } else {
+            trprice[j].getElementsByTagName("button")[1].disabled = true;
         }
-    });
+    }
+}
+
+/**
+ * отключение конкретного поля
+ * @param pole
+ * @param param
+ */
+function disabledfalshe(pole, param) {
+    pole.prop('disabled', param)
 }
