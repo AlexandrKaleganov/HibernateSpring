@@ -26,7 +26,7 @@ public class Dispatch {
     private final Map<String, Function<Item, Optional>> dispatch = new HashMap<String, Function<Item, Optional>>();
     private final static Dispatch INSTANCE = new Dispatch().init();
     private static final Logger LOGGER = Logger.getLogger(Dispatch.class);
-    Store<Item> store = DbStore.getDbstoreINSTANCE();
+    private Store<Item> store = DbStore.getDbstoreINSTANCE();
     public static Dispatch getInstance() {
         return INSTANCE;
     }

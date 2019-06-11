@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
-
+import java.util.Map;
 public class BacketLoadServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(BacketLoadServlet.class);
 
@@ -27,8 +27,7 @@ public class BacketLoadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
-            HashMap<Item, Integer> map = (HashMap<Item, Integer>) req.getSession().getAttribute("backetmap");
-            writer.append(new ObjectMapper().writeValueAsString(map));
+            writer.append(new ObjectMapper().writeValueAsString(req.getSession().getAttribute("backetmap")));
             writer.flush();
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);

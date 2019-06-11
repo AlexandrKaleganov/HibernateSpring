@@ -35,7 +35,7 @@ public class DbStore implements Store<Item> {
      * findbyID objec
      * находит лот по id
      *
-     * @param item
+     * @param item {@link Item}
      * @return
      */
     @Override
@@ -51,10 +51,10 @@ public class DbStore implements Store<Item> {
      */
     @Override
     public List<Item> findall() {
-        ArrayList<Item> items = this.openandCloseSession(
-                (session) -> (ArrayList<Item>) session.createQuery("from Item ").list()
+         List rsl= this.openandCloseSession(
+                (session) -> session.createQuery("from Item ").list()
         );
-        return items;
+        return rsl;
     }
 
     /**
