@@ -9,6 +9,9 @@ import java.util.function.BiConsumer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+/**
+ * тестирование DbStore
+ */
 
 public class DbStoreTest {
 
@@ -22,14 +25,16 @@ public class DbStoreTest {
      * findbyid test
      */
     @Test
-    public void add() {
+    public void findbyid() {
         this.testfank(new Item(), (item, dbStore) -> {
             Item rsl = dbStore.findbyID(item);
             assertThat(rsl.getName(), is("хлеб"));
         });
     }
 
-
+    /**
+     * findall test
+     */
     @Test
     public void findall() {
         this.testfank(new Item(), (item, dbStore) -> {

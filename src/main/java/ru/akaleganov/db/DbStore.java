@@ -2,8 +2,6 @@ package ru.akaleganov.db;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import ru.akaleganov.models.Item;
 import ru.akaleganov.service.SFactory;
 
@@ -13,6 +11,10 @@ import java.util.function.Function;
 
 import static org.apache.log4j.LogManager.getLogger;
 
+/**
+ * класс для управления базой данных
+ * в данном случае понядобилось только получать список лотов, и получать лот по id
+ */
 public class DbStore implements Store<Item> {
     /**
      * Logeer
@@ -31,6 +33,7 @@ public class DbStore implements Store<Item> {
 
     /**
      * findbyID objec
+     * находит лот по id
      *
      * @param item
      * @return
@@ -43,7 +46,7 @@ public class DbStore implements Store<Item> {
 
     /**
      * find ALL object
-     *
+     * получение списка всех лотов
      * @return
      */
     @Override

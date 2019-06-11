@@ -14,9 +14,23 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * фильтр для всех сервлетов
+ *
+ */
 public class FilterContentType implements Filter {
     private static final Logger LOGGER = Logger.getLogger(FilterContentType.class);
 
+    /**
+     *  устанавливает res.setContentType("text/json; charset=windows-1251"), для респонсов
+     *  если  ссылка содержит /todolist или /backet также проверяет, есть ли в текучщей сессии HeshMap
+     *  она отсутствует то создастся новая мапа
+     * @param servletRequest
+     * @param servletResponse
+     * @param filterChain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;

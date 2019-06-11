@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 /**
- * создание сессий
+ * создание фабрики сессий сессий
  */
 public class SFactory implements AutoCloseable {
     private final SessionFactory factory;
@@ -23,6 +23,10 @@ public class SFactory implements AutoCloseable {
         return factory;
     }
 
+    /**
+     * закрытие фабрики
+     * @throws Exception
+     */
     @Override
     public void close() throws Exception {
         if (!this.factory.isClosed()) {

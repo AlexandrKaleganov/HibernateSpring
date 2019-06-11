@@ -8,6 +8,9 @@ import java.util.HashMap;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
+/**
+ * тестирование классе сервис итем тест
+ */
 public class ServiceItemTest {
     /**
      * получение Item all map

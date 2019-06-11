@@ -9,6 +9,9 @@ import java.util.function.Consumer;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+/**
+ * тест диспетчера управления базой данных
+ */
 public class DispatchTest {
 
     /**

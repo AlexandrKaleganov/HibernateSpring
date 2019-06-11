@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * сервлет по гет запросту отправляет прайслист в ArrayList
+ */
 public class PriceServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(PriceServlet.class);
     Dispatch dispatch = Dispatch.getInstance();

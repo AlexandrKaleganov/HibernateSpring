@@ -3,11 +3,20 @@ package ru.akaleganov.models;
 import java.util.Objects;
 
 /**
- * модель
+ * модель Лот
  */
 public class Item {
+    /**
+     * id лота
+     */
     private Long id;
+    /**
+     * наименование
+     */
     private String name;
+    /**
+     * цена лота
+     */
     private int price;
 
     public Item(Long id) {

@@ -38,7 +38,11 @@ function loadbacket(key, dat) {
     return rsl;
 }
 
-
+/**
+ * получение json объекта из ключа
+ * @param key
+ * @returns {any}
+ */
 function getkey(key) {
     var str = '' + key.toString() + '';
     return JSON.parse(str);

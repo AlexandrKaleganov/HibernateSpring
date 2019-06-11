@@ -37,7 +37,8 @@ public class BacketLoadServlet extends HttpServlet {
 
     /**
      * ispatch.getInstance().access("findbyid", new Item(Long.valueOf(req.getParameter("id"))))
-     * метод находит по id нужный айтем, в сервисе у нас находятся методы для работы с хешмапой , сервис принимает мапу,
+     * метод находит по id нужный айтем, в  ServiceItem.getInstance()
+     * у нас находятся методы для работы с хешмапой , сервис принимает мапу,
      * и item  и в зависимости от action производит определённые дейтвия
      * @param req
      * @param resp
