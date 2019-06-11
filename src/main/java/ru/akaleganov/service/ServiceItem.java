@@ -45,6 +45,7 @@ public class ServiceItem {
                 this.deleteItem(item, map));
         this.servis.put("clear", (item, map) ->
                 this.clearBacket(item, map));
+
         return this;
     }
 
@@ -112,4 +113,7 @@ public class ServiceItem {
         return map;
     }
 
+    private  HashMap<Item, Integer> findallmap(Item item, HashMap<Item, Integer> map) {
+        return map;
+    }
 }
