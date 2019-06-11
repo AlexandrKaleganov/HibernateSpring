@@ -12,11 +12,11 @@ function scope() {
                 "        <table class=\"table table-striped\" id=\"table_scope\">\n" +
                 "            <thead class=\"thead-dark\">\n" +
                 "            <tr>\n" +
-                "                <th>ID &darr;</th>\n" +
-                "                <th>Название &darr;</th>\n" +
-                "                <th>Цена &darr;</th>\n" +
-                "                <th>Количество &darr;</th>\n" +
-                "                <th>Сумма за позицию &darr;</th>\n" +
+                "                <th>ID </th>\n" +
+                "                <th>Название </th>\n" +
+                "                <th>Цена </th>\n" +
+                "                <th>Количество </th>\n" +
+                "                <th>Сумма за позицию </th>\n" +
                 "            </tr>\n" +
                 "            </thead>\n" +
                 "            <tbody></tbody>\n" +
