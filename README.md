@@ -16,4 +16,3 @@
 9. ещё от себя добавил кнопку удаления из корзины объекта полностью
 10. всё должно работаь через ajax
 
-. ветка со всеми коммитами https://github.com/AlexandrKaleganov/HibernateSpring/magazin
