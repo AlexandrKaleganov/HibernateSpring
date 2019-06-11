@@ -17,13 +17,12 @@ import java.io.PrintWriter;
  */
 public class PriceServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(PriceServlet.class);
-    Dispatch dispatch = Dispatch.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
-            writer.append(new ObjectMapper().writeValueAsString(this.dispatch.access(req.getParameter("action"), new Item())));
+            writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(req.getParameter("action"), new Item())));
             writer.flush();
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);

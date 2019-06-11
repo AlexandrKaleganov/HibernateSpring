@@ -16,7 +16,7 @@ function backet(id, action) {
         success: function (data) {
             $("#backet_table tbody").html("");
             disabledfalshe($("#buttonscoop"), true);
-            disable();
+            // disable();
             for (var key in data) {
                 disabledfalshe($("#buttonscoop"), false);
                 $("#backet_table tbody:last").append(loadbacket(key, data[key]));
