@@ -133,7 +133,7 @@ function scope(val) {
                 $("#table_scope tbody:last").append(loadscope(v, data[key]));
             }
             $("#table_scope tbody:last").append("<tr><td>ИТОГО К ОПЛАТЕ</td><td></td><td></td><td>" + summ + "</td></tr>");
-            clear();
+            clearmap();
         }
     });
 }
@@ -162,13 +162,13 @@ function loadbacket(key, dat) {
 /**
  * очистка хешмапы в сессии
  */
-function clear() {
+function clearmap() {
     $.ajax({
         type: "POST",
         url: "./backet",
-        data: {action: "clear", id: id},
+        data: {action: "clear", id:"1"},
         dataType: 'json',
-        success: function (data) {
+        success: function () {
             $("#backet_table tbody").html("");
         }
     });

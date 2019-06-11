@@ -109,7 +109,8 @@ public class ServiceItem {
      * @return
      */
     public HashMap<Item, Integer> clearBacket(Item item, HashMap<Item, Integer> map) {
-        map.clear();
+        map = new HashMap<>();
+        System.out.println(map);
         return map;
     }
 
