@@ -3,4 +3,4 @@ id serial primary key,
 name varchar(200),
 price integer
 );
-insert into item(name, price) VALUES ('хлеб', 1), ('молоко', 1), ('колбаса', 1);
+insert into item(name, price) VALUES ('хлеб', 5), ('молоко', 2), ('колбаса', 2);
