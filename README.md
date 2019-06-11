@@ -4,18 +4,16 @@
 в данном курсе я буду изучать Hibernate  и Spring
 **Hibernate**
 
- необходимо создать простое приложение todolist.
-1. одна таблица в базе item. id, desc. created, done.
-2. веб приложение должно иметь одну страницу index.html. 
-3. все данные на форму загружаються через ajax.
-4. в верху форма. добавить новое задание. описание.
-5. список всех заданий. и галка выполено или нет.
-6. вверху добавить галку. показать все. если включена. то показывать все. если нет. то только
- те что не выполены done = false.
-7. данные должны сохраняться через hibernate, 
+ необходимо создать простое приложение интернет магазин
+1. таблица,  отображает прайс лист id  наименование  цену, и имеет две кнопки, добавить в корзину и удалить из корзины
+2. если данный товар в корзине отсутствует, то кнопка удалить из корзины не активна
+3. усли в корзине товар отсутствует то кнопка купить не активна
+4. при покупке у нас внизу странице отображается счёт на приобретённый товар
+5. в счёте находитя наименование, количество общее количество и сумма,
+6 от себя добавил кнопку очистить счёт
+7 при покупке карзина очищается
+8. данные  сохраняются через hibernate
+9. ещё от себя добавил кнопку удаления из корзины объекта полностью
 
-. ветка со всеми коммитами https://github.com/AlexandrKaleganov/HibernateSpring/tree/tasc_3786_test
-![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/tasc_3786_test/img/1.png "Optional Title")
-![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/tasc_3786_test/img/2.png "Optional Title")
-![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/tasc_3786_test/img/3.png "Optional Title")
-![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/tasc_3786_test/img/4.png "Optional Title")
+
+. ветка со всеми коммитами https://github.com/AlexandrKaleganov/HibernateSpring/magazin
