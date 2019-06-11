@@ -3,6 +3,9 @@ package ru.akaleganov.service;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * создание сессий
+ */
 public class SFactory implements AutoCloseable {
     private final SessionFactory factory;
 

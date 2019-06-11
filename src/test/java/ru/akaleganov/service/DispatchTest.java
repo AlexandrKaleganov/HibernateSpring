@@ -18,15 +18,8 @@ public class DispatchTest {
      */
     private void fanktest(Consumer<Item> fank) {
         Item item = new Item();
-        item.setName("desc");
-        item.setPrice(1);
-        try {
-            item = Dispatch.getInstance().access("add", item);
-            fank.accept(item);
-        } finally {
-            Dispatch.getInstance().access("delete", item);
-        }
-
+        item.setId((long) 1);
+        fank.accept(item);
     }
 
     /**
@@ -36,7 +29,7 @@ public class DispatchTest {
     public void testDispatcherbyID() {
         this.fanktest(item -> {
             Item testitem = Dispatch.getInstance().access("findbyid", item);
-            assertThat(testitem.getName(), is("desc"));
+            assertThat(testitem.getName(), is("хлеб"));
         });
     }
 
@@ -47,7 +40,7 @@ public class DispatchTest {
     public void testDispatcherList() {
         this.fanktest(item -> {
             ArrayList<Item> list = Dispatch.getInstance().access("list", item);
-            assertThat(list.get(list.size() - 1).getName(), is("desc"));
+            assertThat(list.size(), is(3));
         });
     }
 

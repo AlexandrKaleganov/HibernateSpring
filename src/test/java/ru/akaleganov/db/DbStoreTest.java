@@ -14,48 +14,27 @@ public class DbStoreTest {
 
     public void testfank(Item item, BiConsumer<Item, DbStore> fank) {
         final DbStore store = (DbStore) DbStore.getDbstoreINSTANCE();
-        item.setName("desc");
-        try {
-            fank.accept(item, store);
-        } finally {
-            store.delete(item);
-        }
-
+        item.setId((long) 1);
+        fank.accept(item, store);
     }
-
-    /**
-     * add test
-     */
-    @Test
-    public void add() {
-        this.testfank(new Item(), (item, dbStore) -> {
-            Item rsl = dbStore.add(item);
-            assertThat(rsl.getName(), is("desc"));
-        });
-    }
-
 
     /**
      * findbyid test
      */
     @Test
-    public void findbyID() {
+    public void add() {
         this.testfank(new Item(), (item, dbStore) -> {
-            Item rsl = dbStore.add(item);
-            assertThat(dbStore.findbyID(rsl).getName(), is(rsl.getName()));
+            Item rsl = dbStore.findbyID(item);
+            assertThat(rsl.getName(), is("хлеб"));
         });
     }
+
 
     @Test
     public void findall() {
         this.testfank(new Item(), (item, dbStore) -> {
-            dbStore.add(item);
             ArrayList<Item> list = (ArrayList<Item>) dbStore.findall();
-            assertThat(list.get(list.size() - 1).getName(), is(item.getName()));
+            assertThat(list.size(), is(3));
         });
     }
-
-    /**
-     * получение заявок которые не выполнены
-     */
 }

@@ -2,6 +2,9 @@ package ru.akaleganov.models;
 
 import java.util.Objects;
 
+/**
+ * модель
+ */
 public class Item {
     private Long id;
     private String name;
