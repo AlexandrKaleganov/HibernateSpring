@@ -28,45 +28,6 @@ public class DbStore implements Store<Item> {
         return DB_STOREINSTANCE;
     }
 
-//    /**
-//     * add object
-//     *
-//     * @param item
-//     * @return
-//     */
-//    @Override
-//    public Item add(Item item) {
-//        return this.openandCloseSession(session ->
-//                session.get(Item.class, session.save(item))
-//        );
-//    }
-//
-//    /**
-//     * delete item from data
-//     *
-//     * @param item
-//     */
-//    @Override
-//    public Item delete(Item item) {
-//        return this.openandCloseSession(session -> {
-//            session.delete(item);
-//            return item;
-//        });
-//    }
-
-//    /**
-//     * update object
-//     *
-//     * @param item
-//     * @return
-//     */
-//    @Override
-//    public Item update(Item item) {
-//        return this.openandCloseSession(session -> {
-//            session.update(item);
-//            return session.get(Item.class, item.getId());
-//        });
-//    }
 
     /**
      * findbyID objec
