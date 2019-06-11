@@ -34,9 +34,6 @@ public class FilterContentType implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse res = (HttpServletResponse) servletResponse;
-        if (req.getParameter("clear") != null) {
-            req.getSession().invalidate();
-        }
         if (req.getSession().getAttribute("backetmap") == null) {
             ArrayList<Item> list = Dispatch.getInstance().access("list", new Item());
             req.getSession().setAttribute("backetmap", new HashMap<Item, Integer>());
