@@ -34,6 +34,7 @@ function scope() {
             }
             $("#table_scope tbody:last").append("<tr><td>ИТОГО К ОПЛАТЕ</td><td></td><td></td><td>" + summcount + " </td><td>" + summmoney + "</td></tr>");
             backet("1", "clear");
+            $("#scope").append("<button type=\"button\" class=\"btn btn-success\" onclick=\"clearscoop()\">Очистить счёт</button>");
         }
     });
 }
@@ -45,4 +46,11 @@ function loadscope(key, dat) {
     var rsl = "";
     rsl = rsl + "<tr><td>" + key.id + "</td><td>" + key.name + "</td><td>" + key.price + "</td><td>" + dat + "</td><td>" + key.price * dat + "</td></tr>";
     return rsl;
+}
+
+/**
+ * метод очистки счёта
+ */
+function clearscoop() {
+    $("#scope").html("");
 }

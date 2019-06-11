@@ -17,6 +17,12 @@ import java.util.HashMap;
 public class BacketLoadServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(BacketLoadServlet.class);
 
+    /**
+     * метод будет возвращать хешмапу из сесии
+     * @param req
+     * @param resp
+     * @throws ServletException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         try {
@@ -29,13 +35,21 @@ public class BacketLoadServlet extends HttpServlet {
         }
     }
 
+    /**
+     * ispatch.getInstance().access("findbyid", new Item(Long.valueOf(req.getParameter("id"))))
+     * метод находит по id нужный айтем, в сервисе у нас находятся методы для работы с хешмапой , сервис принимает мапу,
+     * и item  и в зависимости от action производит определённые дейтвия
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
         HashMap<Item, Integer> map = (HashMap<Item, Integer>) req.getSession().getAttribute("backetmap");
         Item item = Dispatch.getInstance().access("findbyid", new Item(Long.valueOf(req.getParameter("id"))));
         ServiceItem.getInstance().access(action, item, map);
-        System.out.println(map.get(item));
         this.doGet(req, resp);
     }
 
