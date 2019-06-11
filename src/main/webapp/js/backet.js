@@ -10,10 +10,13 @@ function backet(id, action) {
         dataType: 'json',
         success: function (data) {
             $("#backet_table tbody").html("");
+           if ( data.responseText === undefined) {
+               $("#buttonscoop").prop(disabled, true);
+           } else {
+               $("#buttonscoop").prop(disabled, false);
+           }
             for (var key in data) {
-                console.log(key + ' ' + data[key]);
                 $("#backet_table tbody:last").append(loadbacket(key, data[key]));
-
             }
         }
     });

@@ -3,6 +3,7 @@
  */
 $(document).ready(function () {
     todolist("list");
+    backet("1", "findallmap");
 });
 
 /**
@@ -17,7 +18,6 @@ function todolist(action) {
         success: function (data) {
             console.log(data);
             for (var i = 0; i < data.length; i++) {
-                console.log(data[i]);
                 $("#todolist_table tbody:last").append(loadtable(data[i]));
             }
         }
