@@ -16,7 +16,6 @@ function todolist(action) {
         url: "./todolist",
         data: {action: action},
         success: function (data) {
-            console.log(data);
             for (var i = 0; i < data.length; i++) {
                 $("#todolist_table tbody:last").append(loadtable(data[i]));
             }

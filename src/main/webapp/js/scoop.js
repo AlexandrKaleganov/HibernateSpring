@@ -25,7 +25,6 @@ function scope() {
             var summmoney = 0;
             var summcount = 0;
             for (var key in data) {
-                console.log(key + ' ' + data[key]);
                 var str = '' + key.toString() + '';
                 var v = JSON.parse(str);
                 summmoney = summmoney + v.price * data[key];
