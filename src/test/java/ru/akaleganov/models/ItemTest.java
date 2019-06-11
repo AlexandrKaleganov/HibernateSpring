@@ -1,7 +1,11 @@
 package ru.akaleganov.models;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import java.io.IOException;
 import java.util.function.BiConsumer;
 
 import org.junit.Test;
@@ -27,6 +31,22 @@ public class ItemTest {
 
     @Test
     public void modeltestAdd() {
+        Item item = new Item();
+        item.setName("name");
+        item.setPrice(1);
+        item.setId((long) 12);
+        try {
+            System.out.println(new ObjectMapper().writeValueAsString(item));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        System.out.println(item);
+        try {
+            Item itemtwo = new ObjectMapper().readValue(item.toString(), Item.class);
+            System.out.println(itemtwo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 //        this.testfank((item, ses) -> {
 //            ses.save(item);
 //            Item test = (Item) ses.createQuery("from Item where descr = 'хлеб'").list().get(0);

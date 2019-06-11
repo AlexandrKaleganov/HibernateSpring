@@ -64,10 +64,14 @@ function abbclick(id) {
         dataType: 'json',
         success: function (data) {
             $("#backet_table tbody").html("");
-                for (var key in data) {
-                    console.log(key + ' ' + data[key]);
-                    $("#backet_table tbody:last").append(loadbacket(key, data[key]));
+            for (var key in data) {
+                console.log(key + ' ' + data[key]);
+                for (var k in key ) {
+                    console.log(k.name);
                 }
+                $("#backet_table tbody:last").append(loadbacket(key, data[key]));
+
+            }
         }
     });
 }
@@ -76,10 +80,14 @@ function abbclick(id) {
  * отрисовка корзины
  */
 function loadbacket(key, dat) {
-    console.log(key);
-    var v = JSON.parse(key.responseText);
+    var str = '' + key.toString() + '';
+    console.log(str);
+    console.log(str[0].name);
+    console.log(key[0].name);
+    var v = JSON.parse(str);
+
     var rsl = "";
-    rsl = rsl + "<tr><td>" + v.name + "</td><td>" + dat + "</td>" ;
+    rsl = rsl + "<tr><td>" + v.name + "</td><td>" + dat + "</td>";
     rsl = rsl + "<td><button type=\"button\" value=\"" + key.id + "\" class=\"btn btn-primary\" onclick=\"abbclick(this.value)\" >Удалить позицию полностью</button></td></tr>";
     return rsl;
 }

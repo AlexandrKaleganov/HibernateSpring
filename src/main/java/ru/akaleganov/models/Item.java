@@ -40,8 +40,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "{" + "id" + id + ", name='" + name + '\''
-                + ", price=" + price + '}';
+        return "{" + "\"id\":\"" + id + "\", \"name\":\"" + name  + "\", \"price\":\"" + price + "\"}";
     }
 
     @Override
