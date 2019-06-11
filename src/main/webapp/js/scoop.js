@@ -32,6 +32,7 @@ function scope() {
             }
             $("#table_scope tbody:last").append("<tr><td>ИТОГО К ОПЛАТЕ</td><td></td><td></td><td>" + summ + "</td></tr>");
             backet("1", "clear");
+            // clearmap();
         }
     });
 }
