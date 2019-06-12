@@ -47,7 +47,7 @@ public class DbStore implements Store<Item> {
     /**
      * find ALL object
      * получение списка всех лотов
-     * @return
+     * @return {@link List<Item>}
      */
     @Override
     public List<Item> findall() {
