@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Optional;
 
 public class ServletUserList extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(ServletUserList.class);
@@ -27,13 +26,13 @@ public class ServletUserList extends HttpServlet {
         String action = req.getParameter("action");
         if (action.contains("findbyiduser")) {
             try {
-                req.setAttribute("user", Dispatch.getInstance().access(action, Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
+                req.setAttribute("user", Dispatch.getInstance().access(action, new Users(Integer.valueOf(req.getParameter("us")))));
                 req.getRequestDispatcher("WEB-INF/vievs/users/edit.jsp").forward(req, resp);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
             }
         } else if (action.contains("deleteuser")) {
-            req.setAttribute("user", Dispatch.getInstance().access("deleteuser", Optional.of(new Users(Integer.valueOf(req.getParameter("us"))))));
+            req.setAttribute("user", Dispatch.getInstance().access("deleteuser", new Users(Integer.valueOf(req.getParameter("us")))));
             try {
                 req.getRequestDispatcher("WEB-INF/vievs/users/userlist.jsp").forward(req, resp);
             } catch (IOException e) {
@@ -43,7 +42,7 @@ public class ServletUserList extends HttpServlet {
             try {
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
                 writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
-                        Optional.of(ServiceAddObjects.getInstance().addUser(req.getParameter("us"))))));
+                        ServiceAddObjects.getInstance().addUser(req.getParameter("us")))));
                 writer.flush();
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);

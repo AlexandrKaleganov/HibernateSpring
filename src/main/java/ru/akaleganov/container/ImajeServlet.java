@@ -13,7 +13,7 @@ import java.util.Optional;
 public class ImajeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Photo photo = Dispatch.getInstance().access("findbyidphoto", Optional.of(new Photo(Integer.valueOf(req.getParameter("id")))));
+        Photo photo = Dispatch.getInstance().access("findbyidphoto", new Photo(Integer.valueOf(req.getParameter("id"))));
         resp.setContentType("image/jpeg");
         resp.setContentLength(photo.getPhoto().length);
         resp.getOutputStream().write(photo.getPhoto());

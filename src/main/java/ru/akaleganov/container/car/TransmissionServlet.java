@@ -27,7 +27,7 @@ public class TransmissionServlet extends HttpServlet {
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
             writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(req.getParameter("action"),
-                    Optional.of(ServiceAddObjects.getInstance().addTransmission(req.getParameter("tr"))))));
+                   ServiceAddObjects.getInstance().addTransmission(req.getParameter("tr")))));
             writer.flush();
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);

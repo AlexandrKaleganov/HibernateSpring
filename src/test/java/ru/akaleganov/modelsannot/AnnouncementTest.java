@@ -1,6 +1,5 @@
 package ru.akaleganov.modelsannot;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.Session;
@@ -48,7 +47,7 @@ public class AnnouncementTest {
 
     @Test
     public void teststring() {
-        ArrayList<Announcement> list = new Dispatch().init().access("findallan", Optional.of(new Announcement(0)));
+        Object list = new Dispatch().init().access("findallan", Optional.of(new Announcement(0)));
         try {
             System.out.println(new ObjectMapper().writeValueAsString(list));
         } catch (JsonProcessingException e) {

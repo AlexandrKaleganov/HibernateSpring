@@ -39,6 +39,7 @@ public class CarDbTest {
         testF(session -> {
             Announcement expected2 = session.load(Announcement.class, ann.getId());
             assertTrue(expected2.getCar().getDescription().contains("описание объявления"));
+            assertEquals(1999, expected2.getCar().getYar());
             session.delete(expected2);
         });
     }

@@ -29,7 +29,7 @@ public class ServletMarkaload extends HttpServlet {
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
             writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(req.getParameter("action"),
-                    Optional.of(ServiceAddObjects.getInstance().addMarka(req.getParameter("m"))))));
+                    ServiceAddObjects.getInstance().addMarka(req.getParameter("m")))));
             writer.flush();
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);

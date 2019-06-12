@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Optional;
 
 /**
  * пока только получает список ролей, можно добавить добавление редактирование и удаление ролей
@@ -31,7 +30,7 @@ public class ServletRoles extends HttpServlet {
             try {
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
                 writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
-                        Optional.of(ServiceAddObjects.getInstance().addRole(req.getParameter("ro"))))));
+                        ServiceAddObjects.getInstance().addRole(req.getParameter("ro")))));
                 writer.flush();
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);

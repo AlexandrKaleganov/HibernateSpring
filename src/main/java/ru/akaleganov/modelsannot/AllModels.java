@@ -10,7 +10,7 @@ import javax.persistence.*;
  * думаю будет работать, рипалил такое в одном видео уроке
  */
 @MappedSuperclass
-abstract class AllModels {
+abstract class AllModels implements Mod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
