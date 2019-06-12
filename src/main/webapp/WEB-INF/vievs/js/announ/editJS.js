@@ -32,7 +32,7 @@ function enableall(param) {
     ciclic(totalform.getElementsByTagName("textarea"), param);
     loadyar();
     markaload();
-    transmissionload()
+    transmissionload();
     disabledfalshe($("#buttonedit"), true);
 }
 
@@ -55,7 +55,7 @@ function dissabl(param) {
  * @param param
  */
 function ciclic(tag, param) {
-    for (let i = 0; i < tag.length; i++) {
+    for (var i = 0; i < tag.length; i++) {
         var id = tag[i].getAttribute("id");
         if (id !== "author" && id !== "created") {
             disabledfalshe($("#" + id + ""), param);
@@ -74,11 +74,10 @@ function disabledfalshe(pole, param) {
 
 /**
  * загрузка года
- * @param id
  */
 function loadyar() {
     for (var i = 2000; i < 2020; i++) {
-        var res = " <option value=\""
+        var res = " <option value=\"";
         res = res + i;
         res = res + "\">" + i + "</option>";
         $("#yar").append(res);
@@ -92,7 +91,7 @@ function markaload() {
     $.ajax({
         type: "POST",
         url: "./markaload",
-        data: {action: "findallmarka", m: "{\"id\":\"" + $("#marka").val() + "\"" + "}"},
+        data: {action: "findAllMarka", m: "{\"id\":\"" + $("#marka").val() + "\"" + "}"},
         dataType: "json",
         success: function (data) {
             ciclappendoption($("#marka"), data);
@@ -108,7 +107,7 @@ function modelload() {
     $.ajax({
         type: "POST",
         url: "./markaload",
-        data: {action: "findByMarkaidModel", m: "{\"id\":\"" + $("#marka").val() + "\"" + "}"},
+        data: {action: "findByMarkaIdModel", m: "{\"id\":\"" + $("#marka").val() + "\"" + "}"},
         dataType: "json",
         success: function (data) {
             ciclappendoption($("#model"), data);
@@ -118,8 +117,9 @@ function modelload() {
 
 /**
  * рефакторинг прорисовки optional
- * @param ma
  * @returns {string}
+ * @param id  в качестве параметра указывается id  тега оптионала
+ * @param data  сюда данные для прорисовки
  */
 function ciclappendoption(id, data) {
     id.html("");
@@ -128,10 +128,15 @@ function ciclappendoption(id, data) {
     }
 }
 
-function option(ma) {
-    var res = " <option value=\""
-    res = res + ma.id;
-    res = res + "\">" + ma.name + "</option>";
+/**
+ * собирается опция
+ * @param ob объект из списка по которому будет собираца опция (модель, марка, год, трансмиссия)
+ * @returns {string}  возвращает готовую проприсованную опцию в виде строки
+ */
+function option(ob) {
+    var res = " <option value=\"";
+    res = res + ob.id;
+    res = res + "\">" + ob.name + "</option>";
     return res;
 }
 
@@ -142,7 +147,7 @@ function transmissionload() {
     $.ajax({
         type: "POST",
         url: "./transmission",
-        data: {action: "findalltr", tr: "{\"id\":\"" + $("#transmission").val() + "\"" + "}"},
+        data: {action: "findAllTr", tr: "{\"id\":\"" + $("#transmission").val() + "\"" + "}"},
         dataType: "json",
         success: function (data) {
             ciclappendoption($("#transmission"), data);
@@ -158,7 +163,7 @@ function transmissionload() {
  */
 function isValid(r, l) {
     var rsl = false;
-    if (r.val() == l) {
+    if (r.val() === l) {
         rsl = true;
         alert(r.attr("title"));
     }
@@ -225,7 +230,7 @@ function fileupload() {
         success: function (msg) {
             console.log(msg);
             var status = msg.status;
-            if (status == 1) {
+            if (status === 1) {
                 alert("File has been uploaded successfully");
             } else {
                 alert("Couldn't upload file");
@@ -235,4 +240,4 @@ function fileupload() {
             alert("Couldn't upload file");
         }
     });
-};
+}

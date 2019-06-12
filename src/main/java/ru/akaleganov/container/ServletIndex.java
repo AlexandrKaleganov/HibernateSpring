@@ -28,7 +28,7 @@ public class ServletIndex extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         String action = req.getParameter("action");
         System.out.println(req.getParameter("an"));
-        if (action.contains("findbyidan")) {
+        if (action.contains("findByIdAn")) {
             try {
                 Announcement announcement = Dispatch.getInstance().access(action, new Announcement(Integer.valueOf(req.getParameter("an"))));
                 if (announcement.getId() == 0) {
@@ -40,8 +40,8 @@ public class ServletIndex extends HttpServlet {
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
             }
-        } else if (action.contains("deletean")) {
-            req.setAttribute("an", Dispatch.getInstance().access("deletean", new Announcement(Integer.valueOf(req.getParameter("an")))));
+        } else if (action.contains("deleteAn")) {
+            req.setAttribute("an", Dispatch.getInstance().access("deleteAn", new Announcement(Integer.valueOf(req.getParameter("an")))));
             try {
                 req.getRequestDispatcher("WEB-INF/vievs/users/userlist.jsp").forward(req, resp);
             } catch (IOException e) {

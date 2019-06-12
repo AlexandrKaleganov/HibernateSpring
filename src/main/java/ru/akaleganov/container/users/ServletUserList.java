@@ -24,15 +24,15 @@ public class ServletUserList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         String action = req.getParameter("action");
-        if (action.contains("findbyiduser")) {
+        if (action.contains("findByIdUser")) {
             try {
                 req.setAttribute("user", Dispatch.getInstance().access(action, new Users(Integer.valueOf(req.getParameter("us")))));
                 req.getRequestDispatcher("WEB-INF/vievs/users/edit.jsp").forward(req, resp);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
             }
-        } else if (action.contains("deleteuser")) {
-            req.setAttribute("user", Dispatch.getInstance().access("deleteuser", new Users(Integer.valueOf(req.getParameter("us")))));
+        } else if (action.contains("deleteUser")) {
+            req.setAttribute("user", Dispatch.getInstance().access("deleteUser", new Users(Integer.valueOf(req.getParameter("us")))));
             try {
                 req.getRequestDispatcher("WEB-INF/vievs/users/userlist.jsp").forward(req, resp);
             } catch (IOException e) {

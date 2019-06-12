@@ -1,4 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="user" scope="request" type="javax.enterprise.inject.spi.PassivationCapable"/>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lis
@@ -6,7 +8,7 @@
   Time: 0:53
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -54,7 +56,7 @@
         </div>
         <div class="form-group">
             <label for="roles">Роли:</label>
-            <select class="form-control" name="roles" title="Enter attribut dostupa." id="roles">
+            <select class="form-control" name="roles" title="Enter the attribute access" id="roles">
                 <option value="${user.roles.id}">${user.roles.role}</option>
             </select>
         </div>

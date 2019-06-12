@@ -24,7 +24,7 @@ public class Dispatch {
     }
 
     /**
-     * Load initial handlers.
+     * Load initial hashmap functional.
      */
     public Dispatch init() {
         //упавление пользователями
@@ -34,39 +34,39 @@ public class Dispatch {
                 Optional.of(UsersDb.getInstance().findAll()));
         this.dispatch.put("findByLogin", (ticket) ->
                 Optional.of(UsersDb.getInstance().findByLogin((Users) ticket)));
-        this.dispatch.put("findbyiduser", (ticket) ->
+        this.dispatch.put("findByIdUser", (ticket) ->
                 Optional.of(UsersDb.getInstance().findByID((Users) ticket)));
         this.dispatch.put("deleteuser", (ticket) ->
                 Optional.of(UsersDb.getInstance().delete((Users) ticket)));
-        this.dispatch.put("addOrupdate", (ticket) ->
+        this.dispatch.put("addOrUpdate", (ticket) ->
                 Optional.of(UsersDb.getInstance().edit((Users) ticket)));
-        this.dispatch.put("addus", (ticket) ->
+        this.dispatch.put("addUser", (ticket) ->
                 Optional.of(UsersDb.getInstance().add((Users) ticket)));
         //управление ролями
-        this.dispatch.put("findallroles", (ticket) ->
+        this.dispatch.put("findAllRoles", (ticket) ->
                 Optional.of(RolesDb.getInstance().findAll()));
         //управление объявлениями
-        this.dispatch.put("addan", (ticket) ->
+        this.dispatch.put("addaAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().edit((Announcement) ticket)));
-        this.dispatch.put("findallan", (ticket) ->
+        this.dispatch.put("findAllAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().findAll()));
-        this.dispatch.put("findbyidan", (ticket) ->
+        this.dispatch.put("findAyidAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().findByID((Announcement) ticket)));
-        this.dispatch.put("updatean", (ticket) ->
+        this.dispatch.put("updateAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().edit((Announcement) ticket)));
         //управление картинками
-        this.dispatch.put("findbyidphoto", (ticket) ->
+        this.dispatch.put("findByIdPhoto", (ticket) ->
                 Optional.of(PhotoDb.getInstance().findByID((Photo) ticket)));
         //управление марками
-        this.dispatch.put("findallmarka", (ticket) ->
+        this.dispatch.put("findAllMarka", (ticket) ->
                 Optional.of(MarkaDb.getInstance().findAll()));
-        this.dispatch.put("findbyidmarka", (ticket) ->
+        this.dispatch.put("findByIdMarka", (ticket) ->
                 Optional.of(MarkaDb.getInstance().findByID((Marka) ticket)));
         //управление моделями
-        this.dispatch.put("findByMarkaidModel", (ticket) ->
+        this.dispatch.put("findByMarkaIdModel", (ticket) ->
                 Optional.of(ModelDb.getInstance().findByMarkaid((Marka) ticket)));
         //управление трансмиссией
-        this.dispatch.put("findalltr", (ticket) ->
+        this.dispatch.put("findAllTr", (ticket) ->
                 Optional.of(TransmissionDb.getInstance().findAll()));
         return this;
     }
@@ -76,8 +76,8 @@ public class Dispatch {
      * @param ticket в оптионал передаётся передаётася обект модели {@link (Model, Announcement, Car, Marka, Model, Photo, Roles, Transmission, Users)}
      * @param <E>    параметр который вернётся, возможно это будет Lист объектов из базы, либо один объект
      */
-    @SuppressWarnings("unchecked")
     public <E> E access(String key, Mod ticket) {
-        return (E) this.dispatch.get(key).apply(ticket);
+        //noinspection unchecked,OptionalGetWithoutIsPresent
+        return (E) this.dispatch.get(key).apply(ticket).get();
     }
 }

@@ -1,16 +1,16 @@
 ﻿function isValid(r, l) {
     var rsl = false;
-    if (r.val() == l) {
+    if (r.val() === l) {
         rsl = true;
         alert(r.attr("title"));
     }
     return rsl;
-};
+}
 
 function valid() {
     return !(isValid($("#name"), "") + isValid($("#login"), "") + isValid($("#password"), "")
         + isValid($("#roles"), ""));
-};
+}
 /**
  * ретурн ролелист старт
  */
@@ -28,6 +28,7 @@ $(document).ready(function rolelist() {
     });
 
     function returnrolelist(user) {
+        // noinspection JSJQueryEfficiency
         if ($("#rol").val() === "ADMIN") {
             return "<option value='" + user.id + "'>" + user.role + "</option>"
         } else if ($("#rol").val() === user.role) {
@@ -42,6 +43,7 @@ $(document).ready(function rolelist() {
 function addOrupdate() {
     var rsl = "";
     var action = "";
+    // noinspection JSJQueryEfficiency
     if ($("#id").val() > 0) {
         rsl = "обновлён";
         action = "addOrupdate";
@@ -62,17 +64,19 @@ function addOrupdate() {
             success: function (data) {
                 console.log(data.id);
                 if (data.id !== 0) {
-                $("#result").after("<div class=\"alert alert-success  alert-dismissible\">\n" +
+                    // noinspection JSUnresolvedVariable,JSUnresolvedVariable
+                    $("#result").after("<div class=\"alert alert-success  alert-dismissible\">\n" +
                     "            " + data.login + " <strong> " + rsl + "</strong>\n" +
                     "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
             } else {
+                    // noinspection JSUnresolvedVariable
                     $("#result").after("<div class=\"alert alert-success  alert-danger\">\n" +
                         "            " + data.login + " <strong> " + "пользователь с таким логином уже существует" + "</strong>\n" +
                         "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
                 }
             }
 
-        })
+        });
         return true;
     } else {
         return false;

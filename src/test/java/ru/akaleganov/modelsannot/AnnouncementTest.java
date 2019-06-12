@@ -47,7 +47,7 @@ public class AnnouncementTest {
 
     @Test
     public void teststring() {
-        Object list = new Dispatch().init().access("findallan", Optional.of(new Announcement(0)));
+        Object list = new Dispatch().init().access("findallan", new Announcement(0));
         try {
             System.out.println(new ObjectMapper().writeValueAsString(list));
         } catch (JsonProcessingException e) {

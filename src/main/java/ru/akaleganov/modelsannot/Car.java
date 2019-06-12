@@ -94,7 +94,7 @@ public class Car extends AllModels {
     }
     @Override
     public String toString() {
-        return "Car{" + "id=" + super.getId() + ", descrition=" + description + ", model=" + model + ", transmission="
+        return "Car{" + "id=" + super.getId() + ", description=" + description + ", model=" + model + ", transmission="
                 + transmission + ", yar=" + yar + ", photo=" + photo + '}';
     }
 }

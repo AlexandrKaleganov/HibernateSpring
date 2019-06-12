@@ -3,8 +3,9 @@
  * логина и пароля для корректной отрисовки на jsp должны присутствовать два блока div id="navipanel" id="username"
  */
 $(document).ready(function () {
+    // language=HTML
     var nbar = "<nav class=\"navbar navbar-expand-sm bg-dark navbar-dark\">\n"
-        + "    <a class=\"navbar-brand\"href=\"${pageContext.servletContext.contextPath}/\">Logo</a>\n"
+        + "    <a class=\"navbar-brand\" href=\"${pageContext.servletContext.contextPath}/\">Logo</a>\n"
         + "<ul class=\"navbar-nav\">\n"
 
         + "<li class=\"nav-item\">\n"
@@ -27,6 +28,6 @@ function exit() {
     $.ajax({
         type: "POST",
         url: "./",
-        data: {exit: "exit"},
+        data: {exit: "exit"}
     })
-};
+}

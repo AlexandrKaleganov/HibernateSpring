@@ -21,6 +21,7 @@
         <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
         <%@include file="/WEB-INF/vievs/js/index.js"%>
     </script>
+    <title>index</title>
 </head>
 <body id="body">
 </body>
