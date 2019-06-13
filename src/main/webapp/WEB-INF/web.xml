@@ -29,7 +29,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>BacketLoadServlet</servlet-name>
-        <url-pattern>/backet</url-pattern>
+        <url-pattern>/basket</url-pattern>
     </servlet-mapping>
 
 </web-app>

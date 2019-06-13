@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 
 /**
- * Сервлет для работы с хешмапой из сессии
+ * Сервлет для работы с хешмапой из сессии для загрузки данных в корзину
  */
 public class BasketLoadServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(BasketLoadServlet.class);

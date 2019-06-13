@@ -1,32 +1,45 @@
 package ru.akaleganov.service;
 
-import org.apache.log4j.Logger;
-import ru.akaleganov.db.DbStore;
-import ru.akaleganov.db.Store;
 import ru.akaleganov.models.Item;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
-import java.util.function.BiFunction;
-import java.util.function.Function;
+import java.util.function.BiConsumer;
 
 /**
- * класс будет принимать параметры и возвращать объект item, с заполнением недостающих полей
+ * Класс для работы с хешмапой
+ * @author Alexander Kaleganov
+ * @since 13/06/2019
+ * <br/>
+ * <b>содержит поля:<b/>
+ * @see ServiceItem#INSTANCE
+ * @see ServiceItem#servis
+ *
  */
 public class ServiceItem {
+
     /**
-     * ServiceItem.
+     * хешмапа ключ стринг (команды которые вытянут необходимую функцию) и содержит функциональный интерфейс,
+     * который принимает хешкарту корзины HashMap<Item, Integer>   - Item  указывает на позицию в корзине,
+     * Integer указывает на количество данного лота в корзине, и {@link Item} в зависимости от того какая команда прилетела
+     * выполняются необходимые действия с хешкартой
+     * add - добавить объект в корзину
+     * delOne минусует  от Integer  по ключу Item  одно значение
+     * deleteItemForKey удаляет из корзины позицию полностью
+     * clear  - очищает корзину(хешмапу)
+     *  findAllMap возвращает текущую хемапу
      */
-
-    private final Map<String, BiFunction<Item, HashMap<Item, Integer>, HashMap<Item, Integer>>> servis  =
-            new HashMap<String, BiFunction<Item, HashMap<Item, Integer>, HashMap<Item, Integer>>>();
+    private final Map<String, BiConsumer<Item, HashMap<Item, Integer>>> servis  =
+            new HashMap<>();
+    /**
+     * синглтон текущего класса
+     */
     private final static ServiceItem INSTANCE = new ServiceItem().init();
-    private static final Logger LOGGER = Logger.getLogger(ServiceItem.class);
 
+    /**
+     *
+     * @return {@link ServiceItem} возвращает объект текущего класса
+     */
     public static ServiceItem getInstance() {
         return INSTANCE;
     }
@@ -36,85 +49,71 @@ public class ServiceItem {
      *
      * @return current object.
      */
-    public ServiceItem init() {
-        this.servis.put("add", (item, map) ->
-               this.addtoMap(item, map));
-        this.servis.put("delOne", (item, map) ->
-                 this.deleteOneItem(item, map));
-        this.servis.put("deleteItemForKey", (item, map) ->
-                this.deleteItem(item, map));
-        this.servis.put("clear", (item, map) ->
-                this.clearBacket(item, map));
-        this.servis.put("findAllMap", (item, map) ->
-                this.findallmap(item, map));
+    private ServiceItem init() {
+        this.servis.put("add", this::addToMap);
+        this.servis.put("delOne", this::deleteOneItem);
+        this.servis.put("deleteItemForKey", this::deleteItem);
+        this.servis.put("clear", (item, map) -> clearBasket(map));
+        this.servis.put("findAllMap", (item, map) -> findAllMap());
         return this;
     }
 
     /**
-     * новый диспатчер, возвращает указанный параметр
+     * возвращает указанный параметр
      *
-     * @param key
-     * @param item
-     * @return
+     * @param key ключ указывает на действие которое необходимо произвести с HeshMap<Item, Integer>
+     * @param item {@link Item}  который возможно будет добавлен или удалён из корзины
      */
-    public HashMap<Item, Integer> access(String key, Item item, HashMap<Item, Integer> map) {
-        return this.servis.get(key).apply(item, map);
+    public void access(String key, Item item, HashMap<Item, Integer> map) {
+        this.servis.get(key).accept(item, map);
     }
 
     /**
      * добавление объекта в мапу
-     * @param item
-     * @param map
-     * @return
+     * @param item {@link Item} объект который будет добавлен в корзину
+     * @param map  HashMap<Item, Integer> корзина, в которую будет добавлен Item
      */
-    public HashMap<Item, Integer> addtoMap(Item item, HashMap<Item, Integer> map) {
+    private void addToMap(Item item, HashMap<Item, Integer> map) {
         if (map.containsKey(item)) {
             map.put(item, map.get(item) + 1);
         } else {
             map.put(item, 1);
         }
-        return map;
     }
     /**
      * удаление одного объекта из мапы
-     * @param item
-     * @param map
-     * @return
+     * @param item {@link Item} объект который будет удалён из корзины
+     * @param map  HashMap<Item, Integer> корзина, из которой будет удалён Item
      */
-    public HashMap<Item, Integer> deleteOneItem(Item item, HashMap<Item, Integer> map) {
+    private void deleteOneItem(Item item, HashMap<Item, Integer> map) {
         if (map.containsKey(item)) {
             map.put(item, map.get(item) - 1);
         }
         if (map.get(item) == 0) {
             map.remove(item);
         }
-        return map;
     }
 
     /**
      * удаление всех объектов из мапы по ключу
-     * @param item
-     * @param map
-     * @return
+     * @param item {@link Item} находит объект Item по ключу в хеш мапе и удаляет его
+     * @param map  HashMap<Item, Integer> корзина, из которой будет удалён Item
      */
-    public HashMap<Item, Integer> deleteItem(Item item, HashMap<Item, Integer> map) {
-        if (map.containsKey(item)) {
-            map.remove(item);
-        }
-        return map;
+    private void deleteItem(Item item, HashMap<Item, Integer> map) {
+        map.remove(item);
     }
     /**
      * удаление всех объектов из мапы
-     * @param item
-     * @param map
-     * @return
+     * @param map ХешМапа получаемая из сессии, которая хранит в себе добавленные в корзину {@link Item}
      */
-    public HashMap<Item, Integer> clearBacket(Item item, HashMap<Item, Integer> map) {
+    private void clearBasket(HashMap<Item, Integer> map) {
         map.clear();
-        return map;
     }
 
-    private  HashMap<Item, Integer> findallmap(Item item, HashMap<Item, Integer> map) {
-        return map;
+    /**
+     * над корзиной не будет произведено никаких действий
+     */
+    private void findAllMap() {
+
     }
 }

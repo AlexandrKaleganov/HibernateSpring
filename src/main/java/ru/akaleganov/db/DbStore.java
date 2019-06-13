@@ -11,20 +11,24 @@ import java.util.function.Function;
 import static org.apache.log4j.LogManager.getLogger;
 
 /**
- * @author Alexander Kaleganov
- * @see DbStore#LOGGER
  * класс для управления базой данных
  * в данном случае понядобилось только получать список лотов, и получать лот по id
+ * @author Alexander Kaleganov
  * @since 13/06/2019
  * <br/>
  * <b>класс содержит поля</b>
+ * @see DbStore#LOGGER
+ * @see DbStore#DB_STORE
+ * @see DbStore#S_FACTORY
  */
 public class DbStore implements Store<Item> {
     /**
      * Логер
      */
     private static final Logger LOGGER = getLogger(DbStore.class);
-
+    /**
+     *
+     */
     private final static DbStore DB_STORE = new DbStore();
     /**
      * получение фабрики сессий

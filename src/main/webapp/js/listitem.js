@@ -3,7 +3,7 @@
  */
 $(document).ready(function () {
     todolist("list");
-    backet("1", "findAllMap");
+    basket("1", "findAllMap");
 });
 
 /**
@@ -21,7 +21,7 @@ function todolist(action) {
             }
         }
     });
-};
+}
 
 /**
  * метод отрисовки прайслиста
@@ -30,9 +30,10 @@ function todolist(action) {
  */
 function loadtable(data) {
     var rsl = "";
+    // noinspection JSUnresolvedVariable
     rsl = rsl + "<tr><td>" + data.id + "</td><td>" + data.name + "</td><td>" + data.price + "</td>";
-    rsl = rsl + "<td><button type=\"button\" value=\"" + data.id + "\" class=\"btn btn-primary\" onclick=\"backet(this.value, 'add')\" >добавить в корзину</button></td>";
-    rsl = rsl + "<td><button type=\"button\" name=\"delone\" value=\"" + data.id + "\" class=\"btn btn-success\" onclick=\"backet(this.value, 'delOne')\" disabled>удалить из корзины</button></td></tr>";
+    rsl = rsl + "<td><button type=\"button\" value=\"" + data.id + "\" class=\"btn btn-primary\" onclick=\"basket(this.value, 'add')\" >добавить в корзину</button></td>";
+    rsl = rsl + "<td><button type=\"button\" name=\"delone\" value=\"" + data.id + "\" class=\"btn btn-success\" onclick=\"basket(this.value, 'delOne')\" disabled>удалить из корзины</button></td></tr>";
     return rsl;
 }
 

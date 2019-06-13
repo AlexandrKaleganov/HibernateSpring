@@ -14,30 +14,34 @@ import static org.hamcrest.Matchers.is;
  */
 
 public class DbStoreTest {
-
-    public void testfank(Item item, BiConsumer<Item, DbStore> fank) {
-        final DbStore store = (DbStore) DbStore.getDbStore();
+    /**
+     * tesFunction
+     *
+     * @param functionalMethod получаетс функциональный метод в котором происходит реализация тестирование
+     */
+    private void tesFunction(Item item, BiConsumer<Item, DbStore> functionalMethod) {
+        final DbStore store = DbStore.getDbStore();
         item.setId((long) 1);
-        fank.accept(item, store);
+        functionalMethod.accept(item, store);
     }
 
     /**
-     * findbyid test
+     * тестирование получение Лота по ID
      */
     @Test
-    public void findbyid() {
-        this.testfank(new Item(), (item, dbStore) -> {
+    public void testingToGetTheObjectById() {
+        this.tesFunction(new Item(), (item, dbStore) -> {
             Item rsl = dbStore.findById(item);
             assertThat(rsl.getName(), is("хлеб"));
         });
     }
 
     /**
-     * findall test
+     * тестирование получение списка всех Лотов
      */
     @Test
-    public void findall() {
-        this.testfank(new Item(), (item, dbStore) -> {
+    public void testGettingAListOf() {
+        this.tesFunction(new Item(), (item, dbStore) -> {
             ArrayList<Item> list = (ArrayList<Item>) dbStore.findAll();
             assertThat(list.size(), is(3));
         });
