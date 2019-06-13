@@ -20,7 +20,7 @@ public class ServiceItemTest {
         HashMap<Item, Integer> map = new HashMap<>();
         map.put(new Item((long) 1), 1);
         map.put(new Item((long) 2), 1);
-        HashMap<Item, Integer> rsl = ServiceItem.getInstance().access("findallmap", new Item(), map);
+        HashMap<Item, Integer> rsl = ServiceItem.getInstance().access("findAllMap", new Item(), map);
         map.forEach((k, v) -> {
             assertThat(v, Is.is(1));
         });

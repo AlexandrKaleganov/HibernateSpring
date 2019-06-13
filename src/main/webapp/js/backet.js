@@ -33,7 +33,7 @@ function loadbacket(key, dat) {
     var v = JSON.parse(str);
     var rsl = "";
     rsl = rsl + "<tr><td>" + v.name + "</td><td>" + dat + "</td>";
-    rsl = rsl + "<td><button type=\"button\"  value=\"" + v.id + "\" class=\"btn btn-primary\" onclick=\"backet(this.value, 'deleteitemforkey')\" >Удалить позицию полностью</button></td></tr>";
+    rsl = rsl + "<td><button type=\"button\"  value=\"" + v.id + "\" class=\"btn btn-primary\" onclick=\"backet(this.value, 'deleteItemForKey')\" >Удалить позицию полностью</button></td></tr>";
     return rsl;
 }
 

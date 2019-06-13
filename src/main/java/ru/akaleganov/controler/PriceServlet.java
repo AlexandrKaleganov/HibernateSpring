@@ -19,7 +19,7 @@ public class PriceServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(PriceServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
             writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(req.getParameter("action"), new Item())));

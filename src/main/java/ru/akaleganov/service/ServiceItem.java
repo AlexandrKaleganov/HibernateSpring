@@ -39,13 +39,13 @@ public class ServiceItem {
     public ServiceItem init() {
         this.servis.put("add", (item, map) ->
                this.addtoMap(item, map));
-        this.servis.put("delone", (item, map) ->
+        this.servis.put("delOne", (item, map) ->
                  this.deleteOneItem(item, map));
-        this.servis.put("deleteitemforkey", (item, map) ->
+        this.servis.put("deleteItemForKey", (item, map) ->
                 this.deleteItem(item, map));
         this.servis.put("clear", (item, map) ->
                 this.clearBacket(item, map));
-        this.servis.put("findallmap", (item, map) ->
+        this.servis.put("findAllMap", (item, map) ->
                 this.findallmap(item, map));
         return this;
     }

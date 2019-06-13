@@ -31,7 +31,7 @@ public class DispatchTest {
     @Test
     public void testDispatcherbyID() {
         this.fanktest(item -> {
-            Item testitem = Dispatch.getInstance().access("findbyid", item);
+            Item testitem = Dispatch.getInstance().access("findById", item);
             assertThat(testitem.getName(), is("хлеб"));
         });
     }

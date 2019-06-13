@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.is;
 public class DbStoreTest {
 
     public void testfank(Item item, BiConsumer<Item, DbStore> fank) {
-        final DbStore store = (DbStore) DbStore.getDbstoreINSTANCE();
+        final DbStore store = (DbStore) DbStore.getDbStore();
         item.setId((long) 1);
         fank.accept(item, store);
     }
@@ -27,7 +27,7 @@ public class DbStoreTest {
     @Test
     public void findbyid() {
         this.testfank(new Item(), (item, dbStore) -> {
-            Item rsl = dbStore.findbyID(item);
+            Item rsl = dbStore.findById(item);
             assertThat(rsl.getName(), is("хлеб"));
         });
     }
@@ -38,7 +38,7 @@ public class DbStoreTest {
     @Test
     public void findall() {
         this.testfank(new Item(), (item, dbStore) -> {
-            ArrayList<Item> list = (ArrayList<Item>) dbStore.findall();
+            ArrayList<Item> list = (ArrayList<Item>) dbStore.findAll();
             assertThat(list.size(), is(3));
         });
     }

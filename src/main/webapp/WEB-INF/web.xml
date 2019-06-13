@@ -24,7 +24,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>BacketLoadServlet</servlet-name>
-        <servlet-class>ru.akaleganov.controler.BacketLoadServlet</servlet-class>
+        <servlet-class>ru.akaleganov.controler.BasketLoadServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>

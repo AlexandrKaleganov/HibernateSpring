@@ -3,28 +3,22 @@ package ru.akaleganov.db;
 import java.util.List;
 
 /**
- * интерфейс, описывающий реализацию управление БД
- * @param <E>
+ * @author Alexander Kaleganov
+ * @since 13/06/2019
+ *
+ * @param <E> объект с которым работает бд
  */
 public interface Store<E> {
-    /* методы который не понадобились
-//    E add(E item);
-
-//    E delete(E item);
-
-//    E update(E item);
-*/
-
     /**
      * нахожждение лота по id
-     * @param item
-     * @return
+     * @param item объект который необходимо получить из бд
+     * @return Получение назад обработанного объекта
      */
-    E findbyID(E item);
+    E findById(E item);
 
     /**
-     * получение списка лотов
-     * @return
+     *
+     * @return получение списка объектов из бд
      */
-    List<E> findall();
+    List<E> findAll();
 }

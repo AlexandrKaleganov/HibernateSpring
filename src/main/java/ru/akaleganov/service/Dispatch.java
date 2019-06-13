@@ -18,15 +18,17 @@ import ru.akaleganov.models.Item;
 import java.util.*;
 import java.util.function.Function;
 
+/**
+ * @author Alexander Kaleganov
+ * @since 13/06/2019
+ *
+ */
 public class Dispatch {
-    /**
-     * Dispatch.
-     */
 
     private final Map<String, Function<Item, Optional>> dispatch = new HashMap<String, Function<Item, Optional>>();
     private final static Dispatch INSTANCE = new Dispatch().init();
     private static final Logger LOGGER = Logger.getLogger(Dispatch.class);
-    private Store<Item> store = DbStore.getDbstoreINSTANCE();
+    private Store<Item> store = DbStore.getDbStore();
     public static Dispatch getInstance() {
         return INSTANCE;
     }
@@ -37,10 +39,10 @@ public class Dispatch {
      * @return current object.
      */
     public Dispatch init() {
-        this.dispatch.put("findbyid", (item) ->
-                Optional.of(this.store.findbyID(item)));
+        this.dispatch.put("findById", (item) ->
+                Optional.of(this.store.findById(item)));
         this.dispatch.put("list", (item) ->
-                Optional.of(this.store.findall()));
+                Optional.of(this.store.findAll()));
         return this;
     }
 
