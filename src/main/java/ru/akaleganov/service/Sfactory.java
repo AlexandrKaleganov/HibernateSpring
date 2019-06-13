@@ -17,7 +17,7 @@ public class Sfactory implements AutoCloseable {
         return INSTANCE;
     }
 
-    public Sfactory() {
+    private Sfactory() {
         factory = new Configuration().configure().buildSessionFactory();
     }
 
@@ -26,7 +26,7 @@ public class Sfactory implements AutoCloseable {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         if (!this.factory.isClosed()) {
             factory.close();
         }
