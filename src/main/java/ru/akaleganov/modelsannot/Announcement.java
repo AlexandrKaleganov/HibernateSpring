@@ -14,6 +14,7 @@ import java.sql.Timestamp;
  * @since 06/05//2019
  * <br/>
  * <b>содержит поля:<b/>
+ * @see Announcement#id
  * @see Announcement#name
  * @see Announcement#car
  * @see Announcement#created
@@ -42,10 +43,17 @@ public class Announcement extends AllModels {
     /*продано или нет*/
     private boolean done;
 
+    /**
+     *
+     * @param id {@link Announcement#id}
+     */
     public Announcement(int id) {
         super(id);
     }
 
+    /**
+     * конструктор по умлочанию буз инициализации
+     */
     public Announcement() {
         super();
     }
@@ -119,6 +127,7 @@ public class Announcement extends AllModels {
      *
      * @return если автомобиль не продан вернёт false иначе true
      */
+    @SuppressWarnings("unused")
     public boolean isDone() {
         return done;
     }
