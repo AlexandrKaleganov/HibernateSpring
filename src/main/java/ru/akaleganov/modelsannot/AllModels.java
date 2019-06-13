@@ -6,11 +6,14 @@ import javax.persistence.*;
  * @author Alexander Kalegano
  * @version 1
  * @since 15/05/19
- * пропробую сделать абстрактный класс, в котором уже реализован идентификатор и конструктор
- * думаю будет работать, рипалил такое в одном видео уроке
+ * абстрактный класс, в котором уже реализован идентификатор и конструктор
+ * @see AllModels#id
  */
 @MappedSuperclass
 abstract class AllModels implements Mod {
+    /**
+     * все объекты содержат id  уникальный идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

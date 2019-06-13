@@ -23,8 +23,8 @@ public class ServiceAddObjects {
         return INSTANCE;
     }
 
-    public Announcement addAnnouncement(String jsonStroka) {
-        Announcement item = null;
+    private Announcement addAnnouncement(String jsonStroka) {
+        Announcement item;
         try {
             item = new ObjectMapper().readValue(jsonStroka, Announcement.class);
             item.setCreated(Timestamp.valueOf(LocalDateTime.now()));
@@ -56,12 +56,12 @@ public class ServiceAddObjects {
         return this.addModel(json, j -> new ObjectMapper().readValue(j, Marka.class));
     }
 
-    public List<Photo> addPhoto(ArrayList<String> urlList) {
+    private List<Photo> addPhoto(ArrayList<String> urlList) {
         ArrayList<Photo> photos = new ArrayList<>();
         urlList.forEach(url -> {
             if (url != null && url.length() > 1) {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                BufferedImage image = null;
+                BufferedImage image;
                 String base64String = null;
                 try {
                     image = ImageIO.read(new File(url));
@@ -84,34 +84,40 @@ public class ServiceAddObjects {
         });
         return photos;
     }
+
+    /**
+     * метод для получения Обекта вото из входящего файла
+     * @param img {@link File} файл фотографии jpg / png
+     * @return {@link Photo}
+     */
     public Photo addPhoto(File img) {
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                BufferedImage image = null;
-                String base64String = null;
-                try {
-                    image = ImageIO.read(img);
-                    String formatName = "";
-                    ImageIO.write(image, formatName, baos);
-                    baos.flush();
-                    base64String = Base64.encode(baos.toByteArray());
-                    baos.close();
-                } catch (IOException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
-                byte[] resByteArray = Base64.decode(base64String);
-                Photo photo = new Photo();
-                photo.setPhoto(resByteArray);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        BufferedImage image;
+        String base64String = null;
+        try {
+            image = ImageIO.read(img);
+            String formatName = "";
+            ImageIO.write(image, formatName, baos);
+            baos.flush();
+            base64String = Base64.encode(baos.toByteArray());
+            baos.close();
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        byte[] resByteArray = Base64.decode(base64String);
+        Photo photo = new Photo();
+        photo.setPhoto(resByteArray);
         return photo;
     }
     /**
      * метод будет объеденять наши объекты
      *
-     * @param ann
-     * @param car
-     * @param photos
-     * @return
+     * @param ann {@link Announcement} объект обявление
+     * @param car {@link Car} объект автомобиль который создаётся уникальный для каждого объявления
+     * @param photos {@link Photo} лист фотографий
+     * @return {@link Announcement} из входящих параметров собирается объявление
      */
-    public Announcement addAll(Announcement ann, Car car, List<Photo> photos) {
+    private Announcement addAll(Announcement ann, Car car, List<Photo> photos) {
         ann.setCar(car);
         car.setAnnouncement(ann);
         if (photos.size() > 0) {
@@ -124,12 +130,12 @@ public class ServiceAddObjects {
     /**
      * перегруженный метод для работы с json строками
      *
-     * @param jsonann
-     * @param jsoncar
-     * @param urlPhoto
-     * @return
-     * @throws IOException
+     * @param jsonann объект объявле объявления в формате JSON
+     * @param jsoncar строка  в формате JSON
+     * @param urlPhoto список ссылок на фотографии
+     * @return {@link Announcement}
      */
+
     public Announcement addAll(String jsonann, String jsoncar, ArrayList<String> urlPhoto) {
         Announcement ann = this.addAnnouncement(jsonann);
         Car car = this.addCar(jsoncar);
@@ -139,11 +145,11 @@ public class ServiceAddObjects {
 
     /**
      * рефактор try catch
-     *
-     * @param json
-     * @param mapper
-     * @param <E>
-     * @return
+     * @author Alexander Kaleganov
+     * @param json прилетает json строка, которую мы будем конвертировать в объект
+     * @param mapper {@link FankEx} будет принимать json строку и возвращать объект
+     * @param <E> объект, который мы получем после конвертации json строрки в объект
+     * @return обект полученный после конвертации строки в объект
      */
     private <E> E addModel(String json, FankEx<String, E> mapper) {
         E rsl = null;
