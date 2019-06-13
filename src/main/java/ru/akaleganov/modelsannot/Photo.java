@@ -10,8 +10,8 @@ import javax.persistence.*;
  * Класс фотография
  * @author Kaleganov Aleander
  * @since 06/05//2019
- *
- * содержит поля:
+ * <br/>
+ * <b>содержит поля:<b/>
  * @see Photo#photo
  * @see Photo#car
  *

@@ -12,8 +12,8 @@ import java.sql.Timestamp;
  *
  * @author Kaleganov Aleander
  * @since 06/05//2019
- *
- * содержит в себе поля:
+ * <br/>
+ * <b>содержит поля:<b/>
  * @see Announcement#name
  * @see Announcement#car
  * @see Announcement#created

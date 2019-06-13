@@ -11,8 +11,8 @@ import java.util.List;
  * Класс автомобиль, создаётся уникальный объект для каждого объявления
  * @author Kaleganov Aleander
  * @since 06/05//2019
- *
- * содержит поля
+ * <br/>
+ * <b>содержит поля:<b/>
  * @see Car#id
  * @see Car#photo
  * @see Car#announcement

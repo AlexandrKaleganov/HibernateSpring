@@ -4,9 +4,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 /**
- * @author Alexander Kaleganov
- * @since 17.05.19
- * синглтон
+ * @author Kaleganov Aleander
+ * @since 06/05//2019
+ * <br/>
+ * <b>содержит поля:<b/>
  */
 public class Sfactory implements AutoCloseable {
     private final SessionFactory factory;

@@ -3,10 +3,13 @@ package ru.akaleganov.modelsannot;
 import javax.persistence.*;
 
 /**
+ *
  * @author Alexander Kalegano
  * @version 1
  * @since 15/05/19
  * абстрактный класс, в котором уже реализован идентификатор и конструктор
+ * <br/>
+ * <b>содержит поля:<b/>
  * @see AllModels#id
  */
 @MappedSuperclass
