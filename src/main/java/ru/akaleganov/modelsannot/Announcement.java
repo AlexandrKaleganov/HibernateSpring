@@ -28,19 +28,21 @@ public class Announcement extends AllModels {
     /** наименование объявления*/
     @Column(name = "name")
     private String name;
+    /**
+     * объект автомобиль
+     */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "announcement")
-    /*объект автомобиль*/
-    private Car car;
+     private Car car;
     @Column(name = "created_dat")
-    /*объект трансмиссия*/
+    /**объект трансмиссия*/
     private Timestamp created;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @Fetch(FetchMode.JOIN)
-    /*автор объявления*/
+    /**автор объявления*/
     private Users author;
     @Column(name = "done")
-    /*продано или нет*/
+    /**продано или нет*/
     private boolean done;
 
     /**
