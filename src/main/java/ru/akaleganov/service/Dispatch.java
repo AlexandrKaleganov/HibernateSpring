@@ -23,7 +23,8 @@ import java.util.function.Function;
  */
 public class Dispatch {
     /**
-     * мапа с функциональным интерфейсом, будет принимать {@link Item} и возвращать оптионал
+     * мапа с функциональным интерфейсом, будет принимать {@link Item} и возвращает оптионал в котором содержится {@link Item}
+     * или List<Item>
      */
     private final Map<String, Function<Item, Optional>> dispatch = new HashMap<>();
     /**
