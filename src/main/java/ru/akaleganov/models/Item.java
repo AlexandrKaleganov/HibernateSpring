@@ -6,12 +6,12 @@ import java.util.Objects;
  * модель Лот
  *
  * @author Alexander Kaleganov
- * @see Item#id
- * @see Item#name
- * @see Item#price
  * @since 13/06/2019
  * <br/>
  * <b>класс содержит поля:</b>
+ * @see Item#id
+ * @see Item#name
+ * @see Item#price
  */
 public class Item {
     /**
