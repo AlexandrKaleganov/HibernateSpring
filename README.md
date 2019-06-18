@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/AlexandrKaleganov/HibernateSpring.svg?branch=master)](https://travis-ci.org/AlexandrKaleganov/HibernateSpring)
-[![codecov](https://codecov.io/gh/AlexandrKaleganov/HibernateSpring/branch/master/graph/badge.svg)](https://codecov.io/gh/AlexandrKaleganov/HibernateSpring)
+[![Build Status](https://travis-ci.org/AlexandrKaleganov/HibernateSpring.svg?branch=voiceCalculator)](https://travis-ci.org/AlexandrKaleganov/HibernateSpring)
+[![codecov](https://codecov.io/gh/AlexandrKaleganov/HibernateSpring/branch/voiceCalculator/graph/badge.svg)](https://codecov.io/gh/AlexandrKaleganov/HibernateSpring)
 # HibernateSpring
 в данном курсе я буду изучать Hibernate  и Spring
 
