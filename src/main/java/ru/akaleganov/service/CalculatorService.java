@@ -1,5 +1,6 @@
 package ru.akaleganov.service;
 
+import ru.akaleganov.err.OperationError;
 import ru.akaleganov.model.Task;
 
 import java.util.HashMap;
@@ -21,12 +22,17 @@ public class CalculatorService {
      * ключём от функции является строковое значение указвающее на необходимое дествие "+", "-", "/", "*"
      */
     private final HashMap<String, Consumer<Task>> functionsOfTheCalculator = new HashMap<>();
+    /**
+     * синглтон текущего класса
+     */
+    private final static CalculatorService calculatorService = new CalculatorService().init();
 
     /**
      * инициализация хеш карты
+     *
      * @return {@link CalculatorService}  возвращает проинициализированный объект текущего класса
      */
-    public CalculatorService init() {
+    private CalculatorService init() {
         this.functionsOfTheCalculator.put("+", (task) -> task.setResult(task.getX() + task.getY()));
         this.functionsOfTheCalculator.put("-", (task) -> task.setResult(task.getX() - task.getY()));
         this.functionsOfTheCalculator.put("*", (task) -> task.setResult(task.getX() * task.getY()));
@@ -34,13 +40,25 @@ public class CalculatorService {
         return this;
     }
 
-    /**
+    /*
      * @param task {@link Task}  принимает задачу, которую необходимо решить
      *             в задаче указывается действие "+", "-", "/", "*" по данному полю
      *             происходит вызов необходимой функции и далее задача передаётся в функцию в которой она обрабатывается,
      *             и в поле задачи result  заносится результат
+     * @throws OperationError метод выбросит исключение если действие не обнаружео
      */
-    public void count(Task task) {
-        this.functionsOfTheCalculator.get(task.getMathematicalSymbol()).accept(task);
+    public void count(Task task) throws OperationError {
+        if (this.functionsOfTheCalculator.containsKey(task.getMathematicalSymbol())) {
+            this.functionsOfTheCalculator.get(task.getMathematicalSymbol()).accept(task);
+        } else {
+            throw new OperationError();
+        }
+    }
+
+    /**
+     * @return {@link CalculatorService}  получение инициализированного объекта текущего класса
+     */
+    public static CalculatorService getCalculatorService() {
+        return calculatorService;
     }
 }

@@ -2,6 +2,7 @@ package ru.akaleganov.service;
 
 import org.junit.Before;
 import org.junit.Test;
+import ru.akaleganov.err.OperationError;
 import ru.akaleganov.model.Task;
 
 import static org.junit.Assert.*;
@@ -27,7 +28,7 @@ public class CalculatorServiceTest {
      * тестирование сложения
      */
     @Test
-    public void calculatorTestAddition() {
+    public void calculatorTestAddition() throws OperationError {
         task.setMathematicalSymbol("+");
         calculatorService.count(task);
         assertEquals(6.0, task.getResult(), 0.0);
@@ -37,7 +38,7 @@ public class CalculatorServiceTest {
      * тестирование вычитания
      */
     @Test
-    public void calculatorTestSubtraction() {
+    public void calculatorTestSubtraction() throws OperationError {
         task.setMathematicalSymbol("-");
         calculatorService.count(task);
         assertEquals(2.0, task.getResult(), 0.0);
@@ -47,7 +48,7 @@ public class CalculatorServiceTest {
      * тестирование умножение
      */
     @Test
-    public void calculatorTestMultiplication() {
+    public void calculatorTestMultiplication() throws OperationError {
         task.setMathematicalSymbol("*");
         calculatorService.count(task);
         assertEquals(8.0, task.getResult(), 0.0);
@@ -57,9 +58,19 @@ public class CalculatorServiceTest {
      * тестирование деление
      */
     @Test
-    public void calculatorTestDivision() {
+    public void calculatorTestDivision() throws OperationError {
         task.setMathematicalSymbol("/");
         calculatorService.count(task);
         assertEquals(2.0, task.getResult(), 0.0);
     }
+
+    /**
+     * тестирование исключения
+     */
+    @Test(expected = OperationError.class)
+    public void calculatorTestOperationError() throws OperationError {
+        task.setMathematicalSymbol("545");
+        calculatorService.count(task);
+    }
+
 }
