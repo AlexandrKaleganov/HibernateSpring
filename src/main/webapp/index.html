@@ -10,31 +10,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script charset="UTF-8" type="text/javascript" src="js/sortedTable.js">
+    <script charset="UTF-8" type="text/javascript" src="js/jsonpost.js">
 
     </script>
 </head>
 <body>
+<div id="err">
+
+</div>
 <div class="container">
-    <p>Список товаров:
-    <form action="${pageContext.servletContext.contextPath}/" method="post">
-        <input type="hidden" name="an" value="0">
-        <input type="hidden" name="action" value="findbyidan">
-        <input type="submit" value="Подать объявление">
+    <form>
+        <div class="form-group">
+            <label for="inputX">X = </label>
+            <input type="number" class="form-control" id="inputX" placeholder="введите X">
+        </div>
+        <div class="form-group">
+            <label for="inputY">Y = </label>
+            <input type="number" class="form-control" id="inputY" placeholder="введите Y">
+        </div>
+        <div class="form-group">
+            <label for="mathematicalSymbol">Select action</label>
+            <select class="form-control" id="mathematicalSymbol">
+                <option>+</option>
+                <option>-</option>
+                <option>/</option>
+                <option>*</option>
+            </select>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="inputTask()">Submit</button>
     </form>
-    </p>
-    <table class="table table-striped" id="todolist_table">
-        <thead class="thead-dark">
-        <tr>
-            <th onclick="sortTable(0, 'todolist_table')">ID &darr;</th>
-            <th onclick="sortTable(1, 'todolist_table')">Название товара &darr;<span class="fi-sort-ascending"></span></th>
-            <th onclick="sortTable(2, 'todolist_table')">Цена&darr;</th>
-            <th>Купить &darr;</th>
-            <th>Отменить &darr;</th>
-        </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+</div>
+<div class="container"id="result">
+
 </div>
 </body>
 </html>

@@ -14,6 +14,7 @@ import java.util.function.Consumer;
  * <br/>
  * <b>класс содержит поля:</b>
  * @see CalculatorService#functionsOfTheCalculator
+ * @see CalculatorService#CALCULATOR_SERVICE
  * @since 18.06.2019г
  */
 public class CalculatorService {
@@ -25,7 +26,7 @@ public class CalculatorService {
     /**
      * синглтон текущего класса
      */
-    private final static CalculatorService calculatorService = new CalculatorService().init();
+    private final static CalculatorService CALCULATOR_SERVICE = new CalculatorService().init();
 
     /**
      * инициализация хеш карты
@@ -33,10 +34,10 @@ public class CalculatorService {
      * @return {@link CalculatorService}  возвращает проинициализированный объект текущего класса
      */
     private CalculatorService init() {
-        this.functionsOfTheCalculator.put("+", (task) -> task.setResult(task.getX() + task.getY()));
-        this.functionsOfTheCalculator.put("-", (task) -> task.setResult(task.getX() - task.getY()));
-        this.functionsOfTheCalculator.put("*", (task) -> task.setResult(task.getX() * task.getY()));
-        this.functionsOfTheCalculator.put("/", (task) -> task.setResult(task.getX() / task.getY()));
+        this.functionsOfTheCalculator.put("+", (task) -> task.setResult((float) task.getX() + (float) task.getY()));
+        this.functionsOfTheCalculator.put("-", (task) -> task.setResult((float) task.getX() - (float) task.getY()));
+        this.functionsOfTheCalculator.put("*", (task) -> task.setResult((float) task.getX() * (float) task.getY()));
+        this.functionsOfTheCalculator.put("/", (task) -> task.setResult((float) task.getX() / (float) task.getY()));
         return this;
     }
 
@@ -59,6 +60,6 @@ public class CalculatorService {
      * @return {@link CalculatorService}  получение инициализированного объекта текущего класса
      */
     public static CalculatorService getCalculatorService() {
-        return calculatorService;
+        return CALCULATOR_SERVICE;
     }
 }

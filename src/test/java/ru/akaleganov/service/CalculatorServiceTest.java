@@ -8,17 +8,15 @@ import ru.akaleganov.model.Task;
 import static org.junit.Assert.*;
 
 public class CalculatorServiceTest {
-    private CalculatorService calculatorService;
+    private final CalculatorService calculatorService = CalculatorService.getCalculatorService();
     private Task task;
 
     /**
-     * инициализацировать класс калькулятор
-     * задать значение полей объекта task
+     * инициализацировать значение полей объекта task
      * инициализация происходит перед каждым тестированием
      */
     @Before
     public void load() {
-        calculatorService = new CalculatorService().init();
         task = new Task();
         task.setX(4);
         task.setY(2);

@@ -1,5 +1,1 @@
 package ru.akaleganov;
-/**
- *
- * hibernate
- */
