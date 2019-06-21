@@ -14,7 +14,6 @@ import java.sql.Timestamp;
  * @since 06/05//2019
  * <br/>
  * <b>содержит поля:<b/>
- * @see Announcement#id
  * @see Announcement#name
  * @see Announcement#car
  * @see Announcement#created
