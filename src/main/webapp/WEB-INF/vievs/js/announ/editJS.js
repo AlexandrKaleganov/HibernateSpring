@@ -217,7 +217,7 @@ function addAnno() {
 //загрузка файлов на сервлет
 function fileupload() {
     var url = "./upload";
-    var form = $("#sampleUploadFrm");
+    var form = $("#sampleUploadFrm")[0];
     var data = new FormData(form);
     $.ajax({
         type: "POST",
