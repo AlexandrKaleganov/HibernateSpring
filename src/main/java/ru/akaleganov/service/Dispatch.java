@@ -52,7 +52,7 @@ public class Dispatch {
         this.dispatch.put("findAllRoles", (ticket) ->
                 Optional.of(RolesDb.getInstance().findAll()));
         //управление объявлениями
-        this.dispatch.put("addaAn", (ticket) ->
+        this.dispatch.put("addAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().edit((Announcement) ticket)));
         this.dispatch.put("findAllAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().findAll()));

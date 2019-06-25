@@ -36,7 +36,7 @@
             <button id="buttonedit" type="button" class="btn btn-success" onclick="enableall(false)" disabled>Редактировать</button>
         </div>
         <div class="form-group col-md-6">
-            <button id="totalbutton" type="button" value="addan" class="btn btn-primary" onclick="addAnno()" disabled>Применить</button>
+            <button id="totalbutton" type="button" value="addAn" class="btn btn-primary" onclick="addAnno()" disabled>Применить</button>
         </div>
     </div>
     <form>

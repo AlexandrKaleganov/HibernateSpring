@@ -197,8 +197,9 @@ function addAnno() {
                 car: "{\"id\":\"" + $("#carid").val() + "\"" +
                     ", \"model\":{\"id\":\"" + $("#model").val() + "\"" + "}," + "\"yar\":\"" + $("#yar").val() + "\"" +
                     ", \"transmission\":{\"id\":\"" + $("#transmission").val() + "\"}" +
-                    ", \"description\":\"" + $("#description").val() + "\"" + "}",
-                photolist: "[" + "\"db/Avito-Shema.png\"," + "\"db/Avito-Shema.png\"" + "]"
+                    ", \"description\":\"" + $("#description").val() + "\"" + "}"
+                // ,
+                // photolist: "[" + "\"db/Avito-Shema.png\"," + "\"db/Avito-Shema.png\"" + "]"
             },
             dataType: "json",
             success: function (data) {
