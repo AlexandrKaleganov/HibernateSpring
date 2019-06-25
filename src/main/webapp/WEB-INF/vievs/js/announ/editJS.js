@@ -226,7 +226,7 @@ function fileupload() {
         cache: false,
         processData: false,
         contentType: false,
-        data: {file:$("#filePhoto"), description:$("#descrPhoto")},
+        data: data,
         success: function (msg) {
             console.log(msg);
             var status = msg.status;
