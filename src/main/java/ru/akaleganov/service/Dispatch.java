@@ -56,7 +56,7 @@ public class Dispatch {
                 Optional.of(AnnouncementDb.getInstance().edit((Announcement) ticket)));
         this.dispatch.put("findAllAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().findAll()));
-        this.dispatch.put("findAyidAn", (ticket) ->
+        this.dispatch.put("findByIdAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().findByID((Announcement) ticket)));
         this.dispatch.put("updateAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().edit((Announcement) ticket)));

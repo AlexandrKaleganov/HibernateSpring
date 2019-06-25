@@ -14,6 +14,11 @@ public class AuthFilter implements Filter {
     private static final org.apache.log4j.Logger LOGGER = Logger.getLogger(AuthFilter.class);
 
     @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
+    @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         req.setCharacterEncoding("UTF-8");
         res.setContentType("text/json; charset=windows-1251");

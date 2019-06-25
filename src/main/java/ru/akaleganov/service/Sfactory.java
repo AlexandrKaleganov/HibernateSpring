@@ -29,7 +29,7 @@ public class Sfactory implements AutoCloseable {
     /**
      * конструктор сразу создаёт фабрику сессий
      */
-    private Sfactory() {
+    public Sfactory() {
         factory = new Configuration().configure().buildSessionFactory();
     }
 

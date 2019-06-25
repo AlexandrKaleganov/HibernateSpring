@@ -1,5 +1,5 @@
 ﻿$(document).ready(function anlist() {
-    listan("findallan");
+    listan("findAllAn");
 });
 
 /**
@@ -39,7 +39,7 @@ function stringButton(an) {
     }
     rsl = rsl + "<td><form action=\"${pageContext.servletContext.contextPath}/\" method=\"post\">\n" +
         "                            <input type=\"hidden\" name=\"an\" value=\"" + an.id + "\">\n" +
-        "                            <input type=\"hidden\" name=\"action\" value=\"findbyidan\">\n" +
+        "                            <input type=\"hidden\" name=\"action\" value=\"findByIdAn\">\n" +
         "                            <input type=\"submit\" value=\"Просмотр\">\n" +
         "                        </form>" + "</td></tr>"
     return rsl;
