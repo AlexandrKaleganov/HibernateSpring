@@ -118,7 +118,8 @@
         <%--center photo--%>
             <div id="imageupload">
                 <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
-                    <p><input type="file" name="f">
+                    <p> <input id="descrPhoto" type="text" name="description" />
+                        <input id="filePhoto" type="file" name="file" />
                         <input type="button" value="Отправить" onclick="fileupload()"></p>
                 </form>
             </div>

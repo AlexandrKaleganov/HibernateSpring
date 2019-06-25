@@ -1,9 +1,8 @@
 package ru.akaleganov.container;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,7 +19,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.service.ServiceAddObjects;
-
+@MultipartConfig
 public class FileUploadServlet extends HttpServlet {
     private String filePath, tempPath;
     private int maxFileSize = 5242880;
@@ -48,13 +47,13 @@ public class FileUploadServlet extends HttpServlet {
                 for (FileItem item : multiparts) {
                     System.out.println(item);
                     if (!item.isFormField()) {
-//                        File fileSaveDir = new File(UPLOAD_DIRECTORY);
-//                        if (!fileSaveDir.exists()) {
-//                            fileSaveDir.mkdir();
-//                        }
+                        File fileSaveDir = new File(UPLOAD_DIRECTORY);
+                        if (!fileSaveDir.exists()) {
+                            fileSaveDir.mkdir();
+                        }
                         String name = new File(item.getName()).getName();
                         System.out.println(name);
-//                        item.write( new File(UPLOAD_DIRECTORY + File.separator + name));
+                        item.write( new File(UPLOAD_DIRECTORY + File.separator + name));
                         Photo photo = ServiceAddObjects.getInstance().addPhoto(new File(item.getName()));
                         System.out.println(photo);
                     }
