@@ -33,7 +33,6 @@
 </div>
 <div class="username" id="username" style="float: right;">
 </div>
-<jsp:useBean id="user" scope="request" type="ru.akaleganov.modelsannot.Users"/>
 <c:if test="${user != null}">
     <div class="alert alert-success  alert-dismissible">
             ${user} <strong>удалён</strong>
