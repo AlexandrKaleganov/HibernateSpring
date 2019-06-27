@@ -214,31 +214,45 @@ function addAnno() {
         return false;
     }
 }
-
 //загрузка файлов на сервлет
 function fileupload() {
-    var url = "./upload";
-    var form = $("#sampleUploadFrm")[0];
-    var data = new FormData(form);
-    $.ajax({
+    var form = new FormData();
+    form.append('file', $('#filePhoto')[0].files[0]);
+    jQuery.ajax({
+        url: './upload',
         type: "POST",
-        encType: "multipart/form-data",
-        url: url,
-        cache: false,
+        data: form,
         processData: false,
         contentType: false,
-        data: data,
-        success: function (msg) {
-            console.log(msg);
-            var status = msg.status;
-            if (status === 1) {
-                alert("File has been uploaded successfully");
-            } else {
-                alert("Couldn't upload file");
-            }
-        },
-        error : function(msg) {
-            alert("Couldn't upload file");
+        success: function (result) {
+            alert("File uploaded");
         }
     });
 }
+//загрузка файлов на сервлет
+// function fileupload() {
+//     var url = "./upload";
+//     var form = $("#sampleUploadFrm")[0];
+//     var data = new FormData(form);
+//     $.ajax({
+//         type: "POST",
+//         encType: "multipart/form-data",
+//         url: url,
+//         cache: false,
+//         processData: false,
+//         contentType: false,
+//         data: data,
+//         success: function (msg) {
+//             console.log(msg);
+//             var status = msg.status;
+//             if (status === 1) {
+//                 alert("File has been uploaded successfully");
+//             } else {
+//                 alert("Couldn't upload file");
+//             }
+//         },
+//         error : function(msg) {
+//             alert("Couldn't upload file");
+//         }
+//     });
+// }

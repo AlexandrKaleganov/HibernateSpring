@@ -17,10 +17,12 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.service.ServiceAddObjects;
 @MultipartConfig
 public class FileUploadServlet extends HttpServlet {
+    private final static Logger LOGGER = Logger.getLogger(FileUploadServlet.class);
     private String filePath, tempPath;
     private int maxFileSize = 5242880;
     private int maxMemSize = 5 * 1024;
@@ -41,9 +43,13 @@ public class FileUploadServlet extends HttpServlet {
         final String UPLOAD_DIRECTORY = "d:/uploads";
 
         if (ServletFileUpload.isMultipartContent(req)) {
+            List<FileItem> multiparts = null;
             try {
-                List<FileItem> multiparts = new ServletFileUpload(
+                multiparts = new ServletFileUpload(
                         new DiskFileItemFactory()).parseRequest(req);
+            } catch (Exception e) {
+                LOGGER.error(e.getMessage(), e);
+            }
                 System.out.println(multiparts.size());
                 for (FileItem item : multiparts) {
                     System.out.println(item);
@@ -59,9 +65,7 @@ public class FileUploadServlet extends HttpServlet {
                         System.out.println(photo);
                     }
                 }
-            } catch (Exception e) {
-                // exception handling
-            }
+
 
             PrintWriter out = resp.getWriter();
             out.print("{\"status\":1}");

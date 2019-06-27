@@ -20,11 +20,12 @@ public class AuthFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-        req.setCharacterEncoding("UTF-8");
-        res.setContentType("text/json; charset=windows-1251");
+
         HttpServletRequest request = (HttpServletRequest) req;    //два запроса переделываем под HttpServlet
         HttpServletResponse response = (HttpServletResponse) res;
         if (request.getRequestURI().contains("/signin")) {     //если лезим на страницу авторизации - то
+            req.setCharacterEncoding("UTF-8");
+            res.setContentType("text/json; charset=windows-1251");
             chain.doFilter(req, res);                           //фильтр нас пропускает и наши запросы де нас в свою очередь перекинет на loginIN.jsp
         } else {
             if (request.getSession().getAttribute("login") == null) {   //если в сессии нет  атрибута login
@@ -33,9 +34,18 @@ public class AuthFilter implements Filter {
             }
             if (req.getParameter("exit") != null) {
                 request.getSession().invalidate();
+                req.setCharacterEncoding("UTF-8");
+                res.setContentType("text/json; charset=windows-1251");
                 response.sendRedirect(String.format("%s/signin", request.getContextPath())); //то нас опять бросит на сервлет signin где перекинет на loginIN.jsp
                 return;
             }
+            if (((HttpServletRequest) req).getRequestURI().contains("/upload")) {
+                System.out.println("уплоад");
+                chain.doFilter(req, res);
+                return;
+            }
+            req.setCharacterEncoding("UTF-8");
+            res.setContentType("text/json; charset=windows-1251");
             chain.doFilter(req, res);   //а вот если всё пучком и запрос не на страницу авторизации и сессия содержит логин то фильтр нас пропускает куда угодно
         }
     }
