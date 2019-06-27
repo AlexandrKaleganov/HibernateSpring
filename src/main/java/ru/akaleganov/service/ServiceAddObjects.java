@@ -117,7 +117,7 @@ public class ServiceAddObjects {
      * @param img {@link InputStream}  входящего файла
      * @return {@link Photo}
      */
-    public Photo addPhoto(InputStream img) {
+    public ArrayList<Photo> addPhoto(ArrayList<Photo> photos, InputStream img) {
         byte[] resByteArray = new byte[]{};
         try {
             resByteArray = IOUtils.toByteArray(img);
@@ -126,7 +126,8 @@ public class ServiceAddObjects {
         }
         Photo photo = new Photo();
         photo.setPhoto(resByteArray);
-        return photo;
+        photos.add(photo);
+        return photos;
     }
     /**
      * метод будет объеденять наши объекты

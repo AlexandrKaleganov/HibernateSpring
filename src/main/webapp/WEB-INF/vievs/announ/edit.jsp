@@ -113,7 +113,10 @@
                     <input type="button" value="Отправить" onclick="fileupload()"></p>
             </form>
         </div>
-            <div id="imageviev">
+        <div id="imageList">
+
+        </div>
+            <div id="imageView">
             <c:forEach items="${an.car.photo}" var="photo">
                 <img src="${pageContext.servletContext.contextPath}/image?id=${photo.id}" alt="..." width="600" height="300">
             </c:forEach>

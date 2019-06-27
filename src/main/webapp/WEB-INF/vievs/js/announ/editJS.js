@@ -214,7 +214,13 @@ function addAnno() {
         return false;
     }
 }
-//загрузка файлов на сервлет
+
+
+/**
+ * загрузка файлов на сервлет после возвращает из сесии список загруженных фото
+ * эти фотографии  не отрисовываются а только выходит список фотографии в сессии
+ * с индексами чтобы можно было удалить фото из сессии
+ */
 function fileupload() {
     var form = new FormData();
     form.append('file', $('#filePhoto')[0].files[0]);
@@ -225,11 +231,38 @@ function fileupload() {
         processData: false,
         contentType: false,
         success: function (result) {
-            alert("File uploaded");
+          $('#imageList').html("");
+          $("#imageList").append("<table class=\"table\">\n" +
+              "  <thead>\n" +
+              "    <tr>\n" +
+              "      <th scope=\"col\">#</th>\n" +
+              "      <th scope=\"col\">Фото</th>\n" +
+              "      <th scope=\"col\">Удалить</th>\n" +
+              "    </tr>\n" +
+              "  </thead>\n" +
+              "  <tbody>\n" +
+              "  </tbody>\n" +
+              "</table>");
+            for (var i = 0; i < result.length ; i++) {
+                $('#imageList tbody:last').append(returnTable(i));
+            }
         }
     });
 }
-// загрузка файлов на сервлет
+
+/**
+ * отрисовка таблицы со списком отправленных фотографий в сессии
+ * @param i индекс фотографии в листе
+ * @returns {string} возвращает готоавую строку с кнопкой для возможности удалить из сессии фотографию
+ */
+function returnTable(i) {
+  return   "    <tr>\n" +
+    "      <th scope=\"row\">" + i + "</th>\n" +
+    "      <td> Фото" + i + "</td>\n" +
+    "      <td><button type=\"button\" class=\"close\" value='"+ i +"' data-dismiss=\"alert\" aria-label=\"Close\">&times;</button></td>\n" +
+    "    </tr>\n";
+}
+// загрузка файлов на сервлет второй вариант оба варианта рабочие от случая к случаю
 // function fileupload() {
 //     var url = "./upload";
 //     var form = $("#sampleUploadFrm")[0];

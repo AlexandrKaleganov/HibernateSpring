@@ -1,5 +1,6 @@
 package ru.akaleganov.container;
 
+import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.modelsannot.Users;
 import ru.akaleganov.service.Dispatch;
 import ru.akaleganov.service.ServiceAddObjects;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SigninServlet extends HttpServlet {
     @Override
@@ -28,6 +30,7 @@ public class SigninServlet extends HttpServlet {
             req.getSession().setAttribute("userID", user.getId());
             req.getSession().setAttribute("login", user.getLogin());
             req.getSession().setAttribute("role", user.getRoles().getRole());
+            req.getSession().setAttribute("phList", new ArrayList<Photo>());
             resp.sendRedirect(String.format("%s/", req.getContextPath()));
         }
     }
