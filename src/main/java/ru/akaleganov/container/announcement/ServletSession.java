@@ -1,4 +1,4 @@
-package ru.akaleganov.container;
+package ru.akaleganov.container.announcement;
 
 import javax.servlet.http.HttpServlet;
 

@@ -46,8 +46,6 @@ public class AuthFilter implements Filter {
                 response.sendRedirect(String.format("%s/signin", request.getContextPath())); //то нас опять бросит на сервлет signin где перекинет на loginIN.jsp
                 return;
             }
-            System.out.println("по тупому");
-            ServiceAddObjects.getInstance().clearListSession((ArrayList<Photo>)((HttpServletRequest) req).getSession().getAttribute("phList"));
             req.setCharacterEncoding("UTF-8");
             res.setContentType("text/json; charset=windows-1251");
             chain.doFilter(req, res);   //а вот если всё пучком и запрос не на страницу авторизации и сессия содержит логин то фильтр нас пропускает куда угодно

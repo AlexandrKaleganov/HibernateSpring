@@ -61,7 +61,7 @@
     <!--    servlet for drawing of pictures   -->
     <servlet>
         <servlet-name>ImageServlet</servlet-name>
-        <servlet-class>ru.akaleganov.container.ImageServlet</servlet-class>
+        <servlet-class>ru.akaleganov.container.announcement.ImageServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -71,7 +71,7 @@
     <!--    servlet for obtaining the list of objects of Mark -->
     <servlet>
         <servlet-name>ServletMarkaLoad</servlet-name>
-        <servlet-class>ru.akaleganov.container.car.ServletMarkaLoad</servlet-class>
+        <servlet-class>ru.akaleganov.container.announcement.car.ServletMarkaLoad</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -81,7 +81,7 @@
     <!--    servlet for work with an object Transmission generally for obtaining the list of all objects-->
     <servlet>
         <servlet-name>TransmissionServlet</servlet-name>
-        <servlet-class>ru.akaleganov.container.car.TransmissionServlet</servlet-class>
+        <servlet-class>ru.akaleganov.container.announcement.car.TransmissionServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -92,7 +92,7 @@
     <!--the servlet accepts the photos sent to the server and writes down them in a session-->
     <servlet>
         <servlet-name>FileUploadServlet</servlet-name>
-        <servlet-class>ru.akaleganov.container.FileUploadServlet</servlet-class>
+        <servlet-class>ru.akaleganov.container.announcement.FileUploadServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -103,7 +103,7 @@
     <!--   servlet for management of photos in a session -->
     <servlet>
         <servlet-name>ServletSession</servlet-name>
-        <servlet-class>ru.akaleganov.container.ServletSession</servlet-class>
+        <servlet-class>ru.akaleganov.container.announcement.ServletSession</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>

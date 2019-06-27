@@ -106,15 +106,16 @@
                 </select>
             </div>
         </div>
-        <div id="imageupload">
+        <div class="form-row">
+        <div class="form-group col-md-6" id="imageupload">
             <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
-                <p> <input id="descrPhoto" type="text" name="description" />
                     <input id="filePhoto" type="file" name="file" />
-                    <input type="button" value="Отправить" onclick="fileupload()"></p>
+                    <input type="button" value="Отправить" onclick="fileupload()">
             </form>
         </div>
-        <div id="imageList">
+        <div class="form-group col-md-6"id="imageList">
 
+        </div>
         </div>
             <div id="imageView">
             <c:forEach items="${an.car.photo}" var="photo">

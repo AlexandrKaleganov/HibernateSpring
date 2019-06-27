@@ -1,4 +1,4 @@
-package ru.akaleganov.container;
+package ru.akaleganov.container.announcement;
 
 import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.service.Dispatch;

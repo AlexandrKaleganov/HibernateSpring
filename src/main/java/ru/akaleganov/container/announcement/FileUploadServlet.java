@@ -1,10 +1,8 @@
-package ru.akaleganov.container;
+package ru.akaleganov.container.announcement;
 
 
 import java.io.*;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,13 +10,11 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.service.ServiceAddObjects;
@@ -43,7 +39,6 @@ public class FileUploadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final String UPLOAD_DIRECTORY = "d:/uploads";
 
         if (ServletFileUpload.isMultipartContent(req)) {
             List<FileItem> multiparts = null;
@@ -53,11 +48,11 @@ public class FileUploadServlet extends HttpServlet {
             } catch (Exception e) {
                 LOGGER.error(e.getMessage(), e);
             }
-            System.out.println(multiparts.size());
+            assert multiparts != null;
             for (FileItem item : multiparts) {
-                System.out.println(item);
                 if (!item.isFormField()) {
-                    ArrayList<Photo> photos = ServiceAddObjects.getInstance().
+                    assert req.getSession().getAttribute("phList") instanceof ArrayList;
+                    ServiceAddObjects.getInstance().
                             addPhoto((ArrayList<Photo>) req.getSession().getAttribute("phList"), item.getInputStream());
                 }
             }

@@ -1,4 +1,4 @@
-package ru.akaleganov.container.car;
+package ru.akaleganov.container.announcement.car;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;

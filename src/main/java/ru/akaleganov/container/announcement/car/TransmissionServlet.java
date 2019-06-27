@@ -1,4 +1,4 @@
-package ru.akaleganov.container.car;
+package ru.akaleganov.container.announcement.car;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Optional;
 
 public class TransmissionServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(TransmissionServlet.class);

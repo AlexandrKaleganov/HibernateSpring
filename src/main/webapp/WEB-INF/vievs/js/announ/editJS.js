@@ -258,7 +258,7 @@ function fileupload() {
 function returnTable(i) {
   return   "    <tr>\n" +
     "      <th scope=\"row\">" + i + "</th>\n" +
-    "      <td> Фото" + i + "</td>\n" +
+    "      <td> image__" + i + "</td>\n" +
     "      <td><button type=\"button\" class=\"close\" value='"+ i +"' data-dismiss=\"alert\" aria-label=\"Close\">&times;</button></td>\n" +
     "    </tr>\n";
 }
