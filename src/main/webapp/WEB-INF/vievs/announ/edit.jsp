@@ -108,9 +108,9 @@
         </div>
             <div id="imageupload">
                 <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
-                    <p> <input id="descrPhoto" type="text" name="description" />
+                        <input id="descrPhoto" type="text" name="description" />
                         <input id="filePhoto" type="file" name="file" />
-                        <input type="button" value="Отправить" onclick="fileupload()"></p>
+                        <input type="button" value="Отправить" onclick="fileupload()">
                 </form>
             </div>
             <div id="imageviev">
