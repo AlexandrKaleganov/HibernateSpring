@@ -15,7 +15,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <%--main script--%>
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
         <%@include file="/WEB-INF/vievs/js/announ/editJS.js" %>
@@ -40,9 +39,7 @@
         </div>
     </div>
     <form>
-        <%--row 1--%>
         <div class="form-row">
-            <%--left--%>
             <div class="form-group col-md-6">
                 <div class="form-group">
                     <input type="hidden" class="form-control" id="idan" name="idan" value="${an.id}"
@@ -63,7 +60,6 @@
                 </div>
 
             </div>
-            <%--right--%>
             <div class="form-group col-md-6">
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="authorid" value="${an.author.id}"
@@ -78,23 +74,18 @@
                 </div>
             </div>
         </div>
-
-        <%--center--%>
         <div class="form-group">
             <input type="hidden" class="form-control" name="carid" value="${an.car.id}"
                    title="Enter car id."
                    id="carid">
         </div>
-        <%--row 2--%>
         <div class="form-row">
-            <%--left--%>
             <div class="form-group col-md-5">
                 <label for="marka">Car marka:</label>
                 <select class="form-control" name="marka" title="Enter marka." id="marka" onclick="modelload()" disabled>
                     <option value="${an.car.model.marka.id}">${an.car.model.marka.name}</option>
                 </select>
             </div>
-            <%--center--%>
             <div class="form-group col-md-4">
                 <label for="model">Car model:</label>
                 <select class="form-control" name="model" title="Enter model." id="model" onclick="true" disabled>
@@ -115,7 +106,6 @@
                 </select>
             </div>
         </div>
-        <%--center photo--%>
             <div id="imageupload">
                 <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
                     <p> <input id="descrPhoto" type="text" name="description" />
@@ -133,7 +123,6 @@
             <textarea class="form-control" id="description" rows="3"
                       title="Enter car description." disabled>${an.car.description}</textarea>
         </div>
-
     </form>
 </div>
 </body>
