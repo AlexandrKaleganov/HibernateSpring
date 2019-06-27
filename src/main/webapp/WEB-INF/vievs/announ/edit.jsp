@@ -106,13 +106,13 @@
                 </select>
             </div>
         </div>
-            <div id="imageupload">
-                <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
-                        <input id="descrPhoto" type="text" name="description" />
-                        <input id="filePhoto" type="file" name="file" />
-                        <input type="button" value="Отправить" onclick="fileupload()">
-                </form>
-            </div>
+        <div id="imageupload">
+            <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
+                <p> <input id="descrPhoto" type="text" name="description" />
+                    <input id="filePhoto" type="file" name="file" />
+                    <input type="button" value="Отправить" onclick="fileupload()"></p>
+            </form>
+        </div>
             <div id="imageviev">
             <c:forEach items="${an.car.photo}" var="photo">
                 <img src="${pageContext.servletContext.contextPath}/image?id=${photo.id}" alt="..." width="600" height="300">
