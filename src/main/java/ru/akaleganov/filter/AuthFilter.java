@@ -24,24 +24,19 @@ public class AuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;    //два запроса переделываем под HttpServlet
         HttpServletResponse response = (HttpServletResponse) res;
         if (request.getRequestURI().contains("/signin")) {     //если лезим на страницу авторизации - то
-            req.setCharacterEncoding("UTF-8");
-            res.setContentType("text/json; charset=windows-1251");
-            chain.doFilter(req, res);                           //фильтр нас пропускает и наши запросы де нас в свою очередь перекинет на loginIN.jsp
+            chain.doFilter(req, res);                           //фильтр нас пропускает и наши запросы де нас в свою очередь перекинет на loginIN.jsp'
         } else {
             if (request.getSession().getAttribute("login") == null) {   //если в сессии нет  атрибута login
                 response.sendRedirect(String.format("%s/signin", request.getContextPath())); //то нас опять бросит на сервлет signin где перекинет на loginIN.jsp
                 return;                                                                  //и дальше метод завершится
             }
-            if (req.getParameter("exit") != null) {
-                request.getSession().invalidate();
-                req.setCharacterEncoding("UTF-8");
-                res.setContentType("text/json; charset=windows-1251");
-                response.sendRedirect(String.format("%s/signin", request.getContextPath())); //то нас опять бросит на сервлет signin где перекинет на loginIN.jsp
+            if (((HttpServletRequest) req).getRequestURI().contains("/upload")) {
+                chain.doFilter(req, res);
                 return;
             }
-            if (((HttpServletRequest) req).getRequestURI().contains("/upload")) {
-                System.out.println("уплоад");
-                chain.doFilter(req, res);
+            if (req.getParameter("exit") != null) {
+                request.getSession().invalidate();
+                response.sendRedirect(String.format("%s/signin", request.getContextPath())); //то нас опять бросит на сервлет signin где перекинет на loginIN.jsp
                 return;
             }
             req.setCharacterEncoding("UTF-8");

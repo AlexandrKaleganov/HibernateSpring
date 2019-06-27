@@ -1,6 +1,7 @@
 package ru.akaleganov.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.apache.xerces.impl.dv.util.Base64;
 import ru.akaleganov.modelsannot.*;
@@ -10,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -105,6 +107,23 @@ public class ServiceAddObjects {
             LOGGER.error(e.getMessage(), e);
         }
         byte[] resByteArray = Base64.decode(base64String);
+        Photo photo = new Photo();
+        photo.setPhoto(resByteArray);
+        return photo;
+    }
+
+    /**
+     * получение массива байт из инпут стреим
+     * @param img {@link InputStream}  входящего файла
+     * @return {@link Photo}
+     */
+    public Photo addPhoto(InputStream img) {
+        byte[] resByteArray = new byte[]{};
+        try {
+            resByteArray = IOUtils.toByteArray(img);
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
         Photo photo = new Photo();
         photo.setPhoto(resByteArray);
         return photo;

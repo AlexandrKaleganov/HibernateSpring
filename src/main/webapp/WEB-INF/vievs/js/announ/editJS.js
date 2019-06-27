@@ -229,7 +229,7 @@ function fileupload() {
         }
     });
 }
-//загрузка файлов на сервлет
+// загрузка файлов на сервлет
 // function fileupload() {
 //     var url = "./upload";
 //     var form = $("#sampleUploadFrm")[0];
