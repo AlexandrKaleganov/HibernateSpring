@@ -89,6 +89,7 @@ public class ServiceAddObjects {
 
     /**
      * метод для получения Обекта вото из входящего файла
+     *
      * @param img {@link File} файл фотографии jpg / png
      * @return {@link Photo}
      */
@@ -114,6 +115,7 @@ public class ServiceAddObjects {
 
     /**
      * получение массива байт из инпут стреим
+     *
      * @param img {@link InputStream}  входящего файла
      * @return {@link Photo}
      */
@@ -129,11 +131,12 @@ public class ServiceAddObjects {
         photos.add(photo);
         return photos;
     }
+
     /**
      * метод будет объеденять наши объекты
      *
-     * @param ann {@link Announcement} объект обявление
-     * @param car {@link Car} объект автомобиль который создаётся уникальный для каждого объявления
+     * @param ann    {@link Announcement} объект обявление
+     * @param car    {@link Car} объект автомобиль который создаётся уникальный для каждого объявления
      * @param photos {@link Photo} лист фотографий
      * @return {@link Announcement} из входящих параметров собирается объявление
      */
@@ -150,8 +153,8 @@ public class ServiceAddObjects {
     /**
      * перегруженный метод для работы с json строками
      *
-     * @param jsonann объект объявле объявления в формате JSON
-     * @param jsoncar строка  в формате JSON
+     * @param jsonann  объект объявле объявления в формате JSON
+     * @param jsoncar  строка  в формате JSON
      * @param urlPhoto список ссылок на фотографии
      * @return {@link Announcement}
      */
@@ -165,11 +168,12 @@ public class ServiceAddObjects {
 
     /**
      * рефактор try catch
-     * @author Alexander Kaleganov
-     * @param json прилетает json строка, которую мы будем конвертировать в объект
+     *
+     * @param json   прилетает json строка, которую мы будем конвертировать в объект
      * @param mapper {@link FankEx} будет принимать json строку и возвращать объект
-     * @param <E> объект, который мы получем после конвертации json строрки в объект
+     * @param <E>    объект, который мы получем после конвертации json строрки в объект
      * @return обект полученный после конвертации строки в объект
+     * @author Alexander Kaleganov
      */
     private <E> E addModel(String json, FankEx<String, E> mapper) {
         E rsl = null;
@@ -179,5 +183,9 @@ public class ServiceAddObjects {
             LOGGER.error(e.getMessage(), e);
         }
         return rsl;
+    }
+
+    public void clearListSession(ArrayList<Photo> photos) {
+        photos.clear();
     }
 }

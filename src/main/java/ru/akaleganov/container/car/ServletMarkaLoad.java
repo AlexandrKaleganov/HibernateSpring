@@ -2,8 +2,6 @@ package ru.akaleganov.container.car;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
-import ru.akaleganov.modelsannot.Announcement;
-import ru.akaleganov.modelsannot.Marka;
 import ru.akaleganov.service.Dispatch;
 import ru.akaleganov.service.ServiceAddObjects;
 
@@ -13,11 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Optional;
 
-public class ServletMarkaload extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(ServletMarkaload.class);
+public class ServletMarkaLoad extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(ServletMarkaLoad.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

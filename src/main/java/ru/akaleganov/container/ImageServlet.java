@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-public class ImajeServlet extends HttpServlet {
+public class ImageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Photo photo = Dispatch.getInstance().access("findByIdPhoto", new Photo(Integer.valueOf(req.getParameter("id"))));

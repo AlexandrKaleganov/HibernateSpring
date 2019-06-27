@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
-<!--Start filtres-->
+    <!--Start filter-->
     <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>ru.akaleganov.filter.AuthFilter</filter-class>
@@ -17,8 +17,8 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>*</url-pattern>
     </filter-mapping>
-<!--    End filtres-->
-    <!--Servler authoris-->
+    <!--    End filter-->
+    <!--Servlet for authorization-->
     <servlet>
         <servlet-name>SigninServlet</servlet-name>
         <servlet-class>ru.akaleganov.container.SigninServlet</servlet-class>
@@ -28,7 +28,7 @@
         <servlet-name>SigninServlet</servlet-name>
         <url-pattern>/signin</url-pattern>
     </servlet-mapping>
-    <!--    Servlet Index.jsp-->
+    <!--    Servlet Index.jsp drawing of announcements, transfer on editing, viewing, removal of announcements-->
     <servlet>
         <servlet-name>ServletIndex</servlet-name>
         <servlet-class>ru.akaleganov.container.ServletIndex</servlet-class>
@@ -38,6 +38,7 @@
         <servlet-name>ServletIndex</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <!--    servlet for work with users, obtaining the list, removal, an obavleniye of users-->
     <servlet>
         <servlet-name>ServletUserList</servlet-name>
         <servlet-class>ru.akaleganov.container.users.ServletUserList</servlet-class>
@@ -47,6 +48,7 @@
         <servlet-name>ServletUserList</servlet-name>
         <url-pattern>/listUser</url-pattern>
     </servlet-mapping>
+    <!--    servlet for work with roles-->
     <servlet>
         <servlet-name>ServletRoles</servlet-name>
         <servlet-class>ru.akaleganov.container.users.ServletRoles</servlet-class>
@@ -56,24 +58,27 @@
         <servlet-name>ServletRoles</servlet-name>
         <url-pattern>/listRoles</url-pattern>
     </servlet-mapping>
+    <!--    servlet for drawing of pictures   -->
     <servlet>
-        <servlet-name>ImajeServlet</servlet-name>
-        <servlet-class>ru.akaleganov.container.ImajeServlet</servlet-class>
+        <servlet-name>ImageServlet</servlet-name>
+        <servlet-class>ru.akaleganov.container.ImageServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ImajeServlet</servlet-name>
+        <servlet-name>ImageServlet</servlet-name>
         <url-pattern>/image</url-pattern>
     </servlet-mapping>
+    <!--    servlet for obtaining the list of objects of Mark -->
     <servlet>
-        <servlet-name>ServletMarkaload</servlet-name>
-        <servlet-class>ru.akaleganov.container.car.ServletMarkaload</servlet-class>
+        <servlet-name>ServletMarkaLoad</servlet-name>
+        <servlet-class>ru.akaleganov.container.car.ServletMarkaLoad</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletMarkaload</servlet-name>
+        <servlet-name>ServletMarkaLoad</servlet-name>
         <url-pattern>/markaload</url-pattern>
     </servlet-mapping>
+    <!--    servlet for work with an object Transmission generally for obtaining the list of all objects-->
     <servlet>
         <servlet-name>TransmissionServlet</servlet-name>
         <servlet-class>ru.akaleganov.container.car.TransmissionServlet</servlet-class>
@@ -84,6 +89,7 @@
         <url-pattern>/transmission</url-pattern>
     </servlet-mapping>
 
+    <!--the servlet accepts the photos sent to the server and writes down them in a session-->
     <servlet>
         <servlet-name>FileUploadServlet</servlet-name>
         <servlet-class>ru.akaleganov.container.FileUploadServlet</servlet-class>
@@ -94,12 +100,14 @@
         <url-pattern>/upload</url-pattern>
     </servlet-mapping>
 
-    <context-param>
-        <param-name>file-upload</param-name>
-        <param-value>d:/uploads/</param-value>
-    </context-param>
-    <context-param>
-        <param-name>temp-upload</param-name>
-        <param-value>d:/uploads/</param-value>
-    </context-param>
+    <!--   servlet for management of photos in a session -->
+    <servlet>
+        <servlet-name>ServletSession</servlet-name>
+        <servlet-class>ru.akaleganov.container.ServletSession</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSession</servlet-name>
+        <url-pattern>/sessionPhotos</url-pattern>
+    </servlet-mapping>
 </web-app>
