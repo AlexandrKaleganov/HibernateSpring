@@ -49,9 +49,9 @@ function dissabl(param) {
     disabledfalshe($("#buttonedit"), false);
     disabledfalshe($("#uploadButton"), param);
     if (param) {
-        $("#isDone label input")[0].removeAttribute('disabled');
+       document.getElementById("isDone").getElementsByTagName("input")[0].removeAttribute('disabled');
     } else {
-        $("#isDone label input")[0].disabled = true
+      document.getElementById("isDone").getElementsByTagName("input")[0].disabled = true;
     }
 }
 
