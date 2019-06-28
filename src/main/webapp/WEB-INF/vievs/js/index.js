@@ -41,6 +41,6 @@ function stringButton(an) {
         "                            <input type=\"hidden\" name=\"an\" value=\"" + an.id + "\">\n" +
         "                            <input type=\"hidden\" name=\"action\" value=\"findByIdAn\">\n" +
         "                            <input type=\"submit\" value=\"Просмотр\">\n" +
-        "                        </form>" + "</td></tr>"
+        "                        </form>" + "</td></tr>";
     return rsl;
 }

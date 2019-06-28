@@ -29,6 +29,8 @@
 </div>
 <br/>
 <br/>
+<div id="result"></div>
+<br/>
 <div class="container" id="totalform">
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -51,7 +53,7 @@
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="${an.name}" title="Enter name"
+                    <input type="text" class="form-control" id="name" name="name" value="" title="Enter name"
                            placeholder="name" disabled>
                 </div>
                 <div class="form-group">

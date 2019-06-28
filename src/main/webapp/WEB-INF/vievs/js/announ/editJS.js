@@ -18,7 +18,17 @@
         enableall(false);
     }
 });
+$(document).ready(function () {
+    var  ann = JSON.parse('${an}');
+    this.readAn(ann);
+});
 
+/**
+ * отрисовка объявления
+ */
+function readAn(an) {
+    $("#name").val(an.name);
+}
 /**
  * включение всех полей
  * и подгрузка года, марки и трансмиссии
@@ -202,9 +212,9 @@ function addAnno() {
             },
             dataType: "json",
             success: function (data) {
-                console.log(data);
+                console.log(JSON.stringify(data));
                 $("#result").after("<div class=\"alert alert-success  alert-dismissible\">\n" +
-                    "            " + data + " <strong> " + rsl + "</strong>\n" +
+                    "            " + data.name + " <strong> " + rsl + "</strong>\n" +
                     "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
             }
         });
