@@ -3,6 +3,7 @@ package ru.akaleganov.container;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import ru.akaleganov.modelsannot.Announcement;
+import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.modelsannot.Users;
 import ru.akaleganov.service.Dispatch;
 import ru.akaleganov.service.ServiceAddObjects;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class ServletIndex extends HttpServlet {
@@ -49,15 +51,10 @@ public class ServletIndex extends HttpServlet {
             }
         } else {
             try {
-                System.out.println(req.getParameter("an"));
-                System.out.println(req.getParameter("car"));
-
-                System.out.println(ServiceAddObjects.getInstance().addAll(
-                        req.getParameter("an"), req.getParameter("car"), new ArrayList<>()));
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
                 writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
-                        ServiceAddObjects.getInstance().addAll(
-                                req.getParameter("an"), req.getParameter("car"), new ArrayList<>()))));
+                        ServiceAddObjects.getInstance().addAllObject(
+                                req.getParameter("an"), req.getParameter("car"), (ArrayList<Photo>) req.getSession().getAttribute("phList")))));
                 writer.flush();
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);

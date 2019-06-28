@@ -179,7 +179,6 @@ function valid() {
  * добавление объявления
  */
 function addAnno() {
-    dissabl(true);
     var rsl = "";
     if ($("#idan").val() > 0) {
         rsl = "обновлён";
@@ -208,8 +207,9 @@ function addAnno() {
                     "            " + data + " <strong> " + rsl + "</strong>\n" +
                     "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
             }
-        })
+        });
         return true;
+        dissabl(true);
     } else {
         return false;
     }
@@ -231,19 +231,32 @@ function fileupload() {
         processData: false,
         contentType: false,
         success: function (result) {
-          $('#imageList').html("");
-          $("#imageList").append("<table class=\"table\">\n" +
-              "  <thead>\n" +
-              "    <tr>\n" +
-              "      <th scope=\"col\">#</th>\n" +
-              "      <th scope=\"col\">Фото</th>\n" +
-              "      <th scope=\"col\">Удалить</th>\n" +
-              "    </tr>\n" +
-              "  </thead>\n" +
-              "  <tbody>\n" +
-              "  </tbody>\n" +
-              "</table>");
-            for (var i = 0; i < result.length ; i++) {
+            $('#imageList').html("");
+            $("#imageList").append(returnHeadTable());
+            for (var i = 0; i < result.length; i++) {
+                $('#imageList tbody:last').append(returnTable(i));
+            }
+        }
+    });
+}
+
+/**
+ *
+ * @param param1 команда, что необходимо надо будет сделать с фотографией в сессии удалить добавить или очистить все
+ * @param param2 индекс, если будем удалять конкртную фотографию из сессии то будет прилетать индекс
+ */
+function managementOfPhotosInASession(param1, param2) {
+    console.log(param1);
+    console.log(param2);
+
+    jQuery.ajax({
+        url: './sessionPhotos',
+        type: "POST",
+        data: {action: param1, index: param2},
+        success: function (result) {
+            $('#imageList').html("");
+            $("#imageList").append(returnHeadTable());
+            for (var i = 0; i < result.length; i++) {
                 $('#imageList tbody:last').append(returnTable(i));
             }
         }
@@ -256,12 +269,31 @@ function fileupload() {
  * @returns {string} возвращает готоавую строку с кнопкой для возможности удалить из сессии фотографию
  */
 function returnTable(i) {
-  return   "    <tr>\n" +
-    "      <th scope=\"row\">" + i + "</th>\n" +
-    "      <td> image__" + i + "</td>\n" +
-    "      <td><button type=\"button\" class=\"close\" value='"+ i +"' data-dismiss=\"alert\" aria-label=\"Close\">&times;</button></td>\n" +
-    "    </tr>\n";
+    return "    <tr>\n" +
+        "      <th scope=\"row\">" + i + "</th>\n" +
+        "      <td> image__" + i + "</td>\n" +
+        "      <td><button type=\"button\" class=\"close\" value=\"" + i + "\" data-dismiss=\"alert\" aria-label=\"Close\"     onclick=\"managementOfPhotosInASession('delete', this.value)\">&times;</button></td>\n\n" +
+        "    </tr>\n";
 }
+
+/**
+ *
+ * @returns {string} получение шапки таблицы со списком загруенных в сессию фотографий
+ */
+function returnHeadTable() {
+    return "<table class=\"table\">\n" +
+        "  <thead>\n" +
+        "    <tr>\n" +
+        "      <th scope=\"col\">#</th>\n" +
+        "      <th scope=\"col\">Фото</th>\n" +
+        "      <th scope=\"col\">Удалить</th>\n" +
+        "    </tr>\n" +
+        "  </thead>\n" +
+        "  <tbody>\n" +
+        "  </tbody>\n" +
+        "</table>";
+}
+
 // загрузка файлов на сервлет второй вариант оба варианта рабочие от случая к случаю
 // function fileupload() {
 //     var url = "./upload";

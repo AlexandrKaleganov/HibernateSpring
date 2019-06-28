@@ -165,7 +165,19 @@ public class ServiceAddObjects {
         ArrayList<Photo> photos = (ArrayList<Photo>) this.addPhoto(urlPhoto);
         return this.addAll(ann, car, photos);
     }
-
+    /**
+     * перегруженный метод для работы с json строками
+     *
+     * @param jsonann  объект объявле объявления в формате JSON
+     * @param jsoncar  строка  в формате JSON
+     * @param photos список с готовыми фотографиями
+     * @return {@link Announcement}
+     */
+    public Announcement addAllObject(String jsonann, String jsoncar, ArrayList<Photo> photos) {
+        Announcement ann = this.addAnnouncement(jsonann);
+        Car car = this.addCar(jsoncar);
+        return this.addAll(ann, car, photos);
+    }
     /**
      * рефактор try catch
      *
@@ -185,7 +197,20 @@ public class ServiceAddObjects {
         return rsl;
     }
 
+    /**
+     * очистка листа с фотографиями из сессии
+     * @param photos ArrayList {@link Photo}
+     */
     public void clearListSession(ArrayList<Photo> photos) {
         photos.clear();
+    }
+    /**
+     * удаление одной фотографии из сессии
+     * @param photos ArrayList {@link Photo}
+     */
+    public void deleteOnePhoto(ArrayList<Photo> photos, int index) {
+        if (photos.size() > index) {
+            photos.remove(index);
+        }
     }
 }

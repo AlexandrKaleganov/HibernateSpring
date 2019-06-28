@@ -32,10 +32,14 @@
 <div class="container" id="totalform">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <button id="buttonedit" type="button" class="btn btn-success" onclick="enableall(false)" disabled>Редактировать</button>
+            <button id="buttonedit" type="button" class="btn btn-success" onclick="enableall(false)" disabled>
+                Редактировать
+            </button>
         </div>
         <div class="form-group col-md-6">
-            <button id="totalbutton" type="button" value="addAn" class="btn btn-primary" onclick="addAnno()" disabled>Применить</button>
+            <button id="totalbutton" type="button" value="addAn" class="btn btn-primary" onclick="addAnno()" disabled>
+                Применить
+            </button>
         </div>
     </div>
     <form>
@@ -82,7 +86,8 @@
         <div class="form-row">
             <div class="form-group col-md-5">
                 <label for="marka">Car marka:</label>
-                <select class="form-control" name="marka" title="Enter marka." id="marka" onclick="modelload()" disabled>
+                <select class="form-control" name="marka" title="Enter marka." id="marka" onclick="modelload()"
+                        disabled>
                     <option value="${an.car.model.marka.id}">${an.car.model.marka.name}</option>
                 </select>
             </div>
@@ -107,19 +112,19 @@
             </div>
         </div>
         <div class="form-row">
-        <div class="form-group col-md-6" id="imageupload">
-            <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
-                    <input id="filePhoto" type="file" name="file" />
+            <div class="form-group col-md-6" id="imageupload">
+                <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
+                    <input id="filePhoto" type="file" name="file"/>
                     <input type="button" value="Отправить" onclick="fileupload()">
-            </form>
+                </form>
+            </div>
+            <div class="form-group col-md-6" id="imageList">
+            </div>
         </div>
-        <div class="form-group col-md-6"id="imageList">
-
-        </div>
-        </div>
-            <div id="imageView">
+        <div id="imageView">
             <c:forEach items="${an.car.photo}" var="photo">
-                <img src="${pageContext.servletContext.contextPath}/image?id=${photo.id}" alt="..." width="600" height="300">
+                <img src="${pageContext.servletContext.contextPath}/image?id=${photo.id}" alt="..." width="600"
+                     height="300">
             </c:forEach>
         </div>
         <div class="form-group">
