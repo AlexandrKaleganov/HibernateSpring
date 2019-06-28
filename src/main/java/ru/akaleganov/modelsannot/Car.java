@@ -9,10 +9,8 @@ import java.util.List;
 
 /**
  * Класс автомобиль, создаётся уникальный объект для каждого объявления
+ *
  * @author Kaleganov Aleander
- * @since 06/05//2019
- * <br/>
- * <b>содержит поля:<b/>
  * @see Car#id
  * @see Car#photo
  * @see Car#announcement
@@ -20,7 +18,9 @@ import java.util.List;
  * @see Car#model
  * @see Car#transmission
  * @see Car#yar
- *
+ * @since 06/05//2019
+ * <br/>
+ * <b>содержит поля:<b/>
  **/
 @Entity
 @Table(name = "car")
@@ -64,8 +64,7 @@ public class Car extends AllModels {
     private Announcement announcement;
 
     /**
-     *
-      * @param id {@link Car#id}
+     * @param id все объекты содержат id  уникальный идентификатор
      */
     public Car(int id) {
         super(id);
@@ -76,7 +75,6 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @return {@link Announcement}
      */
     public Announcement getAnnouncement() {
@@ -84,7 +82,6 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @param announcement {@link Announcement}
      */
     public void setAnnouncement(Announcement announcement) {
@@ -92,7 +89,6 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @return {@link Model}
      */
     public Model getModel() {
@@ -100,7 +96,6 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @param model {@link Model}
      */
     public void setModel(Model model) {
@@ -108,7 +103,6 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @return {@link Transmission}
      */
     public Transmission getTransmission() {
@@ -116,7 +110,6 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @param transmission {@link Transmission}
      */
     public void setTransmission(Transmission transmission) {
@@ -124,7 +117,6 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @return {@link Car#yar}
      */
     public int getYar() {
@@ -132,7 +124,6 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @param yar год выпуска автомобиля
      */
     public void setYar(int yar) {
@@ -140,7 +131,6 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @return {@link Photo}
      */
     public List<Photo> getPhoto() {
@@ -148,7 +138,6 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @param photo {@link Photo}
      */
     public void setPhoto(List<Photo> photo) {
@@ -156,7 +145,6 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @return {@link Car#description}
      */
     public String getDescription() {
@@ -164,12 +152,12 @@ public class Car extends AllModels {
     }
 
     /**
-     *
      * @param description {@link Car#description}
      */
     public void setDescription(String description) {
         this.description = description;
     }
+
     @Override
     public String toString() {
         return "Car{" + "id=" + super.getId() + ", description=" + description + ", model=" + model + ", transmission="

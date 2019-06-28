@@ -18,9 +18,6 @@
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
         <%@include file="/WEB-INF/vievs/js/announ/editJS.js" %>
-        $(document).ready(function () {
-
-        });
     </script>
 
     <title>Добавление изменен</title>
@@ -64,8 +61,16 @@
                     <input type="text" class="form-control" name="created" value="${an.created}" title="Enter created."
                            id="created" disabled>
                 </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" name="isDone" id="isDone" disabled>Is_Done</label>
+                <div class="checkbox" id="isDone">
+                    <c:choose>
+                        <c:when test="${an.done == true}">
+                            <label><input type="checkbox" name="isDone" disabled checked> Is_Done</label>
+                        </c:when>
+                        <c:otherwise>
+                            <label><input type="checkbox" name="isDone"  disabled>Is_Done</label>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
 
             </div>
@@ -120,7 +125,7 @@
             <div class="form-group col-md-6" id="imageupload">
                 <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
                     <input id="filePhoto" type="file" name="file"/>
-                    <input type="button" value="Отправить" onclick="fileupload()">
+                    <input id="uploadButton" type="button" value="Отправить" onclick="fileupload()">
                 </form>
             </div>
             <div class="form-group col-md-6" id="imageList">

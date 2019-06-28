@@ -25,13 +25,14 @@ function listan(actions) {
 
 function loadtable(an) {
     var rsl = "";
-    rsl = rsl + "<tr><td>" + an.id + "</td><td>" + an.name + "</td><td>" + an.created + "</td><td>" + an.author.name + "</td>";
+    rsl = rsl + "<tr class='table-data'><td>" + an.id + "</td><td>" + an.name + "</td><td>" + an.created + "</td><td>" + an.car.model.marka.name + "</td>";
     rsl = rsl + stringButton(an);
     return rsl;
 }
 
 function stringButton(an) {
     var rsl = "";
+    rsl = rsl + "<td>" + an.car.model.name + "</td><td>" + an.car.yar + "</td><td>" + an.author.name + "</td>";
     if (an.done) {
         rsl = rsl + "<td><input type=\"checkbox\" disabled checked/></td>";
     } else {

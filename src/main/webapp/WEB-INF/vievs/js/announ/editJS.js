@@ -47,6 +47,8 @@ function dissabl(param) {
     ciclic(totalform.getElementsByTagName("select"), param);
     ciclic(totalform.getElementsByTagName("textarea"), param);
     disabledfalshe($("#buttonedit"), false);
+    disabledfalshe($("#uploadButton"), param);
+    disabledfalshe($("#isDone label input"), param)
 }
 
 /**
@@ -191,7 +193,7 @@ function addAnno() {
             url: "./",
             data: {
                 action: $("#totalbutton").val(),
-                an: "{\"id\":\"" + $("#idan").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone").is(":checked") +
+                an: "{\"id\":\"" + $("#idan").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone input").is(":checked") +
                     "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}" + "}",
                 car: "{\"id\":\"" + $("#carid").val() + "\"" +
                     ", \"model\":{\"id\":\"" + $("#model").val() + "\"" + "}," + "\"yar\":\"" + $("#yar").val() + "\"" +
