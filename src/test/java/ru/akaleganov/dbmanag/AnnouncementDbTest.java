@@ -72,7 +72,12 @@ public class AnnouncementDbTest {
     public void findByID() {
         testAll((db, ann) -> {
             Announcement expected = db.findByID(ann);
+            Announcement  announcement = new Announcement();
+            announcement.setDone(true);
+            announcement.setId(ann.getId());
+            var test = db.edit(announcement);
             assertTrue(expected.getName().contains("продам машину"));
+            assertTrue(test.getDone());
         });
     }
 

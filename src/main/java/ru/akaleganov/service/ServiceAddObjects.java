@@ -30,7 +30,6 @@ public class ServiceAddObjects {
         try {
             item = new ObjectMapper().readValue(jsonStroka, Announcement.class);
             item.setCreated(Timestamp.valueOf(LocalDateTime.now()));
-            item.setDone(false);
             return item;
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);

@@ -129,7 +129,7 @@ public class Announcement extends AllModels {
      * @return если автомобиль не продан вернёт false иначе true
      */
     @SuppressWarnings("unused")
-    public boolean isDone() {
+    public boolean getDone() {
         return done;
     }
 

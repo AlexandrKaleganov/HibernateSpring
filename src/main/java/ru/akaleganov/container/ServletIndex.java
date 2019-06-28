@@ -52,10 +52,10 @@ public class ServletIndex extends HttpServlet {
         } else {
             try {
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
-                System.out.println("параметры" + req.getParameter("an") + req.getParameter("car"));
                 writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
                         ServiceAddObjects.getInstance().addAllObject(
-                                req.getParameter("an"), req.getParameter("car"), (ArrayList<Photo>) req.getSession().getAttribute("phList")))));
+                                req.getParameter("an"), req.getParameter("car"),
+                                (ArrayList<Photo>) req.getSession().getAttribute("phList")))));
                 writer.flush();
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
