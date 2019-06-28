@@ -18,17 +18,7 @@
         enableall(false);
     }
 });
-$(document).ready(function () {
-    var  ann = JSON.parse('${an}');
-    this.readAn(ann);
-});
 
-/**
- * отрисовка объявления
- */
-function readAn(an) {
-    $("#name").val(an.name);
-}
 /**
  * включение всех полей
  * и подгрузка года, марки и трансмиссии
@@ -83,7 +73,7 @@ function disabledfalshe(pole, param) {
 }
 
 /**
- * загрузка года
+ * загрузка года выпуска автомобилей
  */
 function loadyar() {
     for (var i = 2000; i < 2020; i++) {
@@ -186,7 +176,7 @@ function valid() {
 }
 
 /**
- * добавление объявления
+ * добавление объявления, после того как оно будет добавлено,
  */
 function addAnno() {
     var rsl = "";
@@ -207,19 +197,27 @@ function addAnno() {
                     ", \"model\":{\"id\":\"" + $("#model").val() + "\"" + "}," + "\"yar\":\"" + $("#yar").val() + "\"" +
                     ", \"transmission\":{\"id\":\"" + $("#transmission").val() + "\"}" +
                     ", \"description\":\"" + $("#description").val() + "\"" + "}"
-                // ,
-                // photolist: "[" + "\"db/Avito-Shema.png\"," + "\"db/Avito-Shema.png\"" + "]"
             },
             dataType: "json",
             success: function (data) {
                 console.log(JSON.stringify(data));
-                $("#result").after("<div class=\"alert alert-success  alert-dismissible\">\n" +
+                $("#result").html("");
+                $("#result").append("<div class=\"alert alert-success  alert-dismissible\">\n" +
                     "            " + data.name + " <strong> " + rsl + "</strong>\n" +
                     "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
+                $("#imageView").html("");
+                for (var i = 0; i < data.car.photo.length; i++) {
+                    $("#imageView").append("<img src=\"${pageContext.servletContext.contextPath}/image?id=" + data.car.photo[i].id + "\" alt=\"...\" width=\"600\"\n" +
+                        "                     height=\"300\">");
+                }
+                //очистка фотографий в сессии
+                managementOfPhotosInASession("clearPhList", "0");
+
             }
         });
-        return true;
+        //отключение всех элементовпереводим в состаяние disabled
         dissabl(true);
+        return true;
     } else {
         return false;
     }

@@ -18,6 +18,9 @@
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
         <%@include file="/WEB-INF/vievs/js/announ/editJS.js" %>
+        $(document).ready(function () {
+
+        });
     </script>
 
     <title>Добавление изменен</title>
@@ -53,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="" title="Enter name"
+                    <input type="text" class="form-control" id="name" name="name" value="${an.name}" title="Enter name"
                            placeholder="name" disabled>
                 </div>
                 <div class="form-group">

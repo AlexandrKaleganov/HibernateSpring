@@ -34,7 +34,7 @@ public class AnnouncementDb implements Store<Announcement> {
     public Announcement edit(Announcement announcement) {
         return openSession(session -> {
             session.saveOrUpdate(announcement);
-            return session.load(Announcement.class, announcement.getId());
+            return session.get(Announcement.class, announcement.getId());
         });
     }
 

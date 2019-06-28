@@ -31,7 +31,9 @@ public class ServletSession extends HttpServlet {
             System.out.println(((ArrayList<Photo>) req.getSession().getAttribute("phList")).size());
         }
         if (req.getParameter("action").contains("clearPhList")) {
-            ServiceAddObjects.getInstance().clearListSession((ArrayList<Photo>) req.getSession().getAttribute("phList"));
+            ServiceAddObjects.getInstance().clearListSession(
+                    (ArrayList<Photo>) req.getSession().getAttribute("phList"));
+            System.out.println("СРАБОТАЛО");
         }
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
