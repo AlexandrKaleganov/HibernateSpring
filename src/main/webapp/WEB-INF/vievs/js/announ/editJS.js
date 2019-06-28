@@ -46,15 +46,31 @@ function dissabl(param) {
     ciclic(totalform.getElementsByTagName("input"), param);
     ciclic(totalform.getElementsByTagName("select"), param);
     ciclic(totalform.getElementsByTagName("textarea"), param);
+    ciclic(totalform.getElementsByName("deleteBut"), param);
     disabledfalshe($("#buttonedit"), false);
     disabledfalshe($("#uploadButton"), param);
-    if (param) {
-        document.getElementsByName("isDone")[0].disabled = true;
-    } else {
-        document.getElementsByName("isDone")[0].removeAttribute('disabled');
-    }
+    disabledtag(document.getElementsByName("isDone"), param);
+   document.getElementsByName("delBut").removeAttribute("disabled");
+    // disabledtag(, param);
+
 }
 
+/**
+ * отключение включение по тегам
+ * @param tag список тегов которые необходимо отключить
+ * @param param параметр включения/отключения
+ */
+function disabledtag(tag, param) {
+    if (param){
+        for (var i = 0; i <tag.length; i++) {
+            tag[i].disabled = true;
+        }
+    } else {
+        for (var i = 0; i <tag.length; i++) {
+            tag[i].removeAttribute('disabled');
+        }
+    }
+}
 /**
  * включение или отключение всех полей по указанному тегу
  * @param tag
@@ -306,6 +322,32 @@ function returnHeadTable() {
         "  <tbody>\n" +
         "  </tbody>\n" +
         "</table>";
+}
+function deleteAn(){
+    $.ajax({
+        type: "POST",
+        url: "./",
+        data: {action:"deleteAn", id:$("#idan").val()},
+        dataType: "json",
+        success: function (data) {
+            console.log(JSON.stringify(data));
+            $("#result").html("");
+            $("#result").append("<div class=\"alert alert-success  alert-dismissible\">\n" +
+                "            " + data.name + " <strong> " + rsl + "</strong>\n" +
+                "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
+            $("#imageView").html("");
+            for (var i = 0; i < data.car.photo.length; i++) {
+                $("#imageView").append("<img src=\"${pageContext.servletContext.contextPath}/image?id=" + data.car.photo[i].id + "\" alt=\"...\" width=\"600\"\n" +
+                    "                     height=\"300\">");
+            }
+            //очистка фотографий в сессии
+            managementOfPhotosInASession("clearPhList", "0");
+
+        }
+    });
+    //отключение всех элементовпереводим в состаяние disabled
+    dissabl(true);
+
 }
 
 // загрузка файлов на сервлет второй вариант оба варианта рабочие от случая к случаю

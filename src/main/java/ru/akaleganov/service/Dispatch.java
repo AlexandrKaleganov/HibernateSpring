@@ -60,6 +60,8 @@ public class Dispatch {
                 Optional.of(AnnouncementDb.getInstance().findByID((Announcement) ticket)));
         this.dispatch.put("updateAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().edit((Announcement) ticket)));
+        this.dispatch.put("deleteAn", (ticket)->
+                Optional.of(AnnouncementDb.getInstance().delete((Announcement) ticket)));
         //управление картинками
         this.dispatch.put("findByIdPhoto", (ticket) ->
                 Optional.of(PhotoDb.getInstance().findByID((Photo) ticket)));

@@ -43,6 +43,11 @@
                 Применить
             </button>
         </div>
+        <div class="form-group col-md-6">
+            <button id="deleteButton" type="button" value="addAn" class="btn btn-primary" onclick="deleteAn()" disabled>
+                Удалить объявление полностью
+            </button>
+        </div>
     </div>
     <form>
         <div class="form-row">
@@ -135,6 +140,7 @@
             <c:forEach items="${an.car.photo}" var="photo">
                 <img src="${pageContext.servletContext.contextPath}/image?id=${photo.id}" alt="..." width="600"
                      height="300">
+                <button type="button" name="delBut" class="close" data-dismiss="alert" aria-label="Close" disabled \onclick="deleteAn()">&times;</button>
             </c:forEach>
         </div>
         <div class="form-group">

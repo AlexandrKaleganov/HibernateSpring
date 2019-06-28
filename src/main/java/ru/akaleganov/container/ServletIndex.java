@@ -43,12 +43,13 @@ public class ServletIndex extends HttpServlet {
                 LOGGER.error(e.getMessage(), e);
             }
         } else if (action.contains("deleteAn")) {
-            req.setAttribute("an", Dispatch.getInstance().access("deleteAn", new Announcement(Integer.valueOf(req.getParameter("an")))));
+            Dispatch.getInstance().access("deleteAn", new Announcement(Integer.parseInt(req.getParameter("id"))));
             try {
-                req.getRequestDispatcher("WEB-INF/vievs/users/userlist.jsp").forward(req, resp);
+                this.doGet(req, resp);
             } catch (IOException e) {
-                LOGGER.error(e.getMessage(), e);
+               LOGGER.error(e.getMessage(), e);
             }
+
         } else {
             try {
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
