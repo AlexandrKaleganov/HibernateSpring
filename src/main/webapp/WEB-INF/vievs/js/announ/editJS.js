@@ -48,7 +48,11 @@ function dissabl(param) {
     ciclic(totalform.getElementsByTagName("textarea"), param);
     disabledfalshe($("#buttonedit"), false);
     disabledfalshe($("#uploadButton"), param);
-  $("#isDone label input")[0].removeAttribute('disabled');
+    if (param) {
+        $("#isDone label input")[0].removeAttribute('disabled');
+    } else {
+        $("#isDone label input")[0].disabled = true
+    }
 }
 
 /**
