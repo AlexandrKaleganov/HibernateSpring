@@ -32,9 +32,9 @@ public class ServletIndex extends HttpServlet {
         System.out.println(req.getParameter("an"));
         if (action.contains("findByIdAn")) {
             try {
-                        Announcement announcement = Dispatch.getInstance().access(action, new Announcement(Integer.valueOf(req.getParameter("an"))));
-                        if (announcement.getId() == 0) {
-                            announcement.setAuthor(new Users((Integer) req.getSession().getAttribute("userID")));
+                Announcement announcement = Dispatch.getInstance().access(action, new Announcement(Integer.valueOf(req.getParameter("an"))));
+                if (announcement.getId() == 0) {
+                    announcement.setAuthor(new Users((Integer) req.getSession().getAttribute("userID")));
                     announcement.getAuthor().setLogin((String) req.getSession().getAttribute("login"));
                 }
                 req.setAttribute("an", announcement);
@@ -52,6 +52,7 @@ public class ServletIndex extends HttpServlet {
         } else {
             try {
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
+                System.out.println("параметры" + req.getParameter("an") + req.getParameter("car"));
                 writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
                         ServiceAddObjects.getInstance().addAllObject(
                                 req.getParameter("an"), req.getParameter("car"), (ArrayList<Photo>) req.getSession().getAttribute("phList")))));

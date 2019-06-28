@@ -61,13 +61,13 @@
                     <input type="text" class="form-control" name="created" value="${an.created}" title="Enter created."
                            id="created" disabled>
                 </div>
-                <div class="checkbox" id="isDone">
+                <div class="checkbox" >
                     <c:choose>
                         <c:when test="${an.done == true}">
-                            <label><input type="checkbox" name="isDone" disabled checked> Is_Done</label>
+                            <label><input type="checkbox" id="isDone" name="isDone" disabled checked> Is_Done</label>
                         </c:when>
                         <c:otherwise>
-                            <label><input type="checkbox" name="isDone"  disabled>Is_Done</label>
+                            <label><input type="checkbox" id="isDone" name="isDone"  disabled>Is_Done</label>
                         </c:otherwise>
                     </c:choose>
 

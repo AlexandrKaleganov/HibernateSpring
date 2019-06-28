@@ -49,9 +49,9 @@ function dissabl(param) {
     disabledfalshe($("#buttonedit"), false);
     disabledfalshe($("#uploadButton"), param);
     if (param) {
-       document.getElementById("isDone").getElementsByTagName("input")[0].removeAttribute('disabled');
+        document.getElementsByName("isDone")[0].disabled = true;
     } else {
-      document.getElementById("isDone").getElementsByTagName("input")[0].disabled = true;
+        document.getElementsByName("isDone")[0].removeAttribute('disabled');
     }
 }
 
@@ -197,7 +197,7 @@ function addAnno() {
             url: "./",
             data: {
                 action: $("#totalbutton").val(),
-                an: "{\"id\":\"" + $("#idan").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone input").is(":checked") +
+                an: "{\"id\":\"" + $("#idan").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone").is(":checked") +
                     "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}" + "}",
                 car: "{\"id\":\"" + $("#carid").val() + "\"" +
                     ", \"model\":{\"id\":\"" + $("#model").val() + "\"" + "}," + "\"yar\":\"" + $("#yar").val() + "\"" +
