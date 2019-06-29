@@ -20,7 +20,7 @@ $(document).ready(function () {
      * и в качестве автора из сессии проставляются данные текущего пользователя
      */
     if ($("#idan").val() < 1) {
-        enableall(false);
+        enableAll(false);
     }
 });
 
@@ -29,7 +29,7 @@ $(document).ready(function () {
  * и подгрузка года, марки и трансмиссии
  * @param param
  */
-function enableall(param) {
+function enableAll(param) {
     disabledfalshe($("#totalbutton"), param);
     var totalform = document.getElementById("totalform");
     ciclic(totalform.getElementsByTagName("input"), param);

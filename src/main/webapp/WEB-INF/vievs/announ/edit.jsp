@@ -34,7 +34,7 @@
 <div class="container" id="totalform">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <button id="buttonedit" type="button" class="btn btn-success" onclick="enableall(false)" disabled>
+            <button id="buttonedit" type="button" class="btn btn-success" onclick="enableAll(false)" disabled>
                 Редактировать
             </button>
         </div>

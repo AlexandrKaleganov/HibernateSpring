@@ -1,4 +1,14 @@
-﻿function isValid(r, l) {
+﻿/**
+ * скрипты для управления пользователями
+ */
+
+/**
+ *
+ * @param r поле
+ * @param l параметр с которым необходимо сравнить
+ * @returns {boolean} исли параметр совпал с полем, то вернёт true
+ */
+function isvalId(r, l) {
     var rsl = false;
     if (r.val() === l) {
         rsl = true;
@@ -7,10 +17,15 @@
     return rsl;
 }
 
-function valid() {
-    return !(isValid($("#name"), "") + isValid($("#login"), "") + isValid($("#password"), "")
-        + isValid($("#roles"), ""));
+/**
+ * метод обажается к полям по id  и проверяет что они не пустые
+ * @returns {boolean} если всё хорошо то вернёт true
+ */
+function valId() {
+    return !(isvalId($("#name"), "") + isvalId($("#login"), "") + isvalId($("#password"), "")
+        + isvalId($("#roles"), ""));
 }
+
 /**
  * ретурн ролелист старт
  */
@@ -39,7 +54,10 @@ $(document).ready(function rolelist() {
     }
 });
 
-
+/**
+ * метод добавление или изменение пользователя
+ * @returns {boolean} если все поля в пользователе прошли проверку, то вернёт true иначе false
+ */
 function addOrupdate() {
     var rsl = "";
     var action = "";
@@ -51,7 +69,7 @@ function addOrupdate() {
         rsl = "добавлен";
         action = "addus"
     }
-    if (valid()) {
+    if (valId()) {
         $.ajax({
             type: "POST",
             url: "./listUser",
@@ -65,9 +83,9 @@ function addOrupdate() {
                 if (data.id !== 0) {
                     // noinspection JSUnresolvedVariable,JSUnresolvedVariable
                     $("#result").after("<div class=\"alert alert-success  alert-dismissible\">\n" +
-                    "            " + data.login + " <strong> " + rsl + "</strong>\n" +
-                    "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
-            } else {
+                        "            " + data.login + " <strong> " + rsl + "</strong>\n" +
+                        "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
+                } else {
                     // noinspection JSUnresolvedVariable
                     $("#result").after("<div class=\"alert alert-success  alert-danger\">\n" +
                         "            " + data.login + " <strong> " + "пользователь с таким логином уже существует" + "</strong>\n" +
