@@ -130,7 +130,7 @@
             <div class="form-group col-md-6" id="imageupload">
                 <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
                     <input id="filePhoto" type="file" name="file"/>
-                    <input id="uploadButton" type="button" value="Отправить" onclick="fileupload()">
+                    <input id="uploadButton" type="button" value="Отправить"  onclick="fileupload()" disabled>
                 </form>
             </div>
             <div class="form-group col-md-6" id="imageList">

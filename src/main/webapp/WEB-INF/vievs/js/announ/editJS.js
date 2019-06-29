@@ -50,7 +50,7 @@ function dissabl(param) {
     disabledfalshe($("#buttonedit"), false);
     disabledfalshe($("#uploadButton"), param);
     disabledtag(document.getElementsByName("isDone"), param);
-   document.getElementsByName("delBut").removeAttribute("disabled");
+    document.getElementsByName("delBut").removeAttribute("disabled");
     // disabledtag(, param);
 
 }
@@ -61,16 +61,17 @@ function dissabl(param) {
  * @param param параметр включения/отключения
  */
 function disabledtag(tag, param) {
-    if (param){
-        for (var i = 0; i <tag.length; i++) {
+    if (param) {
+        for (var i = 0; i < tag.length; i++) {
             tag[i].disabled = true;
         }
     } else {
-        for (var i = 0; i <tag.length; i++) {
+        for (var i = 0; i < tag.length; i++) {
             tag[i].removeAttribute('disabled');
         }
     }
 }
+
 /**
  * включение или отключение всех полей по указанному тегу
  * @param tag
@@ -323,11 +324,12 @@ function returnHeadTable() {
         "  </tbody>\n" +
         "</table>";
 }
-function deleteAn(){
+
+function deleteAn() {
     $.ajax({
         type: "POST",
         url: "./",
-        data: {action:"deleteAn", id:$("#idan").val()},
+        data: {action: "deleteAn", id: $("#idan").val()},
         dataType: "json",
         success: function (data) {
             console.log(JSON.stringify(data));
