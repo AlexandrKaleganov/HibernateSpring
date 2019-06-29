@@ -8,9 +8,9 @@
 
 ![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744/db/Avito-Shema.png?raw=true "Optional Title")
 ![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/1.png?raw=true "Optional Title")
-![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/2.png "Optional Title")
-![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/3.png "Optional Title")
-![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/4.png "Optional Title")
-![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/5.png"Optional Title")
-![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/6.png "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/2.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/3.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/4.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/5.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/6.png?raw=true "Optional Title")
 
