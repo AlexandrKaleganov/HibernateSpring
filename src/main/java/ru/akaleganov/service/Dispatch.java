@@ -43,7 +43,7 @@ public class Dispatch {
                 Optional.of(UsersDb.getInstance().findByLogin((Users) ticket)));
         this.dispatch.put("findByIdUser", (ticket) ->
                 Optional.of(UsersDb.getInstance().findByID((Users) ticket)));
-        this.dispatch.put("deleteuser", (ticket) ->
+        this.dispatch.put("deleteUser", (ticket) ->
                 Optional.of(UsersDb.getInstance().delete((Users) ticket)));
         this.dispatch.put("addOrUpdate", (ticket) ->
                 Optional.of(UsersDb.getInstance().edit((Users) ticket)));

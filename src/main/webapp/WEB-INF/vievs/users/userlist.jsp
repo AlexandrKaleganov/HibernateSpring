@@ -43,7 +43,7 @@
     <p>UserList:
     <form action="${pageContext.servletContext.contextPath}/listUser" method="post">
         <input type="hidden" name="us" value="0">
-        <input type="hidden" name="action" value="findbyiduser">
+        <input type="hidden" name="action" value="findByIdUser">
         <input type="submit" value="Add new User">
     </form>
     <table class="table table-striped" id="todolist_table">

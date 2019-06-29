@@ -36,12 +36,12 @@ function loadtable(u) {
 function stringButton(id) {
     var rsl = " <form action=\"${pageContext.servletContext.contextPath}/listUser\" method=\"post\">\n" +
         "                            <input type=\"hidden\" name=\"us\" value=\"" + id + "\">\n" +
-        "                            <input type=\"hidden\" name=\"action\" value=\"findbyiduser\">\n" +
+        "                            <input type=\"hidden\" name=\"action\" value=\"findByIdUser\">\n" +
         "                            <input type=\"submit\" value=\"EDIT\">\n" +
         "                        </form>" + "</td><td>" +
         "                        <form action=\"${pageContext.servletContext.contextPath}/listUser\" method=\"post\">\n" +
         "                            <input type=\"hidden\" name=\"us\" value=\"" + id + "\">\n" +
-        "                            <input type=\"hidden\" name=\"action\" value=\"deleteuser\">\n" +
+        "                            <input type=\"hidden\" name=\"action\" value=\"deleteUser\">\n" +
         "                            <input type=\"submit\" value=\"DELETE\">\n" +
         "                       </form>" + "" +
         "</td></tr>";
