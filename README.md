@@ -7,3 +7,10 @@
 на каждую ветку есть тестовая ветка в которой находятся все коммиты
 
 ![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744/db/Avito-Shema.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744/db/1.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744/db/2.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744/db/3.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744/db/4.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744/db/5.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744/db/6.png?raw=true "Optional Title")
+
