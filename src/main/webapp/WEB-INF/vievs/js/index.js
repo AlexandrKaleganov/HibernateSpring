@@ -3,7 +3,7 @@
 });
 
 /**
- * скрипты для отрисовывания таблицы userlist
+ * скрипты для отрисовывания таблицы списка объявлений
  */
 function listan(actions) {
     $.ajax({
@@ -12,8 +12,6 @@ function listan(actions) {
         data: {action: actions, an: "{\"id\":\"0\"}", car: "{\"id\":\"0\"}"},
         dataType: "json",
         success: function (data) {
-            console.log(data.length);
-            console.log(data);
             for (var i = 0; i < data.length; i++) {
                 if (data[i].id > 0) {
                     $("#todolist_table tbody:last").append(loadtable(data[i]));

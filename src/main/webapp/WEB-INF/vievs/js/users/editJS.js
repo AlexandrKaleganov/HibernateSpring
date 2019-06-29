@@ -62,7 +62,6 @@ function addOrupdate() {
             },
             dataType: "json",
             success: function (data) {
-                console.log(data.id);
                 if (data.id !== 0) {
                     // noinspection JSUnresolvedVariable,JSUnresolvedVariable
                     $("#result").after("<div class=\"alert alert-success  alert-dismissible\">\n" +

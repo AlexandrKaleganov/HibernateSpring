@@ -29,7 +29,7 @@ public class PhotoDb implements Store<Photo> {
     @Override
     public Photo delete(Photo photo) {
         return openSession(session -> {
-            session.delete(photo);
+            session.createQuery("delete Photo where id = :id").setParameter("id", photo.getId()).executeUpdate();
             return photo;
         });
     }

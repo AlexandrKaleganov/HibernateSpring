@@ -1,4 +1,4 @@
-package ru.akaleganov.container.announcement;
+package ru.akaleganov.container.announcement.photo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;

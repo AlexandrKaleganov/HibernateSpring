@@ -17,7 +17,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
-        <%@include file="/WEB-INF/vievs/js/announ/editJS.js" %>
+        <%@include file="/WEB-INF/vievs/js/announ/editJSAnnouncement.js" %>
     </script>
 
     <title>Добавление изменен</title>
@@ -44,9 +44,10 @@
             </button>
         </div>
         <div class="form-group col-md-6">
-            <button id="deleteButton" type="button" value="addAn" class="btn btn-primary" onclick="deleteAn()" disabled>
-                Удалить объявление полностью
-            </button>
+            <form>
+                <input id="deleteButton" type="submit" value="Удалить объявление полностью" class="btn btn-primary" onclick="deleteAn()" disabled>
+            </form>
+
         </div>
     </div>
     <form>
@@ -66,13 +67,13 @@
                     <input type="text" class="form-control" name="created" value="${an.created}" title="Enter created."
                            id="created" disabled>
                 </div>
-                <div class="checkbox" >
+                <div class="checkbox">
                     <c:choose>
                         <c:when test="${an.done == true}">
                             <label><input type="checkbox" id="isDone" name="isDone" disabled checked> Is_Done</label>
                         </c:when>
                         <c:otherwise>
-                            <label><input type="checkbox" id="isDone" name="isDone"  disabled>Is_Done</label>
+                            <label><input type="checkbox" id="isDone" name="isDone" disabled>Is_Done</label>
                         </c:otherwise>
                     </c:choose>
 
@@ -130,7 +131,7 @@
             <div class="form-group col-md-6" id="imageupload">
                 <form id="sampleUploadFrm" enctype="multipart/form-data" method="post">
                     <input id="filePhoto" type="file" name="file"/>
-                    <input id="uploadButton" type="button" value="Отправить"  onclick="fileupload()" disabled>
+                    <input id="uploadButton" type="button" value="Отправить" onclick="fileupload()" disabled>
                 </form>
             </div>
             <div class="form-group col-md-6" id="imageList">
@@ -140,7 +141,9 @@
             <c:forEach items="${an.car.photo}" var="photo">
                 <img src="${pageContext.servletContext.contextPath}/image?id=${photo.id}" alt="..." width="600"
                      height="300">
-                <button type="button" name="delBut" class="close" data-dismiss="alert" aria-label="Close" disabled \onclick="deleteAn()">&times;</button>
+                <button type="button" value="${photo.id}" name="delBut" class="close" data-dismiss="alert"
+                        aria-label="Close" disabled onclick="photoDel(this.value, $('#idan').val(), 'delete')">&times;
+                </button>
             </c:forEach>
         </div>
         <div class="form-group">

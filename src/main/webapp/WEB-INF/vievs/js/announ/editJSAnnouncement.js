@@ -1,4 +1,9 @@
-﻿$(document).ready(function () {
+﻿/**
+ * скрипты для управления объявлением редактирование, удаление добавление,
+ * отрисовки на странице edit.jsp
+ */
+
+$(document).ready(function () {
     /**
      * просмотр объявления,
      * если объявление подал текущий автор,
@@ -30,6 +35,8 @@ function enableall(param) {
     ciclic(totalform.getElementsByTagName("input"), param);
     ciclic(totalform.getElementsByTagName("select"), param);
     ciclic(totalform.getElementsByTagName("textarea"), param);
+    disabledtag(document.getElementsByName("delBut"), param);
+    disabledfalshe($("#deleteButton"), param);
     loadyar();
     markaload();
     transmissionload();
@@ -41,16 +48,17 @@ function enableall(param) {
  * @param param
  */
 function dissabl(param) {
+    disabledfalshe($("#deleteButton"), param);
     disabledfalshe($("#totalbutton"), param);
     var totalform = document.getElementById("totalform");
     ciclic(totalform.getElementsByTagName("input"), param);
     ciclic(totalform.getElementsByTagName("select"), param);
     ciclic(totalform.getElementsByTagName("textarea"), param);
-    ciclic(totalform.getElementsByName("deleteBut"), param);
+    disabledtag(document.getElementsByName("delBut"), param);
     disabledfalshe($("#buttonedit"), false);
     disabledfalshe($("#uploadButton"), param);
     disabledtag(document.getElementsByName("isDone"), param);
-    document.getElementsByName("delBut").removeAttribute("disabled");
+    // document.getElementsByName("delBut").removeAttribute("disabled");
     // disabledtag(, param);
 
 }
@@ -214,27 +222,21 @@ function addAnno() {
             url: "./",
             data: {
                 action: $("#totalbutton").val(),
-                an: "{\"id\":\"" + $("#idan").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone").is(":checked") +
-                    "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}" + "}",
-                car: "{\"id\":\"" + $("#carid").val() + "\"" +
-                    ", \"model\":{\"id\":\"" + $("#model").val() + "\"" + "}," + "\"yar\":\"" + $("#yar").val() + "\"" +
-                    ", \"transmission\":{\"id\":\"" + $("#transmission").val() + "\"}" +
-                    ", \"description\":\"" + $("#description").val() + "\"" + "}"
+                an: toReceiveTheAnnouncementFromAForm(),
+                car: toReceiveTheCarFromAForm()
             },
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data));
                 $("#result").html("");
                 $("#result").append("<div class=\"alert alert-success  alert-dismissible\">\n" +
                     "            " + data.name + " <strong> " + rsl + "</strong>\n" +
                     "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
-                $("#imageView").html("");
-                for (var i = 0; i < data.car.photo.length; i++) {
-                    $("#imageView").append("<img src=\"${pageContext.servletContext.contextPath}/image?id=" + data.car.photo[i].id + "\" alt=\"...\" width=\"600\"\n" +
-                        "                     height=\"300\">");
-                }
+                photoDel("0", data.id, "command");
+
                 //очистка фотографий в сессии
                 managementOfPhotosInASession("clearPhList", "0");
+                //включение кнопки редактирование
+                disabledfalshe($("#buttonedit"), false);
 
             }
         });
@@ -246,7 +248,21 @@ function addAnno() {
     }
 }
 
-
+/**
+ * метод для сбора информации об автомобиле
+ * @returns {string}
+ */
+function toReceiveTheCarFromAForm() {
+    return "{\"id\":\"" + $("#carid").val() + "\"" +
+        ", \"model\":{\"id\":\"" + $("#model").val() + "\"" + "}," + "\"yar\":\"" + $("#yar").val() + "\"" +
+        ", \"transmission\":{\"id\":\"" + $("#transmission").val() + "\"}" +
+        ", \"description\":\"" + $("#description").val() + "\"" + "}";
+}
+function toReceiveTheAnnouncementFromAForm() {
+return "{\"id\":\"" + $("#idan").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone").is(":checked") +
+    "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}" + "}";
+}
+//Start Photo
 /**
  * загрузка файлов на сервлет после возвращает из сесии список загруженных фото
  * эти фотографии  не отрисовываются а только выходит список фотографии в сессии
@@ -271,15 +287,44 @@ function fileupload() {
     });
 }
 
+
+/**
+ * метод принимает команду что необходимо сделать с фотографией
+ * @param idPhoto фотографии метод после получает список фотографий и отрисовывает фото заново
+ * @param idAn id объявления
+ * @param action команда
+ */
+function photoDel(idPhoto, idAn, action) {
+    jQuery.ajax({
+        url: './image',
+        type: "POST",
+        data: {idPhoto: idPhoto, idAn: idAn, action: action},
+        success: function (data) {
+            toDrawAPhoto(data.car.photo);
+        }
+    });
+}
+
+/**
+ * отрисовка фотографий
+ */
+function toDrawAPhoto(photoList) {
+    $("#imageView").html("");
+    for (var i = 0; i < photoList.length; i++) {
+        $("#imageView").append("<img src=\"${pageContext.servletContext.contextPath}/image?id=" + photoList[i].id + "\" alt=\"...\" width=\"600\"\n" +
+            "                     height=\"300\">" +
+            " <button type=\"button\" value=\"" + photoList[i].id + "\" name=\"delBut\" class=\"close\" data-dismiss=\"alert\"\n" +
+            "                        aria-label=\"Close\" disabled onclick=\"photoDel(this.value, $('#idan').val(), 'delete')\">&times;\n" +
+            "                </button>");
+    }
+}
+
 /**
  *
  * @param param1 команда, что необходимо надо будет сделать с фотографией в сессии удалить добавить или очистить все
  * @param param2 индекс, если будем удалять конкртную фотографию из сессии то будет прилетать индекс
  */
 function managementOfPhotosInASession(param1, param2) {
-    console.log(param1);
-    console.log(param2);
-
     jQuery.ajax({
         url: './sessionPhotos',
         type: "POST",
@@ -325,31 +370,18 @@ function returnHeadTable() {
         "</table>";
 }
 
+//End Photo
+/**
+ * удалить объявление полностью
+ */
 function deleteAn() {
     $.ajax({
         type: "POST",
         url: "./",
-        data: {action: "deleteAn", id: $("#idan").val()},
-        dataType: "json",
-        success: function (data) {
-            console.log(JSON.stringify(data));
-            $("#result").html("");
-            $("#result").append("<div class=\"alert alert-success  alert-dismissible\">\n" +
-                "            " + data.name + " <strong> " + rsl + "</strong>\n" +
-                "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">&times;</button>");
-            $("#imageView").html("");
-            for (var i = 0; i < data.car.photo.length; i++) {
-                $("#imageView").append("<img src=\"${pageContext.servletContext.contextPath}/image?id=" + data.car.photo[i].id + "\" alt=\"...\" width=\"600\"\n" +
-                    "                     height=\"300\">");
-            }
-            //очистка фотографий в сессии
-            managementOfPhotosInASession("clearPhList", "0");
-
-        }
+        data: {action: "deleteAn" ,
+            an: toReceiveTheAnnouncementFromAForm(),
+            car: toReceiveTheCarFromAForm()}
     });
-    //отключение всех элементовпереводим в состаяние disabled
-    dissabl(true);
-
 }
 
 // загрузка файлов на сервлет второй вариант оба варианта рабочие от случая к случаю

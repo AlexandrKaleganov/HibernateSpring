@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class ServletIndex extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(ServletIndex.class);
@@ -43,11 +41,13 @@ public class ServletIndex extends HttpServlet {
                 LOGGER.error(e.getMessage(), e);
             }
         } else if (action.contains("deleteAn")) {
-            Dispatch.getInstance().access("deleteAn", new Announcement(Integer.parseInt(req.getParameter("id"))));
+            Dispatch.getInstance().access("deleteAn", ServiceAddObjects.getInstance().addAllObject(
+                    req.getParameter("an"), req.getParameter("car"),
+                    new ArrayList<>()));
             try {
                 this.doGet(req, resp);
             } catch (IOException e) {
-               LOGGER.error(e.getMessage(), e);
+                LOGGER.error(e.getMessage(), e);
             }
 
         } else {

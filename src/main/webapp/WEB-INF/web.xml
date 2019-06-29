@@ -61,7 +61,7 @@
     <!--    servlet for drawing of pictures   -->
     <servlet>
         <servlet-name>ImageServlet</servlet-name>
-        <servlet-class>ru.akaleganov.container.announcement.ImageServlet</servlet-class>
+        <servlet-class>ru.akaleganov.container.announcement.photo.ImageServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -103,7 +103,7 @@
     <!--   servlet for management of photos in a session -->
     <servlet>
         <servlet-name>ServletSession</servlet-name>
-        <servlet-class>ru.akaleganov.container.announcement.ServletSession</servlet-class>
+        <servlet-class>ru.akaleganov.container.announcement.photo.ServletSession</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>

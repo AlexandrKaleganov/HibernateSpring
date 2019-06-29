@@ -1,3 +1,6 @@
+/**
+ * скрипт для поиска данных в таблице
+ */
 $(document).ready(function(){
     $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();

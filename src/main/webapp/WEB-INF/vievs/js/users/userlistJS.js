@@ -12,8 +12,6 @@ function listuser() {
         data: {action: "getListUser", us: "{\"login\":\"login\"" + "}"},
         dataType: "json",
         success: function (data) {
-            console.log(data.length);
-            console.log(data);
             for (var i = 0; i < data.length; i++) {
                 $("#todolist_table tbody:last").append(loadtable(data[i]));
             }

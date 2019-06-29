@@ -10,11 +10,12 @@ import java.util.function.Function;
 
 /**
  * Класс автомобиль, создаётся уникальный объект для каждого объявления
+ *
  * @author Kaleganov Aleander
  * @since 06/05//2019
  * <br/>
  * <b>содержит поля:<b/>
- *
+ * <p>
  * Dispatch мой  универсальный диспатч
  * буду передовать объекты Моделей  а возвращать в
  * зависимости от вызванного метода
@@ -60,11 +61,13 @@ public class Dispatch {
                 Optional.of(AnnouncementDb.getInstance().findByID((Announcement) ticket)));
         this.dispatch.put("updateAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().edit((Announcement) ticket)));
-        this.dispatch.put("deleteAn", (ticket)->
+        this.dispatch.put("deleteAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().delete((Announcement) ticket)));
         //управление картинками
         this.dispatch.put("findByIdPhoto", (ticket) ->
                 Optional.of(PhotoDb.getInstance().findByID((Photo) ticket)));
+        this.dispatch.put("deletePhotoById", (ticket) ->
+                Optional.of(PhotoDb.getInstance().delete((Photo) ticket)));
         //управление марками
         this.dispatch.put("findAllMarka", (ticket) ->
                 Optional.of(MarkaDb.getInstance().findAll()));
