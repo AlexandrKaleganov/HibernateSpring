@@ -33,7 +33,7 @@ $(document).ready(function rolelist() {
     $.ajax({
         type: "POST",
         url: "./listRoles",
-        data: {action: "findallroles", ro: "{\"id\":\"0\"" + "}"},
+        data: {action: "findAllRoles", ro: "{\"id\":\"0\"" + "}"},
         dataType: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {

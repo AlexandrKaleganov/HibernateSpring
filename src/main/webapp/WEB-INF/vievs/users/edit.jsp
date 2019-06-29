@@ -1,4 +1,3 @@
-<jsp:useBean id="user" scope="request" type="javax.enterprise.inject.spi.PassivationCapable"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%--
