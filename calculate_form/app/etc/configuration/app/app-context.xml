@@ -1,0 +1,26 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="statisticDataSource" class="local.work.vxml.base.impl.utils.AppBasicDataSource" destroy-method="close" >
+        <constructor-arg name="name" value="statistic"/>
+    </bean>
+
+    <bean id="companyDataSource" class="local.work.vxml.base.impl.utils.AppBasicDataSource" destroy-method="close" >
+        <constructor-arg name="name" value="company"/>
+    </bean>
+
+    <bean id="appLogic" class="local.work.vxml.company.dialog.AppLogic" scope="appsession"/>
+
+    <bean class="local.work.vxml.company.dialog.CompanyService" scope="appsession">
+        <constructor-arg ref="companyDataSource"/>
+    </bean>
+
+    <bean id="bye" class="local.work.vxml.company.dialog.ByeDialog" scope="prototype">
+        <property name="name" value="bye"/>
+    </bean>
+
+</beans>

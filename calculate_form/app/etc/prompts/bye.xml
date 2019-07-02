@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<prompts_collection>
+    <prompt_set id="bye" timeout="5000">
+        <generals>
+            <p1>
+                <item url="/static/bye.wav">
+                    Была рада помочь.
+                </item>
+            </p1>
+        </generals>
+    </prompt_set>
+    <prompt_set id="bye_error" timeout="5000">
+        <generals>
+            <p1>
+                <item url="/static/bye_error.wav">
+                    Извините за беспокойство, возможно был указан неверный телефон. Всего хорошего
+                </item>
+            </p1>
+        </generals>
+    </prompt_set>
+</prompts_collection>

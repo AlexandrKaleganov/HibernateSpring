@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<dialog id="interested">
+    <property_id>can_you_speak</property_id>
+    <field id="field1">
+        <prompt_id>can_you_speak_field1</prompt_id>
+        <grammar_id>can_you_speak_field1</grammar_id>
+    </field>
+</dialog>

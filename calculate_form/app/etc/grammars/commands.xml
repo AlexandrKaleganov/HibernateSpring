@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<grammar_collection>
+    <grammar_set id="global_commands">
+        <grammar type="xml/xml" weight="10">
+            <url>/static/global_repeat.grregexp</url>
+            <slots>{'rule': {'type': 'LIST', 'encoded': 'true', 'values': []}}</slots>
+        </grammar>
+    </grammar_set>
+</grammar_collection>

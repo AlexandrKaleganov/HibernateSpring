@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<grammar_collection>
+    <grammar name="AREYOUROBOT" type="xml/xml">
+        <url>/static/global_areyourobot.grregexp</url>
+        <slots>{'rule': {'type': 'LIST', 'encoded': 'true', 'values': []}}</slots>
+    </grammar>
+</grammar_collection>

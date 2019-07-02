@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<grammar_collection>
+    <grammar_set id="can_you_speak_field1" extend="global_commands">
+        <grammar type="xml/xml">
+            <url>/static/any.grregexp</url>
+            <slots>{'rule': {'type': 'LIST', 'encoded': 'true', 'values': []}}</slots>
+        </grammar>
+    </grammar_set>
+</grammar_collection>

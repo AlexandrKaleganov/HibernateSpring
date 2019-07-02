@@ -1,0 +1,8 @@
+bay=\s+да\s+
+bay=\s+bay\s+
+bay=\s+нет\s+
+bay=\s+до свидания\s+
+bay=\s+пока\s+
+bay=\s+прощай\s+
+bay=\s+до встречи\s+
+bay=.+

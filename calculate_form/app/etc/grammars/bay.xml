@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<grammar_collection>
+    <grammar_set id="bay_field1">
+        <grammar type="xml/xml">
+            <url>/static/bay.grregexp</url>
+            <slots>{'rule': {'type': 'LIST', 'encoded': 'true', 'values': []}}</slots>
+        </grammar>
+    </grammar_set>
+</grammar_collection>

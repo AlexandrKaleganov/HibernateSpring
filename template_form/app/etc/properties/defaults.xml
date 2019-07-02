@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<property_collection>
+    <property_set id="defaults">
+        <!-- настройки приложения -->
+        <swirec_app_id>48</swirec_app_id>
+        <swirec_osr_app_id>32</swirec_osr_app_id>
+        <swirec_model>sberbank</swirec_model>
+        <swirec_vad_settings>2,150,30,1,150,40</swirec_vad_settings>
+        <swirec_osr_flags>3</swirec_osr_flags>
+        <swirec_osr_server>${conf:swirec_osr_server}</swirec_osr_server>
+        <swirec_utterance_silence>30</swirec_utterance_silence>
+        <swirec_disable_bargein_timeout>0</swirec_disable_bargein_timeout>
+        <swirec_hotword_mode>false</swirec_hotword_mode>
+        <swirec_lattice_beam>-1</swirec_lattice_beam>
+        <swirec_beam>-1</swirec_beam>
+        <swirec_lattice_nbest>-1</swirec_lattice_nbest>
+        <swirec_chunk_process_limit>100</swirec_chunk_process_limit>
+        <swirec_cmn_window>600</swirec_cmn_window>
+		<swirec_cmn_latency>150</swirec_cmn_latency>
+
+        <!-- уровни доверия -->
+        <confidencelevel>0.1</confidencelevel>
+        <ssm_confidencelevel>980</ssm_confidencelevel>
+
+        <!-- таймауты -->
+        <incompletetimeout>3000</incompletetimeout>
+        <completetimeout>1000</completetimeout>
+        <maxspeechtimeout>10000</maxspeechtimeout>
+
+        <!-- языковые настройки генерации vxml -->
+        <form_lang type="app">ru-RU</form_lang>
+        <grammar_lang type="app">${conf:grammar_lang}</grammar_lang>
+        <tts_lang type="app">ru-RU</tts_lang>
+    </property_set>
+</property_collection>

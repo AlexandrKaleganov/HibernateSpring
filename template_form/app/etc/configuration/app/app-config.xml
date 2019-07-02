@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <config>
+        <!-- id приложения в таблице call -->
+        <app_id>***</app_id>
+        <!-- vxml, test. Может задаваться через командную строку ключ -m -->
+        <app_mode>vxml</app_mode>
+        <!-- IP На котором слушает http сервер -->
+    <!--Мой IP при тестировании-->
+        <server_host>***</server_host>
+        <!-- Порт сервера -->
+    <!--Порт из app_statistic.app-->
+        <server_port>***</server_port>
+        <!-- Кэширование wav и грамматик в секундах -->
+        <static_file_cache_timeout>0</static_file_cache_timeout>
+        <local_config>./app-config-local.xml</local_config>
+        <!-- Количество одновременно запущенных потоков сервера -->
+        <server_thread_pool_size>20</server_thread_pool_size>
+        <!-- Сколько хранить access_log -->
+        <server_accesslog_retain_days>30</server_accesslog_retain_days>
+        <!-- Переменные телефонии в режиме теста -->
+    <test>
+        <ani>514</ani>
+    </test>
+</config>

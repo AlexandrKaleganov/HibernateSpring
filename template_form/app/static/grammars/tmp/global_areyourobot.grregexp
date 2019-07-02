@@ -1,0 +1,2 @@
+global_are_you_robot = .*?\s+робот\s+.*
+global_are_you_robot = \s+global_are_you_robot\s+

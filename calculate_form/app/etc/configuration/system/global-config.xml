@@ -1,0 +1,57 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="appSessionScope" class="local.work.vxml.base.impl.shared.AppSessionScope">
+        <!-- Таймаут удаления из кэша в секундах -->
+        <constructor-arg name="expireTimeout" value="600"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+        <property name="scopes">
+            <map>
+                <entry key="appsession">
+                    <ref bean="appSessionScope" />
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="GlobalConfig" class="local.work.vxml.base.impl.shared.GlobalConfigService">
+        <property name="httpGrammarBase" value="${app_host}/grammar"/>
+        <property name="httpDialogBase" value="${app_host}/dialog"/>
+        <property name="httpPromptBase" value="${app_host}/prompt"/>
+        <property name="httpDispatcherBase" value="${app_host}/logic"/>
+        <property name="dialogCollectionDir" value="${app_root}/etc/dialogs/"/>
+        <property name="promptCollectionDir" value="${app_root}/etc/prompts/"/>
+        <property name="propertyCollectionDir" value="${app_root}/etc/properties/"/>
+        <property name="grammarCollectionDir" value="${app_root}/etc/grammars/"/>
+        <property name="staticGrammarDir" value="${app_root}/static/grammars"/>
+        <property name="staticPromptDir" value="${app_root}/static/prompts"/>
+        <property name="accessLogDir" value="${app_root}/logs/"/>
+    </bean>
+
+    <bean id="AppConfig" class="local.work.vxml.base.impl.shared.XMLAppConfigService">
+        <constructor-arg value="${app_root}/etc/configuration/app/app-config.xml"/>
+    </bean>
+
+    <bean id="appExecutor" class="local.work.vxml.base.impl.shared.AppExecutorImpl" scope="appsession">
+        <constructor-arg type="local.work.vxml.base.interfaces.IAppLogic" ref="appLogic"/>
+    </bean>
+
+    <bean id="sessionService" class="local.work.vxml.base.impl.shared.DefaultSessionService" scope="singleton"/>
+
+    <bean id="historyService" class="local.work.vxml.base.impl.shared.ExecHistoryServiceImpl" scope="appsession"/>
+
+    <bean id="dialogService" class="local.work.vxml.base.impl.shared.DialogServiceImpl" scope="appsession"/>
+
+    <bean id="promptSet" class="local.work.vxml.base.impl.shared.prompt.PromptSetImpl" scope="prototype"/>
+
+    <bean id="promptList" class="local.work.vxml.base.impl.shared.prompt.PromptListImpl" scope="prototype"/>
+
+    <bean id="propertySet" class="local.work.vxml.base.impl.shared.property.PropertySetImpl" scope="prototype"/>
+
+</beans>

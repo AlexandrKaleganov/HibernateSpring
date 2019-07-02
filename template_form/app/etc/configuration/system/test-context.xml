@@ -1,0 +1,32 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <context:component-scan
+            base-package="local.work.vxml.base.http, local.work.vxml.base.impl.test, local.work.vxml.base.impl.shared"/>
+
+    <bean id="semanticClientService" class="local.work.vxml.base.impl.test.SemanticClientService">
+        <constructor-arg type="java.lang.String" value="10.201.2.2"/>
+        <constructor-arg type="int" value="7777"/>
+    </bean>
+
+<!--
+    <bean id="testDataService" class="local.work.vxml.base.impl.test.InputTestDataFileService" scope="singleton">
+        <constructor-arg type="java.lang.String" value="app/scripts/test1.txt"/>
+    </bean>
+-->
+
+    <bean id="testDataService" class="local.work.vxml.base.impl.test.InputTestDataConsoleService" scope="singleton"/>
+
+    <bean id="formService" class="local.work.vxml.base.impl.test.TestFormService" scope="singleton"/>
+
+    <import resource="../app/test-app-context.xml"/>
+
+    <import resource="global-config.xml"/>
+
+</beans>

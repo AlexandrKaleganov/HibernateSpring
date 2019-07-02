@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <!-- IP На котором слушает http сервер -->
+    <server_host>192.168.88.187</server_host>
+    <!-- Порт сервера -->
+    <server_port>8087</server_port>
+    <!-- Кэширование wav и грамматик в секундах -->
+    <static_file_cache_timeout>300</static_file_cache_timeout>
+    <!-- Режим воспроизведения: native - через астериск, tts - всё через ts -->
+    <speak_mode>native</speak_mode>
+    <https>
+        <!-- Порт сервера https -->
+        <server_port>0</server_port>
+    </https>
+    <session>
+        <cache_host>10.201.2.2</cache_host>
+        <cache_port>11211</cache_port>
+        <enabled>false</enabled>
+    </session>
+    <!-- Параметры используемые в properties, например ${conf:swirec_osr_server} -->
+    <properties>
+        <swirec_osr_server>10.201.2.10</swirec_osr_server>
+        <swirec_logger_server>10.201.2.11</swirec_logger_server>
+        <grammar_lang>pt-PT</grammar_lang>
+    </properties>
+    <!-- Параметры используемые в грамматиках -->
+    <grammar>
+    </grammar>
+    <db>
+        <statistic>
+            <url>jdbc:mysql://10.201.2.2:3306/app_statistic?autoReconnect=true&amp;characterEncoding=UTF-8</url>
+            <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+            <username>nesh</username>
+            <password>12345</password>
+            <initialSize>20</initialSize>
+            <maxActive>30</maxActive>
+        </statistic>
+    </db>
+</config>

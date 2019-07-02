@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<property_collection>
+    <property_set id="can_you_speak" extend="defaults">
+        <incompletetimeout>3500</incompletetimeout>
+        <completetimeout>1500</completetimeout>
+    </property_set>
+</property_collection>
+

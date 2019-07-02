@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<property_collection>
+    <property_set id="hello" extend="defaults">
+        <incompletetimeout>3500</incompletetimeout>
+        <completetimeout>1500</completetimeout>
+    </property_set>
+</property_collection>

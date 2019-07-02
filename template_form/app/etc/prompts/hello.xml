@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<prompts_collection timeout="5000" bargein="false">
+<prompt_set id="hello_field1" extend="global_commands">
+    <generals count="1">
+        <p1>
+            <item url="/static/hello.wav">Здравствуйте, ресепшен слушает Вас</item>
+        </p1>
+    </generals>
+    <nomatches count="2">
+        <p1>
+            <item url="/static/nomatch.wav">Пожалуйста, повторите!</item>
+        </p1>
+    </nomatches>
+    <noinputs count="2">
+        <p1>
+            <item url="/static/noinput.wav">Извините, я Вас не расслышала</item>
+        </p1>
+    </noinputs>
+</prompt_set>
+</prompts_collection>

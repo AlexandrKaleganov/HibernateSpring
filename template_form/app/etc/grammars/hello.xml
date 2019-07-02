@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<grammar_collection>
+    <grammar_set id="hello_field1">
+        <grammar type="xml/xml">
+            <url>/static/hello.grregexp</url>
+            <slots>{'rule': {'type': 'LIST', 'encoded': 'true', 'values': []}}</slots>
+        </grammar>
+    </grammar_set>
+</grammar_collection>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<dialog id="bay">
+    <property_id>hello</property_id>
+    <field id="field1">
+        <prompt_id>bay_field1</prompt_id>
+        <grammar_id>bay_field1</grammar_id>
+    </field>
+</dialog>

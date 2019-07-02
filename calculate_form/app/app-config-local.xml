@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <!-- IP На котором слушает http сервер -->
+    <server_host>10.10.40.12</server_host>
+    <!-- Порт сервера -->
+    <server_port>8083</server_port>
+    <!-- Режим воспроизведения: native - через астериск, tts - всё через ts -->
+    <speak_mode>native</speak_mode>
+    <!-- Кэширование wav и грамматик в секундах -->
+    <static_file_cache_timeout>0</static_file_cache_timeout>
+    <https>
+        <!-- Порт сервера https -->
+        <server_port>0</server_port>
+    </https>
+    <!-- Параметры используемые в properties, например ${conf:swirec_osr_server} -->
+    <properties>
+        <swirec_osr_server>10.201.2.10</swirec_osr_server> <!-- настраивается в default -->
+        <swirec_logger_server>10.201.2.11</swirec_logger_server> <!--       mrcp-->
+        <grammar_lang>pt-PT</grammar_lang> <!--       ттс каким олосом будет озвучиваться-->
+    </properties>
+    <db>
+        <statistic>
+            <url>jdbc:mysql://10.201.2.2:3306/kaleganov_local?autoReconnect=true&amp;characterEncoding=UTF-8</url>
+            <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+            <username>nesh</username>
+            <password>12345</password>
+            <initialSize>20</initialSize>
+            <maxActive>30</maxActive>
+        </statistic>
+        <company>
+            <url>jdbc:mysql://10.201.2.2:3306/elbrus?autoReconnect=true&amp;characterEncoding=UTF-8</url>
+            <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+            <username>nesh</username>
+            <password>12345</password>
+            <initialSize>20</initialSize>
+            <maxActive>30</maxActive>
+        </company>
+    </db>
+</config>

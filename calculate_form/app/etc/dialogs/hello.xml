@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<dialog id="hello">
+    <property_id>hello</property_id>
+    <field id="field1">
+        <prompt_id>hello_field1</prompt_id>
+        <grammar_id>hello_field1</grammar_id>
+    </field>
+</dialog>

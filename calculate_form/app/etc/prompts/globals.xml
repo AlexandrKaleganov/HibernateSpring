@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<prompts_collection timeout="5000" bargein="false">
+    <prompt_set id="global_commands">
+        <areyourobot grammar-ref="AREYOUROBOT" grammar-weight="3">
+            <p1>
+                <item url="/static/are_you_robot.wav">Я электронный помощник, и я понимаю Вас</item>
+            </p1>
+        </areyourobot>
+    </prompt_set>
+</prompts_collection>
+ 

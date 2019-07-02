@@ -1,0 +1,8 @@
+yes=\s+да\s+
+yes=\s+yes\s+
+yes=\s+hello\s+
+yes=\s+привет\s+
+yes=\s+здравствуйте\s+
+yes=\s+слушаю\s+
+yes=\s+внимательно\s+
+yes=.+
