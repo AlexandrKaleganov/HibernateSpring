@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script charset="UTF-8" type="text/javascript" src="js/sortedTable.js">
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <p>Список товаров:
+    <form action="${pageContext.servletContext.contextPath}/" method="post">
+        <input type="hidden" name="an" value="0">
+        <input type="hidden" name="action" value="findbyidan">
+        <input type="submit" value="Подать объявление">
+    </form>
+    </p>
+    <table class="table table-striped" id="todolist_table">
+        <thead class="thead-dark">
+        <tr>
+            <th onclick="sortTable(0, 'todolist_table')">ID &darr;</th>
+            <th onclick="sortTable(1, 'todolist_table')">Название товара &darr;<span class="fi-sort-ascending"></span></th>
+            <th onclick="sortTable(2, 'todolist_table')">Цена&darr;</th>
+            <th>Купить &darr;</th>
+            <th>Отменить &darr;</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+</body>
+</html>
