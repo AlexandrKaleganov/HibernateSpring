@@ -33,9 +33,9 @@ public class FilterContentType implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse res = (HttpServletResponse) servletResponse;
-        if (req.getSession().getAttribute("basketMap") == null) {
-            req.getSession().setAttribute("basketMap", new HashMap<Item, Integer>());
-        }
+//        if (req.getSession().getAttribute("basketMap") == null) {
+//            req.getSession().setAttribute("basketMap", new HashMap<Item, Integer>());
+//        }
         if (req.getRequestURI().contains("/todolist") || req.getRequestURI().contains("/basket")) {
             res.setContentType("text/json; charset=windows-1251");
         }
