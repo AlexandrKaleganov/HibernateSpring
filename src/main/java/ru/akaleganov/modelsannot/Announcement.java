@@ -46,7 +46,7 @@ public class Announcement extends AllModels {
 
     /**
      *
-     * @param id {@link Announcement#id}
+     * @param id
      */
     public Announcement(int id) {
         super(id);

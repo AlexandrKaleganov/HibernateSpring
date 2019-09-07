@@ -37,13 +37,28 @@
         <input type="hidden" name="action" value="findByIdAn">
         <input type="submit" value="Подать объявление">
     </form>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
     <br/>
+    <div>
+        <select id="filter" onchange="filterAction()">
+            <option></option>
+            <option value="toShowForTheLastDay">- показать за последний день</option>
+            <option value="toShowWithAPhoto">- показать с фото</option>
+            <option value="toShowACertainBrand">- показать определенной марки</option>
+        </select>
+        <select hidden="true" id="marka" onchange="filterAction()">
+            <option value="0"></option>
+        </select>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
     <table class="table table-striped" id="todolist_table">
         <thead class="thead-dark">
         <tr>
             <th onclick="sortTable(0, 'todolist_table')">ID &darr;</th>
-            <th onclick="sortTable(1, 'todolist_table')">Название объявления &darr;<span class="fi-sort-ascending"></span></th>
+            <th onclick="sortTable(1, 'todolist_table')">Название объявления &darr;<span
+                    class="fi-sort-ascending"></span></th>
             <th onclick="sortTable(2, 'todolist_table')">Дата создания &darr;</th>
             <th onclick="sortTable(3, 'todolist_table')">Марка &darr;</th>
             <th onclick="sortTable(4, 'todolist_table')">Модель &darr;</th>

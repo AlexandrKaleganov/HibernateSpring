@@ -1,7 +1,9 @@
 package ru.akaleganov.dbmanag;
 
 import ru.akaleganov.modelsannot.Announcement;
+import ru.akaleganov.modelsannot.Marka;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,9 +60,16 @@ public class AnnouncementDb implements Store<Announcement> {
         return this.refactList(sql);
     }
 
+    /**
+     * рефакторинг получения листа
+     *
+     * @param sql запрос
+     * @return лист
+     */
     private ArrayList<Announcement> refactList(String sql) {
         return openSession(session -> {
             ArrayList<Announcement> rsl = (ArrayList<Announcement>) session.createQuery(sql).list();
+            LOGGER.debug("в консоль упало ={}" + rsl.size());
             if (rsl.size() > 0) {
                 return rsl;
             } else {
@@ -68,6 +77,29 @@ public class AnnouncementDb implements Store<Announcement> {
                 return rsl;
             }
         });
+    }
+
+    /**
+     * @return получить список объявлений за последний день
+     */
+    public List<Announcement> toShowForTheLastDay() {
+        String date = String.valueOf(LocalDate.now());
+        LOGGER.debug("дате = {}" + date);
+        return this.refactList("from Announcement where created  >= '" + date + "'");
+    }
+
+    /**
+     * @return получить список объявлений с фотографиями
+     */
+    public List<Announcement> toShowWithAPhoto() {
+        return this.refactList("from Announcement where car.photo.size > 0");
+    }
+    /**
+     * @return получить список объявлений с определённой марки
+     */
+    public List<Announcement> toShowACertainBrand(Marka marka) {
+        LOGGER.debug("marka, по которой будем искать список объявления = " + marka.getId());
+        return this.refactList("from Announcement where car.model.marka.id = " + marka.getId());
     }
 
     @Override

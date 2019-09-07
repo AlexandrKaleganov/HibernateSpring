@@ -5,10 +5,8 @@ import org.hibernate.Session;
 import ru.akaleganov.service.Sfactory;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 
-import static org.apache.log4j.LogManager.getLogger;
 
 /**
  * @param <E>
@@ -16,8 +14,8 @@ import static org.apache.log4j.LogManager.getLogger;
  * @since 17.05.2019
  */
 public interface Store<E> {
-    final static Sfactory S_FACTORY = Sfactory.getINSTANCE();
-    final static Logger LOGGER = getLogger(Store.class);
+    Sfactory S_FACTORY = Sfactory.getINSTANCE();
+    Logger LOGGER = Logger.getLogger(Store.class);
 
     /**
      * refactor close factory and close session

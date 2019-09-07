@@ -50,6 +50,28 @@ public class ServletIndex extends HttpServlet {
                 LOGGER.error(e.getMessage(), e);
             }
 
+        } else if ("toShowForTheLastDay".equals(action)) {
+            LOGGER.debug("сработала логика = " + action);
+            try {
+                PrintWriter writer = new PrintWriter(resp.getOutputStream());
+                writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
+                        ServiceAddObjects.getInstance().addAllObject(
+                                req.getParameter("an"), req.getParameter("car"),
+                                (ArrayList<Photo>) req.getSession().getAttribute("phList")))));
+                writer.flush();
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        } else if ("filter".equals(action)) {
+            LOGGER.debug("сработала логика = " + action);
+            try {
+                PrintWriter writer = new PrintWriter(resp.getOutputStream());
+                writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(req.getParameter("param"),
+                        ServiceAddObjects.getInstance().addMarka(req.getParameter("marka")))));
+                writer.flush();
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
         } else {
             try {
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());

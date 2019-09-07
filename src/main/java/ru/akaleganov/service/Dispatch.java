@@ -63,6 +63,14 @@ public class Dispatch {
                 Optional.of(AnnouncementDb.getInstance().edit((Announcement) ticket)));
         this.dispatch.put("deleteAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().delete((Announcement) ticket)));
+         //фильтры
+        this.dispatch.put("toShowForTheLastDay", (ticket) ->
+                Optional.of(AnnouncementDb.getInstance().toShowForTheLastDay()));
+        this.dispatch.put("toShowWithAPhoto", (ticket) ->
+                Optional.of(AnnouncementDb.getInstance().toShowWithAPhoto()));
+        this.dispatch.put("toShowACertainBrand", (ticket) ->
+                Optional.of(AnnouncementDb.getInstance().toShowACertainBrand((Marka) ticket)));
+
         //управление картинками
         this.dispatch.put("findByIdPhoto", (ticket) ->
                 Optional.of(PhotoDb.getInstance().findByID((Photo) ticket)));

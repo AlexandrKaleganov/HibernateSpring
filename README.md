@@ -13,4 +13,8 @@
 ![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/4.png?raw=true "Optional Title")
 ![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/5.png?raw=true "Optional Title")
 ![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/6.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/7.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/8.png?raw=true "Optional Title")
+![Alt text](https://github.com/AlexandrKaleganov/HibernateSpring/blob/task_4744_interface/src/main/resources/9.png?raw=true "Optional Title")
+
 
