@@ -15,7 +15,7 @@ public class Sfactory implements AutoCloseable {
     /**
      * фабрика сессий
      */
-    private final SessionFactory factory;
+    private final SessionFactory factory = new Configuration().configure().buildSessionFactory();
     private final static Sfactory INSTANCE = new Sfactory();
 
     /**
@@ -24,13 +24,6 @@ public class Sfactory implements AutoCloseable {
      */
     public static Sfactory getINSTANCE() {
         return INSTANCE;
-    }
-
-    /**
-     * конструктор сразу создаёт фабрику сессий
-     */
-    public Sfactory() {
-        factory = new Configuration().configure().buildSessionFactory();
     }
 
     /**

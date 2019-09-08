@@ -25,7 +25,7 @@ public class ServiceAddObjects {
         return INSTANCE;
     }
 
-    private Announcement addAnnouncement(String jsonStroka) {
+    public Announcement addAnnouncement(String jsonStroka) {
         Announcement item;
         try {
             item = new ObjectMapper().readValue(jsonStroka, Announcement.class);
@@ -57,7 +57,10 @@ public class ServiceAddObjects {
         return this.addModel(json, j -> new ObjectMapper().readValue(j, Marka.class));
     }
 
-    private List<Photo> addPhoto(ArrayList<String> urlList) {
+    public Model addModel(String json) {
+        return this.addModel(json, j -> new ObjectMapper().readValue(j, Model.class));
+    }
+    public List<Photo> addPhoto(ArrayList<String> urlList) {
         ArrayList<Photo> photos = new ArrayList<>();
         urlList.forEach(url -> {
             if (url != null && url.length() > 1) {
@@ -139,7 +142,7 @@ public class ServiceAddObjects {
      * @param photos {@link Photo} лист фотографий
      * @return {@link Announcement} из входящих параметров собирается объявление
      */
-    private Announcement addAll(Announcement ann, Car car, List<Photo> photos) {
+    public Announcement addAll(Announcement ann, Car car, List<Photo> photos) {
         ann.setCar(car);
         car.setAnnouncement(ann);
         if (photos.size() > 0) {

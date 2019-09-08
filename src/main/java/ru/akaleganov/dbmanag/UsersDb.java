@@ -4,8 +4,6 @@ import ru.akaleganov.modelsannot.Users;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author Alexander Kalegano
@@ -27,7 +25,7 @@ public class UsersDb implements Store<Users> {
         } else {
             return openSession(session -> {
                 session.save(users);
-                return session.load(Users.class, users.getId());
+                return session.get(Users.class, users.getId());
             });
         }
     }

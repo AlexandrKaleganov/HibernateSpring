@@ -12,8 +12,10 @@ public class CarDb implements Store<Car> {
     }
     @Override
     public Car add(Car car) {
-        error();
-        return null;
+        return openSession(session -> {
+            session.save(car);
+            return session.load(Car.class, car.getId());
+        });
     }
 
     @Override

@@ -19,8 +19,10 @@ public class RolesDb implements Store<Roles> {
     //мтод не раелизован
     @Override
     public Roles add(Roles roles) {
-        error();
-        return null;
+        return openSession(session -> {
+            session.save(roles);
+            return session.load(Roles.class, roles.getId());
+        });
     }
 
     //мтод не раелизован
@@ -45,8 +47,11 @@ public class RolesDb implements Store<Roles> {
     //мтод не раелизован
     @Override
     public Roles findByID(Roles roles) {
-        error();
-        return null;
+        Roles rsl = openSession(session -> session.get(Roles.class, roles.getId()));
+        if (rsl == null) {
+            rsl = new Roles(0);
+        }
+        return rsl;
     }
 
     //мтод не раелизован

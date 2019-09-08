@@ -18,8 +18,10 @@ public class MarkaDb implements Store<Marka> {
 
     @Override
     public Marka add(Marka marka) {
-        error();
-        return null;
+        return openSession(session -> {
+            session.save(marka);
+            return session.load(Marka.class, marka.getId());
+        });
     }
 
     @Override

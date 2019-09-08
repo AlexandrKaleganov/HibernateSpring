@@ -1,5 +1,6 @@
 package ru.akaleganov.dbmanag;
 
+import ru.akaleganov.modelsannot.Announcement;
 import ru.akaleganov.modelsannot.Marka;
 import ru.akaleganov.modelsannot.Model;
 
@@ -16,8 +17,10 @@ public class ModelDb implements Store<Model> {
 
     @Override
     public Model add(Model model) {
-        error();
-        return null;
+        return openSession(session -> {
+            session.save(model);
+            return session.load(Model.class, model.getId());
+        });
     }
 
     @Override

@@ -3,9 +3,9 @@ package ru.akaleganov.dbmanag;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.Is;
 import org.junit.Test;
+import ru.akaleganov.modelsannot.Roles;
 import ru.akaleganov.modelsannot.Users;
 import ru.akaleganov.service.ServiceAddObjects;
-import ru.akaleganov.service.Sfactory;
 
 import java.util.function.BiConsumer;
 
@@ -16,33 +16,32 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UsersDbTest {
     final static Logger LOGGER = getLogger(UsersDbTest.class);
 
-    private String jsonUser = "{\"name\":\"name\", \"login\":\"login\", \"roles\":{\"id\":\"1\",\"role\":\"ADMIN\"}, \"password\":\"pass\"}";
+    private String jsonUser = "{\"name\":\"name\", \"login\":\"login2\", \"roles\":{\"id\":\"1\",\"role\":\"ADMIN\"}, \"password\":\"pass\"}";
+    String jsonRole = "{\"id\":\"1\", \"role\":\"ADMIN\"}";
+    Roles role = RolesDb.getInstance().add(new ServiceAddObjects().addRole(jsonRole));
+    Users users = UsersDb.getInstance().add(new ServiceAddObjects().addUser(jsonUser));
 
     private void testAll(BiConsumer<UsersDb, Users> fank) {
-
-        Users users =  UsersDb.getInstance().add(new ServiceAddObjects().addUser(jsonUser));
-        try {
-            fank.accept(UsersDb.getInstance(), users);
-        } finally {
-            UsersDb.getInstance().delete(users);
-        }
+        fank.accept(UsersDb.getInstance(), this.users);
     }
 
     @Test
     public void add() {
-        Users users = UsersDb.getInstance().add(new ServiceAddObjects().addUser(jsonUser));
-        assertThat(users.getId() > 0, Is.is(true));
-        System.out.println(users);
-        UsersDb.getInstance().delete(users);
-    }
-
-    @Test
-    public void delete() {
-        this.testAll((db, u) -> {
-            db.delete(u);
-            assertThat(db.findByID(u).getId(), Is.is(0));
+        this.testAll((db, user) -> {
+            LOGGER.debug("user пришёл в метод = " + user);
+            Users users = UsersDb.getInstance().findByLogin(user);
+            LOGGER.debug("users = " + users);
+            assertThat(users.getId(), Is.is(1));
         });
     }
+
+//    @Test
+//    public void delete() {
+//        this.testAll((db, u) -> {
+//            db.delete(u);
+//            assertThat(db.findByID(u).getId(), Is.is(0));
+//        });
+//    }
 
     @Test
     public void edit() {
@@ -56,34 +55,31 @@ public class UsersDbTest {
     @Test
     public void findAll() {
         this.testAll((db, u) -> {
-            assertThat(db.findAll().get(0).getName(), Is.is("root"));
+            assertThat(db.findAll().get(0).getLogin(), Is.is("login2"));
         });
     }
 
     @Test
     public void findByID() {
         this.testAll((db, u) -> {
-            assertThat(db.findByID(u).getName(), Is.is("name"));
+            LOGGER.error(u.getId() + " id =");
+            Users users = UsersDb.getInstance().findByLogin(u);
+            assertThat(db.findByID(users).getLogin(), Is.is("login2"));
         });
     }
 
-    @Test
-    public void findByName() {
-        this.testAll((db, u) -> {
-            assertThat(db.findByName(u).get(0).getName(), Is.is("name"));
-        });
-    }
 
     @Test
     public void findByLoginPass() {
         this.testAll((db, u) -> {
-            assertThat(db.findByLoginPass(u).getName(), Is.is("name"));
+            assertThat(db.findByLoginPass(u).getLogin(), Is.is("login2"));
         });
     }
+
     @Test
     public void findByLogin() {
         this.testAll((db, u) -> {
-            assertThat(db.findByLogin(u).getName(), Is.is("name"));
+            assertThat(db.findByLogin(u).getLogin(), Is.is("login2"));
         });
     }
 }

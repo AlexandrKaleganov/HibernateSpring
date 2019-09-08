@@ -25,7 +25,12 @@ public class PhotoDb implements Store<Photo> {
             return photo;
         });
     }
-
+    public List<Photo> add(List<Photo> photo) {
+        return openSession(session -> {
+            session.save(photo);
+            return photo;
+        });
+    }
     @Override
     public Photo delete(Photo photo) {
         return openSession(session -> {

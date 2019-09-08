@@ -1,52 +1,63 @@
 package ru.akaleganov.dbmanag;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.junit.After;
-import org.junit.Before;
+import org.apache.log4j.Logger;
 import org.junit.Test;
-import ru.akaleganov.modelsannot.Announcement;
+import ru.akaleganov.modelsannot.*;
 import ru.akaleganov.service.ServiceAddObjects;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
-import static org.junit.Assert.*;
+import static org.apache.log4j.Logger.getLogger;
+import static org.junit.Assert.assertTrue;
 
 public class AnnouncementDbTest {
-    private String jsonCar = "{\"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"4\"}, \"yar\":\"1999\"}";
-    private ArrayList<String> urlList = new ArrayList<>(Arrays.asList("db/Avito-Shema.png"));
+    private final static Logger LOGGER = getLogger(AnnouncementDbTest.class);
+    //    формируем объект Start
+    private String jsonRole = "{\"id\":\"1\", \"role\":\"ADMIN\"}";
+    private String jsonUSer = "{\"name\":\"name\", \"login\":\"login\", \"roles\":{\"id\":\"1\",\"role\":\"ADMIN\"}, \"password\":\"pass\"}";
+    private String jsonMarka = "{\"id\":\"1\", \"name\":\"Toyota\"}";
+    private String jsonTransmission = "{\"id\":\"1\", \"name\":\"РОБОТ\"}";
+    private String jsonModel = "{\"id\":\"1\", \"name\":\"RAV\", \"marka\":{\"id\":\"1\"}}";
+    Roles role = RolesDb.getInstance().add(new ServiceAddObjects().addRole(jsonRole));
+    Users users = UsersDb.getInstance().add(new ServiceAddObjects().addUser(jsonUSer));
+    Transmission transmission = TransmissionDb.getInstance().
+            add(new ServiceAddObjects().addTransmission(jsonTransmission));
+    Marka marka = MarkaDb.getInstance().add(new ServiceAddObjects().addMarka(jsonMarka));
+    Model model = ModelDb.getInstance().add(new ServiceAddObjects().addModel(jsonModel));
+    private String jsonCar = "{\"id\":\"1\",\"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"1\"}, \"yar\":\"1999\"}";
     private String jsonann = "{\"name\":\"продам машину\", \"author\":{\"id\":\"1\"}}";
-    //в классе ServiceAddObjects все объекты объеденятся и запакуются в один готовый объект для добавления в базу
-    private Announcement ann = new ServiceAddObjects().addAll(jsonann, jsonCar, urlList);
+    Car rar = CarDb.getInstance().add(new ServiceAddObjects().addCar(jsonCar));
+    //        ArrayList<Photo> photos = (ArrayList<Photo>)new PhotoDb().add(new ServiceAddObjects().addPhoto(urlList));
+    private Announcement ann = new ServiceAddObjects().addAll(jsonann, jsonCar, new ArrayList<>());
+    private Announcement announcement = AnnouncementDb.getInstance().add(ann);
+//   фирмируем объек End
 
+    /**
+     * интерфейс для проведения тестов
+     *
+     * @param fank функция для тестирования
+     */
     private void testAll(BiConsumer<AnnouncementDb, Announcement> fank) {
 
-        Announcement announcement = AnnouncementDb.getInstance().add(new ServiceAddObjects().addAll(jsonann, jsonCar, urlList));
-        try {
-            fank.accept(AnnouncementDb.getInstance(), announcement);
-        } finally {
-            new AnnouncementDb().delete(announcement);
-        }
+        fank.accept(AnnouncementDb.getInstance(), announcement);
     }
 
     @Test
     public void add() {
         testAll((db, ann) -> {
-            assertTrue(ann.getId() > 0);
+            assertTrue(0 < ann.getId());
         });
     }
 
+
     @Test
     public void delete() {
-        testAll((db, ann) -> {
-            db.delete(ann);
-            assertTrue(db.findByID(ann).getId() == 0);
-        });
+        String jsonCarDel = "{\"id\":\"2\",\"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"1\"}, \"yar\":\"1999\"}";
+        Announcement ann = new ServiceAddObjects().addAll(jsonann, jsonCarDel, new ArrayList<>());
+        Announcement announcement = AnnouncementDb.getInstance().add(ann);
+        AnnouncementDb.getInstance().delete(announcement);
+        assertTrue(AnnouncementDb.getInstance().findByID(announcement).getId() == 0);
     }
 
     @Test
@@ -72,12 +83,7 @@ public class AnnouncementDbTest {
     public void findByID() {
         testAll((db, ann) -> {
             Announcement expected = db.findByID(ann);
-            Announcement  announcement = new Announcement();
-            announcement.setDone(true);
-            announcement.setId(ann.getId());
-            var test = db.edit(announcement);
-            assertTrue(expected.getName().contains("продам машину"));
-            assertTrue(test.getDone());
+            assertTrue(expected.getId() > 0);
         });
     }
 
@@ -85,12 +91,6 @@ public class AnnouncementDbTest {
     public void findByName() {
         testAll((db, ann) -> {
             assertTrue(db.findByName(ann).get(0).getName().contains("продам машину"));
-        });
-    }
-
-    @Test
-    public void findByLoginPass() {
-        testAll((db, ann) -> {
         });
     }
 }

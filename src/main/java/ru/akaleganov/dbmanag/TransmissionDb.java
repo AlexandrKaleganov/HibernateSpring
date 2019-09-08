@@ -19,8 +19,10 @@ public class TransmissionDb implements Store<Transmission> {
 
     @Override
     public Transmission add(Transmission transmission) {
-        error();
-        return null;
+        return openSession(session -> {
+            session.save(transmission);
+            return session.load(Transmission.class, transmission.getId());
+        });
     }
 
     @Override
