@@ -3,6 +3,8 @@ package ru.akaleganov.service;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.io.Closeable;
+
 /**
  * класс возвращает фабрику сессий и закрывает фабрику
  * @author Kaleganov Aleander
@@ -11,7 +13,8 @@ import org.hibernate.cfg.Configuration;
  * <b>содержит поля:<b/>
  * @see Sfactory#factory
  */
-public class Sfactory implements AutoCloseable {
+
+public class Sfactory implements Closeable {
     /**
      * фабрика сессий
      */
