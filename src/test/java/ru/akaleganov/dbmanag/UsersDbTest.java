@@ -28,10 +28,10 @@ public class UsersDbTest {
     @Test
     public void add() {
         this.testAll((db, user) -> {
-            LOGGER.debug("user пришёл в метод = " + user);
+            LOGGER.info("user пришёл в метод = " + user);
             Users users = UsersDb.getInstance().findByLogin(user);
-            LOGGER.debug("users = " + users);
-            assertThat(users.getId(), Is.is(1));
+            LOGGER.info("users = " + users);
+            assertThat(users.getLogin(), Is.is("login2"));
         });
     }
 
@@ -55,7 +55,7 @@ public class UsersDbTest {
     @Test
     public void findAll() {
         this.testAll((db, u) -> {
-            assertThat(db.findAll().get(0).getLogin(), Is.is("login2"));
+            assertThat(db.findAll().size() > 0, Is.is(true));
         });
     }
 

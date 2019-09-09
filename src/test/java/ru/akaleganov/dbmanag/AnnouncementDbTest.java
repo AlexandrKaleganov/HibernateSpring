@@ -50,16 +50,6 @@ public class AnnouncementDbTest {
         });
     }
 
-
-    @Test
-    public void delete() {
-        String jsonCarDel = "{\"id\":\"2\",\"model\":{\"id\":\"1\"}, \"transmission\":{\"id\":\"1\"}, \"yar\":\"1999\"}";
-        Announcement ann = new ServiceAddObjects().addAll(jsonann, jsonCarDel, new ArrayList<>());
-        Announcement announcement = AnnouncementDb.getInstance().add(ann);
-        AnnouncementDb.getInstance().delete(announcement);
-        assertTrue(AnnouncementDb.getInstance().findByID(announcement).getId() == 0);
-    }
-
     @Test
     public void edit() {
         testAll((db, ann) -> {

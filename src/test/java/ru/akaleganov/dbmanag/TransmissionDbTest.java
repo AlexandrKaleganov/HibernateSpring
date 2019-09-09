@@ -20,8 +20,6 @@ public class TransmissionDbTest {
         ArrayList<Transmission> actual = (ArrayList<Transmission>) TransmissionDb.getInstance().findAll();
         ArrayList<String> expected = new ArrayList<>(Arrays.asList(
                 "РОБОТ"));
-        for (int i = 0; i < actual.size(); i++) {
-            assertThat(actual.get(i).getName(), Is.is(expected.get(i)));
-        }
+            assertThat(actual.get(0).getName(), Is.is(expected.get(0)));
     }
 }
