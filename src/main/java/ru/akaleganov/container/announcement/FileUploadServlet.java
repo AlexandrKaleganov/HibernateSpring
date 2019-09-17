@@ -16,14 +16,18 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import ru.akaleganov.modelsannot.Photo;
 import ru.akaleganov.service.ServiceAddObjects;
 
 @MultipartConfig
-public class FileUploadServlet extends HttpServlet {
+@Controller
+public class FileUploadServlet {
     private final static Logger LOGGER = Logger.getLogger(FileUploadServlet.class);
 
-    @Override
+    @GetMapping(value = "/upload")
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/json; charset=windows-1251");
@@ -37,9 +41,9 @@ public class FileUploadServlet extends HttpServlet {
     }
 
 
-    @Override
+    @PostMapping(value = "/upload")
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        LOGGER.info("фото прилетели");
         if (ServletFileUpload.isMultipartContent(req)) {
             List<FileItem> multiparts = null;
             try {

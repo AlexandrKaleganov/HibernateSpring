@@ -20,38 +20,20 @@ import java.util.function.Function;
  * буду передовать объекты Моделей  а возвращать в
  * зависимости от вызванного метода
  */
-public class Dispatch {
+public class AnnouncementDispatch {
 
 
     private final Map<String, Function<Mod, Optional>> dispatch = new HashMap<>();
-    private final static Dispatch INSTANCE = new Dispatch().init();
+    private final static AnnouncementDispatch INSTANCE = new AnnouncementDispatch().init();
 
-    public static Dispatch getInstance() {
+    public static AnnouncementDispatch getInstance() {
         return INSTANCE;
     }
 
     /**
      * Load initial hashmap functional.
      */
-    public Dispatch init() {
-        //упавление пользователями
-        this.dispatch.put("findByLoginPass", (ticket) ->
-                Optional.of(UsersDb.getInstance().findByLoginPass((Users) ticket)));
-        this.dispatch.put("getListUser", (ticket) ->
-                Optional.of(UsersDb.getInstance().findAll()));
-        this.dispatch.put("findByLogin", (ticket) ->
-                Optional.of(UsersDb.getInstance().findByLogin((Users) ticket)));
-        this.dispatch.put("findByIdUser", (ticket) ->
-                Optional.of(UsersDb.getInstance().findByID((Users) ticket)));
-        this.dispatch.put("deleteUser", (ticket) ->
-                Optional.of(UsersDb.getInstance().delete((Users) ticket)));
-        this.dispatch.put("addOrUpdate", (ticket) ->
-                Optional.of(UsersDb.getInstance().edit((Users) ticket)));
-        this.dispatch.put("addUser", (ticket) ->
-                Optional.of(UsersDb.getInstance().add((Users) ticket)));
-        //управление ролями
-        this.dispatch.put("findAllRoles", (ticket) ->
-                Optional.of(RolesDb.getInstance().findAll()));
+    public AnnouncementDispatch init() {
         //управление объявлениями
         this.dispatch.put("addAn", (ticket) ->
                 Optional.of(AnnouncementDb.getInstance().edit((Announcement) ticket)));
@@ -92,7 +74,7 @@ public class Dispatch {
 
     /**
      * @param key    параметр указывает на ключ из хеш мапы, в заваисмости от ключа выбирается реализация функционального метода
-     * @param ticket в оптионал передаётся передаётася обект модели {@link (Model, Announcement, Car, Marka, Model, Photo, Roles, Transmission, Users)}
+     * @param ticket в оптионал передаётся передаётася обект модели {@link (Model, Announcement, Car, Marka, Model, Photo, Transmission)}
      * @param <E>    параметр который вернётся, возможно это будет Lист объектов из базы, либо один объект
      */
     public <E> E access(String key, Mod ticket) {

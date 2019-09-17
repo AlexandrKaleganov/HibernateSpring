@@ -4,110 +4,116 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
+
+    <display-name>count_word</display-name>
+    <!--    Start Listener-->
     <!--Start filter-->
-    <filter>
-        <filter-name>AuthFilter</filter-name>
-        <filter-class>ru.akaleganov.filter.AuthFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>AuthFilter</filter-name>
-        <url-pattern>*</url-pattern>
-    </filter-mapping>
+<!--    <filter>-->
+<!--        <filter-name>AuthFilter</filter-name>-->
+<!--        <filter-class>ru.akaleganov.filter.AuthFilter</filter-class>-->
+<!--        <init-param>-->
+<!--            <param-name>encoding</param-name>-->
+<!--            <param-value>UTF-8</param-value>-->
+<!--        </init-param>-->
+<!--    </filter>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>AuthFilter</filter-name>-->
+<!--        <url-pattern>*</url-pattern>-->
+<!--    </filter-mapping>-->
     <!--    End filter-->
     <!--Servlet for authorization-->
-    <servlet>
-        <servlet-name>SigninServlet</servlet-name>
-        <servlet-class>ru.akaleganov.container.SigninServlet</servlet-class>
-        <load-on-startup>0</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SigninServlet</servlet-name>
-        <url-pattern>/signin</url-pattern>
-    </servlet-mapping>
-    <!--    Servlet Index.jsp drawing of announcements, transfer on editing, viewing, removal of announcements-->
-    <servlet>
-        <servlet-name>ServletIndex</servlet-name>
-        <servlet-class>ru.akaleganov.container.ServletIndex</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletIndex</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-    <!--    servlet for work with users, obtaining the list, removal, an obavleniye of users-->
-    <servlet>
-        <servlet-name>ServletUserList</servlet-name>
-        <servlet-class>ru.akaleganov.container.users.ServletUserList</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletUserList</servlet-name>
-        <url-pattern>/listUser</url-pattern>
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>SigninServlet</servlet-name>-->
+<!--        <servlet-class>ru.akaleganov.container.SigninServlet</servlet-class>-->
+<!--        <load-on-startup>0</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>SigninServlet</servlet-name>-->
+<!--        <url-pattern>/signin</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    &lt;!&ndash;    Servlet Index.jsp drawing of announcements, transfer on editing, viewing, removal of announcements&ndash;&gt;-->
+<!--    <servlet>-->
+<!--        <servlet-name>ServletIndex</servlet-name>-->
+<!--        <servlet-class>ru.akaleganov.container.ServletIndex</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>ServletIndex</servlet-name>-->
+<!--        <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    &lt;!&ndash;    servlet for work with users, obtaining the list, removal, an obavleniye of users&ndash;&gt;-->
+<!--    <servlet>-->
+<!--        <servlet-name>ServletUserList</servlet-name>-->
+<!--        <servlet-class>ru.akaleganov.container.users.ServletUserList</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>ServletUserList</servlet-name>-->
+<!--        <url-pattern>/listUser</url-pattern>-->
+<!--    </servlet-mapping>-->
     <!--    servlet for work with roles-->
-    <servlet>
-        <servlet-name>ServletRoles</servlet-name>
-        <servlet-class>ru.akaleganov.container.users.ServletRoles</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletRoles</servlet-name>
-        <url-pattern>/listRoles</url-pattern>
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>ServletRoles</servlet-name>-->
+<!--        <servlet-class>ru.akaleganov.container.users.ServletRoles</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>ServletRoles</servlet-name>-->
+<!--        <url-pattern>/listRoles</url-pattern>-->
+<!--    </servlet-mapping>-->
     <!--    servlet for drawing of pictures   -->
-    <servlet>
-        <servlet-name>ImageServlet</servlet-name>
-        <servlet-class>ru.akaleganov.container.announcement.photo.ImageServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ImageServlet</servlet-name>
-        <url-pattern>/image</url-pattern>
-    </servlet-mapping>
-    <!--    servlet for obtaining the list of objects of Mark -->
-    <servlet>
-        <servlet-name>ServletMarkaLoad</servlet-name>
-        <servlet-class>ru.akaleganov.container.announcement.car.ServletMarkaLoad</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletMarkaLoad</servlet-name>
-        <url-pattern>/markaload</url-pattern>
-    </servlet-mapping>
-    <!--    servlet for work with an object Transmission generally for obtaining the list of all objects-->
-    <servlet>
-        <servlet-name>TransmissionServlet</servlet-name>
-        <servlet-class>ru.akaleganov.container.announcement.car.TransmissionServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TransmissionServlet</servlet-name>
-        <url-pattern>/transmission</url-pattern>
-    </servlet-mapping>
 
-    <!--the servlet accepts the photos sent to the server and writes down them in a session-->
-    <servlet>
-        <servlet-name>FileUploadServlet</servlet-name>
-        <servlet-class>ru.akaleganov.container.announcement.FileUploadServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>FileUploadServlet</servlet-name>
-        <url-pattern>/upload</url-pattern>
-    </servlet-mapping>
 
-    <!--   servlet for management of photos in a session -->
-    <servlet>
-        <servlet-name>ServletSession</servlet-name>
-        <servlet-class>ru.akaleganov.container.announcement.photo.ServletSession</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletSession</servlet-name>
-        <url-pattern>/sessionPhotos</url-pattern>
-    </servlet-mapping>
+
+<!--    <servlet>-->
+<!--        <servlet-name>ImageServlet</servlet-name>-->
+<!--        <servlet-class>ru.akaleganov.container.announcement.photo.ImageServlet</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>ImageServlet</servlet-name>-->
+<!--        <url-pattern>/image</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    &lt;!&ndash;    servlet for obtaining the list of objects of Mark &ndash;&gt;-->
+<!--    <servlet>-->
+<!--        <servlet-name>ServletMarkaLoad</servlet-name>-->
+<!--        <servlet-class>ru.akaleganov.container.announcement.car.ServletMarkaLoad</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>ServletMarkaLoad</servlet-name>-->
+<!--        <url-pattern>/markaload</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    &lt;!&ndash;    servlet for work with an object Transmission generally for obtaining the list of all objects&ndash;&gt;-->
+<!--    <servlet>-->
+<!--        <servlet-name>TransmissionServlet</servlet-name>-->
+<!--        <servlet-class>ru.akaleganov.container.announcement.car.TransmissionServlet</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>TransmissionServlet</servlet-name>-->
+<!--        <url-pattern>/transmission</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--    &lt;!&ndash;the servlet accepts the photos sent to the server and writes down them in a session&ndash;&gt;-->
+<!--    <servlet>-->
+<!--        <servlet-name>FileUploadServlet</servlet-name>-->
+<!--        <servlet-class>ru.akaleganov.container.announcement.FileUploadServlet</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>FileUploadServlet</servlet-name>-->
+<!--        <url-pattern>/upload</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--    &lt;!&ndash;   servlet for management of photos in a session &ndash;&gt;-->
+<!--    <servlet>-->
+<!--        <servlet-name>ServletSession</servlet-name>-->
+<!--        <servlet-class>ru.akaleganov.container.announcement.photo.ServletSession</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>ServletSession</servlet-name>-->
+<!--        <url-pattern>/sessionPhotos</url-pattern>-->
+<!--    </servlet-mapping>-->
 </web-app>

@@ -18,7 +18,7 @@ create table if not exists users
     password varchar(200)
 );
 insert into users(name, login, role_id, password)
-values ('root', 'root', 1, 'root'), ('user', 'user', 2, 'user');
+values ('root', 'root', 1, 'root'), ('user', 'user', 2, 'user'), ('admin', 'admin', 1, 'admin');
 
 --таблица марок автомобилей
 create table if not exists marka

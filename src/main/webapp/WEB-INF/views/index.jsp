@@ -17,10 +17,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script charset="UTF-8" type="text/javascript">
-        <%@include file="/WEB-INF/vievs/js/navibar.js" %>
-        <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
-        <%@include file="/WEB-INF/vievs/js/index.js"%>
-        <%@include file="/WEB-INF/vievs/js/filterTable.js"%>
+        <%@include file="/WEB-INF/views/js/navibar.js" %>
+        <%@include file="/WEB-INF/views/js/sortedTable.js" %>
+        <%@include file="/WEB-INF/views/js/index.js"%>
+        <%@include file="/WEB-INF/views/js/filterTable.js"%>
     </script>
     <title>index</title>
 </head>
@@ -32,12 +32,12 @@
 </div>
 <div class="container">
     <p>Список объявлений: </p>
-    <form action="${pageContext.servletContext.contextPath}/" method="post">
-        <input type="hidden" name="an" value="0">
-        <input type="hidden" name="action" value="findByIdAn">
-        <input type="submit" value="Подать объявление">
-    </form>
-    <br/>
+    <hr>
+    <div class="btn-group float-center shadow rounded">
+        <a href="${pageContext.servletContext.contextPath}/findById/0"
+           type="button" style="margin-left: auto;" class="btn btn-primary float-center">Подать объявление</a>
+    </div>
+    <hr>
     <div>
         <select id="filter" onchange="filterAction()">
             <option></option>

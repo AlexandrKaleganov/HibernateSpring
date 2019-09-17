@@ -9,7 +9,7 @@ $(document).ready(function () {
         + "<ul class=\"navbar-nav\">\n"
 
         + "<li class=\"nav-item\">\n"
-        + "<a class=\"nav-link\" href=\"${pageContext.servletContext.contextPath}/listUser\">Список пользователей</a>\n"
+        + "<a class=\"nav-link\" href=\"${pageContext.servletContext.contextPath}/api/users\">Список пользователей</a>\n"
         + "</li>\n"
 
         + "<li class=\"nav-item\">\n"

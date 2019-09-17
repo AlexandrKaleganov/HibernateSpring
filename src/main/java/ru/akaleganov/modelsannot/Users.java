@@ -16,18 +16,32 @@ public class Users extends AllModels {
     private String name;
     @Column(name = "login")
     private String login;
+    @Column(name = "password")
+    private String password;
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Roles roles;
-    @Column(name = "password")
-    private String password;
-
     public Users(int id) {
         super(id);
     }
 
     public Users() {
         super();
+    }
+
+    public Users(String name, String login, Roles roles, String password) {
+        this.name = name;
+        this.login = login;
+        this.roles = roles;
+        this.password = password;
+    }
+
+    public Users(int id, String name, String login, Roles roles, String password) {
+        super(id);
+        this.name = name;
+        this.login = login;
+        this.roles = roles;
+        this.password = password;
     }
 
     public String getName() {

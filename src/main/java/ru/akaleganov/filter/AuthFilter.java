@@ -1,17 +1,16 @@
 package ru.akaleganov.filter;
 
 import org.apache.log4j.Logger;
-import ru.akaleganov.modelsannot.Photo;
-import ru.akaleganov.service.ServiceAddObjects;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import ru.akaleganov.service.Sfactory;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-
+@Component
+@Order(0)
 public class AuthFilter implements Filter {
 
     private static final org.apache.log4j.Logger LOGGER = Logger.getLogger(AuthFilter.class);
@@ -30,7 +29,7 @@ public class AuthFilter implements Filter {
             chain.doFilter(req, res);                           //фильтр нас пропускает и наши запросы де нас в свою очередь перекинет на loginIN.jsp'
         } else {
             if (request.getSession().getAttribute("login") == null) {   //если в сессии нет  атрибута login
-                response.sendRedirect(String.format("%s/signin", request.getContextPath())); //то нас опять бросит на сервлет signin где перекинет на loginIN.jsp
+                response.sendRedirect(String.format("%s/api/signin", request.getContextPath())); //то нас опять бросит на сервлет signin где перекинет на loginIN.jsp
                 return;                                                                  //и дальше метод завершится
             }
             if (((HttpServletRequest) req).getRequestURI().contains("/upload")) {
@@ -43,7 +42,7 @@ public class AuthFilter implements Filter {
             }
             if (req.getParameter("exit") != null) {
                 request.getSession().invalidate();
-                response.sendRedirect(String.format("%s/signin", request.getContextPath())); //то нас опять бросит на сервлет signin где перекинет на loginIN.jsp
+                response.sendRedirect(String.format("%s/api/signin", request.getContextPath())); //то нас опять бросит на сервлет signin где перекинет на loginIN.jsp
                 return;
             }
             req.setCharacterEncoding("UTF-8");

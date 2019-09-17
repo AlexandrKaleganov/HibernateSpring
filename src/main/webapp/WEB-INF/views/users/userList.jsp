@@ -17,13 +17,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script charset="UTF-8" type="text/javascript">
-        <%@include file="/WEB-INF/vievs/js/navibar.js" %>
+        <%@include file="/WEB-INF/views/js/navibar.js" %>
     </script>
     <script charset="UTF-8" type="text/javascript">
-        <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
+        <%@include file="/WEB-INF/views/js/sortedTable.js" %>
     </script>
     <script charset="UTF-8" type="text/javascript">
-        <%@include file="/WEB-INF/vievs/js/users/userlistJS.js" %>
+        <%@include file="/WEB-INF/views/js/users/userListJS.js" %>
     </script>
     <title>userlist</title>
 </head>
@@ -41,11 +41,13 @@
 </c:if>
 <div class="container">
     <p>UserList:
-    <form action="${pageContext.servletContext.contextPath}/listUser" method="post">
-        <input type="hidden" name="us" value="0">
-        <input type="hidden" name="action" value="findByIdUser">
-        <input type="submit" value="Add new User">
-    </form>
+    <hr>
+        <div class="btn-group float-center shadow rounded">
+    <a href="${pageContext.servletContext.contextPath}/api/users/findById/0"
+       type="button" style="margin-left: auto;" class="btn btn-primary float-center">Добавить
+        пользователя</a>
+    </div>
+    <hr>
     <table class="table table-striped" id="todolist_table">
         <thead class="thead-dark">
         <tr>

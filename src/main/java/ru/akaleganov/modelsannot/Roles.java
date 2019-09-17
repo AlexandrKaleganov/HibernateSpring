@@ -35,6 +35,15 @@ public class Roles extends AllModels {
         this.role = role;
     }
 
+    public Roles(String role) {
+        this.role = role;
+    }
+
+    public Roles(int id, String role) {
+        super(id);
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "Roles{" + "id=" + super.getId() + ", role='" + role + '\'' + '}';

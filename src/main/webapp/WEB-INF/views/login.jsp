@@ -26,7 +26,7 @@
 </c:if>
 <div class="container">
     <h2>Авторизация</h2>
-    <form action="${pageContext.servletContext.contextPath}/signin" class="needs-validation" method="post">
+    <form action="${pageContext.servletContext.contextPath}/api/signin" class="needs-validation" method="post">
         <div class="form-group">
             <label for="uname">Username:</label>
             <input type="text" class="form-control" id="uname" placeholder="Enter username" name="login" required>

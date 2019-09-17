@@ -8,7 +8,7 @@
 function listan(actions) {
     $.ajax({
         type: "POST",
-        url: "./",
+        url: "./listAn",
         data: {action: actions, an: "{\"id\":\"0\"}", car: "{\"id\":\"0\"}"},
         dataType: "json",
         success: function (data) {
@@ -21,7 +21,25 @@ function listan(actions) {
         }
     });
 }
-
+/**
+ * скрипты для отрисовывания таблицы списка объявлений
+ */
+function addOrUpdate() {
+    $.ajax({
+        type: "POST",
+        url: "./listAn",
+        data: {action: actions, an: "{\"id\":\"0\"}", car: "{\"id\":\"0\"}"},
+        dataType: "json",
+        success: function (data) {
+            $("#todolist_table tbody").html("");
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].id > 0) {
+                    $("#todolist_table tbody:last").append(loadtable(data[i]));
+                }
+            }
+        }
+    });
+}
 function loadtable(an) {
     var rsl = "";
     rsl = rsl + "<tr class='table-data'><td>" + an.id + "</td><td>" + an.name + "</td><td>" + an.created + "</td><td>" + an.car.model.marka.name + "</td>";
@@ -37,11 +55,9 @@ function stringButton(an) {
     } else {
         rsl = rsl + "<td><input type=\"checkbox\" disabled/></td>";
     }
-    rsl = rsl + "<td><form action=\"${pageContext.servletContext.contextPath}/\" method=\"post\">\n" +
-        "                            <input type=\"hidden\" name=\"an\" value=\"" + an.id + "\">\n" +
-        "                            <input type=\"hidden\" name=\"action\" value=\"findByIdAn\">\n" +
-        "                            <input type=\"submit\" value=\"Просмотр\">\n" +
-        "                        </form>" + "</td></tr>";
+    rsl = rsl + "<td>" +
+        "  <a href=\"${pageContext.servletContext.contextPath}/findById/"+ an.id+ "\"type=\"button\" style=\"display: block; margin-left: auto;\" class=\"btn btn-outline-success\">ПРОСМОТР</a>"
+        + "</td></tr>";
     return rsl;
 }
 
@@ -68,7 +84,7 @@ function filterAction() {
             }
             $.ajax({
                 type: "POST",
-                url: "./",
+                url: "./listAn",
                 data: {action: "filter", an: "{\"id\":\"0\"}", marka: "{\"id\":\""+$("#marka").val()+"\"}", param: $("#filter").val()},
                 dataType: "json",
                 success: function (data) {
@@ -92,7 +108,7 @@ function filterAction() {
 function markaload() {
     $.ajax({
         type: "POST",
-        url: "./markaload",
+        url: "./markaLoad",
         data: {action: "findAllMarka", m: "{\"id\":\"" + $("#marka").val() + "\"" + "}"},
         dataType: "json",
         success: function (data) {

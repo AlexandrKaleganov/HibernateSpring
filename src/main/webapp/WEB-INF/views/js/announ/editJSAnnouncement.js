@@ -100,7 +100,7 @@ function ciclic(tag, param) {
  * @param param
  */
 function disabledfalshe(pole, param) {
-    pole.prop('disabled', param)
+    pole.prop('disabled', param);
 }
 
 /**
@@ -121,14 +121,14 @@ function loadyar() {
 function markaload() {
     $.ajax({
         type: "POST",
-        url: "./markaload",
+        url: "../markaLoad",
         data: {action: "findAllMarka", m: "{\"id\":\"" + $("#marka").val() + "\"" + "}"},
         dataType: "json",
         success: function (data) {
             ciclappendoption($("#marka"), data);
 
         }
-    })
+    });
 }
 
 /**
@@ -137,13 +137,13 @@ function markaload() {
 function modelload() {
     $.ajax({
         type: "POST",
-        url: "./markaload",
+        url: "../markaLoad",
         data: {action: "findByMarkaIdModel", m: "{\"id\":\"" + $("#marka").val() + "\"" + "}"},
         dataType: "json",
         success: function (data) {
             ciclappendoption($("#model"), data);
         }
-    })
+    });
 }
 
 /**
@@ -177,13 +177,13 @@ function option(ob) {
 function transmissionload() {
     $.ajax({
         type: "POST",
-        url: "./transmission",
+        url: "../transmission",
         data: {action: "findAllTr", tr: "{\"id\":\"" + $("#transmission").val() + "\"" + "}"},
         dataType: "json",
         success: function (data) {
             ciclappendoption($("#transmission"), data);
         }
-    })
+    });
 }
 
 /**
@@ -219,7 +219,7 @@ function addAnno() {
     if (valid()) {
         $.ajax({
             type: "POST",
-            url: "./",
+            url: "../edit",
             data: {
                 action: $("#totalbutton").val(),
                 an: toReceiveTheAnnouncementFromAForm(),
@@ -258,10 +258,12 @@ function toReceiveTheCarFromAForm() {
         ", \"transmission\":{\"id\":\"" + $("#transmission").val() + "\"}" +
         ", \"description\":\"" + $("#description").val() + "\"" + "}";
 }
+
 function toReceiveTheAnnouncementFromAForm() {
-return "{\"id\":\"" + $("#idan").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone").is(":checked") +
-    "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}" + "}";
+    return "{\"id\":\"" + $("#idan").val() + "\", \"name\":\"" + $("#name").val() + "\", \"done\":\"" + $("#isDone").is(":checked") +
+        "\", \"author\":{\"id\":\"" + $("#authorid").val() + "\"}" + "}";
 }
+
 //Start Photo
 /**
  * загрузка файлов на сервлет после возвращает из сесии список загруженных фото
@@ -272,7 +274,7 @@ function fileupload() {
     var form = new FormData();
     form.append('file', $('#filePhoto')[0].files[0]);
     jQuery.ajax({
-        url: './upload',
+        url: '../upload',
         type: "POST",
         data: form,
         processData: false,
@@ -296,7 +298,7 @@ function fileupload() {
  */
 function photoDel(idPhoto, idAn, action) {
     jQuery.ajax({
-        url: './image',
+        url: '../image',
         type: "POST",
         data: {idPhoto: idPhoto, idAn: idAn, action: action},
         success: function (data) {
@@ -326,7 +328,7 @@ function toDrawAPhoto(photoList) {
  */
 function managementOfPhotosInASession(param1, param2) {
     jQuery.ajax({
-        url: './sessionPhotos',
+        url: '../sessionPhotos',
         type: "POST",
         data: {action: param1, index: param2},
         success: function (result) {
@@ -377,10 +379,12 @@ function returnHeadTable() {
 function deleteAn() {
     $.ajax({
         type: "POST",
-        url: "./",
-        data: {action: "deleteAn" ,
+        url: "./delete",
+        data: {
+            action: "deleteAn",
             an: toReceiveTheAnnouncementFromAForm(),
-            car: toReceiveTheCarFromAForm()}
+            car: toReceiveTheCarFromAForm()
+        }
     });
 }
 

@@ -1,52 +1,70 @@
 package ru.akaleganov.container.users;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 import ru.akaleganov.modelsannot.Users;
-import ru.akaleganov.service.Dispatch;
 import ru.akaleganov.service.ServiceAddObjects;
+import ru.akaleganov.service.UserDispatch;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import javax.enterprise.inject.Model;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
-public class ServletUserList extends HttpServlet {
+@Controller
+@RequestMapping("/api")
+public class ServletUserList {
     private static final Logger LOGGER = Logger.getLogger(ServletUserList.class);
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/vievs/users/userlist.jsp").forward(req, resp);
+    /**
+     * переход на страницу с пользователями
+     */
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    protected String doGet() {
+        return "users/userList";
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
-        String action = req.getParameter("action");
-        if (action.contains("findByIdUser")) {
-            try {
-                req.setAttribute("user", Dispatch.getInstance().access(action, new Users(Integer.valueOf(req.getParameter("us")))));
-                req.getRequestDispatcher("WEB-INF/vievs/users/edit.jsp").forward(req, resp);
-            } catch (IOException e) {
-                LOGGER.error(e.getMessage(), e);
-            }
-        } else if (action.contains("deleteUser")) {
-            req.setAttribute("user", Dispatch.getInstance().access("deleteUser", new Users(Integer.valueOf(req.getParameter("us")))));
-            try {
-                req.getRequestDispatcher("WEB-INF/vievs/users/userlist.jsp").forward(req, resp);
-            } catch (IOException e) {
-                LOGGER.error(e.getMessage(), e);
-            }
-        } else {
-            try {
-                PrintWriter writer = new PrintWriter(resp.getOutputStream());
-                writer.append(new ObjectMapper().writeValueAsString(Dispatch.getInstance().access(action,
-                        ServiceAddObjects.getInstance().addUser(req.getParameter("us")))));
-                writer.flush();
-            } catch (IOException e) {
-                LOGGER.error(e.getMessage(), e);
-            }
-        }
+    /**
+     * @return получение списка всех пользователей
+     */
+    @GetMapping(value = "users/list")
+    protected ResponseEntity<ArrayList<Users>> findAll() {
+        LOGGER.info("тянем список пользователей ");
+        return ResponseEntity.ok().body(UserDispatch.getInstance().access("getListUser", new Users()));
+    }
+
+    @GetMapping(value = "users/findById/{id}")
+    public String findById(ModelMap map, @PathVariable int id) {
+        Users users = UserDispatch.getInstance().access("findByIdUser", new Users(id));
+        LOGGER.info(users);
+        map.addAttribute("user", users);
+        return "users/edit";
+    }
+
+    @GetMapping(value = "users/deleteUser/{id}")
+    public String deleteUser(ModelMap map, @PathVariable int id) {
+        map.addAttribute("user", UserDispatch.getInstance().access("deleteUser", new Users(id)));
+        return "redirect:api/users";
+    }
+
+    @PostMapping(value = "users/addUser", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Users> addUser(@RequestBody Users users, HttpServletRequest request) {
+        LOGGER.error("добавить пользователя = " + users);
+        Users data = UserDispatch.getInstance().access("addUser", users);
+        request.setAttribute("users", data);
+        return ResponseEntity.ok().body(data);
+    }
+
+    @PutMapping(value = "users/addUser", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Users editUsers(ModelMap modelMap, @RequestBody Users users) {
+        LOGGER.error("изменить пользователя = " + users);
+        modelMap.put("users", UserDispatch.getInstance().access("addOrUpdate", users));
+        return UserDispatch.getInstance().access("addOrUpdate", users);
     }
 }

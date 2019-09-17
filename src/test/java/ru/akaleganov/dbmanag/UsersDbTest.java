@@ -1,5 +1,7 @@
 package ru.akaleganov.dbmanag;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.Is;
 import org.junit.Test;
@@ -81,5 +83,22 @@ public class UsersDbTest {
         this.testAll((db, u) -> {
             assertThat(db.findByLogin(u).getLogin(), Is.is("login2"));
         });
+    }
+    @Test
+    public void userTest() throws JsonProcessingException {
+        Users users = new Users();
+        System.out.println(new ObjectMapper().writeValueAsString(users));
+    }
+    @Test
+    public void userTest2() throws JsonProcessingException {
+      Test1 test = new Test1();
+        System.out.println(test.test);
+        if (!test.test) {
+            System.out.println("Всё пашет");
+        }
+    }
+
+    private static class Test1 {
+        boolean test;
     }
 }
