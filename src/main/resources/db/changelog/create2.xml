@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <property name="autoIncrement" value="true"/>
+
+
+<!--    создаём список ролей-->
+    <changeSet id="2" author="admin">
+        <loadData
+                file="db/roles.csv"
+                separator=";"
+                tableName="roles">
+            <column name="id" type="numeric"/>
+            <column name="role" type="string"/>
+        </loadData>
+    </changeSet>
+    <!--    создаём пользователей-->
+    <changeSet id="2-1" author="admin">
+        <loadData
+                file="db/users.csv"
+                separator=";"
+                tableName="users">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="login" type="string"/>
+            <column name="password" type="string"/>
+            <column name="role_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

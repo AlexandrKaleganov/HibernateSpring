@@ -1,4 +1,4 @@
-<%--
+﻿<%--
   Created by IntelliJ IDEA.
   User: Lis
   Date: 30 мая 19
@@ -31,22 +31,15 @@
 <br/>
 <div id="result"></div>
 <br/>
-<div class="container" id="totalform">
+<div class="container ui-icon-clipboard" id="totalform">
     <div class="form-row">
+        <div class="form-group col-md-6">
+
+        </div>
         <div class="form-group col-md-6">
             <button id="buttonedit" type="button" class="btn btn-success" onclick="enableAll(false)" disabled>
                 Редактировать
             </button>
-        </div>
-        <div class="form-group col-md-6">
-            <button id="totalbutton" type="button" value="addAn" class="btn btn-primary" onclick="addAnno()" disabled>
-                Применить
-            </button>
-        </div>
-        <div class="form-group col-md-6">
-            <form>
-                <input id="deleteButton" type="submit" value="Удалить объявление полностью" class="btn btn-primary" onclick="deleteAn()" disabled>
-            </form>
 
         </div>
     </div>
@@ -101,10 +94,10 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-5">
-                <label for="marka">Car marka:</label>
-                <select class="form-control" name="marka" title="Enter marka." id="marka" onclick="modelload()"
+                <label for="mark">Car mark:</label>
+                <select class="form-control" name="mark" title="Enter mark." id="mark" onclick="modelload()"
                         disabled>
-                    <option value="${an.car.model.marka.id}">${an.car.model.marka.name}</option>
+                    <option value="${an.car.model.mark.id}">${an.car.model.mark.name}</option>
                 </select>
             </div>
             <div class="form-group col-md-4">
@@ -152,6 +145,20 @@
                       title="Enter car description." disabled>${an.car.description}</textarea>
         </div>
     </form>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <form>
+                <input id="deleteButton" type="submit" value="Удалить объявление полностью" class="btn btn-danger"
+                       onclick="deleteAn()" disabled>
+            </form>
+
+        </div>
+        <div class="form-group col-md-6">
+            <button id="totalbutton" type="button" value="addAn" class="btn btn-primary" onclick="addAnno()" disabled>
+                Применить
+            </button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

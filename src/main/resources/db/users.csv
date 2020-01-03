@@ -1,0 +1,4 @@
+id;name;login;password;role_id
+1;admin;admin;admin;1L
+2;root;root;root;1L
+3;user;user;user;2L

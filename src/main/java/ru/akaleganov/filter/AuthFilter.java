@@ -46,17 +46,17 @@ public class AuthFilter implements Filter {
                 return;
             }
             req.setCharacterEncoding("UTF-8");
-            res.setContentType("text/json; charset=windows-1251");
+//            res.setContentType("text/json; charset=windows-1251");
             chain.doFilter(req, res);   //а вот если всё пучком и запрос не на страницу авторизации и сессия содержит логин то фильтр нас пропускает куда угодно
         }
     }
 
-    @Override
-    public void destroy() {
-        try {
-            Sfactory.getINSTANCE().close();
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-    }
+//    @Override
+//    public void destroy() {
+//        try {
+//            Sfactory.getINSTANCE().close();
+//        } catch (Exception e) {
+//            LOGGER.error(e.getMessage(), e);
+//        }
+//    }
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <property name="autoIncrement" value="true"/>
+    <!--созаём таблицу ролей-->
+    <changeSet author="admin" id="3">
+        <createTable tableName="mark">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="mark"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="admin" id="3-1">
+<!--        создаём таблицу пльзователей-->
+        <createTable tableName="model">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mark_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="model"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="3-3" author="admin">
+        <loadData
+                file="db/mark.csv"
+                separator=";"
+                tableName="mark">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="3-4" author="admin">
+        <loadData
+                file="db/model.csv"
+                separator=";"
+                tableName="model">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="mark_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

@@ -45,7 +45,7 @@
             <option value="toShowWithAPhoto">- показать с фото</option>
             <option value="toShowACertainBrand">- показать определенной марки</option>
         </select>
-        <select hidden="true" id="marka" onchange="filterAction()">
+        <select hidden="true" id="mark" onchange="filterAction()">
             <option value="0"></option>
         </select>
     </div>

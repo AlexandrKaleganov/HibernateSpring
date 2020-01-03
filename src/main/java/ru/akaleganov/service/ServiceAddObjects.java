@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.apache.xerces.impl.dv.util.Base64;
-import ru.akaleganov.modelsannot.*;
+import ru.akaleganov.domain.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -53,8 +53,8 @@ public class ServiceAddObjects {
         return this.addModel(json, j -> new ObjectMapper().readValue(j, Transmission.class));
     }
 
-    public Marka addMarka(String json) {
-        return this.addModel(json, j -> new ObjectMapper().readValue(j, Marka.class));
+    public Mark addMark(String json) {
+        return this.addModel(json, j -> new ObjectMapper().readValue(j, Mark.class));
     }
 
     public Model addModel(String json) {

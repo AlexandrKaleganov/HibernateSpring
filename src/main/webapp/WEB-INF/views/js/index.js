@@ -7,7 +7,7 @@
  */
 function listan(actions) {
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "./listAn",
         data: {action: actions, an: "{\"id\":\"0\"}", car: "{\"id\":\"0\"}"},
         dataType: "json",
@@ -21,12 +21,13 @@ function listan(actions) {
         }
     });
 }
+
 /**
  * скрипты для отрисовывания таблицы списка объявлений
  */
 function addOrUpdate() {
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "./listAn",
         data: {action: actions, an: "{\"id\":\"0\"}", car: "{\"id\":\"0\"}"},
         dataType: "json",
@@ -40,9 +41,10 @@ function addOrUpdate() {
         }
     });
 }
+
 function loadtable(an) {
     var rsl = "";
-    rsl = rsl + "<tr class='table-data'><td>" + an.id + "</td><td>" + an.name + "</td><td>" + an.created + "</td><td>" + an.car.model.marka.name + "</td>";
+    rsl = rsl + "<tr class='table-data'><td>" + an.id + "</td><td>" + an.name + "</td><td>" + an.created + "</td><td>" + an.car.model.mark.name + "</td>";
     rsl = rsl + stringButton(an);
     return rsl;
 }
@@ -56,7 +58,7 @@ function stringButton(an) {
         rsl = rsl + "<td><input type=\"checkbox\" disabled/></td>";
     }
     rsl = rsl + "<td>" +
-        "  <a href=\"${pageContext.servletContext.contextPath}/findById/"+ an.id+ "\"type=\"button\" style=\"display: block; margin-left: auto;\" class=\"btn btn-outline-success\">ПРОСМОТР</a>"
+        "  <a href=\"${pageContext.servletContext.contextPath}/findById/" + an.id + "\"type=\"button\" style=\"display: block; margin-left: auto;\" class=\"btn btn-outline-success\">ПРОСМОТР</a>"
         + "</td></tr>";
     return rsl;
 }
@@ -71,21 +73,21 @@ function filterAction() {
     console.log($("#filter").val().length);
     if ($("#filter").val().length > 0) {
         console.log("фильтр не пустой");
-        console.log($("#marka").val());
-        if (($("#filter").val() === "toShowACertainBrand" && $("#marka").val() === "0")) {
+        console.log($("#mark").val());
+        if (($("#filter").val() === "toShowACertainBrand" && $("#mark").val() === "0")) {
             console.log("зашли в метод загрузки списка марок");
-            document.getElementById("marka").removeAttribute("hidden");
-            this.markaload();
+            document.getElementById("mark").removeAttribute("hidden");
+            this.markload();
         } else {
             if ($("#filter").val() === "toShowForTheLastDay" || $("#filter").val() === "toShowWithAPhoto") {
-                $("#marka").hidden = true;
-                $("#marka").html("");
-                $("#marka").append("<option value=\"0\"></option>");
+                document.getElementById("mark").setAttribute("hidden", true);
+                $("#mark").html("");
+                $("#mark").append("<option value=\"0\"></option>");
             }
             $.ajax({
-                type: "POST",
-                url: "./listAn",
-                data: {action: "filter", an: "{\"id\":\"0\"}", marka: "{\"id\":\""+$("#marka").val()+"\"}", param: $("#filter").val()},
+                type: "GET",
+                url: "./filterAn",
+                data: {mark: $("#mark").val(), param: $("#filter").val()},
                 dataType: "json",
                 success: function (data) {
                     $("#todolist_table tbody").html("");
@@ -98,6 +100,7 @@ function filterAction() {
             });
         }
     } else {
+        document.getElementById("mark").setAttribute("hidden", true);
         this.listan("findAllAn");
     }
 }
@@ -105,14 +108,14 @@ function filterAction() {
 /**
  * получение списка марок автомобилей
  */
-function markaload() {
+function markload() {
     $.ajax({
         type: "POST",
-        url: "./markaLoad",
-        data: {action: "findAllMarka", m: "{\"id\":\"" + $("#marka").val() + "\"" + "}"},
+        url: "./markLoad",
+        data: {action: "findAllmark", m: "{\"id\":\"" + $("#mark").val() + "\"" + "}"},
         dataType: "json",
         success: function (data) {
-            ciclappendoption($("#marka"), data);
+            ciclappendoption($("#mark"), data);
 
         }
     });

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <property name="autoIncrement" value="true"/>
+    <!--созаём таблицу ролей-->
+    <changeSet author="admin" id="5">
+        <createTable tableName="announcement">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_dat" type="timestamp" defaultValue="now()">
+            </column>
+            <column name="user_id" type="bigint">
+            </column>
+<!--            <column name="car_id" type="bigint">-->
+<!--            </column>-->
+            <column name="done" type="boolean">
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="announcement"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="admin" id="5-1">
+        <createTable tableName="car">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+            </column>
+            <column name="model_id" type="bigint">
+            </column>
+            <column name="transmission_id" type="bigint">
+            </column>
+            <column name="yar" type="integer">
+            </column>
+            <column name="announcement_id" type="bigint">
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="car"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="admin" id="5-2">
+        <createTable tableName="photo">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="photo" type="bytea">
+            </column>
+            <column name="car_id" type="bigint">
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="photo"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

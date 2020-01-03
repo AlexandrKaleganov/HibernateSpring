@@ -1,39 +1,39 @@
 package ru.akaleganov.container.announcement.car;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ru.akaleganov.service.AnnouncementDispatch;
-import ru.akaleganov.service.ServiceAddObjects;
+import ru.akaleganov.domain.Transmission;
+import ru.akaleganov.service.TransmissionService;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
+
 @Controller
-public class TransmissionServlet extends HttpServlet {
+public class TransmissionServlet {
     private static final Logger LOGGER = Logger.getLogger(TransmissionServlet.class);
+    private final TransmissionService transmissionService;
 
-    @RequestMapping(value = "/transmission", method = RequestMethod.GET)
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-
+    public TransmissionServlet(TransmissionService transmissionService) {
+        this.transmissionService = transmissionService;
     }
 
-    @RequestMapping(value = "/transmission", method = RequestMethod.POST)
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            PrintWriter writer = new PrintWriter(resp.getOutputStream());
-            writer.append(new ObjectMapper().writeValueAsString(AnnouncementDispatch.getInstance().access(req.getParameter("action"),
-                   ServiceAddObjects.getInstance().addTransmission(req.getParameter("tr")))));
-            writer.flush();
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
+
+    @GetMapping(value = "/transmission")
+    protected ResponseEntity<List<Transmission>> getTransmissiont() throws ServletException, IOException {
+//        try {
+//            PrintWriter writer = new PrintWriter(resp.getOutputStream());
+//            writer.append(new ObjectMapper().writeValueAsString(this.transmissionService.findAll()));
+//            writer.flush();
+//        } catch (IOException e) {
+//            LOGGER.error(e.getMessage(), e);
+//        }
+       return ResponseEntity.ok().body(this.transmissionService.findAll());
     }
 
 

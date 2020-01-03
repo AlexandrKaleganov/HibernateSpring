@@ -38,7 +38,7 @@ function enableAll(param) {
     disabledtag(document.getElementsByName("delBut"), param);
     disabledfalshe($("#deleteButton"), param);
     loadyar();
-    markaload();
+    markload();
     transmissionload();
     disabledfalshe($("#buttonedit"), true);
 }
@@ -118,14 +118,14 @@ function loadyar() {
 /**
  * получение списка марок автомобилей
  */
-function markaload() {
+function markload() {
     $.ajax({
         type: "POST",
-        url: "../markaLoad",
-        data: {action: "findAllMarka", m: "{\"id\":\"" + $("#marka").val() + "\"" + "}"},
+        url: "../markLoad",
+        data: {action: "findAllmark", m: "{\"id\":\"" + $("#mark").val() + "\"" + "}"},
         dataType: "json",
         success: function (data) {
-            ciclappendoption($("#marka"), data);
+            ciclappendoption($("#mark"), data);
 
         }
     });
@@ -137,8 +137,8 @@ function markaload() {
 function modelload() {
     $.ajax({
         type: "POST",
-        url: "../markaLoad",
-        data: {action: "findByMarkaIdModel", m: "{\"id\":\"" + $("#marka").val() + "\"" + "}"},
+        url: "../modelLoad",
+        data: {action: "findBymarkIdModel", m: "{\"id\":\"" + $("#mark").val() + "\"" + "}"},
         dataType: "json",
         success: function (data) {
             ciclappendoption($("#model"), data);
@@ -176,7 +176,8 @@ function option(ob) {
  */
 function transmissionload() {
     $.ajax({
-        type: "POST",
+        contentType: 'application/json; charset=utf-8',
+        type: "GET",
         url: "../transmission",
         data: {action: "findAllTr", tr: "{\"id\":\"" + $("#transmission").val() + "\"" + "}"},
         dataType: "json",
@@ -202,7 +203,7 @@ function isValid(r, l) {
 }
 
 function valid() {
-    return !(isValid($("#name"), "") + isValid($("#marka"), "") + isValid($("#model"), "")
+    return !(isValid($("#name"), "") + isValid($("#mark"), "") + isValid($("#model"), "")
         + isValid($("#transmission"), "") + isValid($("#yar"), "") + isValid($("#description"), ""));
 }
 

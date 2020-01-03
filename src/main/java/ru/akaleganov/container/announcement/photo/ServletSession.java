@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.akaleganov.modelsannot.Photo;
+import ru.akaleganov.domain.Photo;
 import ru.akaleganov.service.ServiceAddObjects;
 
 import javax.servlet.ServletException;
