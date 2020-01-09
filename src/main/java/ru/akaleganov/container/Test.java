@@ -14,8 +14,8 @@ public class Test {
         for (int i = mass.length - 1; i >= 1; i--) {
             for (int j = 0; j < i; j++) {
                 if (isNumber(mass[i]) && isNumber(mass[j])) {
-                    if (Integer.parseInt(mass[i]) > Integer.parseInt(mass[j])) {
-                        toSwap(mass, i, j);
+                    if (Integer.parseInt(mass[i]) < Integer.parseInt(mass[j])) {
+                        toSwap(mass, j, i);
                     }
                 } else {
                     if (!isNumber(mass[i]) && !isNumber(mass[j])) {
@@ -36,7 +36,6 @@ public class Test {
         if (s.length() == 0) {
             return false;
         }
-
         char[] chars = s.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             char c = chars[i];
