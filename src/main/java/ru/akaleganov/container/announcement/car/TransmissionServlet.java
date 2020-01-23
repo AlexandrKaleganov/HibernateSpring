@@ -26,13 +26,6 @@ public class TransmissionServlet {
 
     @GetMapping(value = "/transmission")
     protected ResponseEntity<List<Transmission>> getTransmissiont() throws ServletException, IOException {
-//        try {
-//            PrintWriter writer = new PrintWriter(resp.getOutputStream());
-//            writer.append(new ObjectMapper().writeValueAsString(this.transmissionService.findAll()));
-//            writer.flush();
-//        } catch (IOException e) {
-//            LOGGER.error(e.getMessage(), e);
-//        }
        return ResponseEntity.ok().body(this.transmissionService.findAll());
     }
 

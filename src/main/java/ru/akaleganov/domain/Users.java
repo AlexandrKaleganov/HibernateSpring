@@ -26,6 +26,10 @@ public class Users extends AllModels {
         super(id);
     }
 
+    public Users(String login) {
+        this.login = login;
+    }
+
     public Users() {
         super();
     }

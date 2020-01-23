@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ru.akaleganov.config.MyUserPrincipal;
 import ru.akaleganov.domain.Photo;
 import ru.akaleganov.domain.Users;
 import ru.akaleganov.service.ServiceAddObjects;
@@ -46,4 +47,5 @@ public class SigninServlet {
             resp.sendRedirect(String.format("%s/", req.getContextPath()));
         }
     }
+
 }

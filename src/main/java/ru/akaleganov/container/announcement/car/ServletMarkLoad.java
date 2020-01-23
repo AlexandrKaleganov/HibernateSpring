@@ -22,8 +22,9 @@ private final ModelService modelService;
         this.modelService = modelService;
     }
 
-    @PostMapping(value = "/markLoad")
+    @PostMapping(value = "markLoad")
     protected void markLoad(HttpServletRequest req, HttpServletResponse resp) {
+        LOGGER.debug("markLoad");
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
             writer.append(new ObjectMapper().writeValueAsString(this.markService.findAll()));
@@ -38,8 +39,9 @@ private final ModelService modelService;
      * @param req {содержит запрос марки id}
      * @param resp {ответ}
      */
-    @PostMapping(value = "/modelLoad")
+    @PostMapping(value = "modelLoad")
     protected void modelLoad(HttpServletRequest req, HttpServletResponse resp) {
+        LOGGER.debug("modelLoad");
         try {
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
             writer.append(new ObjectMapper().writeValueAsString(this.modelService.findByMarkId(

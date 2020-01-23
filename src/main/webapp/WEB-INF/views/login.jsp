@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -18,24 +20,32 @@
     <title>авторизация</title>
 </head>
 <body>
-<c:if test="${err!=null}">
+
+<c:if test="${param.error!=null}">
     <div class="alert alert-danger  alert-dismissible">
-        <strong>System error:</strong> <c:out value="${err}"></c:out>
+        <strong>System error:</strong>     Invalid username and password.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+    </div>
+</c:if>
+<c:if test="${param.logout!=null}">
+    <div class="alert alert-danger  alert-dismissible">
+        <strong>System error:</strong>  You have been logged out.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
     </div>
 </c:if>
 <div class="container">
     <h2>Авторизация</h2>
-    <form action="${pageContext.servletContext.contextPath}/api/signin" class="needs-validation" method="post">
+    <form action="${pageContext.servletContext.contextPath}/login" class="needs-validation" method="post">
+        <sec:csrfInput />
         <div class="form-group">
             <label for="uname">Username:</label>
-            <input type="text" class="form-control" id="uname" placeholder="Enter username" name="login" required>
+            <input type="text" class="form-control" id="uname" placeholder="Enter username" name="username" required>
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">Please fill out this field.</div>
         </div>
         <div class="form-group">
             <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">Please fill out this field.</div>
         </div>

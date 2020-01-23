@@ -1,6 +1,8 @@
 package ru.akaleganov.domain;
 
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
-public class Roles extends AllModels {
+public class Roles extends AllModels implements GrantedAuthority {
     @Column(name = "role")
     private String role;
 
@@ -47,5 +49,10 @@ public class Roles extends AllModels {
     @Override
     public String toString() {
         return "Roles{" + "id=" + super.getId() + ", role='" + role + '\'' + '}';
+    }
+
+    @Override
+    public String getAuthority() {
+        return this.getRole();
     }
 }

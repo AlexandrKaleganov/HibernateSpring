@@ -1,7 +1,7 @@
 package ru.akaleganov.container.announcement.photo;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +13,6 @@ import ru.akaleganov.service.PhotoService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * сервлет отрисовывает фотографии по id и удалаяет фотографии
@@ -43,18 +42,14 @@ public class ImageServlet {
     }
 
     @PostMapping(value = "/image")
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected ResponseEntity<Announcement> doPost(HttpServletRequest req, HttpServletResponse resp) {
         if (req.getParameter("action").contains("delete")) {
             System.out.println(req.getParameter("idPhoto"));
             this.photoService.delete(new Photo(Integer.parseInt(req.getParameter("idPhoto"))));
         }
-        try {
-            PrintWriter writer = new PrintWriter(resp.getOutputStream());
-            writer.append(new ObjectMapper().writeValueAsString(this.announcementService.findByID(
-                    new Announcement(Integer.parseInt(req.getParameter("idAn"))))));
-            writer.flush();
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
+        Announcement announcement = this.announcementService.findByID(
+                new Announcement(Integer.parseInt(req.getParameter("idAn"))));
+        LOGGER.debug(announcement.getCar().getPhoto().size());
+        return ResponseEntity.ok(announcement);
     }
 }

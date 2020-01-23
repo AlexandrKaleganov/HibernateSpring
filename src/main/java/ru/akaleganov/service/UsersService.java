@@ -1,6 +1,9 @@
 package ru.akaleganov.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.akaleganov.domain.Users;
 import ru.akaleganov.repository.UsersRepository;
@@ -17,9 +20,13 @@ import java.util.List;
 public class UsersService implements Store<Users> {
     private final UsersRepository usersRepository;
 
+    private final Logger log = LoggerFactory.getLogger(UsersService.class);
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    public UsersService(UsersRepository usersRepository) {
+    public UsersService(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
         this.usersRepository = usersRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -29,7 +36,7 @@ public class UsersService implements Store<Users> {
         if (test.getId() != 0L) {
             return users;
         } else {
-            return this.usersRepository.save(users);
+            return this.usersRepository.save(this.setPasswordEncoder(users));
         }
     }
 
@@ -41,7 +48,7 @@ public class UsersService implements Store<Users> {
 
     @Override
     public Users edit(Users users) {
-        return this.usersRepository.save(users);
+        return this.usersRepository.save(this.setPasswordEncoder(users));
     }
 
     @Override
@@ -62,7 +69,8 @@ public class UsersService implements Store<Users> {
 
     @Override
     public Users findByLoginPass(Users users) {
-        return this.usersRepository.findByLoginAndPassword(users.getLogin(), users.getPassword()).orElse(new Users());
+        return this.usersRepository.findByLoginAndPassword(users.getLogin(),
+                this.setPasswordEncoder(users).getPassword()).orElse(new Users());
     }
 
     @Override
@@ -70,5 +78,8 @@ public class UsersService implements Store<Users> {
         return this.usersRepository.findByLogin(users.getLogin()).orElse(new Users());
     }
 
-
+    private Users setPasswordEncoder(Users users) {
+        users.setPassword(this.passwordEncoder.encode(users.getPassword()));
+        return users;
+    }
 }

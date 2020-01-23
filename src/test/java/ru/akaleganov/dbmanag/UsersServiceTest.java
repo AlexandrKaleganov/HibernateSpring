@@ -88,15 +88,6 @@ public class UsersServiceTest {
         });
     }
 
-
-    @Test
-    @DisplayName("тестирование: получить пользователя по логину и паролю")
-    public void findByLoginPass() {
-        this.testAll((db, u) -> {
-            assertThat(db.findByLoginPass(u).getLogin(), Is.is("login2"));
-        });
-    }
-
     @Test
     @DisplayName("тестирование: получить пользователя логину")
     public void findByLogin() {

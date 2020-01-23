@@ -1,4 +1,4 @@
 id;name;login;password;role_id
-1;admin;admin;admin;1L
-2;root;root;root;1L
-3;user;user;user;2L
+1;admin;admin;$2a$10$jQB2bhTlYyBIhjVL85nGcebR.btSaZvJ.o2YmTwTsF7ibX3GVh1aW;1L
+2;root;root;$2a$10$SsQYs4uRaLcK8wQBGGMvN.iRpLiDSTF/XCABEKk.rtxJWMaxjVf7C;1L
+3;user;user;$2a$10$D8yxNMRDXfqgfbnNYXarGOMUWHa7YKnY8WCW9qWd//1Wzu5n0jVbe;2L

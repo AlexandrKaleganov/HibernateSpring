@@ -3,14 +3,14 @@ package ru.akaleganov.filter;
 import org.apache.log4j.Logger;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import ru.akaleganov.service.Sfactory;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-@Component
-@Order(0)
+
+//@Component
+//@Order(0)
 public class AuthFilter implements Filter {
 
     private static final org.apache.log4j.Logger LOGGER = Logger.getLogger(AuthFilter.class);

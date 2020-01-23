@@ -1,6 +1,5 @@
 package ru.akaleganov.container;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +12,13 @@ import ru.akaleganov.domain.Photo;
 import ru.akaleganov.domain.Users;
 import ru.akaleganov.service.AnnouncementService;
 import ru.akaleganov.service.ServiceAddObjects;
+import ru.akaleganov.service.UsersService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,10 +26,12 @@ import java.util.List;
 public class ServletIndex {
     private static final Logger LOGGER = Logger.getLogger(ServletIndex.class);
     private final AnnouncementService announcementService;
+    private final UsersService usersService;
 
     @Autowired
-    public ServletIndex(AnnouncementService announcementService) {
+    public ServletIndex(AnnouncementService announcementService, UsersService usersService) {
         this.announcementService = announcementService;
+        this.usersService = usersService;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -38,30 +40,26 @@ public class ServletIndex {
     }
 
     @GetMapping(value = "/findById/{id}")
-    public String findById(ModelMap map, @PathVariable int id, HttpServletRequest req) {
+    public String findById(Principal principal, ModelMap map, @PathVariable int id, HttpServletRequest req) {
+        LOGGER.debug(principal.getName());
         Announcement announcement = this.announcementService.findByID(new Announcement(id));
         LOGGER.info(announcement);
         if (announcement.getId() == 0) {
-            announcement.setAuthor(new Users((Long) req.getSession().getAttribute("userID")));
-            announcement.getAuthor().setLogin((String) req.getSession().getAttribute("login"));
+            announcement.setAuthor(this.usersService.findByLogin(
+                    new Users(principal.getName())));
         }
         map.addAttribute("an", announcement);
         return "announ/edit";
     }
 
     @PostMapping(value = "/edit")
-    public void updateOrReplace(HttpServletRequest req, HttpServletResponse resp) {
-        String action = req.getParameter("action");
-
-        try {
-            PrintWriter writer = new PrintWriter(resp.getOutputStream());
-            writer.append(new ObjectMapper().writeValueAsString(this.announcementService.edit(ServiceAddObjects.getInstance().addAllObject(
-                    req.getParameter("an"), req.getParameter("car"),
-                    (ArrayList<Photo>) req.getSession().getAttribute("phList")))));
-            writer.flush();
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
+    public ResponseEntity<Announcement> updateOrReplace(ModelMap modelMap, HttpServletRequest req, HttpServletResponse resp) {
+        if (req.getSession().getAttribute("phList") == null) {
+            req.getSession().setAttribute("phList", new ArrayList<Photo>());
         }
+        Announcement announcement = this.announcementService.edit(ServiceAddObjects.getInstance().addAllObject(
+                req.getParameter("an"), req.getParameter("car"), (ArrayList<Photo>) req.getSession().getAttribute("phList")));
+        return ResponseEntity.ok(this.announcementService.findByID(announcement));
     }
 
     @DeleteMapping(value = "/delete")

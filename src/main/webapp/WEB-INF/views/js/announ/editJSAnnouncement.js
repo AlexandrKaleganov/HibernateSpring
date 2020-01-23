@@ -228,6 +228,10 @@ function addAnno() {
             },
             dataType: "json",
             success: function (data) {
+                console.log("data = ");
+                console.log(data);
+                console.log("data.body = ");
+                console.log(data.body);
                 $("#result").html("");
                 $("#result").append("<div class=\"alert alert-success  alert-dismissible\">\n" +
                     "            " + data.name + " <strong> " + rsl + "</strong>\n" +
@@ -303,6 +307,8 @@ function photoDel(idPhoto, idAn, action) {
         type: "POST",
         data: {idPhoto: idPhoto, idAn: idAn, action: action},
         success: function (data) {
+            console.log("photoDel data= ");
+            console.log(data);
             toDrawAPhoto(data.car.photo);
         }
     });
@@ -312,6 +318,7 @@ function photoDel(idPhoto, idAn, action) {
  * отрисовка фотографий
  */
 function toDrawAPhoto(photoList) {
+    console.log("photoList = " + photoList.length);
     $("#imageView").html("");
     for (var i = 0; i < photoList.length; i++) {
         $("#imageView").append("<img src=\"${pageContext.servletContext.contextPath}/image?id=" + photoList[i].id + "\" alt=\"...\" width=\"600\"\n" +
@@ -388,31 +395,3 @@ function deleteAn() {
         }
     });
 }
-
-// загрузка файлов на сервлет второй вариант оба варианта рабочие от случая к случаю
-// function fileupload() {
-//     var url = "./upload";
-//     var form = $("#sampleUploadFrm")[0];
-//     var data = new FormData(form);
-//     $.ajax({
-//         type: "POST",
-//         encType: "multipart/form-data",
-//         url: url,
-//         cache: false,
-//         processData: false,
-//         contentType: false,
-//         data: data,
-//         success: function (msg) {
-//             console.log(msg);
-//             var status = msg.status;
-//             if (status === 1) {
-//                 alert("File has been uploaded successfully");
-//             } else {
-//                 alert("Couldn't upload file");
-//             }
-//         },
-//         error : function(msg) {
-//             alert("Couldn't upload file");
-//         }
-//     });
-// }
