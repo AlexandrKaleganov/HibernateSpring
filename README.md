@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/AlexandrKaleganov/HibernateSpring.svg?branch=task_4744)](https://travis-ci.org/AlexandrKaleganov/HibernateSpring)
-[![codecov](https://codecov.io/gh/AlexandrKaleganov/HibernateSpring/branch/task_4744/graph/badge.svg)](https://codecov.io/gh/AlexandrKaleganov/HibernateSpring)
+[![Build Status](https://travis-ci.org/AlexandrKaleganov/HibernateSpring.svg?branch=spring)](https://travis-ci.org/AlexandrKaleganov/HibernateSpring)
+[![codecov](https://codecov.io/gh/AlexandrKaleganov/HibernateSpring/branch/spring/graph/badge.svg)](https://codecov.io/gh/AlexandrKaleganov/HibernateSpring)
 # HibernateSpring
 #актуальная версия нахоится в ветке  spring
 в данном курсе я буду изучать Hibernate  и Spring
