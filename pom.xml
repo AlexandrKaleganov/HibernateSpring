@@ -7,6 +7,7 @@
     <artifactId>HibernateSpring</artifactId>
     <packaging>jar</packaging>
     <version>1.0</version>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
