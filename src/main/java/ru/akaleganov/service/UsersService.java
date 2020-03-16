@@ -48,7 +48,12 @@ public class UsersService implements Store<Users> {
 
     @Override
     public Users edit(Users users) {
-        return this.usersRepository.save(this.setPasswordEncoder(users));
+        if (users.getPassword().equals("")) {
+            users.setPassword(this.findByLogin(users).getPassword());
+        } else {
+            this.setPasswordEncoder(users);
+        }
+        return this.usersRepository.save(users);
     }
 
     @Override
@@ -58,7 +63,9 @@ public class UsersService implements Store<Users> {
 
     @Override
     public Users findByID(Users users) {
-        return this.usersRepository.findById(users.getId()).orElse(new Users(0));
+        Users users1 = this.usersRepository.findById(users.getId()).orElse(new Users(0));
+        users1.setPassword("");
+        return users1;
     }
 
     @Override
@@ -78,8 +85,15 @@ public class UsersService implements Store<Users> {
         return this.usersRepository.findByLogin(users.getLogin()).orElse(new Users());
     }
 
+    /**
+     * преобразовать пароль в хешкод
+     *
+     * @param users юзер
+     * @return вернёт пользователя
+     */
     private Users setPasswordEncoder(Users users) {
         users.setPassword(this.passwordEncoder.encode(users.getPassword()));
         return users;
     }
+
 }
