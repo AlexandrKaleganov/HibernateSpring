@@ -40,7 +40,7 @@ public class ServletIndex {
     }
 
     @GetMapping(value = "/findById/{id}")
-    public String findById(Principal principal, ModelMap map, @PathVariable int id, HttpServletRequest req) {
+    public String findById(Principal principal, ModelMap map, @PathVariable Long id, HttpServletRequest req) {
         LOGGER.debug(principal.getName());
         Announcement announcement = this.announcementService.findByID(new Announcement(id));
         LOGGER.info(announcement);
@@ -62,12 +62,12 @@ public class ServletIndex {
         return ResponseEntity.ok(this.announcementService.findByID(announcement));
     }
 
-    @DeleteMapping(value = "/delete")
-    public String delete(HttpServletRequest req, HttpServletResponse resp) {
+    @PostMapping(value = "/delete")
+    public void delete(@RequestParam("idAn") Long idAn, @RequestParam("idCar") Long idCar, HttpServletResponse resp, HttpServletRequest req) throws IOException, ServletException {
+
         this.announcementService.delete(ServiceAddObjects.getInstance().addAllObject(
-                req.getParameter("an"), req.getParameter("car"),
-                new ArrayList<>()));
-        return "redirect:";
+                idAn, idCar));
+        req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
     }
 
     /**

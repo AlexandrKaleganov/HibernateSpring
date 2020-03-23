@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.apache.xerces.impl.dv.util.Base64;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.akaleganov.domain.*;
 
 import javax.imageio.ImageIO;
@@ -179,6 +180,12 @@ public class ServiceAddObjects {
         Announcement ann = this.addAnnouncement(jsonann);
         Car car = this.addCar(jsoncar);
         return this.addAll(ann, car, photos);
+    }
+    public Announcement addAllObject(Long idAn, Long idCar) {
+        Car car = new Car(idCar);
+        Announcement announcement = new Announcement(idAn);
+        announcement.setCar(car);
+        return announcement;
     }
     /**
      * рефактор try catch

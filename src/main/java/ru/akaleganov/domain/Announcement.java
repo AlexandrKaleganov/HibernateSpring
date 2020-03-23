@@ -50,7 +50,7 @@ public class Announcement extends AllModels {
      *
      * @param id
      */
-    public Announcement(int id) {
+    public Announcement(Long id) {
         super(id);
     }
 

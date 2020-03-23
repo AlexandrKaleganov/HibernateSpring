@@ -66,7 +66,7 @@ public class Car extends AllModels {
     /**
      * @param id все объекты содержат id  уникальный идентификатор
      */
-    public Car(int id) {
+    public Car(Long id) {
         super(id);
     }
 

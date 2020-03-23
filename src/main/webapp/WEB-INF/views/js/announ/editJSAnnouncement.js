@@ -1,4 +1,6 @@
-﻿/**
+﻿const patch = "${pageContext.servletContext.contextPath}";
+
+/**
  * скрипты для управления объявлением редактирование, удаление добавление,
  * отрисовки на странице edit.jsp
  */
@@ -387,11 +389,10 @@ function returnHeadTable() {
 function deleteAn() {
     $.ajax({
         type: "POST",
-        url: "./delete",
+        url: patch + "../delete",
         data: {
-            action: "deleteAn",
-            an: toReceiveTheAnnouncementFromAForm(),
-            car: toReceiveTheCarFromAForm()
+            idAn:  $("#idan").val(),
+            idCar: $("#carid").val()
         }
     });
 }

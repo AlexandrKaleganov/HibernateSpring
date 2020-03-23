@@ -48,7 +48,7 @@ public class ImageServlet {
             this.photoService.delete(new Photo(Integer.parseInt(req.getParameter("idPhoto"))));
         }
         Announcement announcement = this.announcementService.findByID(
-                new Announcement(Integer.parseInt(req.getParameter("idAn"))));
+                new Announcement(Long.parseLong(req.getParameter("idAn"))));
         LOGGER.debug(announcement.getCar().getPhoto().size());
         return ResponseEntity.ok(announcement);
     }
