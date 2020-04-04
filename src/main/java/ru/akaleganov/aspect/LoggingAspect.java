@@ -21,6 +21,7 @@ public class LoggingAspect {
     @Pointcut("execution(* ru.akaleganov.service.*.*(..))")
     private void allLogEventMethods() {
     }
+
     @Pointcut("allLogEventMethods() && within(*.*File*Logger)")
     private void logEventInsideFileLoggers() {
     }
