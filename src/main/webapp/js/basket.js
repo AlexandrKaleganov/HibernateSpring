@@ -39,16 +39,6 @@ function loadbasket(key, dat) {
     rsl = rsl + "<td><button type=\"button\"  value=\"" + v.id + "\" class=\"btn btn-primary\" onclick=\"basket(this.value, 'deleteItemForKey')\" >Удалить позицию полностью</button></td></tr>";
     return rsl;
 }
-//
-// /**
-//  * получение json объекта из ключа
-//  * @param key
-//  * @returns {any}
-//  */
-// function getkey(key) {
-//     var str = '' + key.toString() + '';
-//     return JSON.parse(str);
-// }
 
 /**
  * включение/отклчение кнопки удаления одной позиции
